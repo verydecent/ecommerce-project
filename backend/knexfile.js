@@ -14,7 +14,8 @@ module.exports = {
     migrations: {
       directory: __dirname + '/knex/migrations',
     },
-    seeds: __dirname + '/knex/seeds'
+    seeds: __dirname + '/knex/seeds',
+    useNullAsDefault: true
   },
 
   staging: {
