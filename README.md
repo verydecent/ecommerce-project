@@ -1,5 +1,3 @@
 # ecommerce-project
 
-First solo project copying the main features of the ecommerce webiste Grailed
-
-[Grailed.com]
+First solo project copying the main features of the ecommerce webiste Grailed.com
