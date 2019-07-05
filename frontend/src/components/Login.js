@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 class Login extends React.Component {
   constructor() {
@@ -25,24 +25,28 @@ class Login extends React.Component {
     return (
       <div>
         <form onSubmit={this.onSubmit}>
-          <label htmlFor="username">Username</label>
-          <input
-            name="username"
-            type="text"
-            value={this.state.username}
-            onChange={this.onChange}
-          />
-          <label htmlFor="password">Password</label>
-          <input 
-            name="password"
-            type="password"
-            value={this.state.password}
-            onChange={this.onChange}
-          />
           <div>
-            <button>
-              Login
-            </button>
+            <label htmlFor="email" />
+            <input 
+              name="email"
+              value={this.state.email}
+              onChange={this.onChange}
+              type="text"
+              placeholder="email"
+            />
+          </div>
+          <div>
+            <label htmlFor="password" />
+            <input 
+              name="password"
+              type="password"
+              value={this.state.password}
+              onChange={this.onChange}
+              placeholder="password"
+            />
+          </div>
+          <div>
+            <button type="submit">Login</button>
           </div>
         </form>
       </div>
