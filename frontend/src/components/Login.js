@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 
 class Login extends React.Component {
   constructor() {
@@ -12,7 +13,15 @@ class Login extends React.Component {
   onSubmit = (event) => {
     event.preventDefault();
 
-    console.log("onSubmit()");
+    const endpoint = 'http://localhost:5000/api/auth/login';
+    axios
+      .post(endpoint, this.state)
+      .then(res => {
+        localStorage.setItem('jwt', res.data['token']);
+      })
+      .catch(err => {
+        console.error('ERROR', err);
+      });
   }
 
   onChange = (event) => {
