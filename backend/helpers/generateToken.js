@@ -1,6 +1,8 @@
 const jwt = require('jsonwebtoken');
 
-function generateToken(user) {
+const secret = process.env.JWT_SECRET || 'Monkey inside of a cage but cant see the key';
+
+function generateToken(user) { 
 
   const payload = {
     subject: user.id,
@@ -12,7 +14,7 @@ function generateToken(user) {
     expiresIn: '15m'
   }
 
-  return jwt.sign(payload, process.env.JWT_SECRET, options);
+  return jwt.sign(payload, secret, options);
 }
 
-module.export = tokenGenerator;
+module.exports = generateToken;
