@@ -1,8 +1,9 @@
 const router = require('express').Router();
 
+const checkJwt = require('../middleware/checkJwt');
 const Database = require('../models/userModel');
 
-router.get('/users', (req,res) => {
+router.get('/', checkJwt, (req,res) => {
   Database.getUsers()
   .then(users => {
     res.json({ users });
