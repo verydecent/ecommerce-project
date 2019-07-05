@@ -7,7 +7,7 @@ module.exports = {
 }
 
 function getUsers() {
-  return db('users')
+  return db('users');
 }
 
 function addUser(user) {
