@@ -21,7 +21,7 @@ function checkJwt(req, res, next) {
     next();
   }
   else {
-    res.status(403);
+    res.status(403).json({ message: 'No token provided '});
   }
 }
 
