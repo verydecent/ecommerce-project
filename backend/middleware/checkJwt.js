@@ -14,11 +14,10 @@ function checkJwt(req, res, next) {
         res.status(401).json({ message: "Unauthorized token" });
       }
       else {
-        req.decodedToken = decodedToken;
+        req.decodedJwt = decodedToken;
+        next();
       }
-    })
-    req.token = token;
-    next();
+    });
   }
   else {
     res.status(403).json({ message: 'No token provided '});
