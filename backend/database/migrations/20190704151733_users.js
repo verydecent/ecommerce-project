@@ -13,9 +13,13 @@ exports.up = function(knex) {
       .string('email', 128)
       .notNullable()
       .unique();
+
+    table
+      .string('password', 128)
+      .notNullable();
     
     table
-      .string('location', 256)
+      .string('location', 128)
       .notNullable();
     
     table
