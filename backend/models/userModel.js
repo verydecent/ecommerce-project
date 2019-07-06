@@ -4,7 +4,6 @@ module.exports = {
   getUsers,
   addUser,
   getUserByEmail,
-  postItem,
 }
 
 function getUsers() {
@@ -17,8 +16,4 @@ function addUser(user) {
 
 function getUserByEmail(email) {
   return db('users').where({ email: email }).first();
-}
-
-function postItem(item) {
-  return db('items').insert(item);
 }

@@ -9,7 +9,7 @@ router.post('/register', (req, res) => {
   let { username, password, email, location } = body;
   const saltRounds = 14;
 
-  if (!username || !password || !email || !location) {
+  if (!username || !password || !email) {
     res.status(422).json({ message: "You are missing one or more required fields" });
   }
   else {

@@ -5,7 +5,7 @@ const secret = process.env.JWT_SECRET || 'Monkey inside of a cage but cant see t
 function generateToken(user) { 
 
   const payload = {
-    subject: user.id,
+    id: user.id,
     username: user.username,
     roles: ['admin']
   }

@@ -8,7 +8,7 @@ function checkJwt(req, res, next) {
   if (typeof header !== 'undefined ') {
     const bearer = header.split(' ');
     const token = bearer[1];
-
+    
     jwt.verify(token, secret, (err, decodedToken) => {
       if (err) {
         res.status(401).json({ message: "Unauthorized token" });
