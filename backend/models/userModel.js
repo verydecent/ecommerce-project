@@ -3,7 +3,8 @@ const db = require('../database/dbConfig');
 module.exports = {
   getUsers,
   addUser,
-  getUserByEmail
+  getUserByEmail,
+  postItem,
 }
 
 function getUsers() {
@@ -16,4 +17,8 @@ function addUser(user) {
 
 function getUserByEmail(email) {
   return db('users').where({ email: email }).first();
+}
+
+function postItem(item) {
+  return db('items').insert(item);
 }
