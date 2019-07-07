@@ -4,21 +4,24 @@ exports.up = function(knex) {
     table
       .increments();
     table
-      .string('username', 128)
-      .notNullable()
-      .unique();
-    table
       .string('email', 128)
       .notNullable()
       .unique();
     table
-      .string('password', 128)
-      .notNullable();    
+      .string('username', 128)
+      .notNullable()
+      .unique();
     table
-      .timestamp('createdAt')
+      .string('password', 128)
+      .notNullable()
+      .unique();
+    table
+      .string('location', 128);
+    table
+      .timestamp('created_at')
       .defaultTo(knex.fn.now());
     table
-      .timestamp('updatedAt')
+      .timestamp('updated_at')
       .defaultTo(knex.fn.now());
   });
 };

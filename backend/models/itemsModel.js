@@ -17,5 +17,5 @@ function getItemsById(id) {
 }
 
 function getItems() {
-  return db('users_items');
+  return db('items');
 }
