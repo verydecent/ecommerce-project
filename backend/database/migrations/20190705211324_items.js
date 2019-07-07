@@ -12,9 +12,9 @@ exports.up = function(knex) {
     table
       .integer('purchased_by_user_id')
       .unsigned()
-      .notNullable()
+      .nullable()
       .references('users.id')
-      .onDelete('CASCADE');
+      .onDelete('CASCADE')
     // defaultTo chain might be a problem because of how we are entering the true boolean
     table
       .boolean('is_available')
