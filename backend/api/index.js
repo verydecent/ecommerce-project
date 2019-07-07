@@ -22,9 +22,12 @@ const authRoutes = require('../routes/authRoutes');
 const usersRoutes = require('../routes/usersRoutes');
 const accountRoutes = require('../routes/accountRouters');
 
+const poolRoutes = require('../routes/poolRoutes');
+
 // Endpoints
-server.use('/api/auth', authRoutes);
-server.use('/api/users', usersRoutes);
-server.use('/api/account', accountRoutes);
+// server.use('/api/auth', authRoutes);
+// server.use('/api/users', usersRoutes);
+// server.use('/api/account', accountRoutes);
+server.use('/api', poolRoutes);
 
 module.exports = server;
