@@ -11,24 +11,42 @@ import SubNavigation from './components/SubNavigation/SubNavigation';
 
 function App() {
   return (
-    <div className="wrap-container">
-
+    <div className="app-container">
+      
       {/* End */}
       
       
       
       
       <header>
-        <SubNavigation />
+        <div className="global-header-wrapper">
+          <div className="global-header">
+            Website Logo
+            <div className="global-nav">
+                <NavLink className="nav-link" to="/" >Home</NavLink>
+              </div>
+            <div className="user-options">
+              <div className="dropdown">
+                <h2>Users</h2>
+                <div className="dropdown-content">
+                  <NavLink className="nav-link" to="/login">Login</NavLink>
+                  <NavLink className="nav-link" to="/register">Register</NavLink> 
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        {/* <SubNavigation /> */}
         {/* <nav>
-          <NavLink to="/login">Login</NavLink> <br/>
+          <br/>
           <NavLink to="/users">Users</NavLink> <br/>
           <NavLink to="/home">HomePage</NavLink> <br/>
         </nav> */}
       </header>
       <main>
         Main
-        {/* <Login /> */} 
+        <Route path="/login" component={Login} />
         {/* <ItemFeed /> */}
         {/* <Route path="/home" component={HomePage} />
         <Route path="/login" component={Login} />
