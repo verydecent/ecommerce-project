@@ -1,7 +1,11 @@
 .sub-navigation {
   width: 169px;
   padding: 0 10px 10px 10px;
-  border: 1px pink solid;
+  border: 1px red solid;
+}
+
+.sub-navigation li {
+  padding: 5px 0 3px 0;
 }
 
 .sub-navigation-contents {
@@ -24,4 +28,40 @@
 
 .sub-nav-spacer {
   height: 10px;
+}
+
+.main-nav {
+  padding: 10px 0 20px 0px;
+}
+
+.main-nav ul {
+  margin-left: 10px;
+}
+
+.main-nav a {
+  color: #000000;
+  text-decoration: none;
+  font-size: 11px;
+}
+
+.colour-filter {
+  padding: 10px 0 20px 0px;
+}
+
+.colour-filter a {
+  padding-left: 5px;
+  color: #000000;
+  text-decoration: none;
+  font-size: 11px;
+}
+
+.designer-filter {
+  padding: 10px 0 20px 0px;
+}
+
+.designer-filter a {
+  padding-left: 5px;
+  color: #000000;
+  text-decoration: none;
+  font-size: 11px;
 }
