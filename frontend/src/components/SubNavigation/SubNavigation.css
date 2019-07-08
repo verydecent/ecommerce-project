@@ -1,0 +1,27 @@
+.sub-navigation {
+  width: 169px;
+  padding: 0 10px 10px 10px;
+  border: 1px pink solid;
+}
+
+.sub-navigation-contents {
+  background: #f0f0f0;
+  padding: 20px 10px 30000px 10px;
+  width: 160px;
+  margin-bottom: -30000px;
+}
+
+.sub-nav-header {
+  padding: 0 0 10px 0;
+  border-bottom: 1px solid #838383;
+}
+
+.sub-nav-header h4 {
+  font-size: 11px;
+  text-transform: uppercase;
+  color: #838383;
+}
+
+.sub-nav-spacer {
+  height: 10px;
+}

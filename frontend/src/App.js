@@ -5,22 +5,34 @@ import './App.css';
 import Login from './components/Login';
 import UsersList from './components/UsersList';
 import HomePage from './components/HomePage';
+import ItemFeed from './components/ItemFeed/ItemFeed';
+import SubNavigation from './components/SubNavigation/SubNavigation';
+
 
 function App() {
   return (
-    <div className="App">
+    <div className="wrap-container">
+
+      {/* End */}
+      
+      
+      
+      
       <header>
-        <nav>
+        <SubNavigation />
+        {/* <nav>
           <NavLink to="/login">Login</NavLink> <br/>
           <NavLink to="/users">Users</NavLink> <br/>
           <NavLink to="/home">HomePage</NavLink> <br/>
-        </nav>
+        </nav> */}
       </header>
       <main>
+        Main
         {/* <Login /> */} 
-        <Route path="/home" component={HomePage} />
+        {/* <ItemFeed /> */}
+        {/* <Route path="/home" component={HomePage} />
         <Route path="/login" component={Login} />
-        <Route path="/users" component={UsersList} />
+        <Route path="/users" component={UsersList} /> */}
       </main>
     </div>
   );
