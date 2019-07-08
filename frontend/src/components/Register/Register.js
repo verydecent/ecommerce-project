@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 
 class Register extends React.Component {
   constructor() {
@@ -7,22 +8,41 @@ class Register extends React.Component {
       username: '',
       email: '',
       password: '',
+      passwordConfirm: '',
+      location: '',
     }
+
+    // this.onSubmit = this.onSubmit.bind(this);
   }
 
-  onSubmit = (event) => {
+  handleSubmit = (event) => {
+    // const endpoint = 'http://localhost:5000/api/auth/register';
+
+    // const body = this.state;
+    
+    // axios.post(endpoint, body)
+    //   .then(res => {
+    //     console.log("response from register endpoint", res);
+    //   })
+    //   .catch(err => {
+    //     console.error('ERROR', err);
+    //   });
+
     event.preventDefault();
     console.log('onSubmit');
   }
 
   onChange = (event) => {
-    console.log('onChange');
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
+
+    console.log(this.state);
   }
 
   render() {
     return (
       <div className="register-container">
-        <form onSubmit={this.onSubmit}>
+        <form onSubmit={this.handleSubmit}>
           <div>
             <label htmlFor="username" />
             <input 
@@ -56,15 +76,27 @@ class Register extends React.Component {
           <div>
             <label htmlFor="password confirm" />
             <input 
-            name="password"
-            value={this.state.password}
+            name="passwordConfirm"
+            value={this.state.passwordConfirm}
             type="password"
             onChange={this.onChange}
             placeholder="confirm password"
             />
           </div>
+          <div>
+            <label htmlFor="location" />
+            <input 
+            name="location"
+            value={this.state.location}
+            type="text"
+            onChange={this.onChange}
+            placeholder="location"
+            />
+          </div>
+          <div>
+            <button type="submit">Register</button>
+          </div>
         </form>
-        <button type="submit">Register</button>
       </div>
     );
   }
