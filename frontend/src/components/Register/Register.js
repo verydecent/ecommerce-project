@@ -11,22 +11,28 @@ class Register extends React.Component {
       passwordConfirm: '',
       location: '',
     }
-
-    // this.onSubmit = this.onSubmit.bind(this);
   }
 
   handleSubmit = (event) => {
-    // const endpoint = 'http://localhost:5000/api/auth/register';
+    const endpoint = 'http://localhost:5000/api/auth/register';
 
-    // const body = this.state;
+    const body = {
+      username: this.state.username,
+      email: this.state.email,
+      password: this.state.password,
+      passwordConfirm: this.state.passwordConfirm,
+      location: this.state.location,
+    };
+
+    console.log(body);
     
-    // axios.post(endpoint, body)
-    //   .then(res => {
-    //     console.log("response from register endpoint", res);
-    //   })
-    //   .catch(err => {
-    //     console.error('ERROR', err);
-    //   });
+    axios.post(endpoint, body)
+      .then(res => {
+        console.log("response from register endpoint", res);
+      })
+      .catch(err => {
+        console.error('ERROR', err);
+      });
 
     event.preventDefault();
     console.log('onSubmit');
@@ -35,8 +41,6 @@ class Register extends React.Component {
   onChange = (event) => {
     const { name, value } = event.target;
     this.setState({ [name]: value });
-
-    console.log(this.state);
   }
 
   render() {
