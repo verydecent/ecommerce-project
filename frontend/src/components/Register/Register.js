@@ -14,28 +14,25 @@ class Register extends React.Component {
   }
 
   handleSubmit = (event) => {
+    event.preventDefault();
     const endpoint = 'http://localhost:5000/api/auth/register';
 
     const body = {
-      username: this.state.username,
       email: this.state.email,
+      username: this.state.username,
       password: this.state.password,
       passwordConfirm: this.state.passwordConfirm,
       location: this.state.location,
     };
-
-    console.log(body);
     
     axios.post(endpoint, body)
       .then(res => {
         console.log("response from register endpoint", res);
+        this.props.history.push('/home');
       })
       .catch(err => {
         console.error('ERROR', err);
       });
-
-    event.preventDefault();
-    console.log('onSubmit');
   }
 
   onChange = (event) => {

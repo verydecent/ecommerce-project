@@ -9,7 +9,7 @@ class ItemFeed extends React.Component {
     this.state = {
       items: []
     }
-  }
+  } 
   
 
   componentDidMount() {

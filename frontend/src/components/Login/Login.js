@@ -24,12 +24,11 @@ class Login extends React.Component {
       .then(res => {
         console.log(res.data.message);
         localStorage.setItem('jwt', res.data['token']);
+        this.props.history.push('/home');
       })
       .catch(err => {
         console.error('ERROR', err);
       });
-
-    this.props.history.push('home');
   }
 
   onChange = (event) => {
