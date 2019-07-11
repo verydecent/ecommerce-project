@@ -1,6 +1,8 @@
 const router = require('express').Router();
 const Data = require('../database/dbConfig');
 
+const checkJwt = require('../middleware/checkJwt');
+
 // This is the pool routes, we will modularize all routes into proper router files when we stabalize a bit more
 
 router.get('/itemfeed', (req, res) => {
@@ -36,7 +38,26 @@ router.post('/account/sell', (req, res) => {
         res.status(500).json({ error: "Internal Server Error" });
       })
   }
-
 });
+
+router.get('/account/items', checkJwt, (req, res) => {
+  console.log('req.decodedToken', req.decoded);
+  
+  const items = req.decoded;
+
+  console.log('items', items);
+  res.status(200).json({ items });
+});
+
+router.get('/account/settings', checkJwt, (req, res) => {
+  const token = req.decoded;
+  console.log(token);
+
+  res.status(200).json(token);
+})
+
+// put request to update users item
+// Authentication: User needs to be verified as the owner of the item
+// Matching user ID to the item ID? Not enough... too simple and easy people can guess users ID
 
 module.exports = router;
