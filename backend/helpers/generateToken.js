@@ -2,11 +2,12 @@ const jwt = require('jsonwebtoken');
 
 const secret = process.env.JWT_SECRET || 'Monkey inside of a cage but cant see the key';
 
-function generateToken(user) { 
+function generateToken(stuff) { 
 
   const payload = {
-    id: user.id,
-    username: user.username,
+    id: stuff.user.id,
+    username: stuff.user.username,
+    userItems: stuff.userItems,
     roles: ['admin']
   }
 
