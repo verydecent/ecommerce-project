@@ -1,70 +1,74 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:500&display=swap');
+
 /* Container */
 
 .account-container {
   display: flex;
+  flex-direction: column;
+}
+
+.account-header {
+  display: flex;
+  
+  height: 100%;
+
+  padding: 20px 0 20px 0;
+  margin: 0 auto;
+
+}
+
+.account-header-spacer {
+  /* border-top: 1px solid #838383;
+  width: 100%;
+  height: 20px; */
+}
+
+/* Header */
+
+.details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 20px;
+}
+
+.details h1 {
+  font-size: 20px;
+  text-transform: uppercase;
+  font-weight: 500;
+  padding-bottom: 6px;
+  font-family: "Monserrat", sans-serif;
+
+}
+
+.details .static-info {
+  display: flex;
+  flex-direction: column;
+  padding-top: 8px;
+}
+
+.details .static-info span {
+  font-size: 12px;
+  font-family: "Monserrat", sans-serif;
+  font-weight: 500;
+}
+
+/* Main */
+
+.account-main {
+  border-top: 1px solid #838383;
+  padding-top: 10px;
+  display: flex;
   flex-direction: row;
-}
-
-/* Nav */
-
-.account-sub-nav {
-  background: #f0f0f0;
-
-  display: flex;
-  flex-direction: column;
-
-  height: 600px;
-  width: 169px;
-
-  padding: 20px 10px 10px 10px;
-
-}
-
-.account-sub-nav-header {
-  padding: 0 0 10px 0;
-  border-bottom: 1px solid #838383;
-}
-
-.account-sub-nav-header h4 {
-  font-size: 11px;
-  text-transform: uppercase;
-  color: #838383;
-}
-
-.account-sub-nav-spacer {
-  height: 10px;
-}
-
-.account-sub-nav-content {
-  display: flex;
-  flex-direction: column;
-  padding: 10px 0 0 0;
-}
-
-/* Links */
-
-.account-sub-nav .nav-link {
-  font-size: 11px;
-  color: #000000;
-  text-decoration: none;
-  text-transform: uppercase;
-  line-height: 20px;
-  letter-spacing: 1px;
-  padding-left: 6px;
-}
-
-.account-sub-nav .nav-link:hover {
-  text-decoration: underline;
-  color: #838383;
 }
 
 /* Main Content */
 
 .account-main-content {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 3px solid brown;
+  /* display: flex; */
+  /* justify-content: center;
+  align-items: center; */
+  /* border: 3px solid brown; */
   
   width: 100%;
 }

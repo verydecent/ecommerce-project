@@ -26,35 +26,43 @@ class Account extends  React.Component {
 
     return (
       <div className="account-container">
-        <div className="account-sub-nav">
-          <div className="account-sub-nav-header">
-            <h4>Account Menu</h4>
+
+        <div className="account-header">
+          <div className="user-image">
+            <img
+            src="https://vimcare.com/assets/empty_user-e28be29d09f6ea715f3916ebebb525103ea068eea8842da42b414206c2523d01.png"
+            alt=""
+            style={{
+              width: "110px",
+              borderRadius: "50%"
+            }}
+            />
           </div>
-
-          <div className="account-sub-nav-spacer"></div>
-
-          <div className="account-sub-nav-content">
-            <NavLink className="nav-link" to="/account/settings">Settings</NavLink>
-            <NavLink className="nav-link" to="/account/messages">Messages</NavLink>
-            <NavLink className="nav-link" to="/account/items">My Items</NavLink>
-            <NavLink className="nav-link" to="/account/favorites">Favorites</NavLink>
-            <NavLink className="nav-link" to="/account/feedback">Feedback</NavLink>
-            <NavLink className="nav-link" to="/account/transactions">Transactions</NavLink>
+          <div className="details">
+            <h1>verydecent</h1>
+            <div className="static-info">
+              <span>33 Transactions</span>
+              <span>12 Items for sale</span>
+              <span>United States</span>
+            </div>
           </div>
-
         </div>
 
-        {/* Wrap inside of subnav */}
-        <div className="account-main-content">
-          <Route path="/account/settings" component={Setting} />
-          <Route path="/account/messages" component={Message} />
-          <Route path="/account/items" component={Items} />
-          <Route path="/account/favorites" component={Favorites} />
-          <Route path="/account/feedback" component={Feedback} />
-          <Route path="/account/transactions" component={Transactions} />
-        </div>
+        <div className="account-header-spacer"></div>
 
-        {/* <SubNav /> */}
+        <div className="account-main">
+          <SubNav />
+
+          {/* Wrap inside of subnav */}
+          <div className="account-main-content">
+            <Route path="/account/settings" component={Setting} />
+            <Route path="/account/messages" component={Message} />
+            <Route path="/account/items" component={Items} />
+            <Route path="/account/favorites" component={Favorites} />
+            <Route path="/account/feedback" component={Feedback} />
+            <Route path="/account/transactions" component={Transactions} />
+          </div>
+        </div>
       </div>
     );
   }
