@@ -31,11 +31,9 @@ class Settings extends React.Component {
 
   updateInfo = (event) => {
     const { newUsername, newEmail, newLocation } = this.state;
-    const { username, email, location } = this.props.user_info;
+    const { id, username, email, location } = this.props.user_info;
     
-    let updatedInfo = {
-      user_id: this.props.user_id,
-    };
+    let updatedInfo = { id };
 
     if (newUsername && newUsername !== username) {
       updatedInfo.username = newUsername;
@@ -51,15 +49,16 @@ class Settings extends React.Component {
 
 
     console.log('updatedInfo', updatedInfo);
-    const endpoint = '';
+    const endpoint = 'http://localhost:5000/api/account/settings/update/user-info';
 
-    // axios.put(endpoint, updatedInfo)
-    //   .then(res => {
-    //     this.setState({ updatedResponse: 'Info successfully updated'});
-    //   })
-    //   .catch(error => {
-    //     this.setState({ error });
-    //   });
+    axios.put(endpoint, updatedInfo)
+      .then(res => {
+        this.setState({ updatedResponse: 'Info successfully updated'});
+        console.log(res);
+      })
+      .catch(error => {
+        this.setState({ error });
+      });
 
 
     event.preventDefault();
@@ -68,9 +67,10 @@ class Settings extends React.Component {
   updatePassword = (event) => {
 
     const { currentPassword, newPassword, confirmNewPassword } = this.state;
+    const { id } = this.props.user_info;
     
     const passwordInfo = {
-      user_id: this.props.user_id,
+      id,
       currentPassword,
       newPassword,
       confirmNewPassword
@@ -102,14 +102,19 @@ class Settings extends React.Component {
       newPassword !== confirmNewPassword ||
       currentPassword === '';
     const infoIsInvalid =
-      user_info.username === newUsername ||
-      user_info.email === newEmail ||
-      user_info.location === newLocation ||
-      newUsername === '' ||
-      newEmail === '' ||
-      newLocation === '';
-
-
+      (
+        (
+        newUsername === '' &&
+        newEmail === '' &&
+        newLocation === ''
+        )
+      ||
+        (
+          user_info.username === newUsername ||
+          user_info.email === newEmail ||
+          user_info.location === newLocation
+        )
+      );
 
     if (error) {
       return <div>{error.message}</div>
