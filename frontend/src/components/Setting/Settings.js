@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 
 import './Settings.css';
 
@@ -13,16 +14,59 @@ class Settings extends React.Component {
       newPassword: '',
       confirmNewPassword: '',
 
+      updateResponse: '',
       isLoading: false,
+      error: null,
     };
   }
 
   componentDidMount() {
-    this.setState({ isLoading: true });
+    // this.setState({ isLoading: true });
   }
 
   handleSubmit =(event) => {
     console.log('handleSubmit()');
+    event.preventDefault();
+  }
+
+  updateInfo = (event) => {
+    const { newUsername, newEmail, newLocation } = this.state;
+    const { username, email, location } = this.props.user_info;
+    
+    let updatedInfo = {};
+
+    if (newUsername && newUsername !== username) {
+      updatedInfo.username = newUsername;
+    }
+
+    if (newEmail && newEmail !== email) {
+      updatedInfo.email = newEmail;
+    }
+
+    if (newLocation && newLocation !== location) {
+      updatedInfo.location = newLocation;
+    }
+
+
+    console.log('updatedInfo', updatedInfo);
+    const endpoint = '';
+
+    // axios.update(endpoint, updatedInfo)
+    //   .then(res => {
+    //     this.setState({ updatedResponse: 'Info successfully updated!', isLoading: false });
+    //   })
+    //   .catch(error => {
+    //     this.setState({ error, isLoading: false });
+    //   });
+
+
+    event.preventDefault();
+  }
+
+  updatePassword = (event) => {
+
+    
+
     event.preventDefault();
   }
 
@@ -32,15 +76,21 @@ class Settings extends React.Component {
   }
 
   render() {
-    const { newUsername, newEmail, newLocation } = this.state;
+    const { newUsername, newEmail, newLocation, error, isLoading } = this.state;
     const { user_info } = this.props;
+
+    if (error) {
+      return <div>{error.message}</div>
+    }
+
+
 
     if (user_info) return (
       
       <div className="settings-container">
         <h1>Edit Your Info</h1>
         <div className="user-info-panel">
-          <form className="left" onSubmit={this.handleSubmit}>
+          <form className="left" onSubmit={this.updateInfo}>
             <div className="inner">
               <label>username</label> <br />
               <input
@@ -104,6 +154,10 @@ class Settings extends React.Component {
               type="password"
               />
             </div>
+            {isLoading
+              ? <div>Loading...</div>
+              : null
+            }
             <button value="submit">Update</button>
           </form>
         </div>
