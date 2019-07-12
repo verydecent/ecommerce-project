@@ -51,12 +51,12 @@ class Settings extends React.Component {
     console.log('updatedInfo', updatedInfo);
     const endpoint = '';
 
-    // axios.update(endpoint, updatedInfo)
+    // axios.put(endpoint, updatedInfo)
     //   .then(res => {
-    //     this.setState({ updatedResponse: 'Info successfully updated!', isLoading: false });
+    //     this.setState({ updatedResponse: 'Info successfully updated'});
     //   })
     //   .catch(error => {
-    //     this.setState({ error, isLoading: false });
+    //     this.setState({ error });
     //   });
 
 
@@ -64,9 +64,25 @@ class Settings extends React.Component {
   }
 
   updatePassword = (event) => {
-    // if newPassword === newConfirmPassword
 
+    const { currentPassword, newPassword, confirmNewPassword } = this.state;
+    
+    const passwordInfo = {
+      currentPassword,
+      newPassword,
+      confirmNewPassword
+    };
 
+    const endpoint = '';
+    // axios.put(endpoint, passwordInfo)
+    //   .then(res => {
+    //     this.setState({ updatedResponse: 'Password successfully updated'});
+    //   })
+    //   .catch(error => {
+    //     this.setState({ error });
+    //   });
+    
+    console.log(passwordInfo);
     event.preventDefault();
   }
 
@@ -82,6 +98,9 @@ class Settings extends React.Component {
       newPassword !== confirmNewPassword ||
       currentPassword === '';
     const infoIsInvalid =
+      user_info.username === newUsername ||
+      user_info.email === newEmail ||
+      user_info.location === newLocation ||
       newUsername === '' ||
       newEmail === '' ||
       newLocation === '';
@@ -128,6 +147,15 @@ class Settings extends React.Component {
               placeholder={user_info.location}
               />
             </div>
+
+            {
+              user_info.username === newUsername ||
+              user_info.email === newEmail ||
+              user_info.location === newLocation
+                ? <div style={{color: 'red', fontSize: '11px' }}>You are trying to update with the same user information</div>
+                : null
+            }
+
             <button disabled={infoIsInvalid} value="submit">Update User Info</button>
           </form>
           <form className="right" onSubmit={this.updatePassword}>
