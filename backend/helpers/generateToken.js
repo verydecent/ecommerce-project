@@ -8,6 +8,7 @@ function generateToken(user) {
     id: user.user.id,
     username: user.user.username,
     location: user.user.location,
+    email: user.user.email,
     roles: ['admin']
   }
 
