@@ -14,7 +14,7 @@ class Settings extends React.Component {
       newPassword: '',
       confirmNewPassword: '',
 
-      updateResponse: '',
+      response: '',
       isLoading: false,
       error: null,
     };
@@ -53,7 +53,13 @@ class Settings extends React.Component {
 
     axios.put(endpoint, updatedInfo)
       .then(res => {
-        this.setState({ updatedResponse: 'Info successfully updated'});
+        console.log('res.data.message', res.data.message);
+        this.setState({
+          response: res.data.message,
+          newUsername: '',
+          newEmail: '',
+          newLocation: '',
+        });
         console.log(res);
       })
       .catch(error => {
@@ -95,7 +101,10 @@ class Settings extends React.Component {
   }
 
   render() {
-    const { newUsername, newEmail, newLocation, currentPassword, newPassword, confirmNewPassword, error } = this.state;
+    console.log(this.state.updateResponse)
+
+
+    const { newUsername, newEmail, newLocation, currentPassword, newPassword, confirmNewPassword, error, response } = this.state;
 
     const { user_info } = this.props;
     const passwordIsInvalid =
@@ -163,6 +172,11 @@ class Settings extends React.Component {
               user_info.location === newLocation
                 ? <div style={{color: 'red', fontSize: '11px' }}>You are trying to update with the same user information</div>
                 : null
+            }
+            {
+              response
+                ? <div style={{color: 'green', fontSize: '11px' }}>{response}</div>
+                :null
             }
 
             <button disabled={infoIsInvalid} value="submit">Update User Info</button>
