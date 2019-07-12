@@ -32,7 +32,7 @@ class Settings extends React.Component {
   }
 
   render() {
-    const { username, email, location } = this.state;
+    const { newUsername, newEmail, newLocation } = this.state;
     const { user_info } = this.props;
 
     if (user_info) return (
@@ -44,8 +44,8 @@ class Settings extends React.Component {
             <div className="inner">
               <label>username</label> <br />
               <input
-              id="username"
-              value={username}
+              id="newUsername"
+              value={newUsername}
               onChange={this.handleChange}
               type="text"
               placeholder={user_info.username}
@@ -54,8 +54,8 @@ class Settings extends React.Component {
             <div className="inner">
               <label>email</label> <br />
               <input
-              id="email"
-              value={email}
+              id="newEmail"
+              value={newEmail}
               onChange={this.handleChange}
               type="text"
               placeholder={user_info.email}
@@ -64,8 +64,8 @@ class Settings extends React.Component {
             <div className="inner">
               <label>location</label> <br />
               <input
-              id="location"
-              value={location}
+              id="newLocation"
+              value={newLocation}
               onChange={this.handleChange}
               type="text"
               placeholder={user_info.location}
