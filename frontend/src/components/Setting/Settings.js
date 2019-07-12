@@ -12,12 +12,7 @@ class Settings extends React.Component {
       confirmNewPassword: '',
     };
   }
-
-  handleChange = (event) => {
-    const { id, value } = this.state;
-    this.setState({ [id]: value });
-  }
-
+  
   handleSubmit =(event) => {
     
     console.log('handleSubmit()');
