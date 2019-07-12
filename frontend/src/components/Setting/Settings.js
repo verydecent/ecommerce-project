@@ -78,6 +78,15 @@ class Settings extends React.Component {
   render() {
     const { newUsername, newEmail, newLocation, currentPassword, newPassword, confirmNewPassword, error } = this.state;
     const { user_info } = this.props;
+    const passwordIsInvalid =
+      newPassword !== confirmNewPassword ||
+      currentPassword === '';
+    const infoIsInvalid =
+      newUsername === '' ||
+      newEmail === '' ||
+      newLocation === '';
+
+
 
     if (error) {
       return <div>{error.message}</div>
@@ -119,7 +128,7 @@ class Settings extends React.Component {
               placeholder={user_info.location}
               />
             </div>
-            <button value="submit">Update</button>
+            <button disabled={infoIsInvalid} value="submit">Update User Info</button>
           </form>
           <form className="right" onSubmit={this.updatePassword}>
             <div className="inner">
@@ -158,7 +167,7 @@ class Settings extends React.Component {
                 ? null
                 : <div style={{color: 'red', fontSize: '11px' }}>Confirm password must match new password</div>
             }
-            <button value="submit">Update</button>
+            <button disabled={passwordIsInvalid} value="submit">Update Password</button>
           </form>
         </div>
       </div>

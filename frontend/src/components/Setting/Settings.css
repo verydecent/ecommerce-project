@@ -47,6 +47,11 @@
   font-family: -apple-system, BlinkMacSystemFont, Helvetica, Arial, "Segoe UI", Roboto, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
+.user-info-panel button {
+  padding: 10px;
+  width: 200px;
+}
+
 
 .left {
   flex: 1;
