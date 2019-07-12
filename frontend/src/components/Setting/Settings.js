@@ -64,8 +64,8 @@ class Settings extends React.Component {
   }
 
   updatePassword = (event) => {
+    // if newPassword === newConfirmPassword
 
-    
 
     event.preventDefault();
   }
@@ -76,14 +76,12 @@ class Settings extends React.Component {
   }
 
   render() {
-    const { newUsername, newEmail, newLocation, error, isLoading } = this.state;
+    const { newUsername, newEmail, newLocation, currentPassword, newPassword, confirmNewPassword, error } = this.state;
     const { user_info } = this.props;
 
     if (error) {
       return <div>{error.message}</div>
     }
-
-
 
     if (user_info) return (
       
@@ -123,12 +121,12 @@ class Settings extends React.Component {
             </div>
             <button value="submit">Update</button>
           </form>
-          <form className="right" onSubmit={this.handleSubmit}>
+          <form className="right" onSubmit={this.updatePassword}>
             <div className="inner">
               <label>Change password</label> <br />
               <input
               id="currentPassword"
-              value={this.state.currentPassword}
+              value={currentPassword}
               onChange={this.handleChange}
               placeholder="Current password"
               type="password"
@@ -138,7 +136,7 @@ class Settings extends React.Component {
               <label>New password</label> <br />
               <input
               id="newPassword"
-              value={this.state.newPassword}
+              value={newPassword}
               onChange={this.handleChange}
               placeholder="New password"
               type="password"
@@ -148,15 +146,17 @@ class Settings extends React.Component {
               <label>Confirm new password</label> <br />
               <input
               id="confirmNewPassword"
-              value={this.state.confirmNewPassword}
+              value={confirmNewPassword}
               onChange={this.handleChange}
               placeholder="Confirm new password"
               type="password"
               />
             </div>
-            {isLoading
-              ? <div>Loading...</div>
-              : null
+
+            {
+              newPassword === confirmNewPassword
+                ? null
+                : <div style={{color: 'red', fontSize: '11px' }}>Confirm password must match new password</div>
             }
             <button value="submit">Update</button>
           </form>
