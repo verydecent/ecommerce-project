@@ -1,10 +1,11 @@
 import React from 'react';
 import { Route, NavLink } from 'react-router-dom';
+import axios from 'axios';
 
 import './Account.css';
 import requiresAuth from '../Helpers/requiresAuth';
 
-import Setting from '../Setting/Setting'
+import Settings from '../Setting/Settings'
 import Items from '../Item/Item';
 import Message from '../Message/Message';
 import Favorites from '../Favorites/Favorites';
@@ -17,33 +18,56 @@ class Account extends  React.Component {
   constructor() {
     super();
     this.state = {
-      user_id: null,
-      user_username: null,
+      user_info: {},
+      isLoading: false,
+      error: null,
     };
   }
 
+  componentDidMount() {
+    this.setState({ isLoading: true });
+    const endpoint = 'http://localhost:5000/api/account/settings'
+    const token = 'Bearer' + ' ' + localStorage.getItem('jwt');
+    const config = {
+      headers: { authorization: token }
+    };
+
+    axios.get(endpoint, config)
+      .then(res => {
+        const { user_info } = res.data;
+        this.setState({ user_info, isLoading: false });
+      })
+      .catch(error => {
+        this.setState({ error, isLoading: false });
+      });
+  }
+
   render() {
+    const { user_info, isLoading, error } = this.state;
+
+    if (error) {
+      return <p>{error.message}</p>
+    }
+
+    if (isLoading) {
+      return <p>Loading...</p>
+    }
 
     return (
       <div className="account-container">
-
         <div className="account-header">
           <div className="user-image">
             <img
             src="https://vimcare.com/assets/empty_user-e28be29d09f6ea715f3916ebebb525103ea068eea8842da42b414206c2523d01.png"
-            alt=""
-            style={{
-              width: "110px",
-              borderRadius: "50%"
-            }}
+            alt="-user-profile-picture"
             />
           </div>
           <div className="details">
-            <h1>verydecent</h1>
+            <h1>{user_info.username}</h1>
             <div className="static-info">
               <span>33 Transactions</span>
               <span>12 Items for sale</span>
-              <span>United States</span>
+              <span>{user_info.location}</span>
             </div>
           </div>
         </div>
@@ -54,8 +78,10 @@ class Account extends  React.Component {
           <SubNav />
 
           {/* Wrap inside of subnav */}
+
           <div className="account-main-content">
-            <Route path="/account/settings" component={Setting} />
+
+            <Route path="/account/settings" render={(props) => <Settings {...props}user_info={this.state.user_info} />} />
             <Route path="/account/messages" component={Message} />
             <Route path="/account/items" component={Items} />
             <Route path="/account/favorites" component={Favorites} />
