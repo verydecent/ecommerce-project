@@ -33,7 +33,9 @@ class Settings extends React.Component {
     const { newUsername, newEmail, newLocation } = this.state;
     const { username, email, location } = this.props.user_info;
     
-    let updatedInfo = {};
+    let updatedInfo = {
+      user_id: this.props.user_id,
+    };
 
     if (newUsername && newUsername !== username) {
       updatedInfo.username = newUsername;
@@ -68,6 +70,7 @@ class Settings extends React.Component {
     const { currentPassword, newPassword, confirmNewPassword } = this.state;
     
     const passwordInfo = {
+      user_id: this.props.user_id,
       currentPassword,
       newPassword,
       confirmNewPassword
@@ -93,6 +96,7 @@ class Settings extends React.Component {
 
   render() {
     const { newUsername, newEmail, newLocation, currentPassword, newPassword, confirmNewPassword, error } = this.state;
+
     const { user_info } = this.props;
     const passwordIsInvalid =
       newPassword !== confirmNewPassword ||
