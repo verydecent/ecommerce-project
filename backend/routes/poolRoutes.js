@@ -50,10 +50,10 @@ router.get('/account/items', checkJwt, (req, res) => {
 });
 
 router.get('/account/settings', checkJwt, (req, res) => {
-  const token = req.decoded;
-  console.log(token);
+  const user_info = req.decoded;
+  console.log(user_info);
 
-  res.status(200).json(token);
+  res.status(200).json({user_info});
 })
 
 // put request to update users item
