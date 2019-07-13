@@ -15,7 +15,7 @@ function SubNavigation() {
       <div className="account-sub-nav-content">
         <NavLink className="nav-link" to="/account/settings">Settings</NavLink>
         <NavLink className="nav-link" to="/account/messages">Messages</NavLink>
-        <NavLink className="nav-link" to="/account/items">My Items</NavLink>
+        <NavLink className="nav-link" to="/account/store">My Store</NavLink>
         <NavLink className="nav-link" to="/account/favorites">Favorites</NavLink>
         <NavLink className="nav-link" to="/account/feedback">Feedback</NavLink>
         <NavLink className="nav-link" to="/account/transactions">Transactions</NavLink>
