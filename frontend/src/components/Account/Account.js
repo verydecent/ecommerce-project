@@ -75,7 +75,7 @@ class Account extends  React.Component {
         <div className="account-header-spacer"></div>
 
         <div className="account-main">
-          <SubNav />
+          <SubNav user_id={user_info.id}/>
 
           {/* Wrap inside of subnav */}
 
@@ -85,7 +85,7 @@ class Account extends  React.Component {
 
             <Route path="/account/messages" component={Message} />
 
-            <Route path="/account/store" render={(props) => <Store {...props} id={user_info.id} />} />
+            <Route path="/account/store/:id" component={Store} />
 
             <Route path="/account/favorites" component={Favorites} />
 
