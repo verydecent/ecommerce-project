@@ -82,11 +82,17 @@ class Account extends  React.Component {
           <div className="account-main-content">
 
             <Route path="/account/settings" render={(props) => <Settings {...props}user_info={this.state.user_info} />} />
+
             <Route path="/account/messages" component={Message} />
-            <Route path="/account/store" component={Store} />
+
+            <Route path="/account/store" render={(props) => <Store {...props} id={user_info.id} />} />
+
             <Route path="/account/favorites" component={Favorites} />
+
             <Route path="/account/feedback" component={Feedback} />
+
             <Route path="/account/transactions" component={Transactions} />
+            
           </div>
         </div>
       </div>
