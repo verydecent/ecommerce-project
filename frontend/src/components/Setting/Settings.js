@@ -14,7 +14,8 @@ class Settings extends React.Component {
       newPassword: '',
       confirmNewPassword: '',
 
-      response: '',
+      userUpdateResponse: '',
+      passwordUpdateResponse: '',
       isLoading: false,
       error: null,
     };
@@ -47,15 +48,12 @@ class Settings extends React.Component {
       updatedInfo.location = newLocation;
     }
 
-
-    console.log('updatedInfo', updatedInfo);
     const endpoint = 'http://localhost:5000/api/account/settings/update/user-info';
 
     axios.put(endpoint, updatedInfo)
       .then(res => {
-        console.log('res.data.message', res.data.message);
         this.setState({
-          response: res.data.message,
+          userUpdateResponse: res.data.message,
           newUsername: '',
           newEmail: '',
           newLocation: '',
@@ -71,7 +69,6 @@ class Settings extends React.Component {
   }
 
   updatePassword = (event) => {
-
     const { currentPassword, newPassword, confirmNewPassword } = this.state;
     const { id } = this.props.user_info;
     
@@ -82,14 +79,15 @@ class Settings extends React.Component {
       confirmNewPassword
     };
 
-    const endpoint = '';
-    // axios.put(endpoint, passwordInfo)
-    //   .then(res => {
-    //     this.setState({ updatedResponse: 'Password successfully updated'});
-    //   })
-    //   .catch(error => {
-    //     this.setState({ error });
-    //   });
+    const endpoint = 'http://localhost:5000/api/account/settings/update/user-password';
+    axios.put(endpoint, passwordInfo)
+      .then(res => {
+        console.log(res.data.message);
+        this.setState({ passwordUpdateResponse: res.data.message });
+      })
+      .catch(error => {
+        this.setState({ error });
+      });
     
     console.log(passwordInfo);
     event.preventDefault();
@@ -101,15 +99,22 @@ class Settings extends React.Component {
   }
 
   render() {
-    console.log(this.state.updateResponse)
-
-
-    const { newUsername, newEmail, newLocation, currentPassword, newPassword, confirmNewPassword, error, response } = this.state;
+    const { newUsername, newEmail, newLocation, currentPassword, newPassword, confirmNewPassword, error, userUpdateResponse, passwordUpdateResponse } = this.state;
 
     const { user_info } = this.props;
-    const passwordIsInvalid =
-      newPassword !== confirmNewPassword ||
-      currentPassword === '';
+    const passwordIsInvalid = !
+      (
+        (
+          currentPassword !== '' &&
+          newPassword !== '' &&
+          confirmNewPassword !== ''
+        )
+        &&
+        (
+          newPassword === confirmNewPassword
+        )
+      );
+
     const infoIsInvalid =
       (
         (
@@ -125,9 +130,9 @@ class Settings extends React.Component {
         )
       );
 
-    if (error) {
-      return <div>{error.message}</div>
-    }
+    // if (error) {
+    //   return <div>{error.message}</div>
+    // }
 
     if (user_info) return (
       
@@ -174,8 +179,8 @@ class Settings extends React.Component {
                 : null
             }
             {
-              response
-                ? <div style={{color: 'green', fontSize: '11px' }}>{response}</div>
+              userUpdateResponse
+                ? <div style={{color: 'green', fontSize: '11px' }}>{userUpdateResponse}</div>
                 :null
             }
 
@@ -217,6 +222,12 @@ class Settings extends React.Component {
               newPassword === confirmNewPassword
                 ? null
                 : <div style={{color: 'red', fontSize: '11px' }}>Confirm password must match new password</div>
+            }
+
+            {
+              passwordUpdateResponse
+                ? <div style={{color: 'green', fontSize: '11px' }}>{passwordUpdateResponse}</div>
+                :null
             }
             <button disabled={passwordIsInvalid} value="submit">Update Password</button>
           </form>
