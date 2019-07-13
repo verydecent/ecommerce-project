@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import './SubNavigation.css';
 
 function SubNavigation(props) {
+  const { user_id } = props;
   return (
     <div className="account-sub-nav">
       <div className="account-sub-nav-header">
@@ -13,9 +14,10 @@ function SubNavigation(props) {
       <div className="account-sub-nav-spacer"></div>
 
       <div className="account-sub-nav-content">
+        <NavLink className="nav-link" to={`/account/post-item/${user_id}`}>Post Item</NavLink>
         <NavLink className="nav-link" to="/account/settings">Settings</NavLink>
         <NavLink className="nav-link" to="/account/messages">Messages</NavLink>
-        <NavLink className="nav-link" to={`/account/store/${props.user_id}`}>My Store</NavLink>
+        <NavLink className="nav-link" to={`/account/store/${user_id}`}>My Store</NavLink>
         <NavLink className="nav-link" to="/account/favorites">Favorites</NavLink>
         <NavLink className="nav-link" to="/account/feedback">Feedback</NavLink>
         <NavLink className="nav-link" to="/account/transactions">Transactions</NavLink>
