@@ -21,10 +21,6 @@ class Settings extends React.Component {
     };
   }
 
-  componentDidMount() {
-    // this.setState({ isLoading: true });
-  }
-
   handleSubmit =(event) => {
     console.log('handleSubmit()');
     event.preventDefault();
@@ -83,7 +79,12 @@ class Settings extends React.Component {
     axios.put(endpoint, passwordInfo)
       .then(res => {
         console.log(res.data.message);
-        this.setState({ passwordUpdateResponse: res.data.message });
+        this.setState({
+          passwordUpdateResponse: res.data.message,
+          currentPassword: '',
+          newPassword: '',
+          confirmNewPassword: '',
+        });
       })
       .catch(error => {
         this.setState({ error });
@@ -102,33 +103,10 @@ class Settings extends React.Component {
     const { newUsername, newEmail, newLocation, currentPassword, newPassword, confirmNewPassword, error, userUpdateResponse, passwordUpdateResponse } = this.state;
 
     const { user_info } = this.props;
-    const passwordIsInvalid = !
-      (
-        (
-          currentPassword !== '' &&
-          newPassword !== '' &&
-          confirmNewPassword !== ''
-        )
-        &&
-        (
-          newPassword === confirmNewPassword
-        )
-      );
+    const passwordIsInvalid = !((currentPassword !== '' && newPassword !== '' &&confirmNewPassword !== '') && (newPassword === confirmNewPassword));
 
-    const infoIsInvalid =
-      (
-        (
-        newUsername === '' &&
-        newEmail === '' &&
-        newLocation === ''
-        )
-      ||
-        (
-          user_info.username === newUsername ||
-          user_info.email === newEmail ||
-          user_info.location === newLocation
-        )
-      );
+    const infoIsInvalid = ((newUsername === '' && newEmail === '' && newLocation === '') ||
+        (user_info.username === newUsername || user_info.email === newEmail || user_info.location === newLocation));
 
     // if (error) {
     //   return <div>{error.message}</div>
@@ -171,18 +149,13 @@ class Settings extends React.Component {
               />
             </div>
 
-            {
-              user_info.username === newUsername ||
-              user_info.email === newEmail ||
-              user_info.location === newLocation
-                ? <div style={{color: 'red', fontSize: '11px' }}>You are trying to update with the same user information</div>
-                : null
-            }
-            {
-              userUpdateResponse
-                ? <div style={{color: 'green', fontSize: '11px' }}>{userUpdateResponse}</div>
-                :null
-            }
+            {user_info.username === newUsername || user_info.email === newEmail || user_info.location === newLocation
+              ? <div style={{color: 'red', fontSize: '11px' }}>You are trying to update with the same user information</div>
+              : null}
+              
+            {userUpdateResponse
+              ? <div style={{color: 'green', fontSize: '11px' }}>{userUpdateResponse}</div>
+              :null}
 
             <button disabled={infoIsInvalid} value="submit">Update User Info</button>
           </form>
@@ -218,17 +191,14 @@ class Settings extends React.Component {
               />
             </div>
 
-            {
-              newPassword === confirmNewPassword
-                ? null
-                : <div style={{color: 'red', fontSize: '11px' }}>Confirm password must match new password</div>
-            }
+            {newPassword === confirmNewPassword
+              ? null
+              : <div style={{color: 'red', fontSize: '11px' }}>Confirm password must match new password</div>}
 
-            {
-              passwordUpdateResponse
-                ? <div style={{color: 'green', fontSize: '11px' }}>{passwordUpdateResponse}</div>
-                :null
-            }
+            {passwordUpdateResponse
+              ? <div style={{color: 'green', fontSize: '11px' }}>{passwordUpdateResponse}</div>
+              :null}
+
             <button disabled={passwordIsInvalid} value="submit">Update Password</button>
           </form>
         </div>
