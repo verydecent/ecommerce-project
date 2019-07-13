@@ -6,7 +6,7 @@ import './Account.css';
 import requiresAuth from '../Helpers/requiresAuth';
 
 import Settings from '../Setting/Settings'
-import Items from '../Item/Item';
+import Store from '../Store/Store';
 import Message from '../Message/Message';
 import Favorites from '../Favorites/Favorites';
 import Feedback from '../Feedback/Feedback';
@@ -83,7 +83,7 @@ class Account extends  React.Component {
 
             <Route path="/account/settings" render={(props) => <Settings {...props}user_info={this.state.user_info} />} />
             <Route path="/account/messages" component={Message} />
-            <Route path="/account/items" component={Items} />
+            <Route path="/account/store" component={Store} />
             <Route path="/account/favorites" component={Favorites} />
             <Route path="/account/feedback" component={Feedback} />
             <Route path="/account/transactions" component={Transactions} />
