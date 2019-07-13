@@ -1,18 +1,28 @@
 import React from 'react';
 import Item from '../Item/Item';
 
+import axios from 'axios';
 import './Store.css';
 
 class Store extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      items: []
     };
   }
 
   componentDidMount() {
     const { id } = this.props;
+    const endpoint = 'http://localhost:5000/api/account-store';
+
+    axios.get(endpoint, {id})
+    .then(res => {
+      console.log('Store res data', res);
+    })
+    .catch(error => {
+      console.error(error);
+    });
   }
 
   render() {
