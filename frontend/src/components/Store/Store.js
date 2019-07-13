@@ -13,17 +13,10 @@ class Store extends React.Component {
   }
 
   componentDidMount() {
-    const { id } = this.props;
-    const endpoint = 'http://localhost:5000/api/account/store';
+    const { id } = this.props.match.params;
+    const endpoint = `http://localhost:5000/api/account/store/${id}`;
 
-    const body = {
-      user_id: id
-    }
-    axios.get(endpoint, {
-      params: {
-        id: 1
-      }
-    })
+    axios.get(endpoint)
     .then(res => {
       console.log('Store res data', res);
     })
