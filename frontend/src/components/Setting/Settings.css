@@ -3,14 +3,7 @@
 .settings-container {
   
   font-family: -apple-system, BlinkMacSystemFont, Helvetica, Arial, "Segoe UI", Roboto, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-
-  margin: 0 25px;
-  /* width: 100%; */
-  /* height: 100%; */
   background-color: #f0f0f0;
-  /* border: 1px solid tan; */
-
-  padding: 10px;
 }
 
 .settings-container h1 {
