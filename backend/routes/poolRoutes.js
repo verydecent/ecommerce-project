@@ -1,6 +1,8 @@
 const router = require('express').Router();
 const Data = require('../database/dbConfig');
 
+const bcrypt = require('bcryptjs');
+
 const checkJwt = require('../middleware/checkJwt');
 
 // This is the pool routes, we will modularize all routes into proper router files when we stabalize a bit more
@@ -13,7 +15,7 @@ router.get('/itemfeed', (req, res) => {
       res.status(200).json(items);
     })
     .catch(err => {
-      res.status(500).json({ error: 'Internal Server Error '});
+      res.status(500).json({ error: 'Internal server error '});
     });
 });
 
@@ -35,7 +37,7 @@ router.post('/account/sell', (req, res) => {
         res.status(201).json({ message: `Item ${ids[0]} successfully posted` });
       })
       .catch(err => {
-        res.status(500).json({ error: "Internal Server Error" });
+        res.status(500).json({ error: "Internal server error" });
       })
   }
 });
@@ -54,7 +56,71 @@ router.get('/account/settings', checkJwt, (req, res) => {
   console.log(user_info);
 
   res.status(200).json({user_info});
-})
+});
+
+// Get user by id
+
+// Update user info
+router.put('/account/settings/update/user-info', (req, res) => {
+  const { id, email, username, location, } = req.body;
+
+  if (!email && !username && !location) {
+    res.status(400).json({ error: "You are missing one of the necessary fields to update" });
+  }
+
+  Data('users').where({ id }).update({ username, email, location })
+    .then(id => {
+      res.status(200).json({ message: `User ${id} successfully updated` });
+    })
+    .catch(error => {
+      res.status(500).json({ error: "Internal server error" });
+    })
+});
+
+// Update user password
+router.put('/account/settings/update/user-password', (req, res) => {
+
+  const { id, currentPassword, newPassword, confirmNewPassword } = req.body;
+  console.log('req.body', req.body);
+
+  // Although we are validating that the passwords match on the client, we will validate here just to be safe and for conceptual practice
+  if (newPassword !== confirmNewPassword) {
+    res.status(400).json({ error: "The new password and password confirmation do not match" });
+  }
+
+  Data('users').where({ id }).first()
+    .then(user => {
+      const passwordOnRecord = user.password;
+      if (bcrypt.compareSync(currentPassword, passwordOnRecord)) {
+        const saltRounds = 14;
+        const password = bcrypt.hashSync(newPassword, saltRounds);
+
+        Data('users').where({ id }).update({ password })
+          .then(id => {
+            res.status(200).json({ message: `User ${id}'s Passowrd updated` });
+          })
+          .catch(error => {
+            res.status(400).json({ error: "Something went wrong updating the password" });
+          });
+      }
+    })
+    .catch(error => {
+      res.status(400).json({ error: "Error comparing users password" });
+    })
+});
+
+// Get items based on user ID
+router.get('/account/store/:id', (req, res) => {
+  console.log('reqparams', req.params.id);
+  const { id } = req.params;
+  Data('items').where({ posted_by_user_id: id })
+    .then(items => {
+      res.status(200).json(items);
+    })
+    .catch(error => {
+      res.status(500).json({ error: "Internal server error" });
+    });
+});
 
 // put request to update users item
 // Authentication: User needs to be verified as the owner of the item
