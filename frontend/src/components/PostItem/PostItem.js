@@ -7,9 +7,9 @@ class PostItem extends React.Component {
   constructor() {
     super();
     this.state = {
-      posted_by_user_id: null,
-      price: null,
-      shipping_price: null,
+      posted_by_user_id: '',
+      price: '',
+      shipping_price: '',
       title: '',
       description: '',
       category: '',
@@ -19,9 +19,6 @@ class PostItem extends React.Component {
   }
 
   handleSubmit = (event) => {
-    console.log('handleSubmit')
-    console.log('this.props.match',this.props.match)
-    console.log(this.state.posted_by_user_id);
 
     event.preventDefault();
   }
@@ -33,7 +30,7 @@ class PostItem extends React.Component {
   }
 
   render() {
-    console.log('category', this.state.category);
+    console.log('Selected ', this.state);
     const { price, shipping_price, title, description, category, size, color } = this.state;
     return (
       <div className="post-item-container">
@@ -58,7 +55,7 @@ class PostItem extends React.Component {
                     id='color'
                     onChange={this.handleChange}
                     >
-                      <option value="" disabled selected> Color </option>
+                      <option value="" disabled> Color </option>
                       <option value="black"> Black </option>
                       <option value="blue"> Blue </option>
                       <option value="brown"> Brown </option>
@@ -83,7 +80,7 @@ class PostItem extends React.Component {
                     id='category'
                     onChange={this.handleChange}
                     >
-                      <option value="" disabled selected>Category</option>
+                      <option value="" disabled>Category</option>
                       <option value={'tops'}> Tops </option>
                       <option value={'knitwear'}> Knitwear </option>
                       <option value={'jackets'}> Jackets </option>
@@ -99,7 +96,7 @@ class PostItem extends React.Component {
                     id='size'
                     onChange={this.handleChange}
                     >            
-                      <option value="" disabled selected>Size</option>
+                      <option value="" disabled>Size</option>
                       <option value={'28'}> 28 </option>
                       <option value={'30'}> 30 </option>
                       <option value={'32'}> 32 </option>
