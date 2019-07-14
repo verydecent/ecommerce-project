@@ -57,7 +57,7 @@ class PostItem extends React.Component {
 
   render() {
     console.log('Selected ', this.state);
-    const { price, shipping_price, title, description, category, size, color } = this.state;
+    const { price, shipping_price, title, description, category, size, color, error } = this.state;
 
     const isInvalid =
       price === '' ||
@@ -244,6 +244,13 @@ class PostItem extends React.Component {
               {
                 (color) === ''
                   ? <div className="signal"><span>!</span> Missing Color Field</div>
+                  : null
+              }
+
+              {/* For error response */}
+              {
+                (error && error.message) 
+                  ? <div className="signal"><pan>{error.message}</pan></div>
                   : null
               }
             </div>

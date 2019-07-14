@@ -17,7 +17,7 @@ class Settings extends React.Component {
       userUpdateResponse: '',
       passwordUpdateResponse: '',
       isLoading: false,
-      error: null,
+      error: '',
     };
   }
 
@@ -202,6 +202,11 @@ class Settings extends React.Component {
             <button disabled={passwordIsInvalid} value="submit">Update Password</button>
           </form>
         </div>
+        {
+          (error && error.message)
+            ? <div className="signal"><pan>{error.message}</pan></div>
+            : null
+        }
       </div>
     );
   }
