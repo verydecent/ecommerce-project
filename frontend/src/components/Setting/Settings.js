@@ -204,7 +204,7 @@ class Settings extends React.Component {
         </div>
         {
           (error && error.message)
-            ? <div className="signal"><pan>{error.message}</pan></div>
+            ? <div className="signal"><span>{error.message}</span></div>
             : null
         }
       </div>
