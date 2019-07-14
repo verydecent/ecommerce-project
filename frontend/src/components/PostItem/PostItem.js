@@ -26,7 +26,7 @@ class PostItem extends React.Component {
     const { price, shipping_price, title, description, category, size, color } = this.state;
     const endpoint ='http://localhost:5000/api/account/post-item/';
     const body = {
-      posted_by_user_id: this.props.match.pararms.id,
+      posted_by_user_id: this.props.match.params.id,
       price,
       shipping_price,
       title,
@@ -40,22 +40,22 @@ class PostItem extends React.Component {
       .then(res => {
         console.log('endpoint response');
         console.log(res);
+
+        this.setState({
+          posted_by_user_id: '',
+          price: '',
+          shipping_price: '',
+          title: '',
+          description: '',
+          category: '',
+          size: '',
+          color: '',
+        });
       })
       .catch(error => {
         console.error(error)
         this.setState({ error });
       });
-
-    this.setState({
-      posted_by_user_id: '',
-      price: '',
-      shipping_price: '',
-      title: '',
-      description: '',
-      category: '',
-      size: '',
-      color: '',
-    });
 
     event.preventDefault();
   }
@@ -67,9 +67,9 @@ class PostItem extends React.Component {
   }
 
   render() {
-    console.log('Selected ', this.state);
     const { price, shipping_price, title, description, category, size, color, error } = this.state;
 
+    console.log("The state", this.state);
     const isInvalid =
       price === '' ||
       shipping_price === '' ||
