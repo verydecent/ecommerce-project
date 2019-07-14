@@ -23,8 +23,19 @@ class PostItem extends React.Component {
   }
 
   handleSubmit = (event) => {
+    const { price, shipping_price, title, description, category, size, color } = this.state;
     const endpoint ='http://localhost:5000/api/account/post-item/';
-    const body = this.state;
+    const body = {
+      posted_by_user_id: this.props.match.pararms.id,
+      price,
+      shipping_price,
+      title,
+      description,
+      category,
+      size,
+      color
+    };
+    
     axios.post(endpoint, body)
       .then(res => {
         console.log('endpoint response');
@@ -91,7 +102,7 @@ class PostItem extends React.Component {
                     id='color'
                     onChange={this.handleChange}
                     >
-                      <option value='' defaultValue> Color </option>
+                      <option value={color} defaultValue> Color </option>
                       <option value="black"> Black </option>
                       <option value="blue"> Blue </option>
                       <option value="brown"> Brown </option>
@@ -116,7 +127,7 @@ class PostItem extends React.Component {
                     id='category'
                     onChange={this.handleChange}
                     >
-                      <option value='' defaultValue>Category</option>
+                      <option value={category} defaultValue>Category</option>
                       <option value={'tops'}> Tops </option>
                       <option value={'knitwear'}> Knitwear </option>
                       <option value={'jackets'}> Jackets </option>
@@ -132,7 +143,7 @@ class PostItem extends React.Component {
                     id='size'
                     onChange={this.handleChange}
                     >
-                      <option value='' defaultValue>Size</option>
+                      <option value={size} defaultValue>Size</option>
                       <option value={'28'}> 28 </option>
                       <option value={'30'}> 30 </option>
                       <option value={'32'}> 32 </option>
