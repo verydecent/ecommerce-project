@@ -1,4 +1,6 @@
 import React from 'react';
+import axios from 'axios';
+
 import './PostItem.css';
 
 const tempIMG ="https://www.sunspel.com/media/catalog/product/cache/3/image/9df78eab33525d08d6e5fb8d27136e95/m/t/mtsh0001-whaa-1new.jpg";
@@ -15,10 +17,34 @@ class PostItem extends React.Component {
       category: '',
       size: '',
       color: '',
+      error: '',
+      successResponse: '',
     };
   }
 
   handleSubmit = (event) => {
+    const endpoint ='http://localhost:5000/api/account/post-item/';
+    const body = this.state;
+    axios.post(endpoint, body)
+      .then(res => {
+        console.log('endpoint response');
+        console.log(res);
+      })
+      .catch(error => {
+        console.error(error)
+        this.setState({ error });
+      });
+
+    this.setState({
+      posted_by_user_id: '',
+      price: '',
+      shipping_price: '',
+      title: '',
+      description: '',
+      category: '',
+      size: '',
+      color: '',
+    });
 
     event.preventDefault();
   }
