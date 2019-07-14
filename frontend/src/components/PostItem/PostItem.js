@@ -32,6 +32,16 @@ class PostItem extends React.Component {
   render() {
     console.log('Selected ', this.state);
     const { price, shipping_price, title, description, category, size, color } = this.state;
+
+    const isInvalid =
+      price === '' ||
+      shipping_price === '' ||
+      title === '' ||
+      description === '' ||
+      category === '' ||
+      size === '' ||
+      color === '';
+
     return (
       <div className="post-item-container">
         <h1>Post Item</h1>
@@ -55,7 +65,7 @@ class PostItem extends React.Component {
                     id='color'
                     onChange={this.handleChange}
                     >
-                      <option value="" disabled> Color </option>
+                      <option value='' defaultValue> Color </option>
                       <option value="black"> Black </option>
                       <option value="blue"> Blue </option>
                       <option value="brown"> Brown </option>
@@ -80,7 +90,7 @@ class PostItem extends React.Component {
                     id='category'
                     onChange={this.handleChange}
                     >
-                      <option value="" disabled>Category</option>
+                      <option value='' defaultValue>Category</option>
                       <option value={'tops'}> Tops </option>
                       <option value={'knitwear'}> Knitwear </option>
                       <option value={'jackets'}> Jackets </option>
@@ -95,8 +105,8 @@ class PostItem extends React.Component {
                     <select
                     id='size'
                     onChange={this.handleChange}
-                    >            
-                      <option value="" disabled>Size</option>
+                    >
+                      <option value='' defaultValue>Size</option>
                       <option value={'28'}> 28 </option>
                       <option value={'30'}> 30 </option>
                       <option value={'32'}> 32 </option>
@@ -110,15 +120,19 @@ class PostItem extends React.Component {
                       <option value={'adjustable'}> Adjustable </option>
                       <option value={'fitsall'}> Fits All </option>
                       <option value={'6'}> 6 </option>
+                      <option value={'6.5'}> 6.5 </option>
                       <option value={'7'}> 7 </option>
+                      <option value={'7.5'}> 7.5 </option>
                       <option value={'8'}> 8 </option>
+                      <option value={'8.5'}> 8.5 </option>
                       <option value={'9'}> 9 </option>
+                      <option value={'9.5'}> 9.5 </option>
                       <option value={'10'}> 10 </option>
+                      <option value={'10.5'}> 10.5 </option>
                       <option value={'11'}> 11 </option>
+                      <option value={'11.5'}> 11.5 </option>
                       <option value={'12'}> 12 </option>
-                      <option value={'13'}> 13 </option>
-                      <option value={'14'}> 14 </option>
-                      <option value={'15'}> 15 </option>
+                      <option value={'12.5'}> 12.5 </option>
                     </select>
                   </div>
                 </div>
@@ -170,8 +184,46 @@ class PostItem extends React.Component {
               </div>
             </div>
 
+            <div className="conditional-signal" >
+              {
+                (price === '')
+                  ? <div className="signal">Missing Price Field</div>
+                  : null 
+              }
+              {
+                (shipping_price) === ''
+                  ? <div className="signal">Missing Shipping Price Field</div>
+                  : null
+              }
+              {
+                (title) === ''
+                  ? <div className="signal">Missing Title Field</div>
+                  : null
+              }
+              {
+                (description) === ''
+                  ? <div className="signal">Missing Description Field</div>
+                  : null
+              }
+              {
+                (category) === ''
+                  ? <div className="signal">Missing Category Field</div>
+                  : null
+              }
+              {
+                (size) === ''
+                  ? <div className="signal">Missing Size Field</div>
+                  : null
+              }
+              {
+                (color) === ''
+                  ? <div className="signal">Missing Color Field</div>
+                  : null
+              }
+            </div>
+
             <div className="item-form-button">
-              <button value="submit">Post Item</button>
+              <button value="submit" disabled={isInvalid}>Post Item</button>
             </div>
           </form>
         </div>
