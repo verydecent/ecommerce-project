@@ -33,12 +33,13 @@ class PostItem extends React.Component {
   }
 
   render() {
+    console.log('category', this.state.category);
     const { price, shipping_price, title, description, category, size, color } = this.state;
     return (
       <div className="post-item-container">
         <h1>Post Item</h1>
         <div className="item-panel">
-          <form onSubmit={this.handleSubmit}>
+          <form onSubmit={this.handleSubmit} autoComplete="off">
             <div className="item-detail-panel">
               <h3>Details</h3>
               <div className="item-details">
@@ -53,33 +54,75 @@ class PostItem extends React.Component {
                     />
                   </div>
                   <div className="">
-                    <input 
-                      id="category"
-                      value={category}
-                      onChange={this.handleChange}
-                      type="text"
-                      placeholder="Category"
-                    />
+                    <select
+                    id='color'
+                    onChange={this.handleChange}
+                    >
+                      <option value="" disabled selected> Color </option>
+                      <option value="black"> Black </option>
+                      <option value="blue"> Blue </option>
+                      <option value="brown"> Brown </option>
+                      <option value="cyan"> Cyan </option>
+                      <option value="green"> Green </option>
+                      <option value="grey"> Grey </option>
+                      <option value="indigo"> Indigo </option>
+                      <option value="magenta"> Magenta </option>
+                      <option value="orange"> Orange </option>
+                      <option value="pink"> Pink </option>
+                      <option value="purple"> Purple </option>
+                      <option value="red"> Red </option>
+                      <option value="violet"> Violet </option>
+                      <option value="white"> White </option>
+                      <option value="yellow"> Yellow </option>
+                    </select>
                   </div>
                 </div>
                 <div className="right-column">
                   <div className="">
-                    <input 
-                      id="size"
-                      value={size}
-                      onChange={this.handleChange}
-                      type="text"
-                      placeholder="Size"
-                    />
+                    <select
+                    id='category'
+                    onChange={this.handleChange}
+                    >
+                      <option value="" disabled selected>Category</option>
+                      <option value={'tops'}> Tops </option>
+                      <option value={'knitwear'}> Knitwear </option>
+                      <option value={'jackets'}> Jackets </option>
+                      <option value={'jeans'}> Jeans </option>
+                      <option value={'trousers'}> Trousers </option>
+                      <option value={'shorts'}> Shorts </option>
+                      <option value={'accessories'}> Accessories </option>
+                      <option value={'shoes'}> Shoes </option>
+                    </select>
                   </div>
                   <div className="">
-                    <input 
-                      id="color"
-                      value={color}
-                      onChange={this.handleChange}
-                      type="text"
-                      placeholder="Color"
-                    />
+                    <select
+                    id='size'
+                    onChange={this.handleChange}
+                    >            
+                      <option value="" disabled selected>Size</option>
+                      <option value={'28'}> 28 </option>
+                      <option value={'30'}> 30 </option>
+                      <option value={'32'}> 32 </option>
+                      <option value={'34'}> 34 </option>
+                      <option value={'36'}> 36 </option>
+                      <option value={'xsmall'}> Xsmall </option>
+                      <option value={'small'}> Small </option>
+                      <option value={'medium'}> Medium </option>
+                      <option value={'large'}> Large </option>
+                      <option value={'xlarge'}> Xlarge </option>
+                      <option value={'adjustable'}> Adjustable </option>
+                      <option value={'fitsall'}> Fits All </option>
+                      <option value={'6'}> 6 </option>
+                      <option value={'7'}> 7 </option>
+                      <option value={'8'}> 8 </option>
+                      <option value={'9'}> 9 </option>
+                      <option value={'10'}> 10 </option>
+                      <option value={'11'}> 11 </option>
+                      <option value={'12'}> 12 </option>
+                      <option value={'13'}> 13 </option>
+                      <option value={'14'}> 14 </option>
+                      <option value={'15'}> 15 </option>
+                    </select>
                   </div>
                 </div>
               </div>
