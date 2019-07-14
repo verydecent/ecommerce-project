@@ -187,37 +187,37 @@ class PostItem extends React.Component {
             <div className="conditional-signal" >
               {
                 (price === '')
-                  ? <div className="signal">Missing Price Field</div>
+                  ? <div className="signal"><span>!</span> Missing Price Field</div>
                   : null 
               }
               {
                 (shipping_price) === ''
-                  ? <div className="signal">Missing Shipping Price Field</div>
+                  ? <div className="signal"><span>!</span> Missing Shipping Price Field</div>
                   : null
               }
               {
                 (title) === ''
-                  ? <div className="signal">Missing Title Field</div>
+                  ? <div className="signal"><span>!</span> Missing Title Field</div>
                   : null
               }
               {
                 (description) === ''
-                  ? <div className="signal">Missing Description Field</div>
+                  ? <div className="signal"><span>!</span> Missing Description Field</div>
                   : null
               }
               {
                 (category) === ''
-                  ? <div className="signal">Missing Category Field</div>
+                  ? <div className="signal"><span>!</span> Missing Category Field</div>
                   : null
               }
               {
                 (size) === ''
-                  ? <div className="signal">Missing Size Field</div>
+                  ? <div className="signal"><span>!</span> Missing Size Field</div>
                   : null
               }
               {
                 (color) === ''
-                  ? <div className="signal">Missing Color Field</div>
+                  ? <div className="signal"><span>!</span> Missing Color Field</div>
                   : null
               }
             </div>
