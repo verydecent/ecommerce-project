@@ -170,14 +170,33 @@ router.post('/account/like-item/', (req, res) => {
 router.get('/account/like-item/:id', (req, res) => {
   console.log('req.params.id', req.params.id);
   const user_id = req.params.id;
-
-  Data('items_users_liked').where({ user_id })
-    .then(items => {
-      res.status(200).json({ items });
+  // Join
+  Data('items_users_liked')
+    .join('items', 'items_users_liked.item_id', 'items.id')
+    // where('items_users_liked.user_id', user_id)
+    .then(items =>{
+      res.json(items);
     })
     .catch(error => {
-      res.status(500).json({ error: "Internal server error" });
-    });
+      res.status(500).json(error);
+    })
+
+  // Try data manipulation
+  // Data('items_users_liked').where({ user_id })
+  //   .then(items_liked => {
+  //     let id_of_items = items_liked.map(record => record.item_id);
+  //     console.log('id_of_items', id_of_items);
+  //     Data('items').whereIn(id, [53, 53, 55])
+  //         .then(items => {
+  //           res.status(200).json({ items });
+  //         })
+  //         .catch(error => {
+  //           res.status(500).json({ error: "Items do not exist" });
+  //         });
+  //   })
+  //   .catch(error => {
+  //     res.status(500).json({ error: "Internal server error" });
+  //   });
 });
 
 // put request to update users item
