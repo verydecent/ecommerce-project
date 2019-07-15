@@ -24,6 +24,7 @@ class Account extends  React.Component {
 
   componentDidMount() {
     const endpoint = 'http://localhost:5000/api/account/settings'
+    // Be sure to include a space in addition to 'Bearer'
     const token = 'Bearer' + ' ' + localStorage.getItem('jwt');
     const config = {
       headers: { authorization: token }
@@ -32,6 +33,7 @@ class Account extends  React.Component {
     axios.get(endpoint, config)
       .then(res => {
         const { user_info } = res.data;
+        this.setState({ user_info });
       })
       .catch(error => {
         console.error(error);
