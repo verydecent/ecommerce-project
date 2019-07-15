@@ -111,7 +111,6 @@ router.put('/account/settings/update/user-password', (req, res) => {
 
 // Get items based on user ID
 router.get('/account/store/:id', (req, res) => {
-  console.log('reqparams', req.params.id);
   const { id } = req.params;
   Data('items').where({ posted_by_user_id: id })
     .then(items => {
@@ -120,6 +119,37 @@ router.get('/account/store/:id', (req, res) => {
     .catch(error => {
       res.status(500).json({ error: "Internal server error" });
     });
+});
+
+// Post item by user
+router.post('/account/post-item', (req, res) => {
+  let { posted_by_user_id, price, shipping_price, title, description, category, size, color } = req.body;
+
+  // Request failing, maybe we need to change the string into integer
+
+  // Second parameter is Radix, Radix being the Base system we are using, in this case we want all number combinations in cluding 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 so the returning number will be in the form of Base 10 Radix
+  // Reassigning after chaning the string into integer
+  // price = parseInt(price, 10);
+  // shipping_price = parseInt(shipping_price, 10);
+  const item = {
+    posted_by_user_id,
+    price,
+    shipping_price,
+    title,
+    description,
+    category,
+    size,
+    color
+  };
+
+  Data('items').returning('id').insert(item)
+    .then(id => {
+      res.status(200).json({ message: `Item ${id} successfully posted! `});
+    })
+    .catch(error => {
+      res.status(500).json({ error: "Internal Server Error" });
+    })
+
 });
 
 // put request to update users item
