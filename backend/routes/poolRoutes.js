@@ -168,17 +168,16 @@ router.post('/account/like-item/', (req, res) => {
 // Get request for users items liked, so now are we creating an endpoint that works in conjunction to the like-item route? So that when it is posted it not only updates the DAtabase but it also update the API.... Or are we making a get request to this API and then itll already have that liked data without having to access the database....
 // Data manipulation and simply having the data.... 
 router.get('/account/like-item/:id', (req, res) => {
-  console.log('tier 1', req.params.id);
+  console.log('req.params.id', req.params.id);
+  const user_id = req.params.id;
 
-  Data('items-users-liked').where({ user_id: req.params.id })
-    .then( items => {
-      console.log('happenin');
-      console.log('is this an array of items?', items);
+  Data('items_users_liked').where({ user_id })
+    .then(items => {
       res.status(200).json({ items });
     })
     .catch(error => {
       res.status(500).json({ error: "Internal server error" });
-    })
+    });
 });
 
 // put request to update users item
