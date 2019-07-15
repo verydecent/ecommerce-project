@@ -144,12 +144,25 @@ router.post('/account/post-item', (req, res) => {
 
   Data('items').returning('id').insert(item)
     .then(id => {
+      res
       res.status(200).json({ message: `Item ${id} successfully posted! `});
     })
     .catch(error => {
       res.status(500).json({ error: "Internal Server Error" });
-    })
+    });
+});
 
+// Post into items-user table
+router.post('/account/like-item/', (req, res) => {
+  const { item_id, id } = req.body;
+
+  Data('items_users_liked').insert({ user_id: id, item_id: item_id })
+    .then(
+      res.status(200).json({ message: "You liked an item!" })
+    )
+    .catch(error => {
+      res.status(500).json({ error: "Internal server error" });
+    });
 });
 
 // put request to update users item
