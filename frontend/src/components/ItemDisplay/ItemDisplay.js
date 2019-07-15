@@ -1,16 +1,9 @@
 import React from 'react';
+
+import formatDate from './formateDate';
 import './ItemDisplay.css';
 
 const testIMG ="https://www.sunspel.com/media/catalog/product/cache/3/image/9df78eab33525d08d6e5fb8d27136e95/m/t/mtsh0001-whaa-1new.jpg";
-
-function formatDate(date_created) {
-  const date = date_created.split('-');
-  let year = date[0].slice(-2);
-  let month = date[1];
-  let day = date[2].slice(0, 2)
-
-  return `Posted: ${month}-${day}-${year}`;
-}
 
 function ItemDisplay(props) {
   const { id, price, title, size, created_at } = props.itemInfo;
