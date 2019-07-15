@@ -3,8 +3,19 @@ import './ItemDisplay.css';
 
 const testIMG ="https://www.sunspel.com/media/catalog/product/cache/3/image/9df78eab33525d08d6e5fb8d27136e95/m/t/mtsh0001-whaa-1new.jpg";
 
+function formatDate(date_created) {
+  const date = date_created.split('-');
+  let year = date[0].slice(-2);
+  let month = date[1];
+  let day = date[2].slice(0, 2)
+
+  return `Posted: ${month}-${day}-${year}`;
+}
+
 function ItemDisplay(props) {
-  const { price, title, size, created_at } = props.itemInfo;
+  const { id, price, title, size, created_at } = props.itemInfo;
+  console.log('handle like inside of props?', props);
+  const { handleLike } = props;
   const timeNow = Date.now();
   return (
     <div className="item">
@@ -15,12 +26,8 @@ function ItemDisplay(props) {
           <img src={testIMG}/>
         </div>
 
-        <h3 className="item-age ">
-          <span className="date-ago">
-            {/* JS code to subtract created_at to date.now()  */}
-            {}
-            {created_at}
-          </span>
+        <h3 className="post-date">
+          {formatDate(created_at)}
         </h3>
 
         <div className="item-metadata">
@@ -38,9 +45,9 @@ function ItemDisplay(props) {
           <div className="item-price">
             <h3>${price}</h3>
           </div>
-          <button className="heart-follow" width="15px" height="10px">
-            {"<3"}
-          </button>
+          <div className="heart-follow" onClick={() => handleLike(id)}>
+            <img src="https://img.icons8.com/material-outlined/18/000000/like.png" />
+          </div>
       </div>
 
     </div>
