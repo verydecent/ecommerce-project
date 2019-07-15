@@ -261,7 +261,7 @@ class PostItem extends React.Component {
               {/* Render upon request failure */}
               {
                 (error && error.message) 
-                  ? <div className="error-signal"><span>{error.message}</span></div>
+                  ? <div className="error-signal">{error.message}</div>
                   : null
               }
 
