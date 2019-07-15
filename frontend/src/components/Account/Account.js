@@ -5,27 +5,24 @@ import axios from 'axios';
 import './Account.css';
 import requiresAuth from '../Helpers/requiresAuth';
 
+import SubNav from '../SubNavigation/SubNavigation';
 import Settings from '../Setting/Settings'
 import Store from '../Store/Store';
 import Message from '../Message/Message';
 import Favorites from '../Favorites/Favorites';
 import Feedback from '../Feedback/Feedback';
 import Transactions from '../Transactions/Transactions';
-
-import SubNav from '../SubNavigation/SubNavigation';
+import PostItem from '../PostItem/PostItem';
 
 class Account extends  React.Component {
   constructor() {
     super();
     this.state = {
       user_info: {},
-      isLoading: false,
-      error: null,
     };
   }
 
   componentDidMount() {
-    this.setState({ isLoading: true });
     const endpoint = 'http://localhost:5000/api/account/settings'
     const token = 'Bearer' + ' ' + localStorage.getItem('jwt');
     const config = {
@@ -35,23 +32,31 @@ class Account extends  React.Component {
     axios.get(endpoint, config)
       .then(res => {
         const { user_info } = res.data;
-        this.setState({ user_info, isLoading: false });
       })
       .catch(error => {
-        this.setState({ error, isLoading: false });
+        console.error(error);
       });
   }
 
   render() {
     const { user_info, isLoading, error } = this.state;
 
-    if (error) {
-      return <p>{error.message}</p>
-    }
 
-    if (isLoading) {
-      return <p>Loading...</p>
-    }
+    // Running into a memory leak while updating the state inside of store
+    // My guess is that one of these guys below VVV rendered instead  account-container rendering meaning store didnt exist, but how is it possible that the other sub account settings didnt run into that error?
+    // Found out that My store is the first class component running componentdidmount... So.... that must mean this happened...
+    // account rendered, then rendered Store, then we refresh the page...
+    // Then account gets rendered and runs into the isLoading page first, because thats how Account was set, to be loading first.... (Why did we have to do this conditional rendering again? because I was trying to call render in one of the child components while before Account could even render, they were trying to render before they were in the virtual dom)
+    // ANYWAYS... So then we tried to componentDidMount inside of Store while the Account didnt exist. I think that is my best guess, as for these messy notes if anyone ever comes here please know that this is my first project and I am just thinking to myself lols
+
+
+    // if (error) {
+    //   return <p>{error.message}</p>
+    // }
+
+    // if (isLoading) {
+    //   return <p>Loading...</p>
+    // }
 
     return (
       <div className="account-container">
@@ -83,9 +88,11 @@ class Account extends  React.Component {
 
             <Route path="/account/settings" render={(props) => <Settings {...props}user_info={this.state.user_info} />} />
 
-            <Route path="/account/messages" component={Message} />
+            <Route path="/account/post-item/:id" component={PostItem} />
 
             <Route path="/account/store/:id" component={Store} />
+
+            <Route path="/account/messages" component={Message} />
 
             <Route path="/account/favorites" component={Favorites} />
 
