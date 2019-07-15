@@ -38,8 +38,7 @@ class PostItem extends React.Component {
     
     axios.post(endpoint, body)
       .then(res => {
-        console.log('endpoint response');
-        console.log(res);
+        console.log('endpoint response', res.data.message);
 
         this.setState({
           posted_by_user_id: '',
@@ -50,6 +49,7 @@ class PostItem extends React.Component {
           category: '',
           size: '',
           color: '',
+          successResponse: res,
         });
       })
       .catch(error => {
@@ -67,7 +67,7 @@ class PostItem extends React.Component {
   }
 
   render() {
-    const { price, shipping_price, title, description, category, size, color, error } = this.state;
+    const { price, shipping_price, title, description, category, size, color, error, successResponse } = this.state;
 
     console.log("The state", this.state);
     const isInvalid =
@@ -258,11 +258,18 @@ class PostItem extends React.Component {
                   : null
               }
 
-              {/* For error response */}
+              {/* Render upon request failure */}
               {
                 (error && error.message) 
-                  ? <div className="signal"><span>{error.message}</span></div>
+                  ? <div className="error-signal"><span>{error.message}</span></div>
                   : null
+              }
+
+              {/* Render upon successful response */}
+              {
+                (successResponse && successResponse.data.message)
+                 ? <div className="success-signal">{successResponse.data.message}</div>
+                 : null
               }
             </div>
 
