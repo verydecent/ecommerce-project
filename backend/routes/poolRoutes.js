@@ -201,8 +201,13 @@ router.get('/account/like-item/:id', (req, res) => {
 // Items based on user and returns user as well
 router.get('/users/:id', (req, res) => {
   const { id } = req.params;
-  Data('users').where({ id })
+  Data('users').where({ id }).first()
     .then(user => {
+      user = {
+        location: user.location,
+        username: user.username,
+        // profile-picture: user.profile,
+      }
       res.status(200).json({ user });
     })
     .catch(error => {
