@@ -43,6 +43,7 @@
 
 .item-detail-box {
   display: flex;
+  justify-content: space-between;
 }
 
 

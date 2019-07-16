@@ -25,8 +25,8 @@ function Item() {
               <h2>Title</h2>
               <h2>Size</h2>
             </div>
-            <div className="">
-              Likes
+            <div className="item-heart">
+              <img src="https://img.icons8.com/material-rounded/26/000000/hearts.png" />
             </div>
           </div>
 
