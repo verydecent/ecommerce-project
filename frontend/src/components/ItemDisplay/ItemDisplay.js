@@ -11,9 +11,10 @@ function ItemDisplay(props) {
   const { handleLike } = props;
   const timeNow = Date.now();
   return (
-    <div className="item">
+    <div className="item-display-container">
 
       <div className="this-should-be-a-tag-link">
+        {/* OR Link tag */}
 
         <div className="item-cover-photo">
           <img src={testIMG}/>
@@ -38,8 +39,8 @@ function ItemDisplay(props) {
           <div className="item-price">
             <h3>${price}</h3>
           </div>
-          <div className="heart-follow" onClick={() => handleLike(id)}>
-            <img src="https://img.icons8.com/material-outlined/18/000000/like.png" />
+          <div className="item-heart" onClick={() => handleLike(id)}>
+            <img src="https://img.icons8.com/material-rounded/18/000000/hearts.png" />
           </div>
       </div>
 
