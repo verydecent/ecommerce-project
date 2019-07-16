@@ -9,16 +9,17 @@ const testIMG ="https://www.sunspel.com/media/catalog/product/cache/3/image/9df7
 
 function ItemDisplay(props) {
   const { id, price, title, size, created_at } = props.itemInfo;
-  console.log('handle like inside of props?', props);
   const { handleLike } = props;
-  const timeNow = Date.now();
   return (
     
       <div className="item-display-container">
-        
-        {/* <div className="this-should-be-a-tag-link"> */}
-          {/* OR Link tag */}
-        <Link to={`/items/${id}`} >
+        <Link to={{
+          pathname: `/items/${id}`,
+          state: {
+            itemInfo: props.itemInfo
+            },
+        }}
+        >
           <div className="item-cover-photo">
             <img src={testIMG}/>
           </div>
@@ -36,7 +37,6 @@ function ItemDisplay(props) {
               {title}
             </h3>
           </div>
-        {/* </div> */}
        
         <div className="item-price-and-heart">
             <div className="item-price">
