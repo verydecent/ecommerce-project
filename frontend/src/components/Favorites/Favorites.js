@@ -1,11 +1,25 @@
 import React from 'react';
 
-function Favorites(props) {
-  return (
-    <div className="favorites-container">
-      Favorites Page
-    </div>
-  );
+import './Favorites.css';
+
+class Favorites extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+
+    };
+  }
+  
+  componentDidMount() {
+  }
+
+  render() {
+    return (
+      <div className="favorites-container">
+        <h1>Favorites Page</h1>
+      </div>
+    );
+  }
 }
 
 export default Favorites;
