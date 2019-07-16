@@ -8,15 +8,26 @@ function Item() {
   return (
     <div className="item-container">
       <h4>Item</h4>
-      <div className="item-panel">
-        <div className="item-img">
-          <img src={testIMG} />
-        </div>
-        <div className="item-details">
 
+      <div className="item-panel">
+        {/* Left Column*/}
+        <div className="item-panel-left">
+          <div className="item-image">
+            <img src={testIMG} />
+          </div>
+
+          <div className="picture-options">
+            Pic options ) ) ) ) ) ) ) )
+          </div>
+        </div>
+        {/* Right Column */}
+        <div className="item-panel-right">
           <div className="item-detail-box">
             <div className="item-meta-data">
               <h1>Brand Name</h1>
+              <div className="date-posted">
+                <span>Posted : 12.25.20</span>
+              </div>
               <h2>Vintage Sweater</h2>
               <h2>Size Medium</h2>
             </div>
@@ -43,16 +54,15 @@ function Item() {
           </div>
 
           <div className="user-card">
-            <div className="card-details">
-              <h1>Username</h1>
-              <h2>Location</h2>
-              <h2>Visit Store</h2>
-            </div>
             <div className="card-image">
               <img
               src="https://vimcare.com/assets/empty_user-e28be29d09f6ea715f3916ebebb525103ea068eea8842da42b414206c2523d01.png"
               alt="-user-profile-picture"
               />
+            </div>
+            <div className="card-details">
+              <h1>Username</h1>
+              <h1>Visit Store</h1>
             </div>
           </div>
 
@@ -63,12 +73,7 @@ function Item() {
               Vestibulum placerat nisl ex, et malesuada ligula commodo sit amet. Phasellus arcu tellus, molestie sed sem at, luctus mollis est. Morbi vel elit at arcu vestibulum blandit eget elementum ligula. Cras purus mi, mattis ut mauris eget, ultricies egestas est. Sed scelerisque aliquam augue ac faucibus. Nulla efficitur magna in orci porttitor, a auctor augue congue. Nunc accumsan pharetra lacinia. Cras blandit, urna sit amet fringilla pharetra, purus eros auctor neque, ac dignissim mi nibh vitae tellus.
             </p>
           </div>
-          <div className="date-posted">
-            <h1>Posted : 12.25.20</h1>
-          </div>
         </div>
-
-
       </div>
     </div>
   );
