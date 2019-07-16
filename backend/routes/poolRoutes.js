@@ -198,6 +198,19 @@ router.get('/account/like-item/:id', (req, res) => {
   //   });
 });
 
+// Items based on user and returns user as well
+router.get('/users/:id', (req, res) => {
+  const { id } = req.params;
+  Data('users').where({ id })
+    .then(user => {
+      res.status(200).json({ user });
+    })
+    .catch(error => {
+      res.status(500).json({ error: "Internal server error" });
+    });
+  // res.status(200).json({ user: user, items: items });
+});
+
 // put request to update users item
 // Authentication: User needs to be verified as the owner of the item
 // Matching user ID to the item ID? Not enough... too simple and easy people can guess users ID
