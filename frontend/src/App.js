@@ -7,17 +7,21 @@ import Register from './components/Register/Register';
 import Home from './components/Home/Home';
 
 import Account from './components/Account/Account';
-import UsersList from './components/Users/UsersList';
-import ItemFeed from './components/ItemFeed/ItemFeed';
-import SubNavigation from './components/SubNavigation/SubNavigation';
+
+import Item from './components/Item/Item';
+
 
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      user_info: {}
     };
+  }
+
+  componentDidMount() {
+    
   }
 
   logout = () => {
@@ -51,6 +55,7 @@ class App extends React.Component {
                   <li>Option 2</li>
                   <li>Option 3</li>
                   <li>Option 4</li>
+                  <NavLink className="nav-link" to="/item">Item</NavLink>
                 </ul>
               </nav>
 
@@ -91,6 +96,7 @@ class App extends React.Component {
           <Route path="/register" component={Register} />
           <Route path="/login" component={Login} />
           <Route path="/account/" component={Account} />
+          <Route path="/item/" component={Item} />
           {/* <ItemFeed /> */}
         </main>
       </div>
