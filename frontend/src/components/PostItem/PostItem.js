@@ -82,11 +82,11 @@ class PostItem extends React.Component {
     return (
       <div className="post-item-container">
         <h1>Post Item</h1>
-        <div className="item-panel">
+        <div className="post-item-panel">
           <form onSubmit={this.handleSubmit} autoComplete="off">
-            <div className="item-detail-panel">
+            <div className="post-item-detail-panel">
               <h3>Details</h3>
-              <div className="item-details">
+              <div className="post-item-details">
                 <div className="left-column">
                   <div className="">
                     <input 
@@ -176,7 +176,7 @@ class PostItem extends React.Component {
               </div>
             </div>
 
-            <div className="item-description-panel">
+            <div className="post-item-description-panel">
               <h3>Description</h3>
               <textarea
                 id="description"
@@ -186,7 +186,7 @@ class PostItem extends React.Component {
                 placeholder="Retail Price, Condition, Measurements, Shipping Policy, Link to Retail Page, etc"
               />
             </div>
-            <div className="item-payment-panel">
+            <div className="post-item-payment-panel">
               <h3>Payment</h3>
               <div className="payment-details">
                 <div className="left-column">
@@ -210,10 +210,10 @@ class PostItem extends React.Component {
               </div>
             </div>
 
-            <div className="item-image-panel">
+            <div className="post-item-image-panel">
               <h3>Photos</h3>
-              <div className="item-images">
-                <div className="header-image">
+              <div className="post-item-images">
+                <div className="post-header-image">
                   <img src={tempIMG} alt="white t shirt" />
                 </div>
 
@@ -221,59 +221,59 @@ class PostItem extends React.Component {
               </div>
             </div>
 
-            <div className="conditional-signal" >
+            <div className="post-conditional-signal" >
               {
                 (price === '')
-                  ? <div className="signal"><span>!</span> Missing Price Field</div>
+                  ? <div className="post-signal"><span>!</span> Missing Price Field</div>
                   : null 
               }
               {
                 (shipping_price) === ''
-                  ? <div className="signal"><span>!</span> Missing Shipping Price Field</div>
+                  ? <div className="post-signal"><span>!</span> Missing Shipping Price Field</div>
                   : null
               }
               {
                 (title) === ''
-                  ? <div className="signal"><span>!</span> Missing Title Field</div>
+                  ? <div className="post-signal"><span>!</span> Missing Title Field</div>
                   : null
               }
               {
                 (description) === ''
-                  ? <div className="signal"><span>!</span> Missing Description Field</div>
+                  ? <div className="post-signal"><span>!</span> Missing Description Field</div>
                   : null
               }
               {
                 (category) === ''
-                  ? <div className="signal"><span>!</span> Missing Category Field</div>
+                  ? <div className="post-signal"><span>!</span> Missing Category Field</div>
                   : null
               }
               {
                 (size) === ''
-                  ? <div className="signal"><span>!</span> Missing Size Field</div>
+                  ? <div className="post-signal"><span>!</span> Missing Size Field</div>
                   : null
               }
               {
                 (color) === ''
-                  ? <div className="signal"><span>!</span> Missing Color Field</div>
+                  ? <div className="post-signal"><span>!</span> Missing Color Field</div>
                   : null
               }
 
               {/* Render upon request failure */}
               {
                 (error && error.message) 
-                  ? <div className="error-signal">{error.message}</div>
+                  ? <div className="post-error-signal">{error.message}</div>
                   : null
               }
 
               {/* Render upon successful response */}
               {
                 (successResponse && successResponse.data.message)
-                 ? <div className="success-signal">{successResponse.data.message}</div>
+                 ? <div className="post-success-signal">{successResponse.data.message}</div>
                  : null
               }
             </div>
 
-            <div className="item-form-button">
+            <div className="post-item-form-button">
               <button value="submit" disabled={isInvalid}>Post Item</button>
             </div>
           </form>
