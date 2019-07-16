@@ -22,6 +22,7 @@ class Item extends React.Component {
     axios.get(endpoint)
       .then(response => {
         console.log('response', response);
+        this.setState({ userInfo: response.data.user });
       })
       .catch(error => {
         console.error(error);
@@ -31,8 +32,8 @@ class Item extends React.Component {
 
   render() {
     const { id, posted_by_user_id, purchased_by_user_id, is_available, price, shipping_price, title, description, category, size, color, created_at } = this.props.location.state.itemInfo;
-
-    return (
+    console.log(this.state.userInfo);
+    if (this.state.userInfo) return (
       <div className="item-container">
         <h4>Item</h4>
     
@@ -71,7 +72,7 @@ class Item extends React.Component {
               <span>${price}</span>
               <div className="item-shipping-price">
                 <span>+ ${shipping_price}</span>
-                <span>Location : {}</span>
+                <span>Location : {this.state.userInfo.location}</span>
               </div>
             </div>
     
@@ -92,7 +93,7 @@ class Item extends React.Component {
                 />
               </div>
               <div className="card-details">
-                <h1>Username</h1>
+                <h1>{this.state.userInfo.username}</h1>
                 <h1>Visit Store</h1>
               </div>
             </div>
@@ -105,6 +106,8 @@ class Item extends React.Component {
         </div>
       </div>
     );
+
+    return <div className="item-container">Loading</div>
   }
 }
 
