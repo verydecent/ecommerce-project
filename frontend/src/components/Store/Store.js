@@ -18,7 +18,6 @@ class Store extends React.Component {
 
     axios.get(endpoint)
     .then(res => {
-      console.log('Store res data', res);
       this.setState({ items: res.data });
     })
     .catch(error => {
