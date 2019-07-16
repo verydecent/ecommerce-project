@@ -55,8 +55,4 @@ router.get('/listings', checkJwt, (req, res) => {
   
 // });
 
-// router.get('/settings', (req, res) => {
-  
-// });
-
 module.exports = router;

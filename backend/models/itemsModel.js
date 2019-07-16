@@ -4,6 +4,7 @@ module.exports = {
   postItem,
   getItems,
   getItemsById,
+  getItemsByUserId
 }
 
 function postItem(item) {
@@ -18,4 +19,8 @@ function getItemsById(id) {
 
 function getItems() {
   return db('items');
+}
+
+function getItemsByUserId(id) {
+  return db('items').where({ posted_by_user_id: id });
 }

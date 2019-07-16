@@ -25,7 +25,7 @@ const accountRoutes = require('../routes/accountRouters');
 const poolRoutes = require('../routes/poolRoutes');
 
 // Endpoints
-// server.use('/api/auth', authRoutes);
+server.use('/api/auth', authRoutes);
 // server.use('/api/users', usersRoutes);
 // server.use('/api/account', accountRoutes);
 server.use('/api', poolRoutes);
