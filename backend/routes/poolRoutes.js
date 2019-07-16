@@ -174,7 +174,7 @@ router.get('/account/like-item/:id', (req, res) => {
   Data('items_users_liked')
     .join('items', 'items_users_liked.item_id', 'items.id')
     .then(items =>{
-      res.json(items);
+      res.status(200).json({ items });
     })
     .catch(error => {
       res.status(500).json(error);
