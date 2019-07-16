@@ -13,16 +13,16 @@ function ItemDisplay(props) {
   const { handleLike } = props;
   const timeNow = Date.now();
   return (
-    <Link to={`/items/${id}`} >
+    
       <div className="item-display-container">
-
-        <div className="this-should-be-a-tag-link">
+        
+        {/* <div className="this-should-be-a-tag-link"> */}
           {/* OR Link tag */}
-
+        <Link to={`/items/${id}`} >
           <div className="item-cover-photo">
             <img src={testIMG}/>
           </div>
-
+        </Link>
           <h3 className="post-date">
             {formatDate(created_at)}
           </h3>
@@ -36,8 +36,8 @@ function ItemDisplay(props) {
               {title}
             </h3>
           </div>
-        </div>
-
+        {/* </div> */}
+       
         <div className="item-price-and-heart">
             <div className="item-price">
               <h3>${price}</h3>
@@ -48,7 +48,7 @@ function ItemDisplay(props) {
         </div>
 
       </div>
-    </Link>
+
   );
 }
 
