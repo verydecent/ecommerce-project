@@ -2,6 +2,7 @@ import React from 'react';
 
 import formatDate from '../../helpers/formatDate';
 import './Item.css';
+import axios from 'axios';
 
 const testIMG ="https://www.sunspel.com/media/catalog/product/cache/3/image/9df78eab33525d08d6e5fb8d27136e95/m/t/mtsh0001-whaa-1new.jpg";
 
@@ -10,7 +11,21 @@ class Item extends React.Component {
     super(props);
     this.state = {
       itemInfo: null,
+      userInfo: null,
     }
+  }
+
+  componentDidMount() {
+    const { posted_by_user_id } = this.props.location.state.itemInfo;
+    const endpoint = `http://localhost:5000/api/users/${posted_by_user_id}`;
+
+    axios.get(endpoint)
+      .then(response => {
+        console.log('response', response);
+      })
+      .catch(error => {
+        console.error(error);
+      });
   }
 
 
@@ -45,6 +60,7 @@ class Item extends React.Component {
                 </div>
                 <h2>{title}</h2>
                 <h2>Size {size}</h2>
+                <h2>Color {color}</h2>
               </div>
               <div className="item-heart">
                 <img src="https://img.icons8.com/material-rounded/26/000000/hearts.png" />
