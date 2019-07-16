@@ -1,4 +1,34 @@
-/* React Router */
+@import url('https://fonts.googleapis.com/css?family=Montserrat:500&display=swap');
+
+* {
+  box-sizing: border-box;
+  /* background-color: #24252a; */
+}
+
+/* li, a, button {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  color: #edf0f1;
+  text-decoration: none;
+} */
+
+
+
+.app-container {
+  max-width: 100%;
+  
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
 
 header .nav-link {
   color: black;
@@ -7,40 +37,56 @@ header .nav-link {
   display: block;
 }
 
-/* App */
-
-.app-container {
+main  {
+  height: 100%;
+  max-width: 1024px;
   width: 100%;
-  max-width: 960px;
-  border: 1px black solid;
   margin: 0 auto;
-  
-  display: flex;
-  flex-direction: column;
+  border: 1px dotted darkcyan;
+
 }
 
+/* App */
+
 .global-header-wrapper {
-  height: 100px;
-  padding: 0 0 10px 0;
+  /* height: 100px; */
 }
 
 .global-header {
+
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+
   position: fixed;
 
-  width: 960px;
+  width: 100%;
   height: 100px;
 
-  background-color: #ffffff;
-  color: #000000;
+  padding: 30px 10px;
+  
   border: 1px blue solid;
+  background-color: #f0f0f0;
+}
+
+.global-header h1 {
+  text-transform: uppsercase;
+  font-size: 30px;
+}
+
+/* Space behind fixed header */
+.header-spacer {
+  height: 100px;
 }
 
 .global-nav {
-  position: absolute;
-  left: 1rem;
+  display: flex;
+  justify-content: space-around;
+
+  padding: 10px 0 10px 0;
+  
+  border: 1px red solid;
+  background-color: #f0f0f0;
 }
 
 .user-options {
@@ -48,17 +94,17 @@ header .nav-link {
   right: 1rem;
 }
 
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
 .dropdown h2 {
-  background-color: #4CAF50;
+  background-color: red;
   color: white;
   padding: 12px;
   font-size: 16px;
   border: none;
-}
-
-.dropdown {
-  position: relative;
-  display: inline-block;
 }
 
 .dropdown-content {

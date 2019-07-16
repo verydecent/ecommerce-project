@@ -39,25 +39,50 @@ class App extends React.Component {
         
         <header>
           <div className="global-header-wrapper">
-            
+          
+
             <div className="global-header">
-              Website Logo
-              <div className="global-nav">
-                <NavLink className="nav-link" to="/home">Home</NavLink>
-              </div>  
-              <div className="user-options">
-                <div className="dropdown">
-                  <h2>Users</h2>
-                  <div className="dropdown-content">
-                    <NavLink className="nav-link" to="/login">Login</NavLink>
-                    <NavLink className="nav-link" to="/register">Register</NavLink> 
-                    <NavLink className="nav-link" to="/account/settings">Account</NavLink>
-                    <div onClick={this.logout} className="logout-button">Log out</div>
-                  </div>
+              {/* img */}
+              <h1>Logo</h1>
+              
+              <nav>
+                <ul>
+                  <li>Option 1</li>
+                  <li>Option 2</li>
+                  <li>Option 3</li>
+                  <li>Option 4</li>
+                </ul>
+              </nav>
+
+              {/* <div className="cta">
+                <button>Contact</button>
+              </div> */}
+
+              <div className="dropdown">
+                <h2>Users</h2>
+                <div className="dropdown-content">
+                  <NavLink className="nav-link" to="/login">Login</NavLink>
+                  <NavLink className="nav-link" to="/register">Register</NavLink> 
+                  <NavLink className="nav-link" to="/account/settings">Account</NavLink>
+                  <div onClick={this.logout} className="logout-button">Log out</div>
                 </div>
               </div>
             </div>
+
             <div className="header-spacer"></div>
+
+            <div className="global-nav">
+              <span>Designers</span>
+              <span>Browser By Category</span>
+              <span>Sneakers</span>
+              <span>Footwear</span>
+              <span>Tops</span>
+              <span>Outerwear</span>
+              <span>Staff Picks</span>
+              <span>Collections</span>
+            </div>
+           
+            {/* <div className="header-spacer"></div> */}
           </div>
         </header>
   

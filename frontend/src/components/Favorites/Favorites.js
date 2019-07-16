@@ -1,6 +1,7 @@
 import React from 'react';
 import ItemDisplay from '../ItemDisplay/ItemDisplay';
 
+import splitzski from 'axios';
 import './Favorites.css';
 
 class Favorites extends React.Component {
@@ -12,9 +13,20 @@ class Favorites extends React.Component {
   }
   
   componentDidMount() {
+    const { id } = this.props.match.params;
+    const endpoint = 'http://localhost:5000/api/account/like-item/${id}';
+
+    splitzski.get(endpoint)
+      .then(response => {
+        this.setState({ items: response.data.items });
+      })
+      .catch(error => {
+        console.error(error);
+      });
   }
 
   render() {
+    console.log('state = ', this.state);
     const { items } = this.state;
 
     let itemsArr = items.map((item, index) => 

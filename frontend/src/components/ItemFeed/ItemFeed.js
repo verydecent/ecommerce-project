@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-import Item from '../Item/Item';
+import ItemDisplay from '../ItemDisplay/ItemDisplay';
 
 class ItemFeed extends React.Component {
   constructor() {
@@ -27,7 +27,7 @@ class ItemFeed extends React.Component {
 
   render() {
     const items = this.state.items.map((item, index) => (
-      <Item key={index} item={item} />
+      <ItemDisplay key={index} item={item} />
     ));
 
     return (

@@ -15,3 +15,9 @@
   
   padding: 20px;
 }
+
+.favorites-panel {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
