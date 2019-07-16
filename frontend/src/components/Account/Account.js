@@ -8,7 +8,7 @@ import requiresAuth from '../Helpers/requiresAuth';
 import SubNav from '../SubNavigation/SubNavigation';
 import Settings from '../Setting/Settings'
 import Store from '../Store/Store';
-import Message from '../Message/Message';
+import MessageInbox from '../MessageInbox/MessageInbox';
 import Favorites from '../Favorites/Favorites';
 import Feedback from '../Feedback/Feedback';
 import Transactions from '../Transactions/Transactions';
@@ -94,7 +94,7 @@ class Account extends  React.Component {
 
             <Route path="/account/store/:id" component={Store} />
 
-            <Route path="/account/messages" component={Message} />
+            <Route path="/account/messages" component={MessageInbox} />
 
             <Route path="/account/favorites" component={Favorites} />
 
