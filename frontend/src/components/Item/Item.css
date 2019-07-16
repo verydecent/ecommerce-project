@@ -1,0 +1,73 @@
+.item-container {
+  font-family: -apple-system, BlinkMacSystemFont, Helvetica, Arial, "Segoe UI", Roboto, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  background-color: #f0f0f0;
+
+  width: 720px;
+}
+
+.item h1 {
+  font-family: -apple-system, BlinkMacSystemFont, Helvetica, Arial, "Segoe UI", Roboto, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 20px;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 30px;
+  
+  padding: 20px;
+}
+
+/* Item Panel */
+
+.item-panel {
+  display: flex;
+}
+
+/* Item Image */
+
+.item-image {
+  margin: 10px;
+  padding: 10px;
+}
+
+.item-img img {
+  width: 360px;
+  height: auto;
+}
+
+/* Item detail */
+
+.item-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.item-detail-box {
+  display: flex;
+}
+
+
+
+/* Buttons */
+
+.item-details button {
+  padding: 14px 25px;
+  width: 100%;
+  border: 1px black solid;
+  border-radius: 1px;
+
+  margin-top: 5px;
+
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+}
+
+.item-details .purchase button {
+  color: white;
+  background: black;
+}
+.item-details .message button {
+  color: black;
+  background: white;
+}
