@@ -55,7 +55,6 @@ class App extends React.Component {
                   <li>Option 2</li>
                   <li>Option 3</li>
                   <li>Option 4</li>
-                  <NavLink className="nav-link" to="/item">Item</NavLink>
                 </ul>
               </nav>
 
@@ -96,7 +95,7 @@ class App extends React.Component {
           <Route path="/register" component={Register} />
           <Route path="/login" component={Login} />
           <Route path="/account/" component={Account} />
-          <Route path="/item/" component={Item} />
+          <Route path="/items/:id" component={Item} />
           {/* <ItemFeed /> */}
         </main>
       </div>
