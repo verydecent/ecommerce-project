@@ -173,13 +173,12 @@ router.get('/account/like-item/:id', (req, res) => {
   // Join
   Data('items_users_liked')
     .join('items', 'items_users_liked.item_id', 'items.id')
-    // where('items_users_liked.user_id', user_id)
     .then(items =>{
       res.json(items);
     })
     .catch(error => {
       res.status(500).json(error);
-    })
+    });
 
   // Try data manipulation
   // Data('items_users_liked').where({ user_id })
