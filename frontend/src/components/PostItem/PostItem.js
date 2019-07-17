@@ -17,6 +17,8 @@ class PostItem extends React.Component {
       category: '',
       size: '',
       color: '',
+      location: '',
+
       error: '',
       successResponse: '',
     };

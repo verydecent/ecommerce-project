@@ -8,7 +8,7 @@ import { domainToASCII } from 'url';
 const testIMG ="https://www.sunspel.com/media/catalog/product/cache/3/image/9df78eab33525d08d6e5fb8d27136e95/m/t/mtsh0001-whaa-1new.jpg";
 
 function ItemDisplay(props) {
-  const { id, price, title, size, created_at } = props.itemInfo;
+  const { id, price, title, size, created_at } = props.item;
   const { handleLike, itemInfo } = props;
   return (
     

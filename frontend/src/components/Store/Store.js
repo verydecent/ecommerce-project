@@ -13,12 +13,15 @@ class Store extends React.Component {
   }
 
   componentDidMount() {
-    const { id } = this.props.match.params;
-    const endpoint = `http://localhost:5000/api/account/store/${id}`;
+    // const { id } = this.props.match.params;
+    const { user_id } = this.props;
+    console.log("Store.js componentDidmount id", user_id);
+    const endpoint = `http://localhost:5000/api/account/store/${user_id}`;
 
     axios.get(endpoint)
-    .then(res => {
-      this.setState({ items: res.data });
+    .then(response => {
+      console.log("Store.js response", response);
+      this.setState({ items: response.data });
     })
     .catch(error => {
       console.error(error);
@@ -28,9 +31,10 @@ class Store extends React.Component {
   handleLike = (item_id) => {
     const endpoint = 'http://localhost:5000/api/account/like-item';
 
-    const { id } = this.props.match.params;
+    // const { id } = this.props.match.params;
+    const { user_id } = this.props;
     const body = {
-      id,
+      user_id,
       item_id
     };
 
@@ -48,9 +52,9 @@ class Store extends React.Component {
 
     let itemsArr = items.map((item, index) => 
       <ItemDisplay
-      handleLike={this.handleLike}
-      itemInfo={item}
-      key={index}
+        handleLike={this.handleLike}
+        item={item}
+        key={index}
       />
       );
 

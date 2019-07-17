@@ -28,7 +28,7 @@ class Settings extends React.Component {
 
   updateInfo = (event) => {
     const { newUsername, newEmail, newLocation } = this.state;
-    const { id, username, email, location } = this.props.user;
+    const { id, username, email, location } = this.props.authUser;
     
     let updatedInfo = { id };
 
@@ -102,17 +102,15 @@ class Settings extends React.Component {
   render() {
     const { newUsername, newEmail, newLocation, currentPassword, newPassword, confirmNewPassword, error, userUpdateResponse, passwordUpdateResponse } = this.state;
 
-    const { user } = this.props;
+    const { authUser } = this.props;
     const passwordIsInvalid = !((currentPassword !== '' && newPassword !== '' &&confirmNewPassword !== '') && (newPassword === confirmNewPassword));
 
     const infoIsInvalid = ((newUsername === '' && newEmail === '' && newLocation === '') ||
-        (user.username === newUsername || user.email === newEmail || user.location === newLocation));
+        (authUser.username === newUsername || authUser.email === newEmail || authUser.location === newLocation));
 
-    // if (error) {
-    //   return <div>{error.message}</div>
-    // }
+    console.log("authUser from Settings.js", authUser)
 
-    if (user) return (
+    if (authUser) return (
       
       <div className="settings-container">
         <h1>Edit Your Info</h1>
@@ -125,7 +123,7 @@ class Settings extends React.Component {
               value={newUsername}
               onChange={this.handleChange}
               type="text"
-              placeholder={user.username}
+              placeholder={authUser.username}
               />
             </div>
             <div className="inner">
@@ -135,7 +133,7 @@ class Settings extends React.Component {
               value={newEmail}
               onChange={this.handleChange}
               type="text"
-              placeholder={user.email}
+              placeholder={authUser.email}
               />
             </div>
             <div className="inner">
@@ -145,11 +143,11 @@ class Settings extends React.Component {
               value={newLocation}
               onChange={this.handleChange}
               type="text"
-              placeholder={user.location}
+              placeholder={authUser.location}
               />
             </div>
 
-            {user.username === newUsername || user.email === newEmail || user.location === newLocation
+            {authUser.username === newUsername || authUser.email === newEmail || authUser.location === newLocation
               ? <div style={{color: 'red', fontSize: '11px' }}>You are trying to update with the same user information</div>
               : null}
               

@@ -1,0 +1,9 @@
+.item-feed-container {
+  display: flex;
+  flex-wrap: wrap;
+
+  padding: 10px;
+  margin: 10px;
+
+  border: 1px solid black;
+}

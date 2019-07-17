@@ -2,8 +2,8 @@ import React from 'react';
 import axios from 'axios';
 
 class Login extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       email: '',
       password: ''
@@ -22,9 +22,9 @@ class Login extends React.Component {
     axios
       .post(endpoint, body)
       .then(res => {
-        console.log(res.data.message);
         localStorage.setItem('jwt', res.data['token']);
-        this.props.history.push('/account/settings');
+        this.props.authorizeUser();
+        this.props.history.push('/');
       })
       .catch(err => {
         console.error('ERROR', err);
@@ -33,7 +33,6 @@ class Login extends React.Component {
 
   onChange = (event) => {
     const { name, value } = event.target;
-
     this.setState({ [name]: value});
   }
 

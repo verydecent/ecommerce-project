@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
+import './ItemFeed.css';
 import ItemDisplay from '../ItemDisplay/ItemDisplay';
 
 class ItemFeed extends React.Component {
@@ -32,10 +33,9 @@ class ItemFeed extends React.Component {
 
     return (
       // lol react fragment short syntax
-      <>
-        Item Feed
+      <div className="item-feed-container">
         {items}
-      </>
+      </div>
     );
   }
 }

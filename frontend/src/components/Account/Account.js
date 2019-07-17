@@ -15,12 +15,16 @@ import Transactions from '../Transactions/Transactions';
 import PostItem from '../PostItem/PostItem';
 
 class Account extends  React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    // this.state = {
+    //   authUser: {}
+    // };
   }
 
   // componentDidMount() {
-  //   const endpoint = 'http://localhost:5000/api/account/settings'
+  //   console.log("Account.s componentDidMount");
+  //   const endpoint = 'http://localhost:5000/api/'
   //   // Be sure to include a space in addition to 'Bearer'
   //   const token = 'Bearer' + ' ' + localStorage.getItem('jwt');
   //   const config = {
@@ -29,6 +33,7 @@ class Account extends  React.Component {
 
   //   axios.get(endpoint, config)
   //     .then(res => {
+  //       console.log("Account.js setting state");
   //       const { user } = res.data;
   //       this.setState({ user });
   //     })
@@ -38,7 +43,8 @@ class Account extends  React.Component {
   // }
 
   render() {
-    const { user } = this.props;
+    const { authUser } = this.props;
+    console.log("Account.js --- this.props.authUser", authUser);
 
 
     // Running into a memory leak while updating the state inside of store
@@ -56,54 +62,59 @@ class Account extends  React.Component {
     // if (isLoading) {
     //   return <p>Loading...</p>
     // }
-
-    return (
-      <div className="account-container">
-        <div className="account-header">
-          <div className="user-image">
-            <img
-            src="https://vimcare.com/assets/empty_user-e28be29d09f6ea715f3916ebebb525103ea068eea8842da42b414206c2523d01.png"
-            alt="-user-profile-picture"
-            />
+    // if (authUser) {
+      return (
+        <div className="account-container">
+          <div className="account-header">
+            <div className="user-image">
+              <img
+              src="https://vimcare.com/assets/empty_user-e28be29d09f6ea715f3916ebebb525103ea068eea8842da42b414206c2523d01.png"
+              alt="-user-profile-picture"
+              />
+            </div>
+            <div className="details">
+              <h1>{authUser.username}</h1>
+              <div className="static-info">
+                <span>33 Transactions</span>
+                <span>12 Items for sale</span>
+                <span>{authUser.location}</span>
+              </div>
+            </div>
           </div>
-          <div className="details">
-            <h1>{user.username}</h1>
-            <div className="static-info">
-              <span>33 Transactions</span>
-              <span>12 Items for sale</span>
-              <span>{user.location}</span>
+  
+          <div className="account-header-spacer"></div>
+  
+          <div className="account-main">
+            <SubNav user_id={authUser.id}/>
+  
+            {/* Wrap inside of subnav */}
+  
+            <div className="account-main-content">
+              {/* <Settings />       */}
+              <Route path="/account/settings" render={(props) => <Settings {...props} authUser={authUser} />} />
+  
+              <Route path="/account/post-item/:id" component={PostItem} />
+  
+              <Route path="/account/store" render={(props) => <Store {...props} user_id={authUser.id} />} />
+  
+              <Route path="/account/messages" component={MessageInbox} />
+  
+              <Route path="/account/favorites/:id" component={Favorites} />
+  
+              <Route path="/account/feedback" component={Feedback} />
+  
+              <Route path="/account/transactions" component={Transactions} />
+              
             </div>
           </div>
         </div>
-
-        <div className="account-header-spacer"></div>
-
-        <div className="account-main">
-          <SubNav user_id={user.id}/>
-
-          {/* Wrap inside of subnav */}
-
-          <div className="account-main-content">
-
-            <Route path="/account/settings" render={(props) => <Settings {...props} user={user} />} />
-
-            <Route path="/account/post-item/:id" component={PostItem} />
-
-            <Route path="/account/store/:id" component={Store} />
-
-            <Route path="/account/messages" component={MessageInbox} />
-
-            <Route path="/account/favorites" component={Favorites} />
-
-            <Route path="/account/feedback" component={Feedback} />
-
-            <Route path="/account/transactions" component={Transactions} />
-            
-          </div>
-        </div>
-      </div>
-    );
+      );
+    // }
+    // return (
+      // <div> ... IS LOADING ...</div>
+    // );
   }
 }
 
-export default requiresAuth(Account);
+// export default requiresAuth(Account);
+export default Account;
