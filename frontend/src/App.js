@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink, Route, withRouter } from 'react-router-dom';
-
+import axios from 'axios';
 import './App.css';
 import Login from './components/Login/Login';
 import Register from './components/Register/Register';
@@ -16,12 +16,29 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      user_info: {}
+      user: {}
     };
   }
 
   componentDidMount() {
-    
+    let token = localStorage.getItem('jwt');
+    if (token) {
+      const endpoint = 'http://localhost:5000/api/account/settings';
+      // Be sure to include a space in addition to 'Bearer'
+      token = 'Bearer' + ' ' + token;
+      const config = {
+        headers: { authorization: token }
+      };
+  
+      axios.get(endpoint, config)
+        .then(response => {
+          const { user_info } = response.data;
+          this.setState({ user: user_info });
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    }
   }
 
   logout = () => {
@@ -37,6 +54,7 @@ class App extends React.Component {
   }
 
   render() {
+    const { user } = this.state;
 
     return (
       <div className="app-container">
@@ -94,8 +112,8 @@ class App extends React.Component {
           <Route exact path="/home" component={Home} />
           <Route path="/register" component={Register} />
           <Route path="/login" component={Login} />
-          <Route path="/account/" component={Account} />
-          <Route path="/items/:id" component={Item} />
+          <Route path="/account/" render={(props) => <Account {...props} user={user} />} />
+          <Route path="/items/:id" render={Item} />
           {/* <ItemFeed /> */}
         </main>
       </div>
