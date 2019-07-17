@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import formatDate from '../../helpers/formatDate';
+import formatDate from '../../Helpers/formatDate';
 import './ItemDisplay.css';
 import { domainToASCII } from 'url';
 
