@@ -3,7 +3,7 @@ import { Route, NavLink } from 'react-router-dom';
 import axios from 'axios';
 
 import './Account.css';
-import requiresAuth from '../Helpers/requiresAuth';
+import requiresAuth from '../../Helpers/requiresAuth';
 
 import SubNav from '../SubNavigation/SubNavigation';
 import Settings from '../Setting/Settings'
@@ -17,31 +17,28 @@ import PostItem from '../PostItem/PostItem';
 class Account extends  React.Component {
   constructor() {
     super();
-    this.state = {
-      user_info: {},
-    };
   }
 
-  componentDidMount() {
-    const endpoint = 'http://localhost:5000/api/account/settings'
-    // Be sure to include a space in addition to 'Bearer'
-    const token = 'Bearer' + ' ' + localStorage.getItem('jwt');
-    const config = {
-      headers: { authorization: token }
-    };
+  // componentDidMount() {
+  //   const endpoint = 'http://localhost:5000/api/account/settings'
+  //   // Be sure to include a space in addition to 'Bearer'
+  //   const token = 'Bearer' + ' ' + localStorage.getItem('jwt');
+  //   const config = {
+  //     headers: { authorization: token }
+  //   };
 
-    axios.get(endpoint, config)
-      .then(res => {
-        const { user_info } = res.data;
-        this.setState({ user_info });
-      })
-      .catch(error => {
-        console.error(error);
-      });
-  }
+  //   axios.get(endpoint, config)
+  //     .then(res => {
+  //       const { user } = res.data;
+  //       this.setState({ user });
+  //     })
+  //     .catch(error => {
+  //       console.error(error);
+  //     });
+  // }
 
   render() {
-    const { user_info, isLoading, error } = this.state;
+    const { user } = this.props;
 
 
     // Running into a memory leak while updating the state inside of store
@@ -70,11 +67,11 @@ class Account extends  React.Component {
             />
           </div>
           <div className="details">
-            <h1>{user_info.username}</h1>
+            <h1>{user.username}</h1>
             <div className="static-info">
               <span>33 Transactions</span>
               <span>12 Items for sale</span>
-              <span>{user_info.location}</span>
+              <span>{user.location}</span>
             </div>
           </div>
         </div>
@@ -82,13 +79,13 @@ class Account extends  React.Component {
         <div className="account-header-spacer"></div>
 
         <div className="account-main">
-          <SubNav user_id={user_info.id}/>
+          <SubNav user_id={user.id}/>
 
           {/* Wrap inside of subnav */}
 
           <div className="account-main-content">
 
-            <Route path="/account/settings" render={(props) => <Settings {...props}user_info={this.state.user_info} />} />
+            <Route path="/account/settings" render={(props) => <Settings {...props} user={user} />} />
 
             <Route path="/account/post-item/:id" component={PostItem} />
 
