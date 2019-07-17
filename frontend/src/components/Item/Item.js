@@ -1,6 +1,6 @@
 import React from 'react';
 
-import formatDate from '../../helpers/formatDate';
+import formatDate from '../../Helpers/formatDate';
 import './Item.css';
 import axios from 'axios';
 
