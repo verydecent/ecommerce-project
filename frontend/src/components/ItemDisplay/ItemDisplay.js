@@ -9,15 +9,15 @@ const testIMG ="https://www.sunspel.com/media/catalog/product/cache/3/image/9df7
 
 function ItemDisplay(props) {
   const { id, price, title, size, created_at } = props.itemInfo;
-  const { handleLike } = props;
+  const { handleLike, itemInfo } = props;
   return (
     
       <div className="item-display-container">
         <Link to={{
           pathname: `/items/${id}`,
           state: {
-            itemInfo: props.itemInfo
-            },
+            itemInfo: itemInfo
+          },
         }}
         >
           <div className="item-cover-photo">
