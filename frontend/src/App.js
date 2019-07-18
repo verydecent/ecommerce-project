@@ -20,31 +20,6 @@ class App extends React.Component {
     };
   }
 
-  // componentDidMount() {
-  //   console.log("App.js componentDidMount()");
-  //   let token = localStorage.getItem('jwt');
-
-  //   if (token) {
-  //     const endpoint = 'http://localhost:5000/api/authorize-user';
-  //     token = 'Bearer' + ' ' + token;
-  //     const config = {
-  //       headers: { Authorization: token }
-  //     }
-  //     axios.get(endpoint, config)
-  //       .then(response => {
-  //         console.log('authUser response', response);
-  //         const { authUser } = response.data;
-  //         this.setState({ authUser });
-  //       })
-  //       .catch(error => {
-  //         console.error('**GET**', error);
-  //       });
-  //   }
-  //   else {
-  //     console.log('No user is logged in');
-  //   }
-  // }
-
   authorizeUser = () => {
     const token = localStorage.getItem('jwt');
     const config = {
@@ -63,7 +38,7 @@ class App extends React.Component {
       });
   }
 
-  logout = () => {
+  handleLogout = () => {
     const token = localStorage.getItem('jwt');
     if (token) {
       localStorage.removeItem('jwt');
@@ -78,16 +53,21 @@ class App extends React.Component {
 
   handleLike = (item_id) => {
     const { id } = this.state.authUser;
-
-    axios.post(likedItems(), {
-      id, item_id
-    })
-      .then(response => {
-        alert(response.data.message);
+    if (id) {
+      axios.post(likedItems(), {
+        id, item_id
       })
-      .catch(error => {
-        console.error(error);
-      });
+        .then(response => {
+          alert(response.data.message);
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    }
+    else {
+      alert("You must log in to like an item");
+    }
+
   }
 
   render() {
@@ -113,7 +93,7 @@ class App extends React.Component {
                   <NavLink className="nav-link" to="/login">Login</NavLink>
                   <NavLink className="nav-link" to="/register">Register</NavLink> 
                   <NavLink className="nav-link" to="/account/settings">Account</NavLink>
-                  <div onClick={this.logout} className="logout-button">Log out</div>
+                  <div onClick={this.handleLogout} className="logout-button">Log out</div>
                 </div>
               </div>
             </div>
@@ -132,19 +112,32 @@ class App extends React.Component {
         </header>
   
         <main>
-          <Route exact path ="/" 
-            render={(props) => <ItemFeed {...props} handleLike={this.handleLike} />}
+          <Route
+            exact
+            path ="/"
+            render={(props) =>
+              <ItemFeed {...props} handleLike={this.handleLike} />
+            }
           />
-          
-          <Route path="/home" render={Home} />
-          <Route path="/register" component={Register} />
-          <Route path="/login" render={(props) => 
-            <Login {...props} authorizeUser={this.authorizeUser} />}
+          <Route
+            path="/register"
+            render={(props) =>
+              <Register {...props} authorizeUser={this.authorizeUser} />
+            }
           />
-
-          <Route path="/account" render={(props) =>
-            <Account {...props} authUser={authUser} />}
+          <Route
+            path="/login"
+            render={(props) =>
+              <Login {...props} authorizeUser={this.authorizeUser} />
+            }
           />
+          <Route
+            path="/account"
+            render={(props) =>
+              <Account {...props} authUser={authUser} />
+            }
+          />
+          {/* <Route path="/home" render={Home} /> */}
           {/* <Route path="/account" component={Account} /> */}
           {/* <Route path="/items/:id" render={Item} /> */}
         </main>
