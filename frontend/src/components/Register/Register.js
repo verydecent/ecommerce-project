@@ -28,7 +28,7 @@ class Register extends React.Component {
     axios.post(endpoint, body)
       .then(res => {
         console.log("response from register endpoint", res);
-        this.props.history.push('/home');
+        this.props.history.push('/');
       })
       .catch(err => {
         console.error('ERROR', err);
