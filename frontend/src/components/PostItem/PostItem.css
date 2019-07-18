@@ -61,8 +61,6 @@
 
 .post-item-details {
   display: flex;
-  flex-direction: row;
-  /* justify-content: space-evenly; */
   align-items: center;
 }
 
@@ -105,42 +103,49 @@
 /* Description Panel */
 
 .post-item-description-panel {
+  width: 100%;
+  min-height: 120px;
+  
   padding: 10px;
   margin: 10px;
 }
 
 .post-item-description-panel textarea {
-
-
   border: 1px solid #666;
   border-radius: 1.5px;
-  padding: 15px;
-  min-height: 120px;
+  padding: 12px;
+  max-width: 630px;
   width: 100%;
+  min-height: 120px;
 
   font-size: 12px;
+  font-family: -apple-system, BlinkMacSystemFont, Helvetica, Arial, "Segoe UI", Roboto, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
 /* Payment Panel */
 
 .post-item-payment-panel {
+  width: 100%;
+  min-height: 120px;
+
   padding: 10px;
   margin: 10px;
 }
 
-.post-payment-details {
+.payment-details {
   display: flex;
+  align-items: center;
 }
 
-.post-payment-details .left-column {
+.payment-details .left-column {
   width: 50%;
 }
 
-.post-payment-details .right-column {
+.payment-details .right-column {
   width: 50%;
 }
 
-.post-payment-details input {
+.payment-details input {
   margin-bottom: 10px;
   padding: 8px 10px;
   width: 300px;
