@@ -41,12 +41,10 @@ router.post('/login', (req, res) => {
   else {
     Database.getUserByEmail(email)
       .then(user => {
-        console.log('User record', user);
         // Inner join would take place here? 
 
         ItemDatabase.getItemsByUserId(user.id)
           .then(items => {
-            console.log(`items with user id ${user.id}`, items);
 
             const passwordOnRecord = user.password;
             if (bcrypt.compareSync(password, passwordOnRecord)) {
@@ -59,8 +57,7 @@ router.post('/login', (req, res) => {
               };
               
               const token = generateToken(futurePayload);
-    
-              console.log("token log", token);
+  
               res.status(200).json({ message: `Welcome ${user.email}`, token });
             }
             else {
