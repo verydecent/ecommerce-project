@@ -28,7 +28,6 @@ class Favorites extends React.Component {
   }
 
   render() {
-    console.log('state = ', this.state);
     const { items } = this.state;
 
     let itemsArr = items.map((item, index) => 

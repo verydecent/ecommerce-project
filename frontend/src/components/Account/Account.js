@@ -43,9 +43,7 @@ class Account extends  React.Component {
   // }
 
   render() {
-    const { authUser } = this.props;
-    console.log("Account.js --- this.props.authUser", authUser);
-
+    const { authUser, handleLike } = this.props;
 
     // Running into a memory leak while updating the state inside of store
     // My guess is that one of these guys below VVV rendered instead  account-container rendering meaning store didnt exist, but how is it possible that the other sub account settings didnt run into that error?
@@ -107,7 +105,9 @@ class Account extends  React.Component {
                 path="/account/store"
                 exact
                 render={(props) =>
-                  <Store {...props} user_id={authUser.id} />
+                  <Store {...props} 
+                  handleLike={handleLike}
+                  user_id={authUser.id} />
                 }
               />
 

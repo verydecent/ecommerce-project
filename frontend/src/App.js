@@ -28,9 +28,8 @@ class App extends React.Component {
 
     axios.get(authorizeUser(), config)
       .then(response => {
-        console.log("response", response);
         const { authUser } = response.data;
-        console.log("authorizedUser ===", authUser);
+
         this.setState({ authUser });
       })
       .catch(error => {
@@ -134,7 +133,8 @@ class App extends React.Component {
           <Route
             path="/account"
             render={(props) =>
-              <Account {...props} authUser={authUser} />
+              <Account {...props}
+                authUser={authUser} handleLike={this.handleLike} />
             }
           />
           {/* <Route path="/home" render={Home} /> */}
