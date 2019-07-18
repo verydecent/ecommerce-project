@@ -11,7 +11,7 @@ function getUsers() {
 }
 
 function addUser(user) {
-  return db('users').insert(user, 'id').then(ids => ids[0]);
+  return db('users').insert(user, ['id', 'username', 'email']).then(ids => ids[0]);
 }
 
 function getUserByEmail(email) {
