@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink, Route, withRouter } from 'react-router-dom';
 import axios from 'axios';
+
 import './App.css';
 import Login from './components/Login/Login';
 import Register from './components/Register/Register';
@@ -11,6 +12,7 @@ import Account from './components/Account/Account';
 import Item from './components/Item/Item';
 import ItemFeed from './components/ItemFeed/ItemFeed';
 
+import { authorizeUser } from './Helpers/devEndpoints';
 
 
 class App extends React.Component {
@@ -47,16 +49,12 @@ class App extends React.Component {
   // }
 
   authorizeUser = () => {
-    console.log("authorizeUser()");
-    let token = localStorage.getItem('jwt');
-    // Be sure to include a space in addition to 'Bearer'
-    token = 'Bearer' + ' ' + token;
+    const token = localStorage.getItem('jwt');
     const config = {
-      headers: { authorization: token }
+      headers: { authorization: 'Bearer ' + token }
     };
-    const endpoint = 'http://localhost:5000/api/authorize-user';
 
-    axios.get(endpoint, config)
+    axios.get(authorizeUser(), config)
       .then(response => {
         console.log("response", response);
         const { authUser } = response.data;
@@ -123,7 +121,7 @@ class App extends React.Component {
         </header>
   
         <main>
-          <ItemFeed />
+          <Route exact path ="/" component={ItemFeed} />
           <Route exact path="/home" render={Home} />
           <Route path="/register" component={Register} />
           <Route path="/login" render={(props) => <Login {...props} authorizeUser={this.authorizeUser} />} />
