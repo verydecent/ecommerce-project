@@ -25,7 +25,9 @@ router.post('/register', (req, res) => {
     usersDB.addUser(body)
       .then(user => {
         const payload = { user };
-        const token = generateToken(token);
+        console.log('payload', payload);
+        const token = generateToken(payload);
+        console.log('token', token);
 
         res.status(200).json({ 
           message: `Welcome ${user}`, token });
