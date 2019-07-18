@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 
+import { Link } from 'react-router-dom';
+
 import './ItemFeed.css';
 import ItemDisplay from '../ItemDisplay/ItemDisplay';
 
@@ -28,7 +30,12 @@ class ItemFeed extends React.Component {
 
   render() {
     const items = this.state.items.map((item, index) => (
-      <ItemDisplay key={index} item={item} handleLike={this.props.handleLike} />
+      // <ItemDisplay key={index} item={item} handleLike={this.props.handleLike} />
+      <div className="itemtest">
+        <Link to={`item/${item.id}`}><h1>{item.title}</h1></Link>
+        <div className="testimage" style={{height: '60px', width: '30px'}}></div>
+        <div className="testdetails"></div>
+      </div>
     ));
 
     return (

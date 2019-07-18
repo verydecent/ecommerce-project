@@ -13,31 +13,21 @@ function ItemDisplay(props) {
   return (
     
       <div className="item-display-container">
-        <Link to={{
-          pathname: `/item/${id}`,
-          state: {
-            item
-          },
-        }}
-        >
-          <div className="item-cover-photo">
-            <img src={testIMG} alt=""/>
+        <div className="item-cover-photo">
+          <img src={testIMG} alt=""/>
+        </div>
+        <h3 className="post-date">
+          {formatDate(created_at)}
+        </h3>
+        <div className="item-metadata">
+          <div className="item-brand-and-size">
+            <h3 className="item-brand">Raf Simons</h3>
+            <h3 className="item-size">{size}</h3>
           </div>
-        </Link>
-          <h3 className="post-date">
-            {formatDate(created_at)}
+          <h3 className="item-title">
+            {title}
           </h3>
-
-          <div className="item-metadata">
-            <div className="item-brand-and-size">
-              <h3 className="item-brand">Raf Simons</h3>
-              <h3 className="item-size">{size}</h3>
-            </div>
-            <h3 className="item-title">
-              {title}
-            </h3>
-          </div>
-       
+        </div>
         <div className="item-price-and-heart">
             <div className="item-price">
               <h3>${price}</h3>
