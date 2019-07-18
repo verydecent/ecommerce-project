@@ -28,22 +28,13 @@ class Item extends React.Component {
       });
   }
 
-  handleMessage = (event) => {
-    // if (!user_id) {
-    //   alert("You must log in to purchase or message")
-    // }
-
-    // const token = localStorage.getItem('jwt');
-
-    // if (!token) {
-    //   // Open Login Modal
-    // }
-    // else {
-
-    // }
-  }
-
   handlePurchase = (event) => {
+    if (!this.props.user_id || !localStorage.getItem('jwt')) {
+      alert("You must log in to purchase")
+    }
+    else {
+      alert("Purchased!");
+    }
     // if (!user_id) {
     //   alert("You must log in to purchase or message")
     // }
@@ -68,6 +59,22 @@ class Item extends React.Component {
     // }
   }
 
+  handleMessage = (event) => {
+    if (!this.props.user_id || !localStorage.getItem('jwt')) {
+      alert("You must log in to purchase")
+    }
+    else {
+      alert("Messaged!");
+    }
+  }
+
+  handleEdit = () => {
+    alert("edit page");
+  }
+
+  handleDelete = () => {
+    alert("Item Deleted");
+  }
 
   render() {
     // const { id, posted_by_user_id, purchased_by_user_id, is_available, price, shipping_price, title, description, category, size, color, created_at } = this.props.location.state.item;
@@ -122,20 +129,20 @@ class Item extends React.Component {
                 ? (
                   <div className="item-buttons">
                     <div className="purchase">
-                      <button>Edit</button>
+                      <button onClick={this.handleEdit}>Edit</button>
                     </div>
                     <div className="message">
-                      <button>Delete</button>
+                      <button onClick={this.handleDelete}>Delete</button>
                     </div>
                   </div>
                 )
                 : (  
                   <div className="item-buttons">
                     <div className="purchase">
-                      <button>Purchase</button>
+                      <button onClick={this.handlePurchase}>Purchase</button>
                     </div>
                     <div className="message">
-                      <button>Message</button>
+                      <button onClick={this.handleMessage}>Message</button>
                     </div>
                   </div>
                 )             
