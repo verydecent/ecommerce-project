@@ -94,14 +94,14 @@ class Account extends  React.Component {
               {/* <Settings />       */}
               <Route path="/account/settings" render={(props) => <Settings {...props} authUser={authUser} />} />
   
-              <Route path="/account/post-item/:id" component={PostItem} />
+              <Route path="/account/post-item/" component={PostItem} />
   
               <Route path="/account/store" exact render={(props) => <Store {...props} user_id={authUser.id} />} />
               <Route path="/account/store/:id" component={Item} />
   
               <Route path="/account/messages" component={MessageInbox} />
   
-              <Route path="/account/favorites/:id" component={Favorites} />
+              <Route path="/account/favorites" component={Favorites} />
   
               <Route path="/account/feedback" component={Feedback} />
   
