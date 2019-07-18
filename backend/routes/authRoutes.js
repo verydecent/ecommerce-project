@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const bcrypt = require('bcryptjs');
 
-const Database = require('../models/userModel');
+const usersDB = require('../models/userModel');
 const ItemDatabase = require('../models/itemsModel');
 const generateToken = require('../helpers/generateToken');
 
@@ -22,7 +22,7 @@ router.post('/register', (req, res) => {
     const hashedPassword = bcrypt.hashSync(body.password, saltRounds);
     body.password = hashedPassword;
     delete body.passwordConfirm;
-    Database.addUser(body)
+    usersDB.addUser(body)
       .then(id => {
         res.status(200).json({ message: `User ${id} was successfully added` });
       })
@@ -39,34 +39,20 @@ router.post('/login', (req, res) => {
     res.status(422).json({ message: "You are missing one or more required fields" });
   }
   else {
-    Database.getUserByEmail(email)
+    usersDB.getUserByEmail(email)
       .then(user => {
         // Inner join would take place here? 
+        const passwordOnRecord = user.password;
+        if (bcrypt.compareSync(password, passwordOnRecord)) {
 
-        ItemDatabase.getItemsByUserId(user.id)
-          .then(items => {
+          const payload = { user };
+          const token = generateToken(payload);
 
-            const passwordOnRecord = user.password;
-            if (bcrypt.compareSync(password, passwordOnRecord)) {
-              // if (password === passwordOnRecord) {
-              console.log('bcrypt success password matches');
-
-              const futurePayload = {
-                user: user,
-                userItems: items,
-              };
-              
-              const token = generateToken(futurePayload);
-  
-              res.status(200).json({ message: `Welcome ${user.email}`, token });
-            }
-            else {
-              res.status(401).json({ message: "The credentials you've entered aren't valid" });
-            }
-          })
-          .catch(err => {
-            res.status(400).json({ error: err });
-          });
+          res.status(200).json({ message: `Welcome ${user.email}`, token });
+        }
+        else {
+          res.status(401).json({ message: "The credentials you've entered aren't valid" });
+        }
       })
       .catch(err => {
         res.status(404).json({ message: 'Non-existant email' });
