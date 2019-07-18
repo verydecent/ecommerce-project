@@ -14,9 +14,8 @@ class Favorites extends React.Component {
   }
   
   componentDidMount() {
-    const { id } = this.props.match.params;
-    // const endpoint = `http://localhost:5000/api/account/like-item/${id}`;
-    const endpoint = likedItems(id);
+    const { user_id } = this.props;
+    const endpoint = likedItems(user_id);
     console.log(endpoint)
     axios.get(endpoint)
       .then(response => {
@@ -35,7 +34,7 @@ class Favorites extends React.Component {
     let itemsArr = items.map((item, index) => 
       <ItemDisplay
       handleLike={this.handleLike}
-      itemInfo={item}
+      item={item}
       key={index}
       />
       );
