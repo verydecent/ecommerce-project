@@ -8,6 +8,7 @@ import requiresAuth from '../../Helpers/requiresAuth';
 import SubNav from '../SubNavigation/SubNavigation';
 import Settings from '../Setting/Settings'
 import Store from '../Store/Store';
+import Item from '../Item/Item';
 import MessageInbox from '../MessageInbox/MessageInbox';
 import Favorites from '../Favorites/Favorites';
 import Feedback from '../Feedback/Feedback';
@@ -95,7 +96,8 @@ class Account extends  React.Component {
   
               <Route path="/account/post-item/:id" component={PostItem} />
   
-              <Route path="/account/store" render={(props) => <Store {...props} user_id={authUser.id} />} />
+              <Route path="/account/store" exact render={(props) => <Store {...props} user_id={authUser.id} />} />
+              <Route path="/account/store/:id" component={Item} />
   
               <Route path="/account/messages" component={MessageInbox} />
   
