@@ -29,44 +29,50 @@ class Item extends React.Component {
   }
 
   handleMessage = (event) => {
-    console.log('handleMessage()');
+    // if (!user_id) {
+    //   alert("You must log in to purchase or message")
+    // }
 
-    const token = localStorage.getItem('jwt');
+    // const token = localStorage.getItem('jwt');
 
-    if (!token) {
-      // Open Login Modal
-    }
-    else {
+    // if (!token) {
+    //   // Open Login Modal
+    // }
+    // else {
 
-    }
+    // }
   }
 
   handlePurchase = (event) => {
-    console.log('handlePurchase()');
+    // if (!user_id) {
+    //   alert("You must log in to purchase or message")
+    // }
+    // console.log('handlePurchase()');
 
-    const token = localStorage.getItem('jwt');
+    // const token = localStorage.getItem('jwt');
 
-    if (!token) {
-      // Open Login Modal
-    }
-    else {
-      // Axios request to purchase this Item
-      // Update is_available to f, and then purchased_by_user_id to this user's id
-      // this.props.user_info.user_id 
-      // then when rendering in a feed, if is_available === f then make the appearance of the item faded out? Or just not even there
-      // Users favorites and users store == fade out
-      // in the main item feed == not rendered 
+    // if (!token) {
+    //   // Open Login Modal
+    // }
+    // else {
+    //   // Axios request to purchase this Item
+    //   // Update is_available to f, and then purchased_by_user_id to this user's id
+    //   // this.props.user_info.user_id 
+    //   // then when rendering in a feed, if is_available === f then make the appearance of the item faded out? Or just not even there
+    //   // Users favorites and users store == fade out
+    //   // in the main item feed == not rendered 
 
-      // OR
-      // Also insert into transactions table *There is no transactions table
-      // 
-    }
+    //   // OR
+    //   // Also insert into transactions table *There is no transactions table
+    //   // 
+    // }
   }
 
 
   render() {
     // const { id, posted_by_user_id, purchased_by_user_id, is_available, price, shipping_price, title, description, category, size, color, created_at } = this.props.location.state.item;
-    const { price, shipping_price, title, description, category, size, color, created_at } = this.props.location.state.item;
+    const { price, shipping_price, title, description, category, size, color, created_at, posted_by_user_id } = this.props.location.state.item;
+    const { user_id } = this.props;
 
     if (this.state.userInfo) return (
       <div className="item-container">
@@ -80,7 +86,7 @@ class Item extends React.Component {
             </div>
     
             <div className="picture-options">
-              Pic options ) ) ) ) ) ) ) )
+              Pic options
             </div>
           </div>
           {/* Right Column */}
@@ -111,14 +117,29 @@ class Item extends React.Component {
               </div>
             </div>
     
-            <div className="item-buttons">
-              <div className="purchase">
-                <button>Purchase</button>
-              </div>
-              <div className="message">
-                <button>Message</button>
-              </div>
-            </div>
+            {
+              user_id === posted_by_user_id
+                ? (
+                  <div className="item-buttons">
+                    <div className="purchase">
+                      <button>Edit</button>
+                    </div>
+                    <div className="message">
+                      <button>Delete</button>
+                    </div>
+                  </div>
+                )
+                : (  
+                  <div className="item-buttons">
+                    <div className="purchase">
+                      <button>Purchase</button>
+                    </div>
+                    <div className="message">
+                      <button>Message</button>
+                    </div>
+                  </div>
+                )             
+            }
     
             <div className="user-card">
               <div className="card-image">

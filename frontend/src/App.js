@@ -71,7 +71,7 @@ class App extends React.Component {
 
   render() {
     const { authUser } = this.state;
-    console.log("authUser status?", authUser);
+    console.log("Logged in user", authUser.id);
     return (
       <div className="app-container">
         <header>
@@ -121,7 +121,7 @@ class App extends React.Component {
           <Route
             path="/item/:id"
             render={(props) =>
-              <Item {...props} handleLike={this.handleLike} />
+              <Item {...props} handleLike={this.handleLike} user_id={authUser.id} />
             }
           />
           <Route
