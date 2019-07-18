@@ -5,9 +5,9 @@ import axios from 'axios';
 import './App.css';
 import Login from './components/Login/Login';
 import Register from './components/Register/Register';
-import Home from './components/Home/Home';
 import Account from './components/Account/Account';
 import ItemFeed from './components/ItemFeed/ItemFeed';
+import Item from './components/Item/Item';
 
 import { authorizeUser, likedItems } from './Helpers/devEndpoints';
 
@@ -113,9 +113,15 @@ class App extends React.Component {
         <main>
           <Route
             exact
-            path ="/"
+            path="/"
             render={(props) =>
               <ItemFeed {...props} handleLike={this.handleLike} />
+            }
+          />
+          <Route
+            path="/item/:id"
+            render={(props) =>
+              <Item {...props} handleLike={this.handleLike} />
             }
           />
           <Route
@@ -137,9 +143,6 @@ class App extends React.Component {
                 authUser={authUser} handleLike={this.handleLike} />
             }
           />
-          {/* <Route path="/home" render={Home} /> */}
-          {/* <Route path="/account" component={Account} /> */}
-          {/* <Route path="/items/:id" render={Item} /> */}
         </main>
       </div>
     );

@@ -111,7 +111,7 @@ class Account extends  React.Component {
                 }
               />
 
-              <Route path="/account/store/:id" component={Item} />
+              {/* <Route path="/account/store/:id" component={Item} /> */}
   
               <Route path="/account/messages" component={MessageInbox} />
   

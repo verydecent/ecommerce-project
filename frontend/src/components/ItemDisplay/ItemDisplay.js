@@ -14,7 +14,7 @@ function ItemDisplay(props) {
     
       <div className="item-display-container">
         <Link to={{
-          pathname: `/account/store/item/${id}`,
+          pathname: `/item/${id}`,
           state: {
             item
           },
