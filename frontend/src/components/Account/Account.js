@@ -87,26 +87,39 @@ class Account extends  React.Component {
           <div className="account-main">
             <SubNav user_id={authUser.id}/>
   
-            {/* Wrap inside of subnav */}
-  
             <div className="account-main-content">
-              {/* <Settings />       */}
-              <Route path="/account/settings"
-                render={(props) => <Settings {...props} authUser={authUser} />}
+
+              <Route
+                path="/account/settings"
+                render={(props) =>
+                  <Settings {...props} authUser={authUser} />
+                }
               />
   
-              <Route path="/account/post-item/" component={PostItem} />
+              <Route
+                path="/account/post-item/"
+                render={(props) =>
+                  <PostItem {...props} user_id={authUser.id} />
+                }
+              />
   
-              <Route path="/account/store"
+              <Route
+                path="/account/store"
                 exact
-                render={(props) => <Store {...props} user_id={authUser.id} />}
+                render={(props) =>
+                  <Store {...props} user_id={authUser.id} />
+                }
               />
+
               <Route path="/account/store/:id" component={Item} />
   
               <Route path="/account/messages" component={MessageInbox} />
   
-              <Route path="/account/favorites"
-                render={(props) => <Favorites {...props} user_id={authUser.id} />}
+              <Route
+                path="/account/favorites"
+                render={(props) =>
+                  <Favorites {...props} user_id={authUser.id} />
+                }
               />
   
               <Route path="/account/feedback" component={Feedback} />
