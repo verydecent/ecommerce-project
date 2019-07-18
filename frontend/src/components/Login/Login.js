@@ -21,13 +21,13 @@ class Login extends React.Component {
     const endpoint = 'http://localhost:5000/api/auth/login';
     axios
       .post(endpoint, body)
-      .then(res => {
-        localStorage.setItem('jwt', res.data['token']);
+      .then(response => {
+        localStorage.setItem('jwt', response.data['token']);
         this.props.authorizeUser();
         this.props.history.push('/');
       })
-      .catch(err => {
-        console.error('ERROR', err);
+      .catch(error => {
+        console.error('ERROR', error);
       });
   }
 
