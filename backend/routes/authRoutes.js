@@ -23,11 +23,15 @@ router.post('/register', (req, res) => {
     body.password = hashedPassword;
     delete body.passwordConfirm;
     usersDB.addUser(body)
-      .then(id => {
-        res.status(200).json({ message: `User ${id} was successfully added` });
+      .then(user => {
+        const payload = { user };
+        const token = generateToken(token);
+
+        res.status(200).json({ 
+          message: `Welcome ${user}`, token });
       })
-      .catch(err => {
-        res.status(500).json({ err });
+      .catch(error => {
+        res.status(500).json({ error });
       });
   }
 });
@@ -44,7 +48,6 @@ router.post('/login', (req, res) => {
         // Inner join would take place here? 
         const passwordOnRecord = user.password;
         if (bcrypt.compareSync(password, passwordOnRecord)) {
-
           const payload = { user };
           const token = generateToken(payload);
 
@@ -54,7 +57,7 @@ router.post('/login', (req, res) => {
           res.status(401).json({ message: "The credentials you've entered aren't valid" });
         }
       })
-      .catch(err => {
+      .catch(erroror => {
         res.status(404).json({ message: 'Non-existant email' });
       });
   }
