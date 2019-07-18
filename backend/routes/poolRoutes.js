@@ -10,7 +10,6 @@ const checkJwt = require('../middleware/checkJwt');
 router.get('/itemfeed', (req, res) => {
   Data('items')
     .then(items => {
-      console.log(items);
       // res.status(200).json({ items });
       res.status(200).json(items);
     })
@@ -43,17 +42,14 @@ router.post('/account/sell', (req, res) => {
 });
 
 router.get('/account/items', checkJwt, (req, res) => {
-  console.log('req.decodedToken', req.decoded);
-  
   const items = req.decoded;
 
-  console.log('items', items);
   res.status(200).json({ items });
 });
 
 router.get('/authorize-user', checkJwt, (req, res) => {
   const authUser = req.decoded;
-  console.log('backend authUser', authUser);
+  
   res.status(200).json({ authUser });
 });
 
@@ -80,7 +76,6 @@ router.put('/account/settings/update/user-info', (req, res) => {
 router.put('/account/settings/update/user-password', (req, res) => {
 
   const { id, currentPassword, newPassword, confirmNewPassword } = req.body;
-  console.log('req.body', req.body);
 
   // Although we are validating that the passwords match on the client, we will validate here just to be safe and for conceptual practice
   if (newPassword !== confirmNewPassword) {
