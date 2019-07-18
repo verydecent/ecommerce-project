@@ -3,6 +3,7 @@ import ItemDisplay from '../ItemDisplay/ItemDisplay';
 
 import axios from 'axios';
 import './Favorites.css';
+import { likedItems } from '../../Helpers/devEndpoints'
 
 class Favorites extends React.Component {
   constructor(props) {
@@ -15,8 +16,8 @@ class Favorites extends React.Component {
   componentDidMount() {
     const { id } = this.props.match.params;
     // const endpoint = `http://localhost:5000/api/account/like-item/${id}`;
-    const endpoint = `http://localhost:5000/api/account/like-item/${9}`;
-
+    const endpoint = likedItems(id);
+    console.log(endpoint)
     axios.get(endpoint)
       .then(response => {
         console.log(response);
