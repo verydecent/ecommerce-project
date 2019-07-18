@@ -9,6 +9,7 @@ import Home from './components/Home/Home';
 import Account from './components/Account/Account';
 
 import Item from './components/Item/Item';
+import ItemFeed from './components/ItemFeed/ItemFeed';
 
 
 
@@ -122,14 +123,16 @@ class App extends React.Component {
         </header>
   
         <main>
+          <ItemFeed />
           <Route exact path="/home" render={Home} />
           <Route path="/register" component={Register} />
           <Route path="/login" render={(props) => <Login {...props} authorizeUser={this.authorizeUser} />} />
+
           <Route path="/account" render={(props) =>
             <Account {...props} authUser={authUser} />}
           />
           {/* <Route path="/account" component={Account} /> */}
-          <Route path="/items/:id" render={Item} />
+          {/* <Route path="/items/:id" render={Item} /> */}
         </main>
       </div>
     );
