@@ -28,7 +28,7 @@ class PostItem extends React.Component {
     const { price, shipping_price, title, description, category, size, color } = this.state;
     const endpoint ='http://localhost:5000/api/account/post-item/';
     const body = {
-      posted_by_user_id: this.props.match.params.id,
+      posted_by_user_id: this.props.user_id,
       price,
       shipping_price,
       title,
