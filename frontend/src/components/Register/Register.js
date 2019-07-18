@@ -26,12 +26,14 @@ class Register extends React.Component {
     };
     
     axios.post(endpoint, body)
-      .then(res => {
-        console.log("response from register endpoint", res);
+      .then(response => {
+        console.log("response from register endpoint", response);
+        localStorage.setItem('jwt', response.data.token);
+        this.props.authorizeUser();
         this.props.history.push('/');
       })
-      .catch(err => {
-        console.error('ERROR', err);
+      .catch(error => {
+        console.error('ERROR', error);
       });
   }
 
