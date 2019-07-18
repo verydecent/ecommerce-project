@@ -10,13 +10,12 @@ class Item extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      itemInfo: null,
       userInfo: null,
     }
   }
 
   componentDidMount() {
-    const { posted_by_user_id } = this.props.location.state.itemInfo;
+    const { posted_by_user_id } = this.props.location.state.item;
     const endpoint = `http://localhost:5000/api/users/${posted_by_user_id}`;
 
     axios.get(endpoint)
@@ -66,7 +65,7 @@ class Item extends React.Component {
 
 
   render() {
-    const { id, posted_by_user_id, purchased_by_user_id, is_available, price, shipping_price, title, description, category, size, color, created_at } = this.props.location.state.itemInfo;
+    const { id, posted_by_user_id, purchased_by_user_id, is_available, price, shipping_price, title, description, category, size, color, created_at } = this.props.location.state.item;
     console.log(this.state.userInfo);
     if (this.state.userInfo) return (
       <div className="item-container">
