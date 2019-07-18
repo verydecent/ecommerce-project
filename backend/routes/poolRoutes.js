@@ -51,11 +51,10 @@ router.get('/account/items', checkJwt, (req, res) => {
   res.status(200).json({ items });
 });
 
-router.get('/account/settings', checkJwt, (req, res) => {
-  const user_info = req.decoded;
-  console.log(user_info);
-
-  res.status(200).json({user_info});
+router.get('/authorize-user', checkJwt, (req, res) => {
+  const authUser = req.decoded;
+  console.log('backend authUser', authUser);
+  res.status(200).json({ authUser });
 });
 
 // Get user by id
@@ -153,7 +152,7 @@ router.post('/account/post-item', (req, res) => {
 });
 
 // Post into items-user table
-router.post('/account/like-item/', (req, res) => {
+router.post('/account/liked-items/', (req, res) => {
   const { item_id, id } = req.body;
 
   Data('items_users_liked').insert({ user_id: id, item_id: item_id })
@@ -167,35 +166,18 @@ router.post('/account/like-item/', (req, res) => {
 
 // Get request for users items liked, so now are we creating an endpoint that works in conjunction to the like-item route? So that when it is posted it not only updates the DAtabase but it also update the API.... Or are we making a get request to this API and then itll already have that liked data without having to access the database....
 // Data manipulation and simply having the data.... 
-router.get('/account/like-item/:id', (req, res) => {
-  console.log('req.params.id', req.params.id);
-  const user_id = req.params.id;
-  // Join
+router.get('/account/liked-items/:id', (req, res) => {
+  const { id } = req.params;
+
   Data('items_users_liked')
     .join('items', 'items_users_liked.item_id', 'items.id')
+    .where('items_users_liked.user_id', id)
     .then(items =>{
       res.status(200).json({ items });
     })
     .catch(error => {
       res.status(500).json(error);
     });
-
-  // Try data manipulation
-  // Data('items_users_liked').where({ user_id })
-  //   .then(items_liked => {
-  //     let id_of_items = items_liked.map(record => record.item_id);
-  //     console.log('id_of_items', id_of_items);
-  //     Data('items').whereIn(id, [53, 53, 55])
-  //         .then(items => {
-  //           res.status(200).json({ items });
-  //         })
-  //         .catch(error => {
-  //           res.status(500).json({ error: "Items do not exist" });
-  //         });
-  //   })
-  //   .catch(error => {
-  //     res.status(500).json({ error: "Internal server error" });
-  //   });
 });
 
 // Items based on user and returns user as well
