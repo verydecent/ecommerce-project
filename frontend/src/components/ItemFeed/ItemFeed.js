@@ -28,7 +28,7 @@ class ItemFeed extends React.Component {
 
   render() {
     const items = this.state.items.map((item, index) => (
-      <ItemDisplay key={index} item={item} />
+      <ItemDisplay key={index} item={item} handleLike={this.props.handleLike} />
     ));
 
     return (

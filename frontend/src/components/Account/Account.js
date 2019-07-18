@@ -1,9 +1,8 @@
 import React from 'react';
-import { Route, NavLink } from 'react-router-dom';
-import axios from 'axios';
+import { Route } from 'react-router-dom';
 
 import './Account.css';
-import requiresAuth from '../../Helpers/requiresAuth';
+// import requiresAuth from '../../Helpers/requiresAuth';
 
 import SubNav from '../SubNavigation/SubNavigation';
 import Settings from '../Setting/Settings'
@@ -16,12 +15,12 @@ import Transactions from '../Transactions/Transactions';
 import PostItem from '../PostItem/PostItem';
 
 class Account extends  React.Component {
-  constructor(props) {
-    super(props);
-    // this.state = {
-    //   authUser: {}
-    // };
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     authUser: {}
+  //   };
+  // }
 
   // componentDidMount() {
   //   console.log("Account.s componentDidMount");
@@ -70,7 +69,7 @@ class Account extends  React.Component {
             <div className="user-image">
               <img
               src="https://vimcare.com/assets/empty_user-e28be29d09f6ea715f3916ebebb525103ea068eea8842da42b414206c2523d01.png"
-              alt="-user-profile-picture"
+              alt=""
               />
             </div>
             <div className="details">
@@ -92,16 +91,23 @@ class Account extends  React.Component {
   
             <div className="account-main-content">
               {/* <Settings />       */}
-              <Route path="/account/settings" render={(props) => <Settings {...props} authUser={authUser} />} />
+              <Route path="/account/settings"
+                render={(props) => <Settings {...props} authUser={authUser} />}
+              />
   
               <Route path="/account/post-item/" component={PostItem} />
   
-              <Route path="/account/store" exact render={(props) => <Store {...props} user_id={authUser.id} />} />
+              <Route path="/account/store"
+                exact
+                render={(props) => <Store {...props} user_id={authUser.id} />}
+              />
               <Route path="/account/store/:id" component={Item} />
   
               <Route path="/account/messages" component={MessageInbox} />
   
-              <Route path="/account/favorites" component={Favorites} />
+              <Route path="/account/favorites"
+                render={(props) => <Favorites {...props} user_id={authUser.id} />}
+              />
   
               <Route path="/account/feedback" component={Feedback} />
   
