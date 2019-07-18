@@ -28,24 +28,24 @@ class Store extends React.Component {
     });
   }
 
-  handleLike = (item_id) => {
-    const endpoint = 'http://localhost:5000/api/account/like-item';
+  // handleLike = (item_id) => {
+  //   const endpoint = 'http://localhost:5000/api/account/like-item';
 
-    // const { id } = this.props.match.params;
-    const { user_id } = this.props;
-    const body = {
-      user_id,
-      item_id
-    };
+  //   // const { id } = this.props.match.params;
+  //   const { user_id } = this.props;
+  //   const body = {
+  //     user_id,
+  //     item_id
+  //   };
 
-    axios.post(endpoint, body)
-      .then(response => {
-        alert(response.data.message);
-      })
-      .catch(error => {
-        console.error(error);
-      });
-  }
+  //   axios.post(endpoint, body)
+  //     .then(response => {
+  //       alert(response.data.message);
+  //     })
+  //     .catch(error => {
+  //       console.error(error);
+  //     });
+  // }
 
   render() {
     const { items } = this.state;

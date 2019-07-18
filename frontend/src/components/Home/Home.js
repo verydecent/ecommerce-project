@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import { Route } from 'react-router-dom';
 
 import ItemFeed from '../ItemFeed/ItemFeed';
@@ -13,30 +12,6 @@ class Home extends React.Component {
     this.state = {
       authUser: {}
     };
-  }
-
-  componentDidMount() {
-    let token = localStorage.getItem('jwt');
-    console.log('TOKEN from Home Component', token);
-    if (token) {
-      const endpoint = 'http://localhost:5000/api/authorize-user';
-      token = 'Bearer' + ' ' + token;
-      const config = {
-        headers: { Authorization: token }
-      }
-      axios.get(endpoint, config)
-        .then(response => {
-          console.log('authUser response', response);
-          const { authUser } = response.data;
-          this.setState({ authUser });
-        })
-        .catch(error => {
-          console.error('**GET**', error);
-        });
-    }
-    else {
-      console.log('No user is logged in');
-    }
   }
 
   

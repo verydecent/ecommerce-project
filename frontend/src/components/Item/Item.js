@@ -65,8 +65,9 @@ class Item extends React.Component {
 
 
   render() {
-    const { id, posted_by_user_id, purchased_by_user_id, is_available, price, shipping_price, title, description, category, size, color, created_at } = this.props.location.state.item;
-    console.log(this.state.userInfo);
+    // const { id, posted_by_user_id, purchased_by_user_id, is_available, price, shipping_price, title, description, category, size, color, created_at } = this.props.location.state.item;
+    const { price, shipping_price, title, description, category, size, color, created_at } = this.props.location.state.item;
+
     if (this.state.userInfo) return (
       <div className="item-container">
         <h4>Item</h4>
@@ -75,7 +76,7 @@ class Item extends React.Component {
           {/* Left Column*/}
           <div className="item-panel-left">
             <div className="item-image">
-              <img src={testIMG} />
+              <img src={testIMG} alt="" />
             </div>
     
             <div className="picture-options">
@@ -98,7 +99,7 @@ class Item extends React.Component {
                 <h2>Color {color}</h2>
               </div>
               <div className="item-heart">
-                <img src="https://img.icons8.com/material-rounded/26/000000/hearts.png" />
+                <img src="https://img.icons8.com/material-rounded/26/000000/hearts.png" alt="" />
               </div>
             </div>
     
@@ -123,7 +124,7 @@ class Item extends React.Component {
               <div className="card-image">
                 <img
                 src="https://vimcare.com/assets/empty_user-e28be29d09f6ea715f3916ebebb525103ea068eea8842da42b414206c2523d01.png"
-                alt="-user-profile-picture"
+                alt=""
                 />
               </div>
               <div className="card-details">

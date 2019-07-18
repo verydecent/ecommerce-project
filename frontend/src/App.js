@@ -6,13 +6,10 @@ import './App.css';
 import Login from './components/Login/Login';
 import Register from './components/Register/Register';
 import Home from './components/Home/Home';
-
 import Account from './components/Account/Account';
-
-import Item from './components/Item/Item';
 import ItemFeed from './components/ItemFeed/ItemFeed';
 
-import { authorizeUser } from './Helpers/devEndpoints';
+import { authorizeUser, likedItems } from './Helpers/devEndpoints';
 
 
 class App extends React.Component {
@@ -79,6 +76,20 @@ class App extends React.Component {
     }
   }
 
+  handleLike = (item_id) => {
+    const { id } = this.state.authUser;
+
+    axios.post(likedItems(), {
+      id, item_id
+    })
+      .then(response => {
+        alert(response.data.message);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }
+
   render() {
     const { authUser } = this.state;
     console.log("authUser status?", authUser);
@@ -121,10 +132,15 @@ class App extends React.Component {
         </header>
   
         <main>
-          <Route exact path ="/" component={ItemFeed} />
-          <Route exact path="/home" render={Home} />
+          <Route exact path ="/" 
+            render={(props) => <ItemFeed {...props} handleLike={this.handleLike} />}
+          />
+          
+          <Route path="/home" render={Home} />
           <Route path="/register" component={Register} />
-          <Route path="/login" render={(props) => <Login {...props} authorizeUser={this.authorizeUser} />} />
+          <Route path="/login" render={(props) => 
+            <Login {...props} authorizeUser={this.authorizeUser} />}
+          />
 
           <Route path="/account" render={(props) =>
             <Account {...props} authUser={authUser} />}
