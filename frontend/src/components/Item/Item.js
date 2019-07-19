@@ -83,7 +83,7 @@ class Item extends React.Component {
   }
 
   render() {
-    const { user_id, liked } = this.props;
+    const { user_id, liked, handleLike } = this.props;
     const { category, created_at, color, description, id, price, posted_by_user_id, shipping_price, size, title  } = this.state.item;
 
    return (
@@ -120,7 +120,7 @@ class Item extends React.Component {
                 <h2>Size: {size}</h2>
                 <h2>Color: {color}</h2>
               </div>
-              <div className="item-heart">
+              <div className="item-heart" onClick={() => handleLike(id)}>
               {
                 liked.includes(id)
                   ? <img src="https://img.icons8.com/material-rounded/18/000000/like.png"/>
