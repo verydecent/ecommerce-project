@@ -17,6 +17,17 @@ router.get('/items', (req, res) => {
     });
 });
 
+router.get('/items/:id', (req, res) => {
+  const { id } = req.params;
+  Data('items').where({ id }).first()
+    .then(item => {
+      res.status(200).json(item)
+    })
+    .catch(error => {
+      res.status(500).json({ error: "Internal server error" });
+    });
+})
+
 // Post to item to Items table
 // Authenticate to check if a user is logged in
 // Can only use this API route if the user recieves clearance through a middleware checking the JWT
