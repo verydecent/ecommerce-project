@@ -236,8 +236,26 @@ router.put('/purchase-item/:id', (req, res) => {
     })
     .catch(error => {
       res.status(500).json({ error: "Internal server error" });
-    })
-})
+    });
+});
+
+// Sold transactions
+router.get('/bought-items/:id', (req, res) => {
+  const { id } = req.params;
+  Data('items').where({ purchased_by_user_id: id })
+    .then(items => res.status(200).json({ items }))
+    .catch(error => res.status(500).json({ error: "Internal server error" }));
+});
+
+// Bought transactions
+router.get('/sold-items/:id', (req, res) => {
+  const { id } = req.params;
+
+  Data('items').where({ posted_by_user_id: user_id })
+    .then(items => res.status(200).json({ items }))
+    .catch(error => res.status(500).json({ error: "Internal server error" }));
+});
+
 
 // put request to update users item
 // Authentication: User needs to be verified as the owner of the item
