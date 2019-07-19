@@ -27,12 +27,13 @@ class Store extends React.Component {
 
   render() {
     const { items } = this.state;
-    const { handleLike } = this.props;
+    const { liked, handleLike } = this.props;
 
     let itemsArr = items.map((item, index) => 
       <ItemDisplay
         key={index}
         item={item}
+        liked={liked}
         handleLike={handleLike}
       />
       );

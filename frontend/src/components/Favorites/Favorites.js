@@ -28,11 +28,13 @@ class Favorites extends React.Component {
 
   render() {
     const { items } = this.state;
+    const { liked, handleLike } = this.props;
 
     let itemsArr = items.map((item, index) => 
       <ItemDisplay
-      handleLike={this.handleLike}
+      handleLike={handleLike}
       item={item}
+      liked={liked}
       key={index}
       />
       );

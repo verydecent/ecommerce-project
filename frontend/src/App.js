@@ -171,7 +171,7 @@ class App extends React.Component {
             path="/account"
             render={(props) =>
               <Account {...props}
-                authUser={authUser} handleLike={this.handleLike} />
+                authUser={authUser} liked={liked} handleLike={this.handleLike} />
             }
           />
         </main>
