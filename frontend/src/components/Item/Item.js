@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 
 import formatDate from '../../Helpers/formatDate';
-import { getItems, getUser } from '../../Helpers/devEndpoints';
+import { getItems, getUser, purchaseItem } from '../../Helpers/devEndpoints';
 import './Item.css';
 
 const testIMG ="https://www.sunspel.com/media/catalog/product/cache/3/image/9df78eab33525d08d6e5fb8d27136e95/m/t/mtsh0001-whaa-1new.jpg";
@@ -35,11 +35,25 @@ class Item extends React.Component {
   }
 
   handlePurchase = (event) => {
-    if (!this.props.user_id || !localStorage.getItem('jwt')) {
+    const { user_id } = this.props;
+    const { id } = this.props.match.params;
+
+    if (!user_id || !localStorage.getItem('jwt')) {
       alert("You must log in to purchase")
     }
     else {
-      alert("Purchased!");
+      console.log('user_id', user_id);
+      axios.put(purchaseItem(id), { user_id })
+        .then(response => {
+          // Potentially move this to app, in order to refresh the whole app after setState because of later request to transactions or could do it in componentDidMount of Transactions
+
+          alert(response.data.message);
+        })
+        .catch(error => {
+          console.error(error);
+        })
+      // Modal pops up for further instruction or confirmational information
+
     }
     // if (!user_id) {
     //   alert("You must log in to purchase or message")
@@ -67,7 +81,7 @@ class Item extends React.Component {
 
   handleMessage = (event) => {
     if (!this.props.user_id || !localStorage.getItem('jwt')) {
-      alert("You must log in to purchase")
+      alert("You must log in to message user")
     }
     else {
       alert("Messaged!");
