@@ -15,3 +15,24 @@
   
   padding: 20px;
 }
+
+.transactions-panel {
+  display: flex;
+  flex-direction: column;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.buttons button {
+  margin: 1px;
+  padding: 12px;
+  width: 280px;
+}
+
+.transactions {
+  border: 1px solid black;
+  margin: 0 auto;
+}
