@@ -13,9 +13,11 @@ function ItemDisplay(props) {
   return (
     
       <div className="item-display-container">
-        <div className="item-cover-photo">
-          <img src={testIMG} alt=""/>
-        </div>
+        <Link to={`/item/${id}`}>
+          <div className="item-cover-photo">
+            <img src={testIMG} alt=""/>
+          </div>
+        </Link>
         <h3 className="post-date">
           {formatDate(created_at)}
         </h3>
