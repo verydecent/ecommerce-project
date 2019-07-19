@@ -1,8 +1,9 @@
 import React from 'react';
+import axios from 'axios';
 
 import formatDate from '../../Helpers/formatDate';
+import { getItems } from '../../Helpers/devEndpoints';
 import './Item.css';
-import axios from 'axios';
 
 const testIMG ="https://www.sunspel.com/media/catalog/product/cache/3/image/9df78eab33525d08d6e5fb8d27136e95/m/t/mtsh0001-whaa-1new.jpg";
 
@@ -10,22 +11,23 @@ class Item extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      merchant: {},
+      item: {},
     }
   }
 
-  // componentDidMount() {
-  //   const { posted_by_user_id } = this.props.location.state.item;
-  //   const endpoint = `http://localhost:5000/api/users/${posted_by_user_id}`;
-
-  //   axios.get(endpoint)
-  //     .then(response => {
-  //       this.setState({ merchant: response.data.user });
-  //     })
-  //     .catch(error => {
-  //       console.error(error);
-  //     });
-  // }
+  componentDidMount() {
+    const { id } = this.props.match.params;
+    axios.get(getItems(id))
+      .then(({ data }) => {
+        this.setState({ item: data });
+      })
+      .catch(error => {
+        console.error(error);
+      });
+    // axios.get()
+    //   .then()
+    //   .catch();
+  }
 
   handlePurchase = (event) => {
     if (!this.props.user_id || !localStorage.getItem('jwt')) {
@@ -76,19 +78,15 @@ class Item extends React.Component {
   }
 
   render() {
-    // const { id, posted_by_user_id, purchased_by_user_id, is_available, price, shipping_price, title, description, category, size, color, created_at } = this.props.location.state.item;
-    // const { price, shipping_price, title, description, category, size, color, created_at, posted_by_user_id } = this.props.location.state.item;
+    const { category, created_at, color, description, id, price, posted_by_user_id, shipping_price, size, title  } = this.state.item;
+    console.log(created_at);
     const { user_id } = this.props;
-    const { username, location } = this.state.merchant;
-
-    
 
    return (
       <div className="item-container">
         <h4>Item</h4>
 
         <div className="item-panel">
-          {/* Left Column*/}
           <div className="item-panel-left">
             <div className="item-image">
               <img src={testIMG} alt="" />
@@ -98,20 +96,25 @@ class Item extends React.Component {
               Pic options
             </div>
           </div>
-          {/* Right Column */}
           <div className="item-panel-right">
             <div className="item-detail-box">
               <div className="item-meta-data">
                 <h1>Brand Name</h1>
                 <div className="date-posted">
-                  {/* <span>{formatDate()}</span> */}
+                  <span>
+                    {
+                      created_at
+                        ? formatDate(created_at)
+                        : null
+                    }
+                  </span>
                 </div>
                 <div className="date-posted">
-                  <span>Category: {}</span>
+                  <span>Category: {category}</span>
                 </div>
-                <h2>{}</h2>
-                <h2>Size {}</h2>
-                <h2>Color {}</h2>
+                <h2>{title}</h2>
+                <h2>Size: {size}</h2>
+                <h2>Color: {color}</h2>
               </div>
               <div className="item-heart">
                 <img src="https://img.icons8.com/material-rounded/26/000000/hearts.png" alt="" />
@@ -119,14 +122,14 @@ class Item extends React.Component {
             </div>
 
             <div className="item-price">
-              <span>${}</span>
+              <span>${price}</span>
               <div className="item-shipping-price">
-                <span>+ ${}</span>
+                <span>+ ${shipping_price}</span>
                 <span>Location : {}</span>
               </div>
             </div>
 
-            {/* {
+            {
               user_id === posted_by_user_id
                 ? (
                   <div className="item-buttons">
@@ -148,7 +151,7 @@ class Item extends React.Component {
                     </div>
                   </div>
                 )             
-            } */}
+            }
 
             <div className="user-card">
               <div className="card-image">
@@ -165,7 +168,7 @@ class Item extends React.Component {
 
             <div className="item-description">
               <h1>Description</h1>
-              <p>{}</p>
+              <p>{description}</p>
             </div>
           </div>
         </div>
