@@ -21,3 +21,7 @@ function getItems(id) {
   }
   return 'http://localhost:5000/api/items';
 }
+
+function getUser(id) {
+  return `http://localhost:5000/api/users/${id}`
+}
