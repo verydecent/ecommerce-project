@@ -50,16 +50,6 @@ class Account extends  React.Component {
     // account rendered, then rendered Store, then we refresh the page...
     // Then account gets rendered and runs into the isLoading page first, because thats how Account was set, to be loading first.... (Why did we have to do this conditional rendering again? because I was trying to call render in one of the child components while before Account could even render, they were trying to render before they were in the virtual dom)
     // ANYWAYS... So then we tried to componentDidMount inside of Store while the Account didnt exist. I think that is my best guess, as for these messy notes if anyone ever comes here please know that this is my first project and I am just thinking to myself lols
-
-
-    // if (error) {
-    //   return <p>{error.message}</p>
-    // }
-
-    // if (isLoading) {
-    //   return <p>Loading...</p>
-    // }
-    // if (authUser) {
       return (
         <div className="account-container">
           <div className="account-header">
@@ -122,7 +112,11 @@ class Account extends  React.Component {
   
               <Route path="/account/feedback" component={Feedback} />
   
-              <Route path="/account/transactions" component={Transactions} />
+              <Route
+                path="/account/transactions"
+                render={(props) => <Transactions {...props} user_id={authUser.id} />
+                }
+              />
               
             </div>
           </div>
