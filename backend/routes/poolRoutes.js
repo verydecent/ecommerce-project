@@ -229,9 +229,9 @@ router.get('/users/:id', (req, res) => {
 // Purchase item
 router.put('/purchase-item/:id', (req, res) => {
   const { id } = req.params;
-  const { posted_by_user_id } = req.body;
-  Data('items').where({ id }).update({ posted_by_user_id, is_available: 0 })
-    .then(something => {
+  const { user_id } = req.body;
+  Data('items').where({ id }).update({ purchased_by_user_id: user_id, is_available: 0 })
+    .then(numberOfItemsUpdated => {
       res.status(200).json({ message: "Item purchased!" });
     })
     .catch(error => {
