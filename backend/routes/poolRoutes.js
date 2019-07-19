@@ -10,14 +10,13 @@ const checkJwt = require('../middleware/checkJwt');
 
 router.get('/authorize-user', checkJwt, (req, res) => {
   const authUser = req.decoded;
-  res.status(200).json({ authUser });
+  res.status(200).json(authUser);
 });
 
 router.get('/users/:id', (req, res) => {
   const { id } = req.params;
   Data('users').where({ id }).first()
     .then(user => {
-      console.log(user);
       res.status(200).json(user);
     })
     .catch(error => {
@@ -169,10 +168,10 @@ router.post('/account/post-item', (req, res) => {
 router.post('/account/liked-items/', (req, res) => {
   const { item_id, id } = req.body;
 
-  Data('items_users_liked').insert({ user_id: id, item_id: item_id })
-    .then(
-      res.status(200).json({ message: "You liked an item!" })
-    )
+  Data('items_users_liked').insert({ user_id: id, item_id: item_id }, ['user_id', 'item_id'])
+    .then(ids => {
+      res.status(200).json({ message: `${ids[0]} liked item ${ids[1]}` });
+    })
     .catch(error => {
       res.status(500).json({ error: "Internal server error" });
     });
@@ -187,12 +186,27 @@ router.get('/account/liked-items/:id', (req, res) => {
     .join('items', 'items_users_liked.item_id', 'items.id')
     .where('items_users_liked.user_id', id)
     .then(items =>{
-      res.status(200).json({ items });
+      res.status(200).json(items);
     })
     .catch(error => {
       res.status(500).json(error);
     });
 });
+
+// Delete liked item
+router.delete('/account/liked-items/:id', (req, res) => {
+  const { id } = req.params;
+  const { user_id } = req.headers;
+    
+  Data('items_users_liked').where({ user_id: user_id, item_id: id }).del()
+    .then(amount => {
+      res.status(200).json({ message: `${amount} item deleted` });
+    })
+    .catch(error => {
+      res.status(500).json({ error: "Internal server error" });
+    });
+});
+
 
 // Items based on user and returns user as well
 router.get('/users/:id', (req, res) => {
