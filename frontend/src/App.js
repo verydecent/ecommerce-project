@@ -16,7 +16,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      authUser: {}
+      authUser: {},
+      liked: [],
     };
   }
 
@@ -27,10 +28,15 @@ class App extends React.Component {
     };
 
     axios.get(authorizeUser(), config)
-      .then(response => {
-        const { authUser } = response.data;
-
-        this.setState({ authUser });
+      .then(user => {
+        axios.get(likedItems(user.data.id))
+          .then(liked => {
+            liked = liked.data.map(item => item.id);
+            this.setState({ authUser: user.data, liked: liked });
+          })
+          .catch(error => {
+            console.error(error);
+          })
       })
       .catch(error => {
         console.error(error);
@@ -52,26 +58,49 @@ class App extends React.Component {
 
   handleLike = (item_id) => {
     const { id } = this.state.authUser;
-    if (id) {
-      axios.post(likedItems(), {
-        id, item_id
-      })
-        .then(response => {
-          alert(response.data.message);
-        })
-        .catch(error => {
-          console.error(error);
-        });
-    }
-    else {
-      alert("You must log in to like an item");
+    let { liked } = this.state;
+    if (!id) {
+      return alert("You must log in to like an item");
     }
 
+    if (id && liked.includes(item_id)) {
+
+
+      const config = {
+        headers: { user_id: id }
+      };
+
+      axios.delete(likedItems(item_id), config)
+        .then(response => {
+          this.setState(state => {
+            const liked = state.liked.filter(i => i !== item_id);
+            return { liked };
+          })
+          alert("unliked item");
+        })
+        .catch(error => console.error(error));
+      console.log('liked', liked);
+    }
+    if (id && !liked.includes(item_id)) {
+      console.log('Liking item', item_id)
+      axios.post(likedItems(), { id, item_id })
+        .then(response => {
+          this.setState(state => {
+            const liked = state.liked.concat(item_id);
+            console.log(liked);
+            return { liked }
+          });
+          alert("liked item");
+        })
+        .catch(error => console.error(error));
+      console.log('liked', liked);
+    }
   }
 
   render() {
-    const { authUser } = this.state;
+    const { authUser, liked } = this.state;
     console.log("Logged in user", authUser.id);
+    console.log("liked items", liked);
     return (
       <div className="app-container">
         <header>
