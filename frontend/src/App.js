@@ -152,7 +152,7 @@ class App extends React.Component {
           <Route
             path="/item/:id"
             render={(props) =>
-              <Item {...props} handleLike={this.handleLike} user_id={authUser.id} />
+              <Item {...props} handleLike={this.handleLike} user_id={authUser.id} liked={liked} />
             }
           />
           <Route

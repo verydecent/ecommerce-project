@@ -39,7 +39,6 @@ function ItemDisplay(props) {
                   ? <img src="https://img.icons8.com/material-rounded/18/000000/like.png"/>
                   : <img src="https://img.icons8.com/material-outlined/18/000000/like.png"/>
               }
-              
             </div>
         </div>
       </div>

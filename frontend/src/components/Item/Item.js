@@ -83,7 +83,7 @@ class Item extends React.Component {
   }
 
   render() {
-    const { user_id } = this.props;
+    const { user_id, liked } = this.props;
     const { category, created_at, color, description, id, price, posted_by_user_id, shipping_price, size, title  } = this.state.item;
 
    return (
@@ -121,7 +121,11 @@ class Item extends React.Component {
                 <h2>Color: {color}</h2>
               </div>
               <div className="item-heart">
-                <img src="https://img.icons8.com/material-rounded/26/000000/hearts.png" alt="" />
+              {
+                liked.includes(id)
+                  ? <img src="https://img.icons8.com/material-rounded/18/000000/like.png"/>
+                  : <img src="https://img.icons8.com/material-outlined/18/000000/like.png"/>
+              }
               </div>
             </div>
 
