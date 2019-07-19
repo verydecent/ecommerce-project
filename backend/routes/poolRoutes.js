@@ -226,6 +226,19 @@ router.get('/users/:id', (req, res) => {
   // res.status(200).json({ user: user, items: items });
 });
 
+// Purchase item
+router.put('/purchase-item/:id', (req, res) => {
+  const { id } = req.params;
+  const { posted_by_user_id } = req.body;
+  Data('items').where({ id }).update({ posted_by_user_id, is_available: 0 })
+    .then(something => {
+      res.status(200).json({ message: "Item purchased!" });
+    })
+    .catch(error => {
+      res.status(500).json({ error: "Internal server error" });
+    })
+})
+
 // put request to update users item
 // Authentication: User needs to be verified as the owner of the item
 // Matching user ID to the item ID? Not enough... too simple and easy people can guess users ID
