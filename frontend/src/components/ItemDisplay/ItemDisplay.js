@@ -11,7 +11,6 @@ function ItemDisplay(props) {
   const { handleLike, item } = props;
 
   return (
-    
       <div className="item-display-container">
         <Link to={`/item/${id}`}>
           <div className="item-cover-photo">
@@ -38,9 +37,7 @@ function ItemDisplay(props) {
               <img src="https://img.icons8.com/material-rounded/18/000000/hearts.png" alt="" />
             </div>
         </div>
-
       </div>
-
   );
 }
 

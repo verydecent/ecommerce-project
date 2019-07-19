@@ -1,6 +1,7 @@
 module.exports = {
   authorizeUser,
   likedItems,
+  getItems,
 }
 
 function authorizeUser() {
@@ -14,3 +15,9 @@ function likedItems (id) {
   return 'http://localhost:5000/api/account/liked-items';
 };
 
+function getItems(id) {
+  if (id) {
+    return `http://localhost:5000/api/items/${id}`
+  }
+  return 'http://localhost:5000/api/items';
+}

@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-import { Link } from 'react-router-dom';
+import { getItems } from '../../Helpers/devEndpoints';
 
 import './ItemFeed.css';
 import ItemDisplay from '../ItemDisplay/ItemDisplay';
@@ -16,10 +16,7 @@ class ItemFeed extends React.Component {
   
 
   componentDidMount() {
-    const requestLink = 'http://localhost:5000/api/itemfeed';
-
-    axios.get(requestLink)
-      // Decided to destructure the response.data since I only want the requested data, less code even if it is minute lol
+    axios.get(getItems())
       .then(({ data }) => {
         this.setState({ items: data });
       })
@@ -34,7 +31,6 @@ class ItemFeed extends React.Component {
     ));
 
     return (
-      // lol react fragment short syntax
       <div className="item-feed-container">
         {items}
       </div>
