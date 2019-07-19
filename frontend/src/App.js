@@ -21,6 +21,10 @@ class App extends React.Component {
     };
   }
 
+  componentDidMount() {
+    console.log("CDM on App.js");
+  }
+
   authorizeUser = () => {
     const token = localStorage.getItem('jwt');
     const config = {
@@ -64,8 +68,6 @@ class App extends React.Component {
     }
 
     if (id && liked.includes(item_id)) {
-
-
       const config = {
         headers: { user_id: id }
       };
@@ -144,7 +146,7 @@ class App extends React.Component {
             exact
             path="/"
             render={(props) =>
-              <ItemFeed {...props} handleLike={this.handleLike} />
+              <ItemFeed {...props} handleLike={this.handleLike} liked={liked} />
             }
           />
           <Route

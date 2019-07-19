@@ -8,7 +8,7 @@ const testIMG ="https://www.sunspel.com/media/catalog/product/cache/3/image/9df7
 
 function ItemDisplay(props) {
   const { id, price, title, size, created_at } = props.item;
-  const { handleLike, item } = props;
+  const { handleLike, liked } = props;
 
   return (
       <div className="item-display-container">
@@ -35,11 +35,11 @@ function ItemDisplay(props) {
             </div>
             <div className="item-heart" onClick={() => handleLike(id)}>
               {
-                // user_liked_items.includes(item id) ?
-                //  ? Black heart
-                //  : Empty Heart
+                liked.includes(id)
+                  ? <img src="https://img.icons8.com/material-rounded/18/000000/like.png"/>
+                  : <img src="https://img.icons8.com/material-outlined/18/000000/like.png"/>
               }
-              <img src="https://img.icons8.com/material-rounded/18/000000/hearts.png" alt="" />
+              
             </div>
         </div>
       </div>
