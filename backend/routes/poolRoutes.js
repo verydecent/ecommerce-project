@@ -6,6 +6,24 @@ const bcrypt = require('bcryptjs');
 const checkJwt = require('../middleware/checkJwt');
 
 // This is the pool routes, we will modularize all routes into proper router files when we stabalize a bit more
+// auth route the root of it all
+
+router.get('/authorize-user', checkJwt, (req, res) => {
+  const authUser = req.decoded;
+  res.status(200).json({ authUser });
+});
+
+router.get('/users/:id', (req, res) => {
+  const { id } = req.params;
+  Data('users').where({ id }).first()
+    .then(user => {
+      console.log(user);
+      res.status(200).json(user);
+    })
+    .catch(error => {
+      res.status(500).json({ error: "Internal server error" });
+    });
+});
 
 router.get('/items', (req, res) => {
   Data('items')
@@ -53,17 +71,8 @@ router.post('/account/sell', (req, res) => {
 
 router.get('/account/items', checkJwt, (req, res) => {
   const items = req.decoded;
-
   res.status(200).json({ items });
 });
-
-router.get('/authorize-user', checkJwt, (req, res) => {
-  const authUser = req.decoded;
-  
-  res.status(200).json({ authUser });
-});
-
-// Get user by id
 
 // Update user info
 router.put('/account/settings/update/user-info', (req, res) => {
