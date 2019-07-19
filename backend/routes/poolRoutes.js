@@ -7,10 +7,9 @@ const checkJwt = require('../middleware/checkJwt');
 
 // This is the pool routes, we will modularize all routes into proper router files when we stabalize a bit more
 
-router.get('/itemfeed', (req, res) => {
+router.get('/items', (req, res) => {
   Data('items')
     .then(items => {
-      // res.status(200).json({ items });
       res.status(200).json(items);
     })
     .catch(err => {
