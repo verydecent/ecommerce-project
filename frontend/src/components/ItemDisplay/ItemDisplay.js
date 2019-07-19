@@ -34,6 +34,11 @@ function ItemDisplay(props) {
               <h3>${price}</h3>
             </div>
             <div className="item-heart" onClick={() => handleLike(id)}>
+              {
+                // user_liked_items.includes(item id) ?
+                //  ? Black heart
+                //  : Empty Heart
+              }
               <img src="https://img.icons8.com/material-rounded/18/000000/hearts.png" alt="" />
             </div>
         </div>

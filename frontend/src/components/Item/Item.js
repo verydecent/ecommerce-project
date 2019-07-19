@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 
 import formatDate from '../../Helpers/formatDate';
-import { getItems } from '../../Helpers/devEndpoints';
+import { getItems, getUser } from '../../Helpers/devEndpoints';
 import './Item.css';
 
 const testIMG ="https://www.sunspel.com/media/catalog/product/cache/3/image/9df78eab33525d08d6e5fb8d27136e95/m/t/mtsh0001-whaa-1new.jpg";
@@ -12,21 +12,26 @@ class Item extends React.Component {
     super(props);
     this.state = {
       item: {},
+      merchant: {},
     }
   }
 
   componentDidMount() {
     const { id } = this.props.match.params;
     axios.get(getItems(id))
-      .then(({ data }) => {
-        this.setState({ item: data });
+      .then((response1) => {
+        axios.get(getUser(response1.data.posted_by_user_id))
+          .then((response2) => {
+            this.setState({ item: response1.data, merchant: response2.data });
+          })
+          .catch(error => {
+            console.error(error);
+          });
       })
+      .then()
       .catch(error => {
         console.error(error);
       });
-    // axios.get()
-    //   .then()
-    //   .catch();
   }
 
   handlePurchase = (event) => {
@@ -78,9 +83,8 @@ class Item extends React.Component {
   }
 
   render() {
-    const { category, created_at, color, description, id, price, posted_by_user_id, shipping_price, size, title  } = this.state.item;
-    console.log(created_at);
     const { user_id } = this.props;
+    const { category, created_at, color, description, id, price, posted_by_user_id, shipping_price, size, title  } = this.state.item;
 
    return (
       <div className="item-container">
