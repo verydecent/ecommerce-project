@@ -52,7 +52,7 @@ class App extends React.Component {
     if (token) {
       localStorage.removeItem('jwt');
       this.props.history.push('/');
-      this.setState({ authUser: {} });
+      this.setState({ authUser: {}, liked: [] });
       alert('You logged out');
     }
     else {
