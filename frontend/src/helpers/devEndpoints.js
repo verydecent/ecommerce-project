@@ -4,6 +4,8 @@ module.exports = {
   getItems,
   getUser,
   purchaseItem,
+  getBoughtItems,
+  getSoldItems,
 }
 
 function authorizeUser() {
@@ -32,4 +34,12 @@ function getUser(id) {
 
 function purchaseItem(id) {
   return `http://localhost:5000/api/purchase-item/${id}`;
+}
+
+function getBoughtItems(id) {
+  return `http://localhost:5000/api/bought-items/${id}`;
+}
+
+function getSoldItems(id) {
+  return `http://localhost:5000/api/sold-items/${id}`;
 }
