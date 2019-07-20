@@ -1,22 +1,27 @@
 import React from 'react';
-import formatDate from '../../Helpers/formatDate';
+import { Link } from 'react-router-dom';
+import { formatTransactionDate } from '../../Helpers/transactionDate';
 
 const testIMG ="https://www.sunspel.com/media/catalog/product/cache/3/image/9df78eab33525d08d6e5fb8d27136e95/m/t/mtsh0001-whaa-1new.jpg";
 
 function TransactionCard(props) {
-  const { title, price, updated_at } = props.item;
+  const { id, title, price, updated_at } = props.item;
   return (
     <div className="transaction-card-container">
-      <div className="transaction-card-img">
-        <img src={testIMG} alt=""/>
-      </div>
+      <Link to={`/item/${id}`}>
+        <div className="transaction-card-img">
+          <img src={testIMG} alt=""/>
+        </div>
+      </Link>
 
       <div className="transaction-card-details">
 
         <div className="transaction-card-details-left">
-          <h1>{title}</h1> 
+          <Link to={`/item/${id}`}>
+            <h1>{title}</h1>
+          </Link>
           <h1>Price {price}</h1>
-          <h1>{formatDate(updated_at)}</h1>
+          <h1>{formatTransactionDate(updated_at)}</h1>
           
         </div>
 
