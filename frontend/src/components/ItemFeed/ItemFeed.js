@@ -27,14 +27,15 @@ class ItemFeed extends React.Component {
   }
 
   render() {
+    const { items } = this.state;
     const { liked, handleLike } = this.props;
-    const items = this.state.items.map((item, index) => (
+    const filtered = items.filter((item, index) => (item.is_available == 1));
+    const available = filtered.map((item, index) => (
       <ItemDisplay key={index} item={item} liked={liked} handleLike={handleLike} />
     ));
-
     return (
       <div className="item-feed-container">
-        {items}
+        {available}
       </div>
     );
   }
