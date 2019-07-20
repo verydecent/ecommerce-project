@@ -26,6 +26,9 @@ exports.up = function(knex) {
       .integer('shipping_price')
       .notNullable();
     table
+      .string('brand', 128)
+      .notNullable();
+    table
       .string('title', 128)
       .notNullable()
     table
