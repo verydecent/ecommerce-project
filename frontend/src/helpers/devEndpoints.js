@@ -37,9 +37,9 @@ function purchaseItem(id) {
 }
 
 function getBoughtItems(id) {
-  return `http://localhost:5000/api/bought-items/${id}`;
+  return `http://localhost:5000/api/user/${id}/bought-items`;
 }
 
 function getSoldItems(id) {
-  return `http://localhost:5000/api/sold-items/${id}`;
+  return `http://localhost:5000/api/user/${id}/sold-items`;
 }
