@@ -239,20 +239,24 @@ router.put('/purchase-item/:id', (req, res) => {
     });
 });
 
-// Sold transactions
-router.get('/bought-items/:id', (req, res) => {
+// Bought transactions
+router.get('/user/:id/bought-items/', (req, res) => {
   const { id } = req.params;
   Data('items').where({ purchased_by_user_id: id })
-    .then(items => res.status(200).json({ items }))
+    .then(items => {
+      res.status(200).json(items)
+    })
     .catch(error => res.status(500).json({ error: "Internal server error" }));
 });
 
-// Bought transactions
-router.get('/sold-items/:id', (req, res) => {
+// Sold transactions
+router.get('/user/:id/sold-items/', (req, res) => {
   const { id } = req.params;
 
-  Data('items').where({ posted_by_user_id: user_id })
-    .then(items => res.status(200).json({ items }))
+  Data('items').where({ posted_by_user_id: id, is_available: 0 })
+    .then(items => {
+      res.status(200).json(items);
+    })
     .catch(error => res.status(500).json({ error: "Internal server error" }));
 });
 
