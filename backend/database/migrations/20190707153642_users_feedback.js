@@ -1,6 +1,14 @@
 
 exports.up = function(knex) {
-  return knex.schema.createTable('users_feedback', (table => {
+  return knex.schema.createTable('feedback', (table => {
+    table
+      .increments();
+    table
+      .integer('feedback_id')
+      .unsigned()
+      .notNullable()
+      .references('feedback.id')
+      .onDelete('CASCADE');
     table
       .integer('item_id')
       .unsigned()
@@ -8,23 +16,14 @@ exports.up = function(knex) {
       .references('items.id')
       .onDelete('CASCADE');
     table
-      .integer('publisher_user_id')
+      .integer('recipient_user_id')
       .unsigned()
       .notNullable()
       .references('users.id')
       .onDelete('CASCADE');
-    table
-      .integer('recipient_user__id')
-      .unsigned()
-      .notNullable()
-      .references('users.id')
-      .onDelete('CASCADE');
-    table
-      .text('feedback_description')
-      .notNullable();
   }));
 };
 
 exports.down = function(knex) {
-  return knex.schema.dropTableIfExists('users_feedback'); 
+  return knex.schema.dropTableIfExists('feedback'); 
 };
