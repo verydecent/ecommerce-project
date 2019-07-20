@@ -1,6 +1,9 @@
 import React from 'react';
 import axios from 'axios';
 import { getBoughtItems } from '../../Helpers/devEndpoints';
+import './Transactions.css';
+
+import TransactionCard from './TransactionCard';
 
 class Bought extends React.Component {
   constructor(props) {
@@ -22,14 +25,13 @@ class Bought extends React.Component {
   render() {
     const { user_id } = this.props;
     const { items } = this.state;
-    const boughtItems = items.map((item, index) => (<div>item.title</div>));
+    const boughtItems = items.map((item, index) => (<TransactionCard item={item} />));
     
     console.log('items', items);
     console.log('boughtItems', boughtItems);
 
     return (
-      <div className="bought-container">
-        Bought list
+      <div className="list-container">
         {boughtItems}
       </div>
     );

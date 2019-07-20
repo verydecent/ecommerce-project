@@ -24,7 +24,7 @@ function Transactions(props) {
           </Link>
         </div>
 
-        <div className="transactions">
+        <div className="transactions-list">
 
           <Route
             path="/account/transactions/bought"
