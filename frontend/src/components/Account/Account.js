@@ -72,7 +72,7 @@ class Account extends  React.Component {
           <div className="account-header-spacer"></div>
   
           <div className="account-main">
-            <SubNav user_id={authUser.id}/>
+            <SubNav />
   
             <div className="account-main-content">
 
