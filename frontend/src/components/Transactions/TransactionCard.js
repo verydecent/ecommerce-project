@@ -15,7 +15,7 @@ function TransactionCard(props) {
 
         <div className="transaction-card-details-left">
           <h1>{title}</h1> 
-          <h1>{price}</h1>
+          <h1>Price {price}</h1>
           <h1>{formatDate(updated_at)}</h1>
           
         </div>
