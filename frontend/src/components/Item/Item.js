@@ -55,28 +55,6 @@ class Item extends React.Component {
       // Modal pops up for further instruction or confirmational information
 
     }
-    // if (!user_id) {
-    //   alert("You must log in to purchase or message")
-    // }
-    // console.log('handlePurchase()');
-
-    // const token = localStorage.getItem('jwt');
-
-    // if (!token) {
-    //   // Open Login Modal
-    // }
-    // else {
-    //   // Axios request to purchase this Item
-    //   // Update is_available to f, and then purchased_by_user_id to this user's id
-    //   // this.props.user_info.user_id 
-    //   // then when rendering in a feed, if is_available === f then make the appearance of the item faded out? Or just not even there
-    //   // Users favorites and users store == fade out
-    //   // in the main item feed == not rendered 
-
-    //   // OR
-    //   // Also insert into transactions table *There is no transactions table
-    //   // 
-    // }
   }
 
   handleMessage = (event) => {
@@ -98,7 +76,7 @@ class Item extends React.Component {
 
   render() {
     const { user_id, liked, handleLike } = this.props;
-    const { category, created_at, color, description, id, price, posted_by_user_id, shipping_price, size, title  } = this.state.item;
+    const { is_available, category, created_at, color, description, id, price, posted_by_user_id, shipping_price, size, title  } = this.state.item;
 
    return (
       <div className="item-container">
@@ -150,31 +128,34 @@ class Item extends React.Component {
                 <span>Location : {}</span>
               </div>
             </div>
-
             {
-              user_id === posted_by_user_id
+              is_available
                 ? (
-                  <div className="item-buttons">
-                    <div className="purchase">
-                      <button onClick={this.handleEdit}>Edit</button>
-                    </div>
-                    <div className="message">
-                      <button onClick={this.handleDelete}>Delete</button>
-                    </div>
-                  </div>
-                )
-                : (  
-                  <div className="item-buttons">
-                    <div className="purchase">
-                      <button onClick={this.handlePurchase}>Purchase</button>
-                    </div>
-                    <div className="message">
-                      <button onClick={this.handleMessage}>Message</button>
-                    </div>
-                  </div>
-                )             
+                    user_id === posted_by_user_id
+                      ? (
+                        <div className="item-buttons">
+                          <div className="purchase">
+                            <button onClick={this.handleEdit}>Edit</button>
+                          </div>
+                          <div className="message">
+                            <button onClick={this.handleDelete}>Delete</button>
+                          </div>
+                        </div>
+                      )
+                      : (  
+                        <div className="item-buttons">
+                          <div className="purchase">
+                            <button onClick={this.handlePurchase}>Purchase</button>
+                          </div>
+                          <div className="message">
+                            <button onClick={this.handleMessage}>Message</button>
+                          </div>
+                        </div>
+                      )             
+                  )
+                
+                : (<div className="sold">SOLD</div>)
             }
-
             <div className="user-card">
               <div className="card-image">
                 <img
