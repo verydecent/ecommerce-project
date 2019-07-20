@@ -19,7 +19,7 @@ function SubNavigation(props) {
         <NavLink className="nav-link" to="/account/store">My Store</NavLink>
         <NavLink className="nav-link" to="/account/favorites">Favorites</NavLink>
         <NavLink className="nav-link" to="/account/feedback">Feedback</NavLink>
-        <NavLink className="nav-link" to="/account/transactions">Transactions</NavLink>
+        <NavLink className="nav-link" to="/account/transactions/bought">Transactions</NavLink>
       </div>
     </div>
   );
