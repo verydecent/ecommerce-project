@@ -14,7 +14,7 @@ class Sold extends React.Component {
     const { user_id } = this.props;
     axios.get(getSoldItems(user_id))
     .then(response => {
-        console.log('response items', response.data.items);
+      console.log('SOLD RESPONSE DATA', response.data)
         this.setState({ items: response.data });
       })
       .catch(error => console.error(error));
@@ -23,7 +23,7 @@ class Sold extends React.Component {
   render() {
     const { user_id } = this.props;
     const { items } = this.state;
-    const soldItems = items.map((item, index) => item.title);
+    const soldItems = items.map((item, index) => (<div>item.title</div>));
 
     return (
       <div className="sold-container">

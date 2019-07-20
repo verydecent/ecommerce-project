@@ -5,14 +5,9 @@ import './Transactions.css';
 
 import Bought from './Bought';
 import Sold from './Sold';
-import axios from 'axios';
-
-componentDidMount() {
-  Axios.
-}
 
 function Transactions(props) {
-  const { user_id } = this.props;
+  const { user_id } = props;
 
   return (
     <div className="transactions-container">
@@ -38,13 +33,13 @@ function Transactions(props) {
               />
             }
           />
-
-          <Route
-            path="/account/transactions/sold"
-            render={(props) =>
-              <Sold {...props} user_id={user_id}
-              />
-            }
+ 
+           <Route
+             path="/account/transactions/sold"
+             render={(props) =>
+               <Sold {...props} user_id={user_id}
+               />
+             }
           />
 
         </div>
