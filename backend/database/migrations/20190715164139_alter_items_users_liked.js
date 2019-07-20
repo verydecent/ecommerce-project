@@ -9,6 +9,6 @@ exports.up = function(knex) {
 exports.down = function(knex) {
   return knex.schema.alterTable('items_users_liked', (table) => {
     table
-      .dropColumn('id')
+      .dropColumn(['user_id', 'item_id'], 'id')
   });
 };
