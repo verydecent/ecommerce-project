@@ -1,6 +1,6 @@
 
 exports.up = function(knex) {
-  return knex.schema.createTable('feedback', (table => {
+  return knex.schema.createTable('users_feedback', (table => {
     table
       .increments();
     table
@@ -25,5 +25,5 @@ exports.up = function(knex) {
 };
 
 exports.down = function(knex) {
-  return knex.schema.dropTableIfExists('feedback'); 
+  return knex.schema.dropTableIfExists('users_feedback'); 
 };
