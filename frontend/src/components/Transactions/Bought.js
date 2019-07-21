@@ -24,9 +24,16 @@ class Bought extends React.Component {
   }
 
   render() {
-    const { user_id } = this.props;
-    const { items } = this.state;
-    const boughtItems = items.map((item, index) => ( <TransactionCard item={item} /> ));
+    const { id, title, price, updated_at, posted_by_user_id, purchased_by_user_id } = this.state.items;
+    const boughtItem = {
+      id,
+      title,
+      price,
+      updated_at,
+      posted_by_user_id,
+      purchased_by_user_id,
+    };
+    const boughtItems = items.map((item, index) => ( <TransactionCard item={boughtItem} /> ));
 
     return (
       <div className="list-container">

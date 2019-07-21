@@ -17,17 +17,23 @@ class Sold extends React.Component {
   componentDidMount() {
     const { user_id } = this.props;
     axios.get(getSoldItems(user_id))
-    .then(response => {
-      console.log('SOLD RESPONSE DATA', response.data)
+      .then(response => {
         this.setState({ items: response.data });
       })
       .catch(error => console.error(error));
   }
 
   render() {
-    const { user_id } = this.props;
-    const { items } = this.state;
-    const soldItems = items.map((item, index) => ( <TransactionCard item={item} /> ));
+    const { id, title, price, updated_at, posted_by_user_id, purchased_by_user_id } = this.state.items;
+    const soldItem = {
+      id,
+      title,
+      price,
+      updated_at,
+      posted_by_user_id,
+      purchased_by_user_id,
+    };
+    const soldItems = items.map((item, index) => ( <TransactionCard item={soldItem} /> ));
 
     return (
       <div className="list-container">

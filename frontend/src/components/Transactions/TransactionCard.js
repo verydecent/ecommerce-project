@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { formatTransactionDate } from '../../Helpers/transactionDate';
+import Modal from './Modal';
 
 const testIMG ="https://www.sunspel.com/media/catalog/product/cache/3/image/9df78eab33525d08d6e5fb8d27136e95/m/t/mtsh0001-whaa-1new.jpg";
 
@@ -12,8 +13,18 @@ class TransactionCard extends React.Component {
     };
   }
 
+  showModal = () => {
+    this.setState({ show: true });
+  }
+
+  closeModal = () => {
+    this.setState({ show: false });
+  }
+
   render() {
-    const { id, title, price, updated_at } = this.props.item;
+    const { show } = this.state;
+    const { id, title, price, updated_at, user_id } = this.props.item;
+
     return (
       <div className="transaction-card-container">
         <Link to={`/item/${id}`}>
@@ -38,7 +49,7 @@ class TransactionCard extends React.Component {
               Leave Feedback
             </button>
             {/* Open Modal */}
-  
+            <Modal item={item} user_id={user_id} show={show} closeModal={this.closeModal} />
             {/* Inside modal will have the post request passing it the item details*/}
           </div>
         </div>
