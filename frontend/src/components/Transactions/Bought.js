@@ -28,11 +28,11 @@ class Bought extends React.Component {
     const { items } = this.state;
     // Leave feedback as purchaser and seller receives feedback
     items.forEach(item => {
-      item.feedback_recipient_id = item.posted_by_user_id
       item.feedback_author_id = item.purchased_by_user_id
+      item.feedback_recipient_id = item.posted_by_user_id
       delete item.posted_by_user_id
       delete ItemFeed.purchased_by_user_id
-    })
+    });
 
     const boughtItems = items.map((item, index) => ( <TransactionCard key={index} item={item} /> ));
 

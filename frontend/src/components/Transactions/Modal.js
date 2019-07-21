@@ -13,8 +13,6 @@ class Modal extends React.Component {
 
   handleFeedbeck = (event) => {
     const { id, feedback_author_id, feedback_recipient_id } = this.props.item;
-    console.log('feedback_author_id', feedback_author_id);
-    console.log('feedback_recipient_id', feedback_recipient_id);
 
     const body = {
       item_id: id,
@@ -23,9 +21,9 @@ class Modal extends React.Component {
       description: this.state.feedback_description,
     };
 
-    axios.post()
-    .then()
-    .catch();
+    // axios.post()
+    // .then()
+    // .catch();
 
     event.preventDefault();
   }
