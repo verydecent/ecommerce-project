@@ -1,4 +1,3 @@
-
 exports.up = function(knex) {
   return knex.schema.createTable('users_feedback', (table => {
     table
