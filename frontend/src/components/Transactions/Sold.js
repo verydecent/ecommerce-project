@@ -30,8 +30,8 @@ class Sold extends React.Component {
       title,
       price,
       updated_at,
-      posted_by_user_id,
-      purchased_by_user_id,
+      author_id: posted_by_user_id,
+      recipient_id: purchased_by_user_id,
     };
     const soldItems = items.map((item, index) => ( <TransactionCard item={soldItem} /> ));
 
