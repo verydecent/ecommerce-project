@@ -1,5 +1,7 @@
 import React from 'react';
 import './Modal.css';
+import axios from 'axios';
+import { postFeedback } from '../../Helpers/devEndpoints';
 
 class Modal extends React.Component {
   constructor() {
@@ -10,8 +12,22 @@ class Modal extends React.Component {
   }
 
   handleFeedbeck = (event) => {
+    const { id, feedback_author_id, feedback_recipient_id } = this.props.item;
+    console.log('feedback_author_id', feedback_author_id);
+    console.log('feedback_recipient_id', feedback_recipient_id);
 
-  event.preventDefault();
+    const body = {
+      item_id: id,
+      feedback_author_id,
+      feedback_recipient_id,
+      description: this.state.feedback_description,
+    };
+
+    axios.post()
+    .then()
+    .catch();
+
+    event.preventDefault();
   }
 
   handleChange = (event) => {
@@ -20,7 +36,9 @@ class Modal extends React.Component {
   }
 
   render() {
-    const { show, title, closeModal } = this.props;
+    const { show, closeModal } = this.props;
+    const { title } = this.props.item;
+
     if (!show) {
       return null;
     }

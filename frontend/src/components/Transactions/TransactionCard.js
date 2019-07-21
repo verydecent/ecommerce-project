@@ -23,7 +23,8 @@ class TransactionCard extends React.Component {
 
   render() {
     const { show } = this.state;
-    const { id, title, price, updated_at, user_id } = this.props.item;
+    const { item } = this.props;
+    const { id, title, price, updated_at } = item;
 
     return (
       <div className="transaction-card-container">
@@ -41,7 +42,6 @@ class TransactionCard extends React.Component {
             </Link>
             <h1>Price ${price}</h1>
             <h1>{formatTransactionDate(updated_at)}</h1>
-            
           </div>
   
           <div className="transaction-card-details-right">
@@ -49,7 +49,7 @@ class TransactionCard extends React.Component {
               Leave Feedback
             </button>
             {/* Open Modal */}
-            <Modal item={item} user_id={user_id} show={show} closeModal={this.closeModal} />
+            <Modal item={item} show={show} closeModal={this.closeModal} />
             {/* Inside modal will have the post request passing it the item details*/}
           </div>
         </div>

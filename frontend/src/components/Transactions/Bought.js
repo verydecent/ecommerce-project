@@ -5,6 +5,7 @@ import { getBoughtItems } from '../../Helpers/devEndpoints';
 import './Transactions.css';
 
 import TransactionCard from './TransactionCard';
+import ItemFeed from '../ItemFeed/ItemFeed';
 
 class Bought extends React.Component {
   constructor(props) {
@@ -24,16 +25,16 @@ class Bought extends React.Component {
   }
 
   render() {
-    const { id, title, price, updated_at, posted_by_user_id, purchased_by_user_id } = this.state.items;
-    const boughtItem = {
-      id,
-      title,
-      price,
-      updated_at,
-      recipient_id: posted_by_user_id,
-      author_id: purchased_by_user_id,
-    };
-    const boughtItems = items.map((item, index) => ( <TransactionCard item={boughtItem} /> ));
+    const { items } = this.state;
+    // Leave feedback as purchaser and seller receives feedback
+    items.forEach(item => {
+      item.feedback_recipient_id = item.posted_by_user_id
+      item.feedback_author_id = item.purchased_by_user_id
+      delete item.posted_by_user_id
+      delete ItemFeed.purchased_by_user_id
+    })
+
+    const boughtItems = items.map((item, index) => ( <TransactionCard key={index} item={item} /> ));
 
     return (
       <div className="list-container">

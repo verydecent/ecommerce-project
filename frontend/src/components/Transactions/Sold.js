@@ -24,16 +24,17 @@ class Sold extends React.Component {
   }
 
   render() {
-    const { id, title, price, updated_at, posted_by_user_id, purchased_by_user_id } = this.state.items;
-    const soldItem = {
-      id,
-      title,
-      price,
-      updated_at,
-      author_id: posted_by_user_id,
-      recipient_id: purchased_by_user_id,
-    };
-    const soldItems = items.map((item, index) => ( <TransactionCard item={soldItem} /> ));
+    const { items } = this.state;
+    //   // Leave feedback as seller and purchasing user receives feedback
+
+    items.forEach(item => {
+      item.feedback_author_id = item.posted_by_user_id
+      item.feedback_recipient_id = item.purchased_by_user_id
+      delete item.posted_by_user_id
+      delete item.purchased_by_user_id
+    });
+
+    const soldItems = items.map((item, index) => ( <TransactionCard key={index} item={item} /> ));
 
     return (
       <div className="list-container">
