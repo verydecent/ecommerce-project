@@ -94,10 +94,7 @@ class Account extends  React.Component {
                 path="/account/store"
                 exact
                 render={(props) =>
-                  <Store {...props} 
-                  user_id={authUser.id}
-                  liked={liked}
-                  handleLike={handleLike} />
+                  <Store {...props} user_id={authUser.id} liked={liked} handleLike={handleLike} />
                 }
               />
   
@@ -110,11 +107,17 @@ class Account extends  React.Component {
                 }
               />
   
-              <Route path="/account/feedback" component={Feedback} />
+              <Route
+                path="/account/feedback"
+                render={(props) =>
+                  <Feedback user_id={authUser.id} />
+                } 
+              />
   
               <Route
                 path="/account/transactions"
-                render={(props) => <Transactions {...props} user_id={authUser.id} />
+                render={(props) =>
+                  <Transactions {...props} user_id={authUser.id} />
                 }
               />
               
@@ -122,10 +125,6 @@ class Account extends  React.Component {
           </div>
         </div>
       );
-    // }
-    // return (
-      // <div> ... IS LOADING ...</div>
-    // );
   }
 }
 

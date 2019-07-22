@@ -8,6 +8,7 @@ module.exports = {
   getSoldItems,
   postFeedback,
   checkFeedback,
+  getFeedback,
 }
 
 function authorizeUser() {
@@ -52,4 +53,8 @@ function postFeedback() {
 
 function checkFeedback() {
   return `http://localhost:5000/api/account/check-feedback/`
+}
+
+function getFeedback(id) {
+  return `http://localhost:5000/api/account/get-feedback/${id}`
 }

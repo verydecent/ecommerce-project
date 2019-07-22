@@ -21,7 +21,7 @@ class Bought extends React.Component {
       .then(response => {
         this.setState({ items: response.data });
       })
-      .catch(error => console.error(error));    
+      .catch(error => console.error(error));
   }
 
   render() {
