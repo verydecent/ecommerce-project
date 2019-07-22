@@ -3,6 +3,12 @@ exports.up = function(knex) {
     table
       .increments();
     table
+      .integer('item_id')
+      .unsigned()
+      .notNullable()
+      .references('items.id')
+      .onDelete('CASCADE');
+    table
       .integer('author_user_id')
       .unsigned()
       .notNullable()

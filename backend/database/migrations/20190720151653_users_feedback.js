@@ -9,12 +9,6 @@ exports.up = function(knex) {
       .references('feedback.id')
       .onDelete('CASCADE');
     table
-      .integer('item_id')
-      .unsigned()
-      .notNullable()
-      .references('items.id')
-      .onDelete('CASCADE');
-    table
       .integer('recipient_user_id')
       .unsigned()
       .notNullable()

@@ -264,13 +264,11 @@ router.post('/account/post-feedback', (req, res) => {
 
   const { item_id, feedback_author_id, feedback_recipient_id, description } = req.body;
 
-  Data('feedback').insert({ author_user_id: feedback_author_id, description}, 'id')
+  Data('feedback').insert({ item_id, author_user_id: feedback_author_id, description}, 'id')
     .then(idArr => {
       const id = idArr[0];
-      Data('users_feedback').insert({ feedback_id: id, item_id, recipient_user_id: feedback_recipient_id }, 'item_id')
-        .then(itemId_Arr => {
-          res.status(200).json({message: `Feedback posted for Item ${itemId_Arr[0]}` });
-        })
+      Data('users_feedback').insert({ feedback_id: id, recipient_user_id: feedback_recipient_id })
+        .then(res.status(200).json({ message: `Feedback posted for Item ${item_id}` }))
         .catch(error => res.status(500).json({ error: "Internal server error" }));
     })
     .catch(error => res.status(500).json({ error: "Internal server error" }));
