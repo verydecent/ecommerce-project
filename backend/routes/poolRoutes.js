@@ -274,6 +274,17 @@ router.post('/account/post-feedback', (req, res) => {
     .catch(error => res.status(500).json({ error: "Internal server error" }));
 });
 
+router.post('/account/check-feedback', (req, res) => {
+  const { id, feedback_author_id } = req.body;
+  Data('feedback').where({ item_id: id, author_user_id: feedback_author_id }).first()
+    .then(record => {
+      console.log('record from checking', record);
+      res.status(200).json(record)
+
+    })
+    .catch(error => res.status(500).json({ error: "Internal server error" }));
+})
+
 
 // put request to update users item
 // Authentication: User needs to be verified as the owner of the item
