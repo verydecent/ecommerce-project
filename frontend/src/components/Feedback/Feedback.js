@@ -25,13 +25,15 @@ class Feedback extends React.Component {
  }
 
  render() {
+   const { user_feedback } = this.state;
+   const feedbackList = user_feedback.map((feedback, index) => <FeedbackCard key={index} feedback={feedback} />);
+
    return (
      <div className="feedback-container">
        <h1>Feedback Page</h1>
 
        <div className="feedback-panel">
-        <FeedbackCard />
-
+        {feedbackList}
        </div>
      </div>
    );
