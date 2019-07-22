@@ -15,12 +15,8 @@ class Feedback extends React.Component {
 
  componentDidMount() {
    const { user_id } = this.props;
-    console.log(user_id);
    axios.get(getFeedback(user_id))
-    .then(response => {
-      console.log(response);
-      this.setState({ user_feedback: response.data });
-    })
+    .then(response => this.setState({ user_feedback: response.data }))
     .catch(error => console.error(error));
  }
 

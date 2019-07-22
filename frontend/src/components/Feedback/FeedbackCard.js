@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import './FeedbackCard.css';
 import { formatTransactionDate } from '../../Helpers/transactionDate';
 import { getItems } from '../../Helpers/devEndpoints';
@@ -16,16 +17,12 @@ class FeedbackCard extends React.Component {
 
   componentDidMount() {
     const { item_id } = this.props.feedback;
-    console.log(getItems(item_id));
     axios.get(getItems(item_id))
-      .then(response => {
-        console.log(response.data);
-        this.setState({ item: response.data })
-      })
+      .then(response => this.setState({ item: response.data }))
       .catch(error => console.error(error));
   }
   render() {
-    const { description } = this.props.feedback;
+    const { description, item_id } = this.props.feedback;
     // Eventually will also be calling item image
     const { title, updated_at } = this.state.item;
     return (
@@ -39,18 +36,19 @@ class FeedbackCard extends React.Component {
             }
           </div>
           <div className="feedback-item-info">
-            {/* <Link></Link> */}
-            <div className="feedback-item-title">{title}</div>
-            <div className="feedback-item-description">{description}</div>
+            <Link to={`/item/${item_id}`}>
+              <div className="feedback-item-title">{title}</div>
+              <div className="feedback-item-description">{description}</div>
+            </Link>
             {/* Maybe add Author Name */}
           </div>
         </div>
   
         <div className="feedback-panel-right">
-          {/* <Link></Link> */}
-          <img src={testIMG} alt="9999" />
+          <Link to={`/item/${item_id}`}>
+            <img src={testIMG} alt="9999" />
+          </Link>
         </div>
-  
       </div>
     );
   }
