@@ -274,6 +274,7 @@ router.post('/account/post-feedback', (req, res) => {
     .catch(error => res.status(500).json({ error: "Internal server error" }));
 });
 
+// Checks to see if feedback has already been left
 router.post('/account/check-feedback', (req, res) => {
   const { id, feedback_author_id } = req.body;
   Data('feedback').where({ item_id: id, author_user_id: feedback_author_id }).first()
@@ -283,7 +284,19 @@ router.post('/account/check-feedback', (req, res) => {
 
     })
     .catch(error => res.status(500).json({ error: "Internal server error" }));
-})
+});
+
+router.get('/account/get-feedback/:id', (req, res) => {
+  const { id } = req.params;
+  console.log(id);
+
+
+  Data('users_feedback').join('feedback', 'users_feedback.feedback_id', 'feedback.id').where('users_feedback.recipient_user_id', id)
+    .then(usersFeedback => {
+      res.status(200).json(usersFeedback);
+    })
+    .catch(error => res.status(500).json({ error: "Internal server error" }))
+});
 
 
 // put request to update users item
