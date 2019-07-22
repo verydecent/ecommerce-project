@@ -6,6 +6,8 @@ module.exports = {
   purchaseItem,
   getBoughtItems,
   getSoldItems,
+  postFeedback,
+  checkFeedback,
 }
 
 function authorizeUser() {
@@ -42,4 +44,12 @@ function getBoughtItems(id) {
 
 function getSoldItems(id) {
   return `http://localhost:5000/api/user/${id}/sold-items`;
+}
+
+function postFeedback() {
+  return `http://localhost:5000/api/account/post-feedback`;
+}
+
+function checkFeedback() {
+  return `http://localhost:5000/api/account/check-feedback/`
 }
