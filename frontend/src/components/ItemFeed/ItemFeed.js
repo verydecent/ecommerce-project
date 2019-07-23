@@ -29,7 +29,7 @@ class ItemFeed extends React.Component {
   render() {
     const { items } = this.state;
     const { liked, handleLike } = this.props;
-    const filtered = items.filter((item, index) => (item.is_available === 1));
+    const filtered = items.filter((item, index) => (item.is_available == 0));
     const available = filtered.map((item, index) => (
       <ItemDisplay key={index} item={item} liked={liked} handleLike={handleLike} />
     ));

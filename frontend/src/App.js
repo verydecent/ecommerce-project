@@ -175,9 +175,51 @@ class App extends React.Component {
             }
           />
         </main>
+        <footer>
+          <div className="app-footer">
+            <div className="footer-column">
+              <ul>
+                <li>Call Us</li>
+                <li>US: +1 877 535 3677 </li>
+                <li>Give Feedback</li>
+              </ul>
+            </div>
+            <div className="footer-column">
+              <ul>
+                <li>Contact Us</li>
+                <li>Style & Fit Advice</li>
+                <li>FAQs</li>
+                <li>Delivery</li>
+                <li>Exchanges & Returns</li>
+                <li>Terms & Conditions</li>
+                <li>Privacy & Cookies</li>
+              </ul>
+            </div>
+            <div className="footer-column">
+              <ul>
+                <li>About Us</li>
+                <li>Careers</li>
+                <li>Affiliates</li>
+                <li>Advertising</li>
+                <li>Size Help</li>
+                <li>Apps</li>
+              </ul>
+            </div>
+            <div className="footer-column">
+              input
+            </div>
+          </div>
+        </footer>
       </div>
     );
   }
 }
 
 export default withRouter(App);
+
+
+
+
+
+
+
