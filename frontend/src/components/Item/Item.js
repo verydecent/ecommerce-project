@@ -85,7 +85,7 @@ class Item extends React.Component {
         <div className="item-panel">
           <div className="item-panel-left">
             <div className="item-image">
-              <img src={testIMG} alt="" />
+              <img src={testIMG} alt="test" />
             </div>
 
             <div className="picture-options">
@@ -115,8 +115,8 @@ class Item extends React.Component {
               <div className="item-heart" onClick={() => handleLike(id)}>
               {
                 liked.includes(id)
-                  ? <img src="https://img.icons8.com/material-rounded/18/000000/like.png"/>
-                  : <img src="https://img.icons8.com/material-outlined/18/000000/like.png"/>
+                  ? <img src="https://img.icons8.com/material-rounded/18/000000/like.png" alt="" />
+                  : <img src="https://img.icons8.com/material-outlined/18/000000/like.png" alt="" />
               }
               </div>
             </div>

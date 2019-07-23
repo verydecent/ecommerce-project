@@ -36,8 +36,8 @@ function ItemDisplay(props) {
             <div className="item-heart" onClick={() => handleLike(id)}>
               {
                 liked.includes(id)
-                  ? <img src="https://img.icons8.com/material-rounded/18/000000/like.png"/>
-                  : <img src="https://img.icons8.com/material-outlined/18/000000/like.png"/>
+                  ? <img src="https://img.icons8.com/material-rounded/18/000000/like.png" alt="" />
+                  : <img src="https://img.icons8.com/material-outlined/18/000000/like.png" alt="" />
               }
             </div>
         </div>
