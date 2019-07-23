@@ -288,10 +288,12 @@ router.post('/account/check-feedback', (req, res) => {
 
 router.get('/account/get-feedback/:id', (req, res) => {
   const { id } = req.params;
-  console.log(id);
+  // Info we neede returned....
+  // Item Title, Item Image, Item Updated date aka date transacted, Feedback description, 
 
-
-  Data('users_feedback').join('feedback', 'users_feedback.feedback_id', 'feedback.id').where('users_feedback.recipient_user_id', id)
+  Data('users_feedback')
+    .join('feedback', 'users_feedback.feedback_id', 'feedback.id')
+    .where('users_feedback.recipient_user_id', id)
     .then(usersFeedback => {
       res.status(200).json(usersFeedback);
     })
