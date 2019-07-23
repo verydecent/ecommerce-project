@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-
+import { postItem } from '../../Helpers/devEndpoints';
 import './PostItem.css';
 
 const tempIMG ="https://www.sunspel.com/media/catalog/product/cache/3/image/9df78eab33525d08d6e5fb8d27136e95/m/t/mtsh0001-whaa-1new.jpg";
@@ -12,6 +12,7 @@ class PostItem extends React.Component {
       posted_by_user_id: '',
       price: '',
       shipping_price: '',
+      brand: '',
       title: '',
       description: '',
       category: '',
@@ -25,27 +26,28 @@ class PostItem extends React.Component {
   }
 
   handleSubmit = (event) => {
-    const { price, shipping_price, title, description, category, size, color } = this.state;
-    const endpoint ='http://localhost:5000/api/account/post-item/';
+    const { price, shipping_price, brand, title, description, category, size, color } = this.state;
     const body = {
       posted_by_user_id: this.props.user_id,
       price,
       shipping_price,
+      brand,
       title,
       description,
       category,
       size,
       color
     };
-    
-    axios.post(endpoint, body)
-      .then(res => {
-        console.log('endpoint response', res.data.message);
 
+    console.log('body', body);
+    
+    axios.post(postItem(), body)
+      .then(res => {
         this.setState({
           posted_by_user_id: '',
           price: '',
           shipping_price: '',
+          brand: '',
           title: '',
           description: '',
           category: '',
@@ -69,12 +71,13 @@ class PostItem extends React.Component {
   }
 
   render() {
-    const { price, shipping_price, title, description, category, size, color, error, successResponse } = this.state;
+    const { price, shipping_price, brand, title, description, category, size, color, error, successResponse } = this.state;
 
     console.log("The state", this.state);
     const isInvalid =
       price === '' ||
       shipping_price === '' ||
+      brand ==='' ||
       title === '' ||
       description === '' ||
       category === '' ||
@@ -90,6 +93,15 @@ class PostItem extends React.Component {
               <h3>Details</h3>
               <div className="post-item-details">
                 <div className="left-column">
+                  <div className="">
+                    <input 
+                      id="brand"
+                      value={brand}
+                      onChange={this.handleChange}
+                      type="text"
+                      placeholder="Brand"
+                    />
+                  </div>
                   <div className="">
                     <input 
                       id="title"
@@ -232,6 +244,11 @@ class PostItem extends React.Component {
               {
                 (shipping_price) === ''
                   ? <div className="post-signal"><span>!</span> Missing Shipping Price Field</div>
+                  : null
+              }
+              {
+                (brand) === ''
+                  ? <div className="post-signal"><span>!</span> Missing Shipping Brand Field</div>
                   : null
               }
               {

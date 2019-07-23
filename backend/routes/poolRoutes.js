@@ -135,7 +135,7 @@ router.get('/account/store/:id', (req, res) => {
 
 // Post item by user
 router.post('/account/post-item', (req, res) => {
-  let { posted_by_user_id, price, shipping_price, title, description, category, size, color } = req.body;
+  let { posted_by_user_id, price, shipping_price, brand, title, description, category, size, color } = req.body;
 
   // Request failing, maybe we need to change the string into integer
 
@@ -147,6 +147,7 @@ router.post('/account/post-item', (req, res) => {
     posted_by_user_id,
     price,
     shipping_price,
+    brand,
     title,
     description,
     category,
@@ -156,7 +157,6 @@ router.post('/account/post-item', (req, res) => {
 
   Data('items').returning('id').insert(item)
     .then(id => {
-      res
       res.status(200).json({ message: `Item ${id} successfully posted! `});
     })
     .catch(error => {
