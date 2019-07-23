@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import {  Link } from 'react-router-dom';
 import { formatTransactionDate } from '../../Helpers/transactionDate';
 import { checkFeedback } from '../../Helpers/devEndpoints';
 import Modal from './Modal';
@@ -12,7 +12,7 @@ class TransactionCard extends React.Component {
     super(props);
     this.state = {
       show: false,
-      feedbackExists: null,
+      feedbackExists: true,
     };
   }
 
@@ -44,34 +44,30 @@ class TransactionCard extends React.Component {
     const { item } = this.props;
     const { id, title, price, updated_at } = item;
 
-    console.log('Feedbackexists', this.state.feedbackExists);
     return (
       <div className="transaction-card-container">
-        <Link to={`/item/${id}`}>
-          <div className="transaction-card-img">
-            <img src={testIMG} alt=""/>
-          </div>
-        </Link>
-  
-        <div className="transaction-card-details">
-  
-          <div className="transaction-card-details-left">
-            <Link to={`/item/${id}`}>
-              <h1>{title}</h1>
+        <div className="transaction-card-left">
+          <Link to={`/item/${id}`}>
+            <div className="transaction-card-img">
+              <img src={testIMG} alt=""/>
+            </div>
+          </Link>
+        </div>
+        <div className="transaction-card-right">
+          <div className="transaction-item-info">
+            <Link to={`/item/${id}`} style={{ textDecoration: 'none' }}>
+              <div className="transaction-item-title">{title}</div>
+              <div className="transaction-item-price">Price ${price}</div>
+              <div className="transaction-item-date">{formatTransactionDate(updated_at)}</div>
             </Link>
-            <h1>Price ${price}</h1>
-            <h1>{formatTransactionDate(updated_at)}</h1>
-          </div>
-  
-          <div className="transaction-card-details-right">
-            {
-              feedbackExists
-                ? <div>Feedback: {feedbackExists.description}</div>
-                : <button onClick={this.showModal}>Leave Feedback</button>
-            }
-            <Modal item={item} show={show} closeModal={this.closeModal} />
           </div>
         </div>
+        {
+          feedbackExists
+            ? null
+            : <button onClick={this.showModal}>Leave Feedback</button>
+        }
+        <Modal item={item} show={show} closeModal={this.closeModal} />
       </div>
     );
   }

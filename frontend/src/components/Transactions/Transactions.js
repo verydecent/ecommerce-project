@@ -15,12 +15,16 @@ function Transactions(props) {
 
       <div className="transactions-panel">
 
-        <div className="buttons">
-          <Link to="/account/transactions/bought">
-            <button className="bought-button">Bought</button>
+        <div className="tabs">
+          <Link to="/account/transactions/bought" style={{ textDecoration: 'none' }}>
+            <div className="bought-div">
+              Bought
+            </div>
           </Link>
-          <Link to="/account/transactions/sold">
-            <button className="sold-button">Sold</button>
+          <Link to="/account/transactions/sold" style={{ textDecoration: 'none' }}>
+            <div className="sold-div">
+              Sold
+            </div>
           </Link>
         </div>
 

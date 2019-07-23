@@ -1,6 +1,6 @@
 .transactions-container {
   font-family: -apple-system, BlinkMacSystemFont, Helvetica, Arial, "Segoe UI", Roboto, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  background-color: #f0f0f0;
+  /* background-color: #f0f0f0; */
 
   width: 720px;
 }
@@ -22,16 +22,56 @@
   width: 100%;
 }
 
-.buttons {
+.tabs {
   display: flex;
   justify-content: center;
   /* width: 100%; */
+
+  text-decoration: none;
 }
 
-.buttons button {
+.bought-div {
+  border: 1px solid black;
+  font-size: 12px;
   padding: 12px;
   max-width: 360px;
   min-width: 360px;
+
+  text-align: center;
+  color: black;
+
+  font-family: -apple-system, BlinkMacSystemFont, Helvetica, Arial, "Segoe UI", Roboto, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.bought-div:hover {
+  background:darkcyan;   
+}
+
+.sold-div {
+  border: 1px solid black;
+  font-size: 12px;
+  padding: 12px;
+  max-width: 360px;
+  min-width: 360px;
+
+  text-align: center;
+  color: black;
+
+  font-family: -apple-system, BlinkMacSystemFont, Helvetica, Arial, "Segoe UI", Roboto, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 1px;
+
+  /* background: white; */
+}
+
+.sold-div:hover {
+  background:darkcyan;   
 }
 
 .transactions-list {
@@ -41,24 +81,24 @@
   /* min-width: 565px; */
 }
 
-.list-container {
-  display: flex;
-  flex-direction: column;
-  /* justify-content: space-around; */
-}
-
 .transaction-card-container {
-  border: 1px solid pink;
-  /* width: 100%; */
-  margin-top: 20px;
-
   display: flex;
 }
 
-.transaction-card-container img {
-  width: 200px;
+.transaction-card-left img {
+  width: 120px;
 }
 
-.transaction-card-details {
-  display: flex;
+.transaction-card-right {
+  font-family: -apple-system, BlinkMacSystemFont, Helvetica, Arial, "Segoe UI", Roboto, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 20px;
+  text-transform: uppercase;
+  text-decoration: underline;
+  letter-spacing: 0.1px;
+}
+
+.transaction-item-info {
+  text-decoration: none;
 }
