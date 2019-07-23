@@ -25,7 +25,7 @@ class App extends React.Component {
     console.log("CDM on App.js");
   }
 
-  authorizeUser = () => {
+  verifyUser = () => {
     const token = localStorage.getItem('jwt');
     const config = {
       headers: { authorization: 'Bearer ' + token }
@@ -158,13 +158,13 @@ class App extends React.Component {
           <Route
             path="/register"
             render={(props) =>
-              <Register {...props} authorizeUser={this.authorizeUser} />
+              <Register {...props} verifyUser={this.verifyUser} />
             }
           />
           <Route
             path="/login"
             render={(props) =>
-              <Login {...props} authorizeUser={this.authorizeUser} />
+              <Login {...props} verifyUser={this.verifyUser} />
             }
           />
           <Route

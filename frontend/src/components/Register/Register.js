@@ -29,7 +29,7 @@ class Register extends React.Component {
       .then(response => {
         console.log("response from register endpoint", response);
         localStorage.setItem('jwt', response.data.token);
-        this.props.authorizeUser();
+        this.props.verifyUser();
         this.props.history.push('/');
       })
       .catch(error => {

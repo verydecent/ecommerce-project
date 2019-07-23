@@ -23,7 +23,7 @@ class Login extends React.Component {
       .post(endpoint, body)
       .then(response => {
         localStorage.setItem('jwt', response.data['token']);
-        this.props.authorizeUser();
+        this.props.verifyUser();
         this.props.history.push('/');
       })
       .catch(error => {
