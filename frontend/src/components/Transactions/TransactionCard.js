@@ -17,7 +17,7 @@ class TransactionCard extends React.Component {
   }
 
   componentDidMount() {
-    // If this user_id + item_id inside of data inside of feedback table, then that means this item already received feedback from this user, so do not render the Leave feedback button
+    // If this user_id + item_id inside of data inside of feedback table, then that means this item already received feedback from this user, so do not render the Leave feedback span
     const { id, feedback_author_id } = this.props.item;
 
     axios.post(checkFeedback(), {
@@ -47,26 +47,32 @@ class TransactionCard extends React.Component {
     return (
       <div className="transaction-card-container">
         <div className="transaction-card-left">
+          <div className="transaction-item-info">
+            <Link to={`/item/${id}`} style={{ textDecoration: 'none' }}>
+              <div className="transaction-item-title">{title}</div>
+              <div className="transaction-item-price">${price}</div>
+              <div className="transaction-item-date">{formatTransactionDate(updated_at)}</div>
+            </Link>
+            {
+              feedbackExists
+              ? <div className="transaction-feedback-empty"><span></span></div>
+              : (
+                <div className="transaction-feedback-button" onClick={this.showModal}>
+                  <span>Leave Feedback</span>
+                </div>
+                )
+            }
+          </div>
+        </div>
+
+        <div className="transaction-card-right">
           <Link to={`/item/${id}`}>
             <div className="transaction-card-img">
               <img src={testIMG} alt=""/>
             </div>
           </Link>
         </div>
-        <div className="transaction-card-right">
-          <div className="transaction-item-info">
-            <Link to={`/item/${id}`} style={{ textDecoration: 'none' }}>
-              <div className="transaction-item-title">{title}</div>
-              <div className="transaction-item-price">Price ${price}</div>
-              <div className="transaction-item-date">{formatTransactionDate(updated_at)}</div>
-            </Link>
-          </div>
-        </div>
-        {
-          feedbackExists
-            ? null
-            : <button onClick={this.showModal}>Leave Feedback</button>
-        }
+
         <Modal item={item} show={show} closeModal={this.closeModal} />
       </div>
     );

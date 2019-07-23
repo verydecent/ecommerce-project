@@ -36,7 +36,7 @@ class FeedbackCard extends React.Component {
             }
           </div>
           <div className="feedback-item-info">
-            <Link to={`/item/${item_id}`}>
+            <Link to={`/item/${item_id}`} style={{ textDecoration: 'none' }}>
               <div className="feedback-item-title">{title}</div>
               <div className="feedback-item-description">{description}</div>
             </Link>

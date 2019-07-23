@@ -39,15 +39,17 @@
   text-transform: uppercase;
   text-decoration: underline;
   letter-spacing: 0.1px;
+
+  color: #000;
 }
 
 .feedback-item-description {
 
   font-family: -apple-system, BlinkMacSystemFont, Helvetica, Arial, "Segoe UI", Roboto, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 10px;
+  color: #757575;
 
   line-height: 20px;
-
   margin-top: 3px;
 }
 
