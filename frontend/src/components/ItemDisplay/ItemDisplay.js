@@ -21,8 +21,8 @@ function ItemDisplay(props) {
           {formatDate(created_at)}
         </h3>
         <h3 className="item-title">
-            {title}
-          </h3>
+          {title}
+        </h3>
         <div className="item-metadata">
           <div className="item-brand-and-size">
             <h3 className="item-brand">Raf Simons</h3>

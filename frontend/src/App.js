@@ -118,6 +118,7 @@ class App extends React.Component {
             </nav>
             <button className="cta">Contact</button>
           </div>
+          <div className="spacer"></div>
         </header>
   
         <main>
@@ -171,14 +172,14 @@ class App extends React.Component {
         </main>
         <footer>
           <div className="app-footer">
-            <div className="footer-column">
+            <div id="footer-column">
               <ul>
                 <li>Call Us</li>
                 <li>US: +1 877 535 3677 </li>
                 <li>Give Feedback</li>
               </ul>
             </div>
-            <div className="footer-column">
+            <div id="footer-column">
               <ul>
                 <li>Contact Us</li>
                 <li>Style & Fit Advice</li>
@@ -189,7 +190,7 @@ class App extends React.Component {
                 <li>Privacy & Cookies</li>
               </ul>
             </div>
-            <div className="footer-column">
+            <div id="footer-column">
               <ul>
                 <li>About Us</li>
                 <li>Careers</li>
@@ -198,9 +199,6 @@ class App extends React.Component {
                 <li>Size Help</li>
                 <li>Apps</li>
               </ul>
-            </div>
-            <div className="footer-column">
-              input
             </div>
           </div>
         </footer>
