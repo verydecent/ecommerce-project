@@ -16,7 +16,6 @@ class ItemFeed extends React.Component {
   
 
   componentDidMount() {
-    console.log("CDM on ItemFeed or where path is '/'");
     axios.get(getItems())
       .then(({ data }) => {
         this.setState({ items: data });
@@ -29,7 +28,7 @@ class ItemFeed extends React.Component {
   render() {
     const { items } = this.state;
     const { liked, handleLike } = this.props;
-    const filtered = items.filter((item, index) => (item.is_available == 0));
+    const filtered = items.filter((item, index) => (item.is_available == 1));
     const available = filtered.map((item, index) => (
       <ItemDisplay key={index} item={item} liked={liked} handleLike={handleLike} />
     ));
