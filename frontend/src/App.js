@@ -2,12 +2,15 @@ import React from 'react';
 import { NavLink, Route, withRouter } from 'react-router-dom';
 import axios from 'axios';
 
+import logo from './Images/logo.png';
 import './App.css';
 import Login from './components/Login/Login';
 import Register from './components/Register/Register';
 import Account from './components/Account/Account';
 import ItemFeed from './components/ItemFeed/ItemFeed';
 import Item from './components/Item/Item';
+
+import SubNav from './components/SubNavigation/SubNavigation';
 
 import { authorizeUser, likedItems } from './Helpers/devEndpoints';
 
@@ -22,7 +25,6 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    console.log("CDM on App.js");
   }
 
   verifyUser = () => {
@@ -106,7 +108,22 @@ class App extends React.Component {
     return (
       <div className="app-container">
         <header>
-          <div className="global-header-wrapper">
+
+          <img src={logo} alt="" />
+          {/* <img src="./test.png" alt="" /> */}
+
+          <nav>
+            <ul className="nav__links">
+              <li><NavLink to="/">Home</NavLink></li>
+              <li><NavLink to="/login">Login</NavLink></li>
+              <li><NavLink to="/register">Register</NavLink></li>
+              <li><NavLink to="/account/settings">Account</NavLink></li>
+              <li onClick={this.handleLogout}>Log Out</li>
+            </ul>
+          </nav>
+          <button className="cta">Contact</button>
+
+          {/* <div className="global-header-wrapper">
             <div className="global-header">
               <h1>Logo</h1>
               <nav>
@@ -128,6 +145,8 @@ class App extends React.Component {
               </div>
             </div>
             <div className="header-spacer"></div>
+
+            
             <div className="global-nav">
               <span>Designers</span>
               <span>Browser By Category</span>
@@ -138,10 +157,15 @@ class App extends React.Component {
               <span>Staff Picks</span>
               <span>Collections</span>
             </div>
-          </div>
+          </div> */}
         </header>
   
         <main>
+          <div className="main-sidebar">
+            <div className="sidebar-header">
+              {/* <h4>Navigate</h4> */}
+            </div>
+          </div>
           <Route
             exact
             path="/"

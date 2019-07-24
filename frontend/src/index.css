@@ -24,9 +24,9 @@ time, mark, audio, video {
 	vertical-align: baseline;
 
 	/* Additional CSS */
-	font-family: Georgia, Times, Serif;
-	letter-spacing: 0.02em;
-	line-height: 16px;
+	/* font-family: Georgia, Times, Serif; */
+	/* letter-spacing: 0.02em; */
+	/* line-height: 16px; */
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
