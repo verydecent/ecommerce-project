@@ -1,0 +1,4 @@
+.landing-card-container {
+  display: flex;
+  flex-direction: column;
+}

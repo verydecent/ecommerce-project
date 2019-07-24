@@ -8,9 +8,10 @@ import './App.css';
 import Login from './components/Login/Login';
 import Register from './components/Register/Register';
 import Account from './components/Account/Account';
+import CategoriesNav from './components/CategoriesNav/CategoriesNav';
+import LandingCards from './components/LandingCards/LandingCards';
 import ItemFeed from './components/ItemFeed/ItemFeed';
 import Item from './components/Item/Item';
-import CategoriesNav from './components/CategoriesNav/CategoriesNav';
 
 
 class App extends React.Component {
