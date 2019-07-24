@@ -9,6 +9,7 @@ import Login from './components/Login/Login';
 import Register from './components/Register/Register';
 import Account from './components/Account/Account';
 import CategoriesNav from './components/CategoriesNav/CategoriesNav';
+import Jumbotron from './components/Jumbotron/Jumbotron';
 import LandingCards from './components/LandingCards/LandingCards';
 import ItemFeed from './components/ItemFeed/ItemFeed';
 import Item from './components/Item/Item';
@@ -105,7 +106,7 @@ class App extends React.Component {
       <div className="app-container">
         <header>
           <div className="global-nav">
-            <img src={logo} alt="" />
+            <img className="logo" src={logo} alt="" />
             <nav>
               <ul className="nav__links">
                 <li><NavLink to="/">Home</NavLink></li>
@@ -117,44 +118,24 @@ class App extends React.Component {
             </nav>
             <button className="cta">Contact</button>
           </div>
-
-          {/* <div className="global-header-wrapper">
-            <div className="global-header">
-              <h1>Logo</h1>
-              <nav>
-                <ul>
-                  <li>Option 1</li>
-                  <li>Option 2</li>
-                </ul>
-              </nav>
-              <div className="dropdown">
-                <h2>Users</h2>
-                <div className="dropdown-content">
-                  <NavLink className="nav-link" to="/">/</NavLink> 
-                  <NavLink className="nav-link" to="/home">Home</NavLink> 
-                  <NavLink className="nav-link" to="/login">Login</NavLink>
-                  <NavLink className="nav-link" to="/register">Register</NavLink> 
-                  <NavLink className="nav-link" to="/account/settings">Account</NavLink>
-                  <div onClick={this.handleLogout} className="logout-button">Log out</div>
-                </div>
-              </div>
-            </div>
-            <div className="header-spacer"></div>
-            */}
         </header>
   
         <main>
           <Route
             exact
             path="/"
-            render={(props) => <CategoriesNav />
-            }
+            component={CategoriesNav}
           />
-          <div className="main-sidebar">
-            <div className="sidebar-header">
-              {/* <h4>Navigate</h4> */}
-            </div>
-          </div>
+          <Route
+            exact
+            path="/"
+            component={LandingCards}
+          />
+          <Route
+            exact
+            path="/"
+            component={Jumbotron}
+          />
           <Route
             exact
             path="/"

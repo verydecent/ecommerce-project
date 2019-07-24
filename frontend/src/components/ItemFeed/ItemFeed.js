@@ -34,7 +34,12 @@ class ItemFeed extends React.Component {
     ));
     return (
       <div className="item-feed-container">
-        {available}
+        <div className="tag-line">
+          <span>Browse The Feed</span>
+        </div>
+        <div className="item-feed-panel">
+          {available}
+        </div>
       </div>
     );
   }

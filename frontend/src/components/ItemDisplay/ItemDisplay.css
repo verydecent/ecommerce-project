@@ -23,7 +23,7 @@
   font-family: -apple-system, BlinkMacSystemFont, Helvetica, Arial, "Segoe UI", Roboto, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 10px;
   font-weight: 500;
-  color: #737373;
+  color: #cacaca;
   text-decoration: underline;
 
   padding: 5px 0 3px 0;
@@ -36,7 +36,6 @@
 .item-metadata .item-brand-and-size {
   display: flex;
   justify-content: space-between;
-  /* margin-bottom: 3px; */
 }
 
 .item-metadata .item-brand-and-size .item-brand {
@@ -57,10 +56,13 @@
   letter-spacing: 0.4px;
 }
 
-.item-metadata .item-title {
-  /* line-height: 12px; */
-  font-size: 11px;
+.item-title {
+  font-size: 12px;
   text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 6px 0 2px 0;
+  font-weight:  600;
+  font-family: "Proxima Nova", sans-serif;
 }
 
 .item-title div {
