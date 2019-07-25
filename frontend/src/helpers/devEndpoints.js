@@ -10,6 +10,8 @@ module.exports = {
   checkFeedback,
   getFeedback,
   postItem,
+  registerUser,
+  loginUser,
 }
 
 function authorizeUser() {
@@ -62,4 +64,12 @@ function getFeedback(id) {
 
 function postItem() {
   return `http://localhost:5000/api/account/post-item`
+}
+
+function registerUser() {
+  return 'http://localhost:5000/api/auth/register';
+}
+
+function loginUser() {
+  return 'http://localhost:5000/api/auth/login';
 }

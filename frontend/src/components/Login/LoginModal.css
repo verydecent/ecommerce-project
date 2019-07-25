@@ -121,6 +121,10 @@
   font-size: 12px;
 }
 
+.login-button button:hover {
+  cursor: pointer;
+}
+
 .login-content-spacer {
   width: 100%;
 

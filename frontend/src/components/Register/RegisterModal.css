@@ -104,18 +104,22 @@
 
 .register-button button {
   padding: 14px 25px;
-
+  
   width: 100%;
-
+  
   border: 1px solid #000000;
   border-radius: 2px;
   background-color: #000000;
   color: #ffffff;
-
+  
   text-transform: uppercase;
   font-weight: 400;
   font-family: -apple-system, BlinkMacSystemFont, Helvetica, Arial, "Segoe UI", Roboto, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 12px;
+}
+
+.register-button button:hover {
+  cursor: pointer;
 }
 
 .register-content-spacer {

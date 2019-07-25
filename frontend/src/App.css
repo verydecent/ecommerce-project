@@ -16,120 +16,6 @@
 header {
 }
 
-.global-nav {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  padding: 25px 10px;
-
-  border-top: 1px solid #cbcbcb;
-  border-bottom: 1px solid #cbcbcb;
-
-  position: fixed;
-  width: 100%;
-  background-color: white;
-}
-
-.spacer {
-  height: 120px;
-}
-
-
-/* li, a, button {
-  font-family: -apple-system, BlinkMacSystemFont, Helvetica, Arial, 'Segoe UI', Roboto, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
-  font-weight: 500;
-  font-size: 14px;
-  text-decoration: none;
-  color: black;
-} */
-
-.logo-container {
-  cursor: pointer;
-  margin-right: auto;
-}
-
-.logo {
-  max-width: 200px;
-  width: 100%;
-  margin-right: auto;
-}
-
-.nav__links {
-  list-style: none;
-}
-
-.nav__links li {
-  display: inline-block;
-  padding: 0 20px;
-}
-
-.nav__links li a:hover {
-  color: #0088a9;
-}
-
-/* button {
-  margin-left: 20px;
-  padding: 7px 16px;
-  background-color: rgba(0, 136, 169, 1);
-  border: none;
-  border-radius: 15px;
-  cursor: pointer;
-  transition: all 0.3s ease 0s;
-  color: white;
-} */
-
-button:hover {
-  color: #0088a9;
-  background-color: rgba(0, 136, 169, 0.8);
-}
-
-.user-options {
-  position: absolute;
-  right: 1rem;
-}
-
-.dropdown {
-  position: relative;
-  background-color: rgba(0, 136, 169, 1);
-  border: none;
-  border-radius: 50px;
-  cursor: pointer;
-  transition: all 0.3s ease 0s;
-}
-
-.dropdown h2 {
-  color: #000000;
-  padding: 12px;
-  font-size: 16px;
-  border: none;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f1f1f1;
-  min-width: 160px;
-  z-index: 1;
-}
-
-/* .dropdown-content .nav-link {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-} */
-
-.dropdown-content a:hover {
-  background-color: #ddd;
-}
-
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-
-.dropdown:hover .dropbtn {background-color: #3e8e41;}
-
-
 main  {
   display: flex;
   flex-direction: column;
@@ -141,8 +27,7 @@ main  {
 
 footer {
   background-color: #ececec;
-
-  margin-top: 60px;
+  margin-top: 40px;
 }
 
 .app-footer {
@@ -150,13 +35,16 @@ footer {
   justify-content: space-around;
 
   max-width: 960px;
-  padding: 32px 0 40px;
+  padding: 32px 0 32px;
   margin: 0 auto;
   line-height: 30px;
 
+  font-size: 14px;
+  font-family: -apple-system, BlinkMacSystemFont, Helvetica, Arial, "Segoe UI", Roboto, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-weight: 500;
 }
 
-#footer-column {
+.footer-column {
   width: calc(25% - 40px);
   margin: 6px;
 }

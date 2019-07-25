@@ -13,7 +13,7 @@ class Navigation extends React.Component {
 
   render() {
     const jwt = localStorage.getItem('jwt');
-    const { user_id, toggleLoginModal, toggleRegisterModal } = this.props;
+    const { user_id, toggleLoginModal, toggleRegisterModal, handleLogout } = this.props;
     if (user_id && jwt) {
       return (
         <div className="global-nav-container">
@@ -23,16 +23,13 @@ class Navigation extends React.Component {
                 <img className="logo" src={logo} alt="" />
               </NavLink>
             </div>
+
             <nav>
               <ul className="nav__links">
                 <li><NavLink className="nav__link" to="/">Home</NavLink></li>
-                <li onClick={this.toggleLoginModal}>Login</li>
-                <li onClick={this.toggleRegisterModal}>Register</li>
-                <li><NavLink className="nav__link" to="/account/settings">Account</NavLink></li>
-                <li onClick={this.handleLogout}>Log Out</li>
+                <li><NavLink className="nav__link__sell" to="/">Sell</NavLink></li>
               </ul>
             </nav>
-
             <div className="dropdown">
               <button className="global-nav-button">Account</button>
               <div className="dropdown-content">
@@ -42,8 +39,10 @@ class Navigation extends React.Component {
                 <div className="dropdown-item">My Store</div>
                 <div className="dropdown-item">Favorites</div>
                 <div className="dropdown-item">Transactions</div>
+                <div className="dropdown-item" onClick={handleLogout}>Logout</div>
               </div>
             </div>
+
           </div>
           <div className="spacer"></div>
         </div>
@@ -58,16 +57,13 @@ class Navigation extends React.Component {
               <img className="logo" src={logo} alt="" />
             </NavLink>
           </div>
+
           <nav>
             <ul className="nav__links">
               <li><NavLink className="nav__link" to="/">Home</NavLink></li>
-              <li onClick={this.toggleLoginModal}>Login</li>
-              <li onClick={this.toggleRegisterModal}>Register</li>
-              <li><NavLink className="nav__link" to="/account/settings">Account</NavLink></li>
-              <li onClick={this.handleLogout}>Log Out</li>
+              <li><NavLink className="nav__link__sell" to="/">Sell</NavLink></li>
             </ul>
           </nav>
-
           <div className="dropdown">
             <button className="global-nav-button">Account</button>
             <div className="dropdown-content">

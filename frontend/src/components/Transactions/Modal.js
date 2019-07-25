@@ -13,7 +13,7 @@ class Modal extends React.Component {
 
   handleFeedback = (event) => {
     const { id, feedback_author_id, feedback_recipient_id } = this.props.item;
-    console.log('handleFeedback');
+    // const { closeModal } = this.props;
     const body = {
       item_id: id,
       feedback_author_id,
@@ -26,6 +26,8 @@ class Modal extends React.Component {
       console.log('response', response);
     })
     .catch(error => console.error(error));
+
+
 
     event.preventDefault();
   }

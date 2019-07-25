@@ -1,10 +1,10 @@
 import React from 'react';
-import { NavLink, Route, withRouter } from 'react-router-dom';
+import { Route, withRouter } from 'react-router-dom';
 import axios from 'axios';
 import { authorizeUser, likedItems } from './Helpers/devEndpoints';
-import logo from './Images/logo.png';
 import './App.css';
 
+import Navigation from './components/Navigation/Navigation';
 import LoginModal from './components/Login/LoginModal';
 import RegisterModal from './components/Register/RegisterModal';
 import Account from './components/Account/Account';
@@ -52,16 +52,10 @@ class App extends React.Component {
   }
 
   handleLogout = () => {
-    const token = localStorage.getItem('jwt');
-    if (token) {
-      localStorage.removeItem('jwt');
-      this.props.history.push('/');
-      this.setState({ authUser: {}, liked: [] });
-      alert('You logged out');
-    }
-    else {
-      alert('You are not logged in');
-    }
+    localStorage.removeItem('jwt');
+    this.props.history.push('/');
+    this.setState({ authUser: {}, liked: [] });
+    alert('You logged out');
   }
 
   handleLike = (item_id) => {
@@ -117,24 +111,7 @@ toggleRegisterModal = () => {
     return (
       <div className="app-container">
         <header>
-          <div className="global-nav">
-            <div className="logo-container">
-              <NavLink to="/">
-                <img className="logo" src={logo} alt="" />
-              </NavLink>
-            </div>
-            <nav>
-              <ul className="nav__links">
-                <li><NavLink to="/">Home</NavLink></li>
-                <li onClick={this.toggleLoginModal}>Login</li>
-                <li onClick={this.toggleRegisterModal}>Register</li>
-                <li><NavLink to="/account/settings">Account</NavLink></li>
-                <li onClick={this.handleLogout}>Log Out</li>
-              </ul>
-            </nav>
-            <button className="cta">Contact</button>
-          </div>
-          <div className="spacer"></div>
+          <Navigation user_id={authUser.id} toggleLoginModal={this.toggleLoginModal} toggleRegisterModal={this.toggleRegisterModal} handleLogout={this.handleLogout}/>
         </header>
   
         <main>
@@ -186,14 +163,14 @@ toggleRegisterModal = () => {
         </main>
         <footer>
           <div className="app-footer">
-            <div id="footer-column">
+            <div className="footer-column">
               <ul>
                 <li>Call Us</li>
                 <li>US: +1 777 777 7777 </li>
                 <li>Give Feedback</li>
               </ul>
             </div>
-            <div id="footer-column">
+            <div className="footer-column">
               <ul>
                 <li>Contact Us</li>
                 <li>Style & Fit Advice</li>
@@ -204,7 +181,7 @@ toggleRegisterModal = () => {
                 <li>Privacy & Cookies</li>
               </ul>
             </div>
-            <div id="footer-column">
+            <div className="footer-column">
               <ul>
                 <li>About Us</li>
                 <li>Careers</li>

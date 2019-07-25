@@ -48,8 +48,24 @@
 }
 
 .nav__link {
+  font-size: 12px;
+  font-family: -apple-system, BlinkMacSystemFont, Helvetica, Arial, "Segoe UI", Roboto, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-weight: 500;
   text-decoration: none;
+  text-transform: uppercase;
   color: #000;
+}
+
+.nav__link__sell {
+  border: 1px solid #cbcbcb;
+  padding: 4px 12px;
+  font-size: 12px;
+  font-family: -apple-system, BlinkMacSystemFont, Helvetica, Arial, "Segoe UI", Roboto, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-weight: 500;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #000;
+
 }
 
 .nav__link:hover {
@@ -57,7 +73,7 @@
 }
 
 .dropdown {
-  /* display: inline-block; */
+  margin-left: 20px;
   position: relative; 
 }
 
@@ -65,7 +81,7 @@
   display: none;
   position: absolute;
   /* right: 10px; */
-  /* min-width: 160px; */
+  min-width: 90px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   padding: 10px;
   z-index: 1;
@@ -92,11 +108,18 @@
 .global-nav-button {
   /* margin-left: 20px; */
   padding: 7px 16px;
-  background-color: rgba(0, 136, 169, 1);
+  /* background-color: rgba(0, 136, 169, 1); */
+  background-color: #009999;
   border: none;
   border-radius: 3px;
   cursor: pointer;
   color: white;
+
+  font-family: -apple-system, BlinkMacSystemFont, Helvetica, Arial, 'Segoe UI', Roboto, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  font-size: 12px;
+  font-weight: 500;
+
+  text-transform: uppercase;
 }
 
 .global-nav-button:hover {
