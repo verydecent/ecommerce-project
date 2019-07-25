@@ -1,11 +1,19 @@
 import React from 'react';
 
-function LoginModal() {
-  return (
-    <div className="login-modal-container">
-      Modal Login :D
-    </div>
-  );
+class LoginModal extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      show: false,
+    };
+  }
+  render() {
+    return (
+      <div className="login-modal-container">
+        Modal Login :D
+      </div>
+    );
+  }
 }
 
 export default LoginModal;
