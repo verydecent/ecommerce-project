@@ -5,8 +5,8 @@ import { authorizeUser, likedItems } from './Helpers/devEndpoints';
 import logo from './Images/logo.png';
 import './App.css';
 
-import Login from './components/Login/Login';
-import Register from './components/Register/Register';
+import LoginModal from './components/Login/LoginModal';
+import RegisterModal from './components/Register/RegisterModal';
 import Account from './components/Account/Account';
 import CategoriesNav from './components/CategoriesNav/CategoriesNav';
 import Jumbotron from './components/Jumbotron/Jumbotron';
@@ -21,6 +21,8 @@ class App extends React.Component {
     this.state = {
       authUser: {},
       liked: [],
+      showLoginModal: false,
+      showRegisterModal: false,
     };
   }
 
@@ -98,20 +100,34 @@ class App extends React.Component {
     }
   }
 
+toggleLoginModal = () => {
+  this.setState((prevState) => ({ showLoginModal: !prevState.showLoginModal }));
+}
+
+toggleRegisterModal = () => {
+  this.setState((prevState) => ({ showRegisterModal: !prevState.showRegisterModal }));
+}
+
   render() {
-    const { authUser, liked } = this.state;
+    const { authUser, liked, showLoginModal, showRegisterModal } = this.state;
+    
     console.log("Logged in user", authUser.id);
     console.log("liked items", liked);
+
     return (
       <div className="app-container">
         <header>
           <div className="global-nav">
-            <img className="logo" src={logo} alt="" />
+            <div className="logo-container">
+              <NavLink to="/">
+                <img className="logo" src={logo} alt="" />
+              </NavLink>
+            </div>
             <nav>
               <ul className="nav__links">
                 <li><NavLink to="/">Home</NavLink></li>
-                <li><NavLink to="/login">Login</NavLink></li>
-                <li><NavLink to="/register">Register</NavLink></li>
+                <li onClick={this.toggleLoginModal}>Login</li>
+                <li onClick={this.toggleRegisterModal}>Register</li>
                 <li><NavLink to="/account/settings">Account</NavLink></li>
                 <li onClick={this.handleLogout}>Log Out</li>
               </ul>
@@ -122,6 +138,16 @@ class App extends React.Component {
         </header>
   
         <main>
+          {
+            showLoginModal
+              ? <LoginModal toggleLoginModal={this.toggleLoginModal} verifyUser={this.verifyUser} />
+              : null
+          }
+          {
+            showRegisterModal
+              ? <RegisterModal toggleRegisterModal={this.toggleRegisterModal} verifyUser={this.verifyUser} />
+              : null
+          }
           <Route
             exact
             path="/"
@@ -151,18 +177,6 @@ class App extends React.Component {
             }
           />
           <Route
-            path="/register"
-            render={(props) =>
-              <Register {...props} verifyUser={this.verifyUser} />
-            }
-          />
-          <Route
-            path="/login"
-            render={(props) =>
-              <Login {...props} verifyUser={this.verifyUser} />
-            }
-          />
-          <Route
             path="/account"
             render={(props) =>
               <Account {...props}
@@ -175,7 +189,7 @@ class App extends React.Component {
             <div id="footer-column">
               <ul>
                 <li>Call Us</li>
-                <li>US: +1 877 535 3677 </li>
+                <li>US: +1 777 777 7777 </li>
                 <li>Give Feedback</li>
               </ul>
             </div>
