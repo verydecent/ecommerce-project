@@ -33,13 +33,28 @@ class Navigation extends React.Component {
             <div className="dropdown">
               <button className="global-nav-button">Account</button>
               <div className="dropdown-content">
-                <div className="dropdown-item">Post Item</div>
-                <div className="dropdown-item">Settings</div>
-                <div className="dropdown-item">Messages</div>
-                <div className="dropdown-item">My Store</div>
-                <div className="dropdown-item">Favorites</div>
-                <div className="dropdown-item">Transactions</div>
-                <div className="dropdown-item" onClick={handleLogout}>Logout</div>
+                <NavLink className="nav__link" to="/">
+                  <div className="dropdown-item">Post Item</div>
+                </NavLink>
+                <NavLink className="nav__link" to="/">
+                  <div className="dropdown-item">Settings</div>
+                </NavLink>
+                <NavLink className="nav__link" to="/">
+                  <div className="dropdown-item">Messages</div>
+                </NavLink>
+                <NavLink className="nav__link" to="/">
+                  <div className="dropdown-item">My Store</div>
+                </NavLink>
+                <NavLink className="nav__link" to="/">
+                  <div className="dropdown-item">Favorites</div>
+                </NavLink>
+                <NavLink className="nav__link" to="/">
+                  <div className="dropdown-item">Transactions</div>
+                </NavLink>
+                <NavLink className="nav__link" to="/">
+                  <div className="dropdown-item" onClick={handleLogout}>Logout</div>
+                </NavLink>
+                {/* <div className="dropdown-item" onClick={handleLogout}>Logout</div> */}
               </div>
             </div>
 

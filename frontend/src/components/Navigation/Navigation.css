@@ -69,7 +69,8 @@
 }
 
 .nav__link:hover {
-  color: #0088a9;
+  color: #609180;
+  /* color: #0088a9; */
 }
 
 .dropdown {
@@ -80,7 +81,7 @@
 .dropdown-content {
   display: none;
   position: absolute;
-  /* right: 10px; */
+  right: 0;
   min-width: 90px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   padding: 10px;
