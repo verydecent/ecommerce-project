@@ -173,11 +173,9 @@ toggleRegisterModal = () => {
             </div>
             <div className="footer-column">
               <ul>
+                <li>FAQs</li>
                 <li>Contact Us</li>
                 <li>Style & Fit Advice</li>
-                <li>FAQs</li>
-                <li>Delivery</li>
-                <li>Exchanges & Returns</li>
                 <li>Terms & Conditions</li>
                 <li>Privacy & Cookies</li>
               </ul>
@@ -189,7 +187,6 @@ toggleRegisterModal = () => {
                 <li>Affiliates</li>
                 <li>Advertising</li>
                 <li>Size Help</li>
-                <li>Apps</li>
               </ul>
             </div>
           </div>

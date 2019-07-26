@@ -47,6 +47,7 @@ footer {
 .footer-column {
   width: calc(25% - 40px);
   margin: 6px;
+  text-align: center;
 }
 
 .footer-column ul li {
