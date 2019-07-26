@@ -155,12 +155,12 @@
 }
 
 .item-panel-right .purchase button {
-  color: white;
-  background: black;
+  color: #fff;
+  background: #000;
 }
 .item-panel-right .message button {
-  color: black;
-  background: white;
+  color: #000;
+  background: #fff;
 }
 
 /* User Card */

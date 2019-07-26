@@ -24,7 +24,6 @@ class LoginModal extends React.Component {
         this.setState({ email: '', password: '' });
         verifyUser();
         toggleLoginModal();
-        history.push('/');
       })
       .catch(error => {
         console.error('ERROR', error);

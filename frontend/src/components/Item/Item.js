@@ -76,7 +76,7 @@ class Item extends React.Component {
 
   render() {
     const { user_id, liked, handleLike } = this.props;
-    const { is_available, category, created_at, color, description, id, price, posted_by_user_id, shipping_price, size, title  } = this.state.item;
+    const { is_available, category, created_at, color, description, id, price, posted_by_user_id, shipping_price, size, title, brand  } = this.state.item;
 
    return (
       <div className="item-container">
@@ -95,7 +95,7 @@ class Item extends React.Component {
           <div className="item-panel-right">
             <div className="item-detail-box">
               <div className="item-meta-data">
-                <h1>Brand Name</h1>
+                <h1>{brand}</h1>
                 <div className="date-posted">
                   <span>
                     {
