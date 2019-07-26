@@ -36,11 +36,11 @@ class UserStore extends React.Component {
               <img src="" alt="" />
             </div>
             <div className="header-card-details">
-              <p>USERNAME</p>
-              <p>LOCATION</p>
+              <p>{user_info.username}</p>
+              <p>{user_info.location}</p>
             </div>
           </div>
-          <div className="store-item-feed">
+          <div className="store-feed">
             {items}
           </div>
         </div>
