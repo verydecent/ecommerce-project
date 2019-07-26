@@ -3,6 +3,7 @@ module.exports = {
   likedItems,
   getItems,
   getUser,
+  getUserByUsername,
   purchaseItem,
   getBoughtItems,
   getSoldItems,
@@ -32,6 +33,10 @@ function getItems(id) {
   }
   // For multiple items vs 1 item
   return 'http://localhost:5000/api/items';
+}
+
+function getUserByUsername(username) {
+  return `http://localhost:5000/api/user/${username}`
 }
 
 function getUser(id) {
