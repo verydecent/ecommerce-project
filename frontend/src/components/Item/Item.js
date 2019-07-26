@@ -35,11 +35,11 @@ class Item extends React.Component {
   }
 
   handlePurchase = (event) => {
-    const { user_id } = this.props;
+    const { user_id, toggleLoginModal } = this.props;
     const { id } = this.props.match.params;
 
     if (!user_id || !localStorage.getItem('jwt')) {
-      alert("You must log in to purchase")
+      toggleLoginModal();
     }
     else {
       console.log('user_id', user_id);

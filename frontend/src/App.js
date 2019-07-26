@@ -150,7 +150,7 @@ toggleRegisterModal = () => {
           <Route
             path="/item/:id"
             render={(props) =>
-              <Item {...props} user_id={authUser.id} liked={liked} handleLike={this.handleLike} />
+              <Item {...props} user_id={authUser.id} liked={liked} handleLike={this.handleLike} toggleLoginModal={this.toggleLoginModal} />
             }
           />
           <Route
