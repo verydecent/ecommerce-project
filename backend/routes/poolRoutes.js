@@ -316,6 +316,22 @@ router.get('/store/:username', (req, res) => {
     .catch(error => res.status(500).json({ error: "Internal server error" }));
 });
 
+// user store feedback
+router.get('/store/feedback/:username', (req, res) => {
+  const { username } = req.params;
+  Data('users').where({ username }).first()
+    .then(user => {
+      Data('users_feedback')
+        .join('feedback', 'users_feedback.feedback_id', 'feedback.id')
+        .where('users_feedback.recipient_user_id', user.id)
+          .then(feedback => {
+            res.status(200).json({ user_info: user, user_feedback: feedback });
+          })
+          .catch(error => res.status(500).json({ error: "Internal server error" }))
+    })
+    .catch(error => res.status(500).json({ error: "Internal server error" }));
+});
+
 
 // put request to update users item
 // Authentication: User needs to be verified as the owner of the item
