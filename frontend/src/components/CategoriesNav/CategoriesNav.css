@@ -1,10 +1,23 @@
 .categories-nav {
   display: flex;
-  justify-content: space-around;
-  border-bottom: 2px solid black;
-  padding: 12px;
+  justify-content: space-between;
+  border-bottom: 4px solid #000;
+  padding: 14px;
   max-width: 960px;
   width: 100%;
 
   margin: 0 auto;
+}
+
+.cat__nav__link {
+  /* font-family: -apple-system, BlinkMacSystemFont, Helvetica, Arial, "Segoe UI", Roboto, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; */
+  font-size: 12px;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #000;
+  letter-spacing: 1.4px;
+}
+
+.cat__nav__link:hover {
+  text-decoration: underline;
 }
