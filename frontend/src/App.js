@@ -154,6 +154,13 @@ toggleRegisterModal = () => {
             }
           />
           <Route
+            exact
+            path="/item-feed/:id"
+            render={(props) =>
+              <ItemFeed {...props} handleLike={this.handleLike} liked={liked} />
+            }
+          />
+          <Route
             path="/account"
             render={(props) =>
               <Account {...props}
