@@ -9,6 +9,7 @@ module.exports = {
   getSoldItems,
   postFeedback,
   checkFeedback,
+  getFeedbackByUsername,
   getFeedback,
   postItem,
   registerUser,
@@ -65,6 +66,10 @@ function checkFeedback() {
 
 function getFeedback(id) {
   return `http://localhost:5000/api/account/get-feedback/${id}`
+}
+
+function getFeedbackByUsername(username) {
+  return `http://localhost:5000/api/store/feedback/${username}`;
 }
 
 function postItem() {
