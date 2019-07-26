@@ -14,7 +14,7 @@
 }
 
 .spacer {
-  height: 120px;
+  height: 100px;
 }
 
 
@@ -65,7 +65,6 @@
   text-decoration: none;
   text-transform: uppercase;
   color: #000;
-
 }
 
 .nav__link:hover {
@@ -100,6 +99,19 @@
 
 .dropdown-item {
 
+}
+
+#logout-button {
+  font-size: 12px;
+  font-family: -apple-system, BlinkMacSystemFont, Helvetica, Arial, "Segoe UI", Roboto, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-weight: 500;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #000;
+}
+
+#logout-button:hover {
+  color: rgb(230, 108, 108);
 }
 
 .dropdown-item:hover {

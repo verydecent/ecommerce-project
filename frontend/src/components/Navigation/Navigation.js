@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import logo from '../../Images/logo.png';
 import './Navigation.css';
+import CategoriesNav from '../CategoriesNav/CategoriesNav';
 
 class Navigation extends React.Component {
   constructor() {
@@ -27,39 +28,37 @@ class Navigation extends React.Component {
             <nav>
               <ul className="nav__links">
                 <li><NavLink className="nav__link" to="/">Home</NavLink></li>
-                <li><NavLink className="nav__link__sell" to="/">Sell</NavLink></li>
+                <li><NavLink className="nav__link__sell" to="/account/post-item">Sell</NavLink></li>
               </ul>
             </nav>
             <div className="dropdown">
               <button className="global-nav-button">Account</button>
               <div className="dropdown-content">
-                <NavLink className="nav__link" to="/">
+                <NavLink className="nav__link" to="/account/post-item">
                   <div className="dropdown-item">Post Item</div>
                 </NavLink>
-                <NavLink className="nav__link" to="/">
+                <NavLink className="nav__link" to="/account/settings">
                   <div className="dropdown-item">Settings</div>
                 </NavLink>
-                <NavLink className="nav__link" to="/">
+                <NavLink className="nav__link" to="/account/messages">
                   <div className="dropdown-item">Messages</div>
                 </NavLink>
-                <NavLink className="nav__link" to="/">
+                <NavLink className="nav__link" to="/account/store">
                   <div className="dropdown-item">My Store</div>
                 </NavLink>
-                <NavLink className="nav__link" to="/">
+                <NavLink className="nav__link" to="/account/favorites">
                   <div className="dropdown-item">Favorites</div>
                 </NavLink>
-                <NavLink className="nav__link" to="/">
+                <NavLink className="nav__link" to="/account/transactions">
                   <div className="dropdown-item">Transactions</div>
                 </NavLink>
-                <NavLink className="nav__link" to="/">
-                  <div className="dropdown-item" onClick={handleLogout}>Logout</div>
-                </NavLink>
-                {/* <div className="dropdown-item" onClick={handleLogout}>Logout</div> */}
+                <div className="dropdown-item" id="logout-button" onClick={handleLogout}>Logout</div>
               </div>
             </div>
 
           </div>
           <div className="spacer"></div>
+          <CategoriesNav />
         </div>
       );
     }
@@ -76,7 +75,7 @@ class Navigation extends React.Component {
           <nav>
             <ul className="nav__links">
               <li><NavLink className="nav__link" to="/">Home</NavLink></li>
-              <li><NavLink className="nav__link__sell" to="/">Sell</NavLink></li>
+              <li onClick={this.toggleLoginModal}><NavLink className="nav__link__sell" to="/">Sell</NavLink></li>
             </ul>
           </nav>
           <div className="dropdown">
@@ -88,6 +87,7 @@ class Navigation extends React.Component {
           </div>
         </div>
         <div className="spacer"></div>
+        <CategoriesNav />
       </div>
     );
   }

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 
-import requiresAuth from '../../Helpers/requiresAuth';
 import './Account.css';
+import requiresAuth from '../../Helpers/requiresAuth';
 
 import SubNav from '../SubNavigation/SubNavigation';
 import Settings from '../Setting/Settings'
@@ -129,4 +129,3 @@ class Account extends  React.Component {
 }
 
 export default requiresAuth(Account);
-// export default Account;
