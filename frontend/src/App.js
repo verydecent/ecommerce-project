@@ -158,7 +158,7 @@ toggleRegisterModal = () => {
           <Route
             path="/users/:username"
             render={(props) =>
-                <UserStore {...props} />
+                <UserStore {...props} liked={liked} />
 
             } 
           />
