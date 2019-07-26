@@ -8,7 +8,6 @@ import Navigation from './components/Navigation/Navigation';
 import LoginModal from './components/Login/LoginModal';
 import RegisterModal from './components/Register/RegisterModal';
 import Account from './components/Account/Account';
-import CategoriesNav from './components/CategoriesNav/CategoriesNav';
 import Jumbotron from './components/Jumbotron/Jumbotron';
 import LandingCards from './components/LandingCards/LandingCards';
 import ItemFeed from './components/ItemFeed/ItemFeed';
@@ -126,11 +125,11 @@ toggleRegisterModal = () => {
               ? <RegisterModal toggleRegisterModal={this.toggleRegisterModal} verifyUser={this.verifyUser} />
               : null
           }
-          <Route
+          {/* <Route
             exact
             path="/"
             component={CategoriesNav}
-          />
+          /> */}
           <Route
             exact
             path="/"
