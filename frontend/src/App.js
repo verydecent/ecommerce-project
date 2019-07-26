@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, withRouter } from 'react-router-dom';
 import axios from 'axios';
-import { authorizeUser, likedItems } from './Helpers/devEndpoints';
+import { authorizeUser, getLikedItems } from './Helpers/devEndpoints';
 import './App.css';
 
 import Navigation from './components/Navigation/Navigation';
@@ -38,7 +38,7 @@ class App extends React.Component {
 
     axios.get(authorizeUser(), config)
       .then(user => {
-        axios.get(likedItems(user.data.id))
+        axios.get(getLikedItems(user.data.id))
           .then(liked => {
             liked = liked.data.map(item => item.id);
             this.setState({ authUser: user.data, liked: liked });
@@ -72,7 +72,7 @@ class App extends React.Component {
         headers: { user_id: id }
       };
 
-      axios.delete(likedItems(item_id), config)
+      axios.delete(getLikedItems(item_id), config)
         .then(response => {
           this.setState(state => {
             const liked = state.liked.filter(i => i !== item_id);
@@ -83,7 +83,7 @@ class App extends React.Component {
         .catch(error => console.error(error));
     }
     if (id && jwt && !liked.includes(item_id)) {
-      axios.post(likedItems(), { id, item_id })
+      axios.post(getLikedItems(), { id, item_id })
         .then(response => {
           this.setState(state => {
             const liked = state.liked.concat(item_id);
