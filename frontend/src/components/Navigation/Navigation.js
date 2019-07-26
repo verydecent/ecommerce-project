@@ -75,7 +75,7 @@ class Navigation extends React.Component {
           <nav>
             <ul className="nav__links">
               <li><NavLink className="nav__link" to="/">Home</NavLink></li>
-              <li onClick={this.toggleLoginModal}><NavLink className="nav__link__sell" to="/">Sell</NavLink></li>
+              <li onClick={toggleLoginModal}><NavLink className="nav__link__sell">Sell</NavLink></li>
             </ul>
           </nav>
           <div className="dropdown">
