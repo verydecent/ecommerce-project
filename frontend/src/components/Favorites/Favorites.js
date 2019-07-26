@@ -3,7 +3,7 @@ import ItemDisplay from '../ItemDisplay/ItemDisplay';
 
 import axios from 'axios';
 import './Favorites.css';
-import { likedItems } from '../../Helpers/devEndpoints'
+import { getLikedItems } from '../../Helpers/devEndpoints'
 
 class Favorites extends React.Component {
   constructor(props) {
@@ -16,7 +16,7 @@ class Favorites extends React.Component {
   componentDidMount() {
     console.log("componenetDidMount");
     const { user_id } = this.props;
-    axios.get(likedItems(user_id))
+    axios.get(getLikedItems(user_id))
       .then(response => {
         console.log(response);
         this.setState({ items: response.data }, console.log(this.state.items));
