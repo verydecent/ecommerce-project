@@ -2,8 +2,8 @@ module.exports = {
   authorizeUser,
   getLikedItems,
   getItems,
+  getStoreByUsername,
   getUser,
-  getUserByUsername,
   purchaseItem,
   getBoughtItems,
   getSoldItems,
@@ -35,8 +35,8 @@ function getItems(id) {
   return 'http://localhost:5000/api/items';
 }
 
-function getUserByUsername(username) {
-  return `http://localhost:5000/api/user/${username}`
+function getStoreByUsername(username) {
+  return `http://localhost:5000/api/store/${username}`
 }
 
 function getUser(id) {
