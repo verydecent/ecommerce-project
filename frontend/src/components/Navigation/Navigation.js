@@ -49,7 +49,7 @@ class Navigation extends React.Component {
                 <NavLink className="nav__link" to="/account/favorites">
                   <div className="dropdown-item">Favorites</div>
                 </NavLink>
-                <NavLink className="nav__link" to="/account/transactions">
+                <NavLink className="nav__link" to="/account/transactions/bought">
                   <div className="dropdown-item">Transactions</div>
                 </NavLink>
                 <div className="dropdown-item" id="logout-button" onClick={handleLogout}>Logout</div>
