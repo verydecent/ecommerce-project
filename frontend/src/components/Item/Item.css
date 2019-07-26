@@ -165,6 +165,10 @@
 
 /* User Card */
 
+.user__nav__link {
+  text-decoration: none;
+}
+
 .user-card {
   display: flex;
   justify-content: space-between;

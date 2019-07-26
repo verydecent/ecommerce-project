@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 import formatDate from '../../Helpers/formatDate';
 import { getItems, getUser, purchaseItem } from '../../Helpers/devEndpoints';
@@ -37,6 +38,7 @@ class Item extends React.Component {
   handlePurchase = (event) => {
     const { user_id, toggleLoginModal } = this.props;
     const { id } = this.props.match.params;
+  
 
     if (!user_id || !localStorage.getItem('jwt')) {
       toggleLoginModal();
@@ -77,7 +79,8 @@ class Item extends React.Component {
   render() {
     const { user_id, liked, handleLike } = this.props;
     const { is_available, category, created_at, color, description, id, price, posted_by_user_id, shipping_price, size, title, brand  } = this.state.item;
-
+    const { username, location } = this.state.merchant;
+    console.log('merchant?', this.state)
    return (
       <div className="item-container">
         <h4>Item</h4>
@@ -125,7 +128,7 @@ class Item extends React.Component {
               <span>${price}</span>
               <div className="item-shipping-price">
                 <span>+ ${shipping_price}</span>
-                <span>Location : {}</span>
+                <span>Location : {location}</span>
               </div>
             </div>
             {
@@ -164,7 +167,7 @@ class Item extends React.Component {
                 />
               </div>
               <div className="card-details">
-                <h1>{}</h1>
+                <Link className="user__nav__link" to={`/users/${username}`}><h1>{username}</h1></Link>
                 <h1>Visit Store</h1>
               </div>
             </div>
