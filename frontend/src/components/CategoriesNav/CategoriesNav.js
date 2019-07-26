@@ -6,7 +6,7 @@ function CategoriesNav() {
   return (
     <div className="categories-nav">
       <NavLink className="cat__nav__link" to="/">Brands</NavLink>
-      <NavLink className="cat__nav__link" to="/item-feed/accesories">Accessories</NavLink>
+      <NavLink className="cat__nav__link" to="/item-feed/accessories">Accessories</NavLink>
       <NavLink className="cat__nav__link" to="/item-feed/outerwear">Outerwear</NavLink>
       <NavLink className="cat__nav__link" to="/item-feed/tops">Tops</NavLink>
       <NavLink className="cat__nav__link" to="/item-feed/bottoms">Bottoms</NavLink>
