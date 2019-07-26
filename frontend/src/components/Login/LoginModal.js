@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 import { loginUser } from '../../Helpers/devEndpoints';
-import { withRouter } from 'react-router-dom';
 
 import './LoginModal.css';
 
@@ -15,7 +14,7 @@ class LoginModal extends React.Component {
   }
 
   handleSubmit = (event) => {
-    const { verifyUser, toggleLoginModal, history } = this.props;
+    const { verifyUser, toggleLoginModal } = this.props;
     const body = { email: this.state.email, password: this.state.password };
     axios
       .post(loginUser(), body)
@@ -89,4 +88,4 @@ class LoginModal extends React.Component {
   }
 }
 
-export default withRouter(LoginModal);
+export default LoginModal;
