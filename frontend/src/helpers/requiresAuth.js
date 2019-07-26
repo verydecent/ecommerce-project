@@ -1,18 +1,14 @@
 import React from 'react';
+import './requiresAuth.css';
 
 export default function (Component) {
   return class Authenticated extends React.Component {
-    
     render() {
+      const { id } = this.props.authUser;
       const token = localStorage.getItem('jwt');
-      // const notLoggedIn = <div>Please login to check your account</div>;
+      const notLoggedIn = <div className="not-logged-in">Unauthorized, please login to continue</div>;
 
-      const notLoggedIn = 'Component where Purchase or Message buttons pop out a Login Modal Because there is no JWT';
-
-      
-
-      
-      return <> {token ? <Component {...this.props} /> : notLoggedIn} </>
+      return <> {token && id ? <Component {...this.props} /> : notLoggedIn} </>
     }
   }
 }
