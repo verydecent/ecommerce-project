@@ -7,11 +7,13 @@ import './App.css';
 import Navigation from './components/Navigation/Navigation';
 import LoginModal from './components/Login/LoginModal';
 import RegisterModal from './components/Register/RegisterModal';
-import Account from './components/Account/Account';
-import Jumbotron from './components/Jumbotron/Jumbotron';
 import LandingCards from './components/LandingCards/LandingCards';
-import ItemFeed from './components/ItemFeed/ItemFeed';
+import Jumbotron from './components/Jumbotron/Jumbotron';
 import Item from './components/Item/Item';
+import ItemFeed from './components/ItemFeed/ItemFeed';
+import UserStore from './components/User/UserStore';
+import UserFeedback from './components/User/UserFeedback';
+import Account from './components/Account/Account';
 
 
 class App extends React.Component {
@@ -152,6 +154,13 @@ toggleRegisterModal = () => {
             render={(props) =>
               <Item {...props} user_id={authUser.id} liked={liked} handleLike={this.handleLike} toggleLoginModal={this.toggleLoginModal} />
             }
+          />
+          <Route
+            path="/users/:username"
+            render={(props) =>
+                <UserStore {...props} />
+
+            } 
           />
           <Route
             exact
