@@ -65,7 +65,7 @@ class App extends React.Component {
       this.toggleLoginModal();
     }
 
-    if (id && liked.includes(item_id)) {
+    if (id && jwt && liked.includes(item_id)) {
       const config = {
         headers: { user_id: id }
       };
@@ -80,7 +80,7 @@ class App extends React.Component {
         })
         .catch(error => console.error(error));
     }
-    if (id && !liked.includes(item_id)) {
+    if (id && jwt && !liked.includes(item_id)) {
       axios.post(likedItems(), { id, item_id })
         .then(response => {
           this.setState(state => {

@@ -113,7 +113,7 @@ class Account extends  React.Component {
                   <Feedback user_id={authUser.id} />
                 } 
               />
-  
+              
               <Route
                 path="/account/transactions"
                 render={(props) =>
