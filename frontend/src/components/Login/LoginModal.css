@@ -100,6 +100,22 @@
   text-decoration: underline;
 }
 
+.forgot-password:hover {
+  cursor: pointer;
+}
+
+.not-registered {
+  text-align: right;
+  margin: 12px 0;
+  font-family: -apple-system, BlinkMacSystemFont, Helvetica, Arial, "Segoe UI", Roboto, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 12px;
+  text-decoration: underline;
+}
+
+.not-registered:hover {
+  cursor: pointer;
+}
+
 .login-button {
   margin: 18px 0;
   max-width: 345px;

@@ -60,9 +60,10 @@ class App extends React.Component {
 
   handleLike = (item_id) => {
     const { id } = this.state.authUser;
+    const jwt = localStorage.getItem('jwt');
     let { liked } = this.state;
-    if (!id) {
-      return alert("You must log in to like an item");
+    if (!id || !jwt) {
+      this.toggleLoginModal();
     }
 
     if (id && liked.includes(item_id)) {
@@ -117,7 +118,7 @@ toggleRegisterModal = () => {
         <main>
           {
             showLoginModal
-              ? <LoginModal toggleLoginModal={this.toggleLoginModal} verifyUser={this.verifyUser} />
+              ? <LoginModal toggleLoginModal={this.toggleLoginModal} toggleRegisterModal={this.toggleRegisterModal} verifyUser={this.verifyUser} />
               : null
           }
           {

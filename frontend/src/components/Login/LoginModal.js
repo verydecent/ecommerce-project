@@ -37,6 +37,13 @@ class LoginModal extends React.Component {
     this.setState({ [id]: value});
   }
 
+  switchToRegisterModal = () => {
+    const { toggleLoginModal, toggleRegisterModal } = this.props;
+
+    toggleLoginModal();
+    toggleRegisterModal();
+  }
+
   render() {
     const { email, password } = this.state;
     const { toggleLoginModal } = this.props;
@@ -71,6 +78,7 @@ class LoginModal extends React.Component {
               />
             </div>
             <p className="forgot-password">Forgot Password?</p>
+            <p className="not-registered" onClick={this.switchToRegisterModal}>Not Register?</p>
             <div className="login-button">
               <button value="submit">Login</button>
             </div>
