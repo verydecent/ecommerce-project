@@ -15,7 +15,7 @@ function Transactions(props) {
 
       <div className="transactions-panel">
 
-        <div className="tabs">
+        <div className="transactions-tabs">
           <Link to="/account/transactions/bought" style={{ textDecoration: 'none' }}>
             <div className="bought-div">
               Bought

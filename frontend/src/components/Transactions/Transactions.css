@@ -22,7 +22,7 @@
   width: 100%;
 }
 
-.tabs {
+.transactions-tabs {
   display: flex;
   justify-content: center;
   /* width: 100%; */
