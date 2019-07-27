@@ -98,7 +98,12 @@ class Account extends  React.Component {
                 }
               />
   
-              <Route path="/account/messages" component={MessageInbox} />
+              <Route
+                path="/account/messages"
+                render={(props) =>
+                  <MessageInbox {...props} user_id={authUser.id} />
+                }
+              />
   
               <Route
                 path="/account/favorites"
