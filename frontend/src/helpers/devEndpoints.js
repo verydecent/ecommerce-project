@@ -15,6 +15,8 @@ module.exports = {
   registerUser,
   loginUser,
   messageUser,
+  getBuyingMessages,
+  getSellingMessages,
 }
 
 function authorizeUser() {
@@ -87,4 +89,12 @@ function loginUser() {
 
 function messageUser() {
   return `http://localhost:5000/api/messages`;
+}
+
+function getBuyingMessages() {
+  return `http://localhost:5000/api/messages/buying`;
+}
+
+function getSellingMessages() {
+  return `http://localhost:5000/api/messages/selling`;
 }
