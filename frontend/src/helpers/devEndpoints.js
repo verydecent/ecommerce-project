@@ -76,8 +76,8 @@ function getFeedbackByUsername(username) {
   return `http://localhost:5000/api/store/feedback/${username}`;
 }
 
-function postItem() {
-  return `http://localhost:5000/api/account/post-item`
+function postItem(id) {
+  return `http://localhost:5000/api/account/post-item/${id}`
 }
 
 function registerUser() {

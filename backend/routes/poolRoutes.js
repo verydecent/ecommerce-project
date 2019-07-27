@@ -134,7 +134,7 @@ router.get('/account/store/:id', (req, res) => {
 });
 
 // Post item by user
-router.post('/account/post-item', (req, res) => {
+router.post('/account/post-item/:id', (req, res) => {
   let { posted_by_user_id, price, shipping_price, brand, title, description, category, size, color } = req.body;
 
   // Request failing, maybe we need to change the string into integer
@@ -143,6 +143,7 @@ router.post('/account/post-item', (req, res) => {
   // Reassigning after chaning the string into integer
   // price = parseInt(price, 10);
   // shipping_price = parseInt(shipping_price, 10);
+  // console.log('req.body post-item', req.body);
   const item = {
     posted_by_user_id,
     price,
@@ -155,7 +156,7 @@ router.post('/account/post-item', (req, res) => {
     color
   };
 
-  Data('items').returning('id').insert(item)
+  Data('items').insert(item, 'id')
     .then(id => {
       res.status(200).json({ message: `Item ${id} successfully posted! `});
     })
@@ -361,15 +362,20 @@ router.post('/messages', (req, res) => {
 });
 
 // get Chat room messages based on Chat ID
-router.get('/messages/:chat_id', (req, res) => {
-  const { chat_id } = req.params;
+// router.get('/messages/:chat_id', (req, res) => {
+//   const { chat_id } = req.params;
 
-  Data('messages').where({ chat_id })
-    .then(messages => {
-      res.status(200).json(messages);
-    })
-    .catch(error => res.status(500).json({ error: "Internal server error" }));
-});
+//   Data('chat').where({ id: chat_id })
+//     .then(chat => {
+//       chat.
+//     })
+//     .catch()
+//   Data('messages').where({ chat_id })
+//     .then(messages => {
+//       res.status(200).json(messages);
+//     })
+//     .catch(error => res.status(500).json({ error: "Internal server error" }));
+// });
 
 // get users buying section messages based on user id
 router.get('/messages/buying/:id', (req, res) => {
