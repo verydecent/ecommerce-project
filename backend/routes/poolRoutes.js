@@ -332,6 +332,34 @@ router.get('/store/feedback/:username', (req, res) => {
     .catch(error => res.status(500).json({ error: "Internal server error" }));
 });
 
+// Do Messages exist with this Chat id? If so then Not new message, else create new Chat
+
+router.post('/messages', (req, res) => {
+  const { item_id, inquiring_user_id, merchant_user_id, message } = req.body;
+
+  Data('chat').where({ item_id, merchant_user_id, inquiring_user_id }).first()
+    .then(existing_chat => {
+      if (existing_chat) {
+        Data('messages').insert({ chat_id: existing_chat.id, author_id: inquiring_user_id, message })
+          .then(something => {
+            res.status(200).json({ message: "Message Sent!" })
+          })
+          .catch(error => res.status(500).json({ error: "Internal server error" }));
+      }
+      else {
+        Data('chat').insert({ item_id, merchant_user_id, inquiring_user_id }, 'id')
+          .then(ids => ids[0])
+          .then(chat_id => {
+            Data('messages').insert({ chat_id, author_id: inquiring_user_id, message })
+              .then(res.status(200).json({ message: "Message Sent!" }))
+              .catch(error => res.status(500).json({ error: "Internal server error" }));
+          })
+          .catch(error => res.status(500).json({ error: "Internal server error" }));
+      }
+    })
+    .catch(error => res.status(500).json({ error: "Internal server error" }));
+});
+
 
 // put request to update users item
 // Authentication: User needs to be verified as the owner of the item
