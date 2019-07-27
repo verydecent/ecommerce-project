@@ -27,6 +27,7 @@ class PostItem extends React.Component {
 
   handleSubmit = (event) => {
     const { price, shipping_price, brand, title, description, category, size, color } = this.state;
+
     const body = {
       posted_by_user_id: this.props.user_id,
       price,
@@ -38,10 +39,8 @@ class PostItem extends React.Component {
       size,
       color
     };
-
-    console.log('body', body);
     
-    axios.post(postItem(), body)
+    axios.post(postItem(this.props.user_id), body)
       .then(res => {
         this.setState({
           posted_by_user_id: '',
@@ -73,7 +72,6 @@ class PostItem extends React.Component {
   render() {
     const { price, shipping_price, brand, title, description, category, size, color, error, successResponse } = this.state;
 
-    console.log("The state", this.state);
     const isInvalid =
       price === '' ||
       shipping_price === '' ||
