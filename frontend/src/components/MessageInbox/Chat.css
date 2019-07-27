@@ -11,11 +11,11 @@
 
 .chat-icon-panel {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
 }
 
 .chat-icon-img {
-  margin-right: 20px;
+  margin-right: 30px;
 }
 
 .chat-icon-img img{
@@ -31,7 +31,7 @@
 }
 
 .chat-icon-details h2 {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
   padding: 10px 0;
   text-transform: uppercase;

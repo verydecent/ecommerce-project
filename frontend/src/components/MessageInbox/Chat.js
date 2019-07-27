@@ -1,8 +1,8 @@
 import React from 'react';
 import formatDateOnly from '../../Helpers/formatDateOnly';
-import './ChatIcon.css';
+import './Chat.css';
 
-class ChatIcon extends React.Component {
+class Chat extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -26,12 +26,10 @@ class ChatIcon extends React.Component {
         </div>
         <div className="chat-icon-date">
           <h3>{formatDateOnly(chat_created_at)}</h3>
-          {/* <NavLink className="nav__link"><span>Purchase</span></NavLink>
-          <NavLink className="nav__link"><span>Reply</span></NavLink> */}
         </div>
       </div>
     );
   }
 }
 
-export default ChatIcon;
+export default Chat;

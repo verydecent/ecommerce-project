@@ -4,15 +4,13 @@ import axios from 'axios';
 
 import BuyingMessages from './BuyingMessages';
 import SellingMessages from './SellingMessages';
+import ChatMessages from './ChatMessages';
 
 import './MessageInbox.css';
 
 class MessageInbox extends React.Component {
   constructor() {
     super();
-    this.state = {
-
-    };
   }
   render() {
     const { user_id } = this.props;
@@ -34,8 +32,15 @@ class MessageInbox extends React.Component {
           </div>
   
           <div className="messages-list">
-  
             <Route
+              path="/account/messages/chat/:chat_id"
+              render={(props) =>
+                <ChatMessages {...props} />
+              }
+            />
+
+            <Route
+              exact
               path="/account/messages/buying"
               render={(props) =>
                 <BuyingMessages {...props} user_id={user_id}
@@ -44,13 +49,16 @@ class MessageInbox extends React.Component {
             />
    
              <Route
+               exact
                path="/account/messages/selling"
                render={(props) =>
                  <SellingMessages {...props} user_id={user_id}
                  />
                }
             />
-  
+
+
+
           </div>
         </div>
       </div>
