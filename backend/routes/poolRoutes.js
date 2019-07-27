@@ -360,6 +360,17 @@ router.post('/messages', (req, res) => {
     .catch(error => res.status(500).json({ error: "Internal server error" }));
 });
 
+// get Chat room messages based on Chat ID
+router.get('/messages/:chat_id', (req, res) => {
+  const { chat_id } = req.params;
+
+  Data('messages').where({ chat_id })
+    .then(messages => {
+      res.status(200).json(messages);
+    })
+    .catch(error => res.status(500).json({ error: "Internal server error" }));
+});
+
 // get users buying section messages based on user id
 router.get('/messages/buying/:id', (req, res) => {
   const { id } = req.params;
@@ -370,11 +381,7 @@ router.get('/messages/buying/:id', (req, res) => {
     .join('items', 'chat.item_id', 'items.id')
     .join('users', 'chat.merchant_user_id', 'users.id')
     .where('chat.inquiring_user_id', id)
-    .then(chatArr => {
-      // Will need to update Images here
-      console.log('-----  chatArr  -----', chatArr)
-      res.status(200).json(chatArr);
-    })
+    .then(chatArr => res.status(200).json(chatArr))
     .catch(error => res.status(500).json({ error: "Internal server error" }));
 });
 
