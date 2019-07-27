@@ -1,31 +1,28 @@
+
 exports.up = function(knex) {
-  return knex.schema.createTable('feedback', (table) => {
+  return knex.schema.createTable('messages', (table) => {
     table
       .increments();
     table
-      .integer('item_id')
-      .unsigned()
+      .integer('chat_id')
       .notNullable()
-      .references('items.id')
+      .references('chat.id')
       .onDelete('CASCADE');
     table
-      .integer('author_user_id')
-      .unsigned()
+      .integer('author_id')
       .notNullable()
       .references('users.id')
       .onDelete('CASCADE');
     table
-      .integer('rating')
+      .text('message')
       .notNullable();
     table
-      .text('description')
-      .notNullable();
     table
       .timestamp('created_at')
       .defaultTo(knex.fn.now());
-  });
+  })
 };
 
 exports.down = function(knex) {
-  return knex.schema.dropTableIfExists('feedback'); 
+  return knex.schema.dropTableIfExists('messages');
 };
