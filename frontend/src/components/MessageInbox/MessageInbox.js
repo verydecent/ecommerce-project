@@ -15,6 +15,7 @@ class MessageInbox extends React.Component {
     };
   }
   render() {
+    const { user_id } = this.props;
     return (
       <div className="message-inbox-container">
         <div className="message-inbox-panel">
@@ -37,7 +38,7 @@ class MessageInbox extends React.Component {
             <Route
               path="/account/messages/buying"
               render={(props) =>
-                <BuyingMessages {...props}
+                <BuyingMessages {...props} user_id={user_id}
                 />
               }
             />
@@ -45,7 +46,7 @@ class MessageInbox extends React.Component {
              <Route
                path="/account/messages/selling"
                render={(props) =>
-                 <SellingMessages {...props}
+                 <SellingMessages {...props} user_id={user_id}
                  />
                }
             />
