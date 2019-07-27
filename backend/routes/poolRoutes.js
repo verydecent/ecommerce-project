@@ -360,9 +360,34 @@ router.post('/messages', (req, res) => {
     .catch(error => res.status(500).json({ error: "Internal server error" }));
 });
 
+// get users buying section messages based on user id
+router.get('/messages/buying/:id', (req, res) => {
+  const { id } = req.params;
 
-// put request to update users item
-// Authentication: User needs to be verified as the owner of the item
-// Matching user ID to the item ID? Not enough... too simple and easy people can guess users ID
+  Data('chat')
+    // .select('items.picture')
+    .select('items.title as item_title', 'users.username as merchant_username', 'chat.id as chat_id')
+    .join('items', 'chat.item_id', 'items.id')
+    .join('users', 'chat.merchant_user_id', 'users.id')
+    .where('chat.inquiring_user_id', id)
+    .then(chatArr => {
+      // Need Item Picture, and Item Title
+      // Need Other Parties Username
+
+      console.log('-----  chatArr  -----', chatArr)
+      
+
+    })
+    .catch(error => res.status(500).json({ error: "Internal server error" }));
+});
+
+// get users selling section messages based on user id
+router.get('/messages/selling/:id', (req, res) => {
+  const { id } = req.params;
+
+  // Data('chat').where({ merchant_user_id: id })
+  // .then()
+  // .catch(error => res.status(500).json({ error: "Internal server error" }));
+});
 
 module.exports = router;
