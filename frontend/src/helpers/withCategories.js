@@ -16,16 +16,14 @@ export default function (Component) {
         .then(({ data }) => {
           this.setState({ items: data });
         })
-        .catch(err => {
-          console.error( `Error ${err} `);
+        .catch(error => {
+          console.error(error);
         });
     }
 
     render() {
       const { items } = this.state;
       const { id } = this.props.match.params;
-      console.log('w/Cat State', items);
-      console.log('param id', id);
 
       if (id == "accessories") {        
         const filtered = items.filter((item) => item.category == 'accessory');

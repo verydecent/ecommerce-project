@@ -14,6 +14,7 @@ module.exports = {
   postItem,
   registerUser,
   loginUser,
+  messageUser,
 }
 
 function authorizeUser() {
@@ -82,4 +83,8 @@ function registerUser() {
 
 function loginUser() {
   return 'http://localhost:5000/api/auth/login';
+}
+
+function messageUser() {
+  return `http://localhost:5000/api/messages`;
 }
