@@ -9,6 +9,16 @@ exports.up = function(knex) {
       .references('items.id')
       .onDelete('CASCADE');
     table
+      .integer('merchant_user_id')
+      .notNullable()
+      .references('users.id')
+      .onDelete('CASCADE');
+    table
+      .integer('inquiring_user_id')
+      .notNullable()
+      .references('users.id')
+      .onDelete('CASCADE');
+    table
       .timestamp('created_at')
       .defaultTo(knex.fn.now());
   })

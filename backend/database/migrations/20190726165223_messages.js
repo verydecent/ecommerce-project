@@ -17,7 +17,6 @@ exports.up = function(knex) {
       .text('message')
       .notNullable();
     table
-    table
       .timestamp('created_at')
       .defaultTo(knex.fn.now());
   })
