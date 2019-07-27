@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-
+import MessageModal from '../MessageInbox/MessageModal';
 import formatDate from '../../Helpers/formatDate';
 import { getItems, getUser, purchaseItem } from '../../Helpers/devEndpoints';
 import './Item.css';
@@ -12,8 +12,10 @@ class Item extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      showMessageModal: false,
       item: {},
       merchant: {},
+      message: '',
     }
   }
 
@@ -44,7 +46,6 @@ class Item extends React.Component {
       toggleLoginModal();
     }
     else {
-      console.log('user_id', user_id);
       axios.put(purchaseItem(id), { user_id })
         .then(response => {
           // Potentially move this to app, in order to refresh the whole app after setState because of later request to transactions or could do it in componentDidMount of Transactions
@@ -59,12 +60,13 @@ class Item extends React.Component {
     }
   }
 
-  handleMessage = (event) => {
-    if (!this.props.user_id || !localStorage.getItem('jwt')) {
-      alert("You must log in to message user")
+  toggleMessageModal = () => {
+    const { user_id, toggleLoginModal } = this.props;
+    if (!user_id || !localStorage.getItem('jwt')) {
+      toggleLoginModal();
     }
     else {
-      alert("Messaged!");
+      this.setState((prevState) => ({ showMessageModal: !prevState.showMessageModal }));
     }
   }
 
@@ -80,9 +82,15 @@ class Item extends React.Component {
     const { user_id, liked, handleLike } = this.props;
     const { is_available, category, created_at, color, description, id, price, posted_by_user_id, shipping_price, size, title, brand  } = this.state.item;
     const { username, location } = this.state.merchant;
-    console.log('merchant?', this.state)
+    const { showMessageModal } = this.state;
+
    return (
       <div className="item-container">
+        {
+          showMessageModal
+            ? <MessageModal showMessageModal={showMessageModal} item_id={id} user_id={user_id} toggleMessageModal={this.toggleMessageModal} />
+            : null
+        }
         <h4>Item</h4>
 
         <div className="item-panel">
@@ -151,12 +159,11 @@ class Item extends React.Component {
                             <button onClick={this.handlePurchase}>Purchase</button>
                           </div>
                           <div className="message">
-                            <button onClick={this.handleMessage}>Message</button>
+                            <button onClick={this.toggleMessageModal}>Message</button>
                           </div>
                         </div>
                       )             
                   )
-                
                 : (<div className="sold">SOLD</div>)
             }
             <div className="user-card">
