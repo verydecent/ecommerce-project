@@ -366,17 +366,14 @@ router.get('/messages/buying/:id', (req, res) => {
 
   Data('chat')
     // .select('items.picture')
-    .select('items.title as item_title', 'users.username as merchant_username', 'chat.id as chat_id')
+    .select('items.title as item_title', 'users.username as merchant_username', 'chat.id as chat_id', 'chat.created_at as chat_created_at')
     .join('items', 'chat.item_id', 'items.id')
     .join('users', 'chat.merchant_user_id', 'users.id')
     .where('chat.inquiring_user_id', id)
     .then(chatArr => {
-      // Need Item Picture, and Item Title
-      // Need Other Parties Username
-
+      // Will need to update Images here
       console.log('-----  chatArr  -----', chatArr)
-      
-
+      res.status(200).json(chatArr);
     })
     .catch(error => res.status(500).json({ error: "Internal server error" }));
 });
