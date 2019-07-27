@@ -93,7 +93,7 @@
 }
 
 .message-button {
-  margin: 30px 0;
+  padding: 26px 0 8px 0;
   max-width: 345px;
 }
 
@@ -115,6 +115,16 @@
 
 .message-button button:hover {
   cursor: pointer;
+}
+
+.success-response {
+  padding: 12px 0 30px 0;
+  height: 12px;
+  font-family: -apple-system, BlinkMacSystemFont, Helvetica, Arial, "Segoe UI", Roboto, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #609180;
 }
 
 .message-content-spacer {

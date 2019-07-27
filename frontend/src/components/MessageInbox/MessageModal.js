@@ -8,24 +8,25 @@ class MessageModal extends React.Component {
     super();
     this.state = {
       message: '',
+      successResponse: '',
     };
   }
 
   submitMessage = (event) => {
-    const { user_id } = this.props;
-    const { id } = this.props.match.params;
+    const { item_id, inquiring_user_id, merchant_user_id, toggleMessageModal } = this.props;
     const { message } = this.state;
 
     const body = {
-      item_id: id,
-      user_id,
+      item_id,
+      inquiring_user_id,
+      merchant_user_id,
       message,
     }
 
     axios.post(messageUser(), body)
       .then(response => {
-        console.log(response.data);
-
+        this.setState({ successResponse: response.data.message });
+        setTimeout(toggleMessageModal, 1200);
       })
       .catch(error => console.error(error));
 
@@ -40,6 +41,8 @@ class MessageModal extends React.Component {
   render() {
     const { message } = this.state;
     const { toggleMessageModal } = this.props;
+    const { successResponse } = this.state;
+    const successfullySent = successResponse  && <p>{successResponse}</p>;
     return (
       <div className="message-modal-container">
         <div className="message-modal-content">
@@ -63,6 +66,9 @@ class MessageModal extends React.Component {
               <button value="submit">Send Message</button>
             </div>
           </form>
+          <div className="success-response">
+            {successfullySent}
+          </div>
         </div>
       </div>
     );

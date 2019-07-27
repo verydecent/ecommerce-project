@@ -82,13 +82,14 @@ class Item extends React.Component {
     const { user_id, liked, handleLike } = this.props;
     const { is_available, category, created_at, color, description, id, price, posted_by_user_id, shipping_price, size, title, brand  } = this.state.item;
     const { username, location } = this.state.merchant;
+    const merchant_user_id = this.state.merchant.id;
     const { showMessageModal } = this.state;
 
    return (
       <div className="item-container">
         {
           showMessageModal
-            ? <MessageModal showMessageModal={showMessageModal} item_id={id} user_id={user_id} toggleMessageModal={this.toggleMessageModal} />
+            ? <MessageModal showMessageModal={showMessageModal} item_id={id} inquiring_user_id={user_id} merchant_user_id={merchant_user_id} toggleMessageModal={this.toggleMessageModal} />
             : null
         }
         <h4>Item</h4>
