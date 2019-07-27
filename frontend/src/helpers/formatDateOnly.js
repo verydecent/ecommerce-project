@@ -4,7 +4,6 @@ export default function formatDateOnly(date) {
   let month = splitDate[1];
   const day = splitDate[2].slice(0, 2);
 
-console.log(typeof month)  
   switch (month) {
     case '01':
       month = 'January';

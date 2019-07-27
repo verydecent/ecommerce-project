@@ -17,6 +17,7 @@ module.exports = {
   messageUser,
   getBuyingChat,
   getSellingChat,
+  getChatMessages,
 }
 
 function authorizeUser() {
@@ -97,4 +98,8 @@ function getBuyingChat(id) {
 
 function getSellingChat(id) {
   return `http://localhost:5000/api/messages/selling/${id}`;
+}
+
+function getChatMessages(chat_id) {
+  return `http://localhost:5000/api/messages/${chat_id}`;
 }

@@ -1,7 +1,7 @@
 .chat-icon-container {
   width: 100%;
 
-  border-top: 1px solid #cbcbcb;
+  border: 1px solid #cbcbcb;
   display: flex;
   /* align-items: flex-start; */
   align-items: center;
