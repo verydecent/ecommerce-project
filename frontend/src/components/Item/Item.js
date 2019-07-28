@@ -89,7 +89,7 @@ class Item extends React.Component {
       <div className="item-container">
         {
           showMessageModal
-            ? <MessageModal showMessageModal={showMessageModal} item_id={id} inquiring_user_id={user_id} merchant_user_id={merchant_user_id} toggleMessageModal={this.toggleMessageModal} />
+            ? <MessageModal showMessageModal={showMessageModal} item_id={id} author_id={user_id} inquiring_user_id={user_id} merchant_user_id={merchant_user_id} toggleMessageModal={this.toggleMessageModal} />
             : null
         }
         <h4>Item</h4>
