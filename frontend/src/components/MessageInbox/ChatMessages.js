@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { NavLink } from 'react-router-dom';
 import formatDateOnly from '../../Helpers/formatDateOnly';
-import { getChatMessages } from '../../Helpers/devEndpoints';
+import { getChatMessages, purchaseItem } from '../../Helpers/devEndpoints';
 import MessageModal from './MessageModal';
 import Message from './Message.js';
 import './ChatMessages.css';
@@ -18,12 +18,10 @@ class ChatMessages extends React.Component {
   }
 
   componentDidMount() {
-    console.log("CDM----messsages");
     const { chat_id } = this.props.match.params;
     axios.get(getChatMessages(chat_id))
       .then(response => {
         const { chat, messages } = response.data;
-        console.log('-----response.data.messages------', messages);
         this.setState({ chat, messages });
       })
       .catch(error => console.error(error));
@@ -33,8 +31,18 @@ class ChatMessages extends React.Component {
     this.setState((prevState) => ({ showeMessageModal: !prevState.showeMessageModal }));
   }
 
-  resetState = () => {
-    this.setState({});
+
+  handlePurchase = (event) => {
+    const { user_id } = this.props;
+    const { item_id } = this.state.chat;
+
+    axios.put(purchaseItem(item_id), { user_id })
+      .then(response => {
+        alert(response.data.message);
+      })
+      .catch(error => {
+        console.error(error);
+      });
   }
 
   render() {
@@ -43,14 +51,12 @@ class ChatMessages extends React.Component {
     const { user_id } = this.props;
 
     const mappedMessages = messages.map((message, index) => (<Message key={index} user_id={user_id} message={message} />))
-    // mappedMessages.reverse();
-    console.log('------mapped messsages order- --------', mappedMessages)
     
     return (
       <div className="chat-messages-container">
         {
           showeMessageModal
-            ? <MessageModal showMessageModal={this.showMessageModal} item_id={item_id} author_id={user_id} inquiring_user_id={inquiring_user_id} merchant_user_id={merchant_user_id} toggleMessageModal={this.toggleMessageModal} resetState={this.resetState} />
+            ? <MessageModal showMessageModal={this.showMessageModal} item_id={item_id} author_id={user_id} inquiring_user_id={inquiring_user_id} merchant_user_id={merchant_user_id} toggleMessageModal={this.toggleMessageModal} />
             : null
         }
         <div className="chat-messages-header">
@@ -61,12 +67,10 @@ class ChatMessages extends React.Component {
             {/* <h2>{item_title}</h2> */}
             {/* <h3>{merchant_username}</h3> */}
           </div>
-        </div>
-        <div className="chat-messages-header-date">
-          {/* <h3>{formatDateOnly(chat_created_at)}</h3> */}
-        </div>
-        <div className="chat-messages-buttons">
-          <button onClick={this.toggleMessageModal}>Message</button>
+          <div className="chat-messages-buttons">
+            <button className="chat-messages-purchase-button" onClick={this.handlePurchase}>Purchase</button>
+            <button className="chat-messages-reply-button" onClick={this.toggleMessageModal}>Reply</button>
+          </div>
         </div>
 
         <div className="chat-messages-messages">

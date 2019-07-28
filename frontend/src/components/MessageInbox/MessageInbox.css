@@ -36,10 +36,6 @@
   letter-spacing: 1px;
 }
 
-.buying-div:hover {
-  background:darkcyan;   
-}
-
 .selling-div {
   border: 1px solid black;
   font-size: 12px;
@@ -57,10 +53,6 @@
   letter-spacing: 1px;
 
   /* background: white; */
-}
-
-.selling-div:hover {
-  background:darkcyan;   
 }
 
 .message-inbox-list {

@@ -58,10 +58,10 @@
   line-height: 20px;
 }
 
-.message-form {
+.message-modal-form {
 }
 
-.message-field {
+.message-modal-field {
   width: 345px;
 }
 
@@ -92,12 +92,12 @@
   font-family: -apple-system, BlinkMacSystemFont, Helvetica, Arial, "Segoe UI", Roboto, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
-.message-button {
+.message-modal-button {
   padding: 26px 0 8px 0;
   max-width: 345px;
 }
 
-.message-button button {
+.message-modal-button button {
   padding: 14px 25px;
 
   width: 100%;
@@ -113,11 +113,11 @@
   font-size: 12px;
 }
 
-.message-button button:hover {
+.message-modal-button button:hover {
   cursor: pointer;
 }
 
-.success-response {
+.modal-success-response {
   padding: 12px 0 30px 0;
   height: 12px;
   font-family: -apple-system, BlinkMacSystemFont, Helvetica, Arial, "Segoe UI", Roboto, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";

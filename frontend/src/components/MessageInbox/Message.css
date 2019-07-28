@@ -14,15 +14,28 @@
   margin-right: 14px;
 }
 
-.message-message-user {
-  font-size: 12px;
-  padding: 16px 24px;
+.message-panel-user {
   margin-right: 12px;
+}
+
+.message-message-user {
+  padding: 16px 24px;
+  min-width: 100px;
+  max-width: 300px;
+  font-size: 12px;
+  line-height: 18px;
   background: #609180;
   color: #fff;
   border-radius:12px 12px 0 12px;
-  min-width: 100px;
-  max-width: 200px
+}
+
+.message-date-user {
+  font-size: 8px;
+  font-weight: 600;
+  line-height: 12px;
+  padding: 0 6px 6px 0;
+  display: flex;
+  justify-content: flex-end;
 }
 
 /* Styling for other user */
@@ -40,14 +53,24 @@
   margin-left: 14px;
 }
 
-.message-message {
-  font-size: 12px;
-  padding: 16px 24px;
+.message-panel {
   margin-left: 12px;
-  background: #f0f0f0;
-  color: #000;
-  border-radius:12px 12px 12px  0;
+}
+
+.message-message {
+  padding: 16px 24px;
   min-width: 100px;
-  max-width: 160px;
-  text-align: left;
+  max-width: 300px;
+  font-size: 12px;
+  line-height: 18px;
+  color: #000;
+  background: #f0f0f0;
+  border-radius:12px 12px 12px  0;
+}
+
+.message-date {
+  font-size: 8px;
+  font-weight: 600;
+  line-height: 12px;
+  padding: 0 0 6px 6px;
 }
