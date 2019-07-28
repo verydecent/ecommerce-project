@@ -341,7 +341,7 @@ router.post('/messages', (req, res) => {
   Data('chat').where({ item_id, merchant_user_id, inquiring_user_id }).first()
     .then(existing_chat => {
       if (existing_chat) {
-        console.log('---exists true---', existing_chat);
+        console.log('---exists false---', existing_chat);
 
         Data('messages').insert({ chat_id: existing_chat.id, author_id: inquiring_user_id, message })
           .then(something => {
@@ -369,6 +369,7 @@ router.get('/messages/:chat_id', (req, res) => {
   const { chat_id } = req.params;
 
   Data('chat').where({ id: chat_id })
+    .then(chatArr => chatArr[0])
     .then(chat => {
         Data('messages')
             // Select users images too in future
@@ -376,7 +377,7 @@ router.get('/messages/:chat_id', (req, res) => {
           .join('users', 'messages.author_id', 'users.id')
           .where('messages.chat_id', chat_id)
             .then(messages => {
-              res.status(200).json({ messages, chat  });
+              res.status(200).json({ messages, chat });
             })
             .catch(error => res.status(500).json({ error: "Internal server error" }));
     })
