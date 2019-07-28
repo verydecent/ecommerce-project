@@ -263,13 +263,14 @@ router.get('/user/:id/sold-items/', (req, res) => {
 
 router.post('/account/post-feedback', (req, res) => {
 
-  const { item_id, feedback_author_id, feedback_recipient_id, description } = req.body;
+  const { item_id, feedback_author_id, feedback_recipient_id, rating, description } = req.body;
 
-  Data('feedback').insert({ item_id, author_user_id: feedback_author_id, description}, 'id')
+  Data('feedback').insert({ item_id, author_user_id: feedback_author_id, rating, description}, 'id')
     .then(idArr => {
+      console.log(idArr)
       const id = idArr[0];
       Data('users_feedback').insert({ feedback_id: id, recipient_user_id: feedback_recipient_id })
-        .then(res.status(200).json({ message: `Feedback posted for Item ${item_id}` }))
+        .then(res.status(200).json({ message: "Feedback Sent!" }))
         .catch(error => res.status(500).json({ error: "Internal server error" }));
     })
     .catch(error => res.status(500).json({ error: "Internal server error" }));
@@ -368,8 +369,7 @@ router.post('/messages', (req, res) => {
 router.get('/messages/:chat_id', (req, res) => {
   const { chat_id } = req.params;
 
-  Data('chat').where({ id: chat_id })
-    .then(chatArr => chatArr[0])
+  Data('chat').where({ id: chat_id }).first()
     .then(chat => {
         Data('messages')
             // Select users images too in future
@@ -379,13 +379,14 @@ router.get('/messages/:chat_id', (req, res) => {
           .orderBy('created_at', 'desc')
             .then(messages => {
               res.status(200).json({ messages, chat });
+              // res.status(200).json({ messages, chat, item_title });
             })
             .catch(error => res.status(500).json({ error: "Internal server error" }));
     })
     .catch(error => res.status(500).json({ error: "Internal server error" }));
 });
 
-// get users buying section messages based on user id
+// get users buying section Chats based on user id
 router.get('/messages/buying/:id', (req, res) => {
   const { id } = req.params;
 
@@ -400,7 +401,7 @@ router.get('/messages/buying/:id', (req, res) => {
       .catch(error => res.status(500).json({ error: "Internal server error" }));
 });
 
-// get users selling section messages based on user id
+// get users selling section Chats based on user id
 router.get('/messages/selling/:id', (req, res) => {
   const { id } = req.params;
 
