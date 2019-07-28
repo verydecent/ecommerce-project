@@ -40,7 +40,7 @@ class Navigation extends React.Component {
                 <NavLink className="nav__link" to="/account/settings">
                   <div className="dropdown-item">Settings</div>
                 </NavLink>
-                <NavLink className="nav__link" to="/account/messages">
+                <NavLink className="nav__link" to="/account/messages/buying">
                   <div className="dropdown-item">Messages</div>
                 </NavLink>
                 <NavLink className="nav__link" to="/account/store">
