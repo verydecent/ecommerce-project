@@ -26,7 +26,8 @@ class BuyingMessages extends React.Component {
     const { chats } = this.state;
 
     const mappedChats = chats.map((chat, index) => <Link key={index} className="nav__link" to={`/account/messages/chat/${chat.chat_id}`}><Chat username={chat.merchant_username} chat={chat} /></Link>);
-
+    mappedChats.reverse();
+    
     return (
       <div className="buying-messages-container">
         {mappedChats}

@@ -30,7 +30,8 @@ class ChatMessages extends React.Component {
     const { user_id } = this.props;
 
     const mappedMessages = messages.map((message, index) => (<Message key={index} user_id={user_id} message={message} />))
-
+    mappedMessages.reverse();
+    
     return (
       <div className="chat-messages-container">
         <div className="chat-messages-header">

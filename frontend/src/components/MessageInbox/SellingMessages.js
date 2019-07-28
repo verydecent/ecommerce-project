@@ -27,7 +27,8 @@ class SellingMessages extends React.Component {
     const { chats } = this.state;
 
     const mappedChats = chats.map((chat, index) => <Link key={index} className="nav__link" to={`/account/messages/chat/${chat.chat_id}`}><Chat username={chat.inquiring_username} chat={chat} /></Link>);
-
+    // Reverse so that the latest messages appear on top
+    mappedChats.reverse();
     return (
       <div className="selling-messages-container">
         {mappedChats}
