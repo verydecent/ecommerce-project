@@ -1,8 +1,43 @@
+/* Styling for accounts user */
+
+.message-container-user {
+  width: 100%;
+  border-top: 1px solid #cbcbcb;
+  padding: 20px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.message-user-info-user {
+
+}
+
+.message-message-user {
+  font-size: 12px;
+  border: 1px solid blue;
+  padding: 8px 16px;
+  margin-right: 10px;
+}
+
+/* Styling for other user */
+
 .message-container {
   width: 100%;
   border-top: 1px solid #cbcbcb;
   padding: 20px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.message-user-info {
+
 }
 
 .message-message {
+  font-size: 12px;
+  border: 1px solid blue;
+  padding: 8px 16px;
+  margin-left: 10px;
 }

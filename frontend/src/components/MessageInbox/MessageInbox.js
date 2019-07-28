@@ -32,10 +32,11 @@ class MessageInbox extends React.Component {
           </div>
   
           <div className="messages-list">
+            
             <Route
               path="/account/messages/chat/:chat_id"
               render={(props) =>
-                <ChatMessages {...props} />
+                <ChatMessages {...props} user_id={user_id} />
               }
             />
 
@@ -43,8 +44,7 @@ class MessageInbox extends React.Component {
               exact
               path="/account/messages/buying"
               render={(props) =>
-                <BuyingMessages {...props} user_id={user_id}
-                />
+                <BuyingMessages {...props} user_id={user_id} />
               }
             />
    
@@ -52,8 +52,7 @@ class MessageInbox extends React.Component {
                exact
                path="/account/messages/selling"
                render={(props) =>
-                 <SellingMessages {...props} user_id={user_id}
-                 />
+                 <SellingMessages {...props} user_id={user_id} />
                }
             />
 

@@ -25,7 +25,7 @@ class BuyingMessages extends React.Component {
   render() {
     const { chats } = this.state;
 
-    const mappedChats = chats.map((chat, index) => <Link key={index} className="nav__links" to={`/account/messages/chat/${chat.chat_id}`}><Chat chat={chat} /></Link>);
+    const mappedChats = chats.map((chat, index) => <Link key={index} className="nav__link" to={`/account/messages/chat/${chat.chat_id}`}><Chat username={chat.merchant_username} chat={chat} /></Link>);
 
     return (
       <div className="buying-messages-container">

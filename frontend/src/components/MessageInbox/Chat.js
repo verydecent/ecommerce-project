@@ -11,7 +11,8 @@ class Chat extends React.Component {
   }
 
   render() {
-    const { item_title, merchant_username, chat_created_at } = this.props.chat;
+    const { item_title, chat_created_at } = this.props.chat;
+    const { username } = this.props;
 
     return (
       <div className="chat-icon-container">
@@ -21,7 +22,7 @@ class Chat extends React.Component {
           </div>
           <div className="chat-icon-details">
             <h2>{item_title}</h2>
-            <h3>{merchant_username}</h3>
+            <h3>{username}</h3>
           </div>
         </div>
         <div className="chat-icon-date">
