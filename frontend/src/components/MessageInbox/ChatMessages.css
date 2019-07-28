@@ -20,3 +20,8 @@
   border-radius: 60px;
   margin-right: 8px;
 }
+
+.chat-messages-messages {
+  display: flex;
+  flex-direction: column;
+}

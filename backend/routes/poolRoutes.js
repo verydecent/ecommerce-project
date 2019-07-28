@@ -336,14 +336,14 @@ router.get('/store/feedback/:username', (req, res) => {
 // Do Messages exist with this Chat id? If so then Not new message, else create new Chat
 
 router.post('/messages', (req, res) => {
-  const { item_id, inquiring_user_id, merchant_user_id, message } = req.body;
+  const { author_id, item_id, inquiring_user_id, merchant_user_id, message } = req.body;
 
   Data('chat').where({ item_id, merchant_user_id, inquiring_user_id }).first()
     .then(existing_chat => {
       if (existing_chat) {
-        console.log('---exists false---', existing_chat);
+        console.log('---exists true---', existing_chat);
 
-        Data('messages').insert({ chat_id: existing_chat.id, author_id: inquiring_user_id, message })
+        Data('messages').insert({ chat_id: existing_chat.id, author_id, message })
           .then(something => {
             res.status(200).json({ message: "Message Sent!" })
           })
@@ -354,7 +354,7 @@ router.post('/messages', (req, res) => {
         Data('chat').insert({ item_id, merchant_user_id, inquiring_user_id }, 'id')
           .then(ids => ids[0])
           .then(chat_id => {
-            Data('messages').insert({ chat_id, author_id: inquiring_user_id, message })
+            Data('messages').insert({ chat_id, author_id, message })
               .then(res.status(200).json({ message: "Message Sent!" }))
               .catch(error => res.status(500).json({ error: "Internal server error" }));
           })
@@ -376,6 +376,7 @@ router.get('/messages/:chat_id', (req, res) => {
           .select('users.username', 'messages.message', 'messages.created_at', 'messages.author_id')
           .join('users', 'messages.author_id', 'users.id')
           .where('messages.chat_id', chat_id)
+          .orderBy('created_at', 'desc')
             .then(messages => {
               res.status(200).json({ messages, chat });
             })
@@ -394,6 +395,7 @@ router.get('/messages/buying/:id', (req, res) => {
     .join('items', 'chat.item_id', 'items.id')
     .join('users', 'chat.merchant_user_id', 'users.id')
     .where('chat.inquiring_user_id', id)
+    .orderBy('chat_created_at', 'desc')
       .then(chatArr => res.status(200).json(chatArr))
       .catch(error => res.status(500).json({ error: "Internal server error" }));
 });
@@ -406,6 +408,7 @@ router.get('/messages/selling/:id', (req, res) => {
     .select('items.title as item_title', 'users.username as inquiring_username', 'chat.id as chat_id', 'chat.created_at as chat_created_at')
     .join('items', 'chat.item_id', 'items.id')
     .join('users', 'chat.inquiring_user_id', 'users.id')
+    .orderBy('chat_created_at', 'desc')
     .where('chat.merchant_user_id', id)
       .then(chatArr => res.status(200).json(chatArr))
       .catch(error => res.status(500).json({ error: "Internal server error" }));

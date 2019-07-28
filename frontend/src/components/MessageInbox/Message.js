@@ -2,8 +2,9 @@ import React from 'react';
 import './Message.css';
 
 function Message(props) {
-  const { message, username, author_id } = props.message;
+  const { message, username, author_id, created_at } = props.message;
   const { user_id } = props;
+  console.log(`author_id: ${author_id}, created_at: ${created_at}, `);
 
   if (author_id === user_id) {
     return (
@@ -12,7 +13,7 @@ function Message(props) {
           {message}
         </div>
         <div className="message-user-info-user">
-          {username}
+          Me
         </div>
       </div>
     );

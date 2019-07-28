@@ -3,21 +3,26 @@
 .message-container-user {
   width: 100%;
   border-top: 1px solid #cbcbcb;
-  padding: 20px 30px;
+  padding: 20px;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: flex-end;
+
 }
 
 .message-user-info-user {
-
+  margin-right: 14px;
 }
 
 .message-message-user {
   font-size: 12px;
-  border: 1px solid blue;
-  padding: 8px 16px;
-  margin-right: 10px;
+  padding: 16px 24px;
+  margin-right: 12px;
+  background: #609180;
+  color: #fff;
+  border-radius:12px 12px 0 12px;
+  min-width: 100px;
+  max-width: 200px
 }
 
 /* Styling for other user */
@@ -25,19 +30,24 @@
 .message-container {
   width: 100%;
   border-top: 1px solid #cbcbcb;
-  padding: 20px 30px;
+  padding: 20px;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: flex-start;
 }
 
 .message-user-info {
-
+  margin-left: 14px;
 }
 
 .message-message {
   font-size: 12px;
-  border: 1px solid blue;
-  padding: 8px 16px;
-  margin-left: 10px;
+  padding: 16px 24px;
+  margin-left: 12px;
+  background: #f0f0f0;
+  color: #000;
+  border-radius:12px 12px 12px  0;
+  min-width: 100px;
+  max-width: 160px;
+  text-align: left;
 }

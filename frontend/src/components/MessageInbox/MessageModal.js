@@ -13,10 +13,11 @@ class MessageModal extends React.Component {
   }
 
   submitMessage = (event) => {
-    const { item_id, inquiring_user_id, merchant_user_id, toggleMessageModal } = this.props;
+    const { item_id, author_id, inquiring_user_id, merchant_user_id, toggleMessageModal } = this.props;;
     const { message } = this.state;
 
     const body = {
+      author_id,
       item_id,
       inquiring_user_id,
       merchant_user_id,
@@ -26,7 +27,7 @@ class MessageModal extends React.Component {
     axios.post(messageUser(), body)
       .then(response => {
         this.setState({ successResponse: response.data.message });
-        setTimeout(toggleMessageModal, 1200);
+        setTimeout(toggleMessageModal, 1000);
       })
       .catch(error => console.error(error));
 
