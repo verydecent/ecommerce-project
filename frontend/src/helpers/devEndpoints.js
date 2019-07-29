@@ -18,6 +18,9 @@ module.exports = {
   getBuyingChat,
   getSellingChat,
   getChatMessages,
+  getAccountStore,
+  updateUserInfo,
+  updateUserPassword,
 }
 
 function authorizeUser() {
@@ -102,4 +105,16 @@ function getSellingChat(id) {
 
 function getChatMessages(chat_id) {
   return `http://localhost:5000/api/messages/${chat_id}`;
+}
+
+function getAccountStore(id) {
+  return `http://localhost:5000/api/account/store/${id}`;
+}
+
+function updateUserInfo() {
+  return `http://localhost:5000/api/account/settings/update/user-info`;
+}
+
+function updateUserPassword() {
+  return `http://localhost:5000/api/account/settings/update/user-password`;
 }

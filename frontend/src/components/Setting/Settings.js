@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import { updateUserInfo, updateUserPassword } from '../../Helpers/devEndpoints';
 
 import './Settings.css';
 
@@ -21,52 +22,42 @@ class Settings extends React.Component {
     };
   }
 
-  handleSubmit =(event) => {
-    console.log('handleSubmit()');
-    event.preventDefault();
-  }
-
   updateInfo = (event) => {
     const { newUsername, newEmail, newLocation } = this.state;
     const { id, username, email, location } = this.props.authUser;
     
     let updatedInfo = { id };
-
+    
     if (newUsername && newUsername !== username) {
       updatedInfo.username = newUsername;
     }
-
+    
     if (newEmail && newEmail !== email) {
       updatedInfo.email = newEmail;
     }
-
+    
     if (newLocation && newLocation !== location) {
       updatedInfo.location = newLocation;
     }
-
-    const endpoint = 'http://localhost:5000/api/account/settings/update/user-info';
-
-    axios.put(endpoint, updatedInfo)
-      .then(res => {
-        this.setState({
-          userUpdateResponse: res.data.message,
-          newUsername: '',
-          newEmail: '',
-          newLocation: '',
-        });
-        console.log(res);
-      })
-      .catch(error => {
-        this.setState({ error });
+    
+    axios.put(updateUserInfo(), updatedInfo)
+    .then(res => {
+      this.setState({
+        userUpdateResponse: res.data.message,
+        newUsername: '',
+        newEmail: '',
+        newLocation: '',
       });
-
-
+    })
+    .catch(error => {
+      this.setState({ error });
+    });
     event.preventDefault();
   }
 
   updatePassword = (event) => {
     const { currentPassword, newPassword, confirmNewPassword } = this.state;
-    const { id } = this.props.user;
+    const { id } = this.props.authUser;
     
     const passwordInfo = {
       id,
@@ -75,22 +66,19 @@ class Settings extends React.Component {
       confirmNewPassword
     };
 
-    const endpoint = 'http://localhost:5000/api/account/settings/update/user-password';
-    axios.put(endpoint, passwordInfo)
-      .then(res => {
-        console.log(res.data.message);
-        this.setState({
-          passwordUpdateResponse: res.data.message,
-          currentPassword: '',
-          newPassword: '',
-          confirmNewPassword: '',
-        });
-      })
-      .catch(error => {
-        this.setState({ error });
+    axios.put(updateUserPassword(), passwordInfo)
+    .then(res => {
+      console.log(res.data.message);
+      this.setState({
+        passwordUpdateResponse: res.data.message,
+        currentPassword: '',
+        newPassword: '',
+        confirmNewPassword: '',
       });
-    
-    console.log(passwordInfo);
+    })
+    .catch(error => {
+      this.setState({ error });
+    });
     event.preventDefault();
   }
 
@@ -101,7 +89,7 @@ class Settings extends React.Component {
 
   render() {
     const { newUsername, newEmail, newLocation, currentPassword, newPassword, confirmNewPassword, error, userUpdateResponse, passwordUpdateResponse } = this.state;
-
+    console.log(this.state)
     const { authUser } = this.props;
     const passwordIsInvalid = !((currentPassword !== '' && newPassword !== '' &&confirmNewPassword !== '') && (newPassword === confirmNewPassword));
 
