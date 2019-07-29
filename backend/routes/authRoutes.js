@@ -2,7 +2,8 @@ const router = require('express').Router();
 const bcrypt = require('bcryptjs');
 
 const usersDB = require('../models/userModel');
-const ItemDatabase = require('../models/itemsModel');
+const imagesDB = require('../models/imagesModel');
+
 const generateToken = require('../helpers/generateToken');
 
 router.post('/register', (req, res) => {
@@ -27,7 +28,6 @@ router.post('/register', (req, res) => {
         const payload = { user };
         console.log('payload', payload);
         const token = generateToken(payload);
-        console.log('token', token);
 
         res.status(200).json({ 
           message: `Welcome ${user}`, token });
@@ -47,17 +47,24 @@ router.post('/login', (req, res) => {
   else {
     usersDB.getUserByEmail(email)
       .then(user => {
-        // Inner join would take place here? 
-        const passwordOnRecord = user.password;
-        if (bcrypt.compareSync(password, passwordOnRecord)) {
-          const payload = { user };
-          const token = generateToken(payload);
+        imagesDB.getUserPicture(user.image_id)
+          .then(image => {
+            // Inner join would take place here? 
+            const passwordOnRecord = user.password;
+            if (bcrypt.compareSync(password, passwordOnRecord)) {
+              const payload = { user, image };
+              const token = generateToken(payload);
+              console.log(token);
+    
+              res.status(200).json({ message: `Welcome ${user.email}`, token });
+            }
+            else {
+              res.status(401).json({ message: "The credentials you've entered aren't valid" });
+            }
+          })
+          .catch(
 
-          res.status(200).json({ message: `Welcome ${user.email}`, token });
-        }
-        else {
-          res.status(401).json({ message: "The credentials you've entered aren't valid" });
-        }
+          );
       })
       .catch(erroror => {
         res.status(404).json({ message: 'Non-existant email' });
