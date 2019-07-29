@@ -2,7 +2,7 @@ import React from 'react';
 import {  Link } from 'react-router-dom';
 import { formatTransactionDate } from '../../Helpers/transactionDate';
 import { checkFeedback } from '../../Helpers/devEndpoints';
-import Modal from './Modal';
+import TransactionModal from './TransactionModal';
 import axios from 'axios';
 
 const testIMG ="https://www.sunspel.com/media/catalog/product/cache/3/image/9df78eab33525d08d6e5fb8d27136e95/m/t/mtsh0001-whaa-1new.jpg";
@@ -11,7 +11,7 @@ class TransactionCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      show: false,
+      showTransactionModal: false,
       feedbackExists: true,
     };
   }
@@ -31,21 +31,23 @@ class TransactionCard extends React.Component {
       .catch(error => console.error(error));
   }
 
-  showModal = () => {
-    this.setState({ show: true });
-  }
-
-  closeModal = () => {
-    this.setState({ show: false });
+  toggleTransactionModal = () => {
+    this.setState((prevState) => ({ showTransactionModal: !prevState.showTransactionModal }));
+    console.log('toggletransactionmodal')
   }
 
   render() {
-    const { show, feedbackExists } = this.state;
+    const { showTransactionModal, feedbackExists } = this.state;
     const { item } = this.props;
     const { id, title, price, updated_at } = item;
 
     return (
       <div className="transaction-card-container">
+        {
+          showTransactionModal
+            ? <TransactionModal item={item} showTransactionModal={showTransactionModal} toggleTransactionModal={this.toggleTransactionModal} />
+            : null
+        }
         <div className="transaction-card-left">
           <div className="transaction-item-info">
             <Link to={`/item/${id}`} style={{ textDecoration: 'none' }}>
@@ -57,7 +59,7 @@ class TransactionCard extends React.Component {
               feedbackExists
               ? <div className="transaction-feedback-empty"><span></span></div>
               : (
-                <div className="transaction-feedback-button" onClick={this.showModal}>
+                <div className="transaction-feedback-button" onClick={this.toggleTransactionModal}>
                   <span>Leave Feedback</span>
                 </div>
                 )
@@ -73,7 +75,6 @@ class TransactionCard extends React.Component {
           </Link>
         </div>
 
-        <Modal item={item} show={show} closeModal={this.closeModal} />
       </div>
     );
   }
