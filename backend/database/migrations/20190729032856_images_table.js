@@ -2,9 +2,9 @@
 exports.up = function(knex) {
   return knex.schema.createTable('images', (table) => {
     table
-      .increments();
+      .increments()
     table
-      .binary('file')
+      .string('url')
       .notNullable();
   });
 };

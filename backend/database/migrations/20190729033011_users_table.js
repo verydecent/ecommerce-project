@@ -18,6 +18,13 @@ exports.up = function(knex) {
     table
       .string('location', 128);
     table
+      .integer('image_id')
+      .unsigned()
+      .nullable()
+      .references('images.id')
+      .onDelete('CASCADE')
+      .defaultTo(1);
+    table
       .timestamp('created_at')
       .defaultTo(knex.fn.now());
     table

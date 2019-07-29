@@ -15,7 +15,6 @@ exports.up = function(knex) {
       .nullable()
       .references('users.id')
       .onDelete('CASCADE')
-    // defaultTo chain might be a problem because of how we are entering the true boolean
     table
       .boolean('is_available')
       .defaultTo('t');
