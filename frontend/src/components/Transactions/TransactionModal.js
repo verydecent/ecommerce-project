@@ -14,6 +14,7 @@ class TransactionModal extends React.Component {
   }
 
   submitFeedback = (event) => {
+    const { toggleTransactionModal } = this.props;
     const { id, feedback_author_id, feedback_recipient_id } = this.props.item;
     const { rating, description } = this.state;
 
@@ -27,8 +28,8 @@ class TransactionModal extends React.Component {
 
     axios.post(postFeedback(), body)
     .then(response => {
-      console.log('response', response);
-      this.setState({ successResponse: response.data.message });  
+      this.setState({ successResponse: response.data.message });
+      setTimeout(toggleTransactionModal, 800);
     })
     .catch(error => console.error(error));
 

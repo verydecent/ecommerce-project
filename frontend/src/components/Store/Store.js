@@ -1,6 +1,6 @@
 import React from 'react';
 import ItemDisplay from '../ItemDisplay/ItemDisplay';
-
+import { getAccountStore } from '../../Helpers/devEndpoints';
 import axios from 'axios';
 import './Store.css';
 
@@ -14,9 +14,8 @@ class Store extends React.Component {
 
   componentDidMount() {
     const { user_id } = this.props;
-    const endpoint = `http://localhost:5000/api/account/store/${user_id}`;
 
-    axios.get(endpoint)
+    axios.get(getAccountStore(user_id))
     .then(response => {
       this.setState({ items: response.data });
     })

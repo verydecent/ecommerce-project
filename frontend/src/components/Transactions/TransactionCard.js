@@ -33,7 +33,6 @@ class TransactionCard extends React.Component {
 
   toggleTransactionModal = () => {
     this.setState((prevState) => ({ showTransactionModal: !prevState.showTransactionModal }));
-    console.log('toggletransactionmodal')
   }
 
   render() {
@@ -45,7 +44,7 @@ class TransactionCard extends React.Component {
       <div className="transaction-card-container">
         {
           showTransactionModal
-            ? <TransactionModal item={item} showTransactionModal={showTransactionModal} toggleTransactionModal={this.toggleTransactionModal} />
+            ? <TransactionModal item={item} toggleTransactionModal={this.toggleTransactionModal} />
             : null
         }
         <div className="transaction-card-left">

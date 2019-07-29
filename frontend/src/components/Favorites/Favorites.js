@@ -14,12 +14,10 @@ class Favorites extends React.Component {
   }
   
   componentDidMount() {
-    console.log("componenetDidMount");
     const { user_id } = this.props;
     axios.get(getLikedItems(user_id))
       .then(response => {
-        console.log(response);
-        this.setState({ items: response.data }, console.log(this.state.items));
+        this.setState({ items: response.data });
       })
       .catch(error => {
         console.error(error);
