@@ -1,9 +1,21 @@
 const router = require('express').Router();
 const Data = require('../database/dbConfig');
-
+const multer = require('multer');
 const bcrypt = require('bcryptjs');
+const cloudinary = require('cloudinary');
 
 const checkJwt = require('../middleware/checkJwt');
+
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'public');
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + '-' + file.originalname);
+  }
+});
+
+var upload = multer({ storage: storage }).single('file');
 
 // This is the pool routes, we will modularize all routes into proper router files when we stabalize a bit more
 // auth route the root of it all
@@ -119,6 +131,48 @@ router.put('/account/settings/update/user-password', (req, res) => {
     .catch(error => {
       res.status(400).json({ error: "Error comparing users password" });
     })
+});
+
+router.post('/account/upload-user-picture/:user_id', (req, res) => {
+  upload(req, res, (err) => {
+    if (err) {
+      return res.status(500).json(err);
+    }
+    else {
+      const {user_id } = req.params;
+      console.log(req.file);
+      // return res.status(500).json(err);
+      Data('images').insert({ file: req.file}, 'id')
+        .then(image_id => image_id[0])
+        .then(image_id => {
+          console.log('image-id', image_id);
+          Data('users_images').insert({ user_id, image_id })
+            .then(res.status(200).json({ success: "Image uploaded" }))
+            .catch(error => res.status(500).json({ error: "Internal server error" }));
+        })
+        .catch(error => res.status(500).json({ error: "Internal server error" }));
+    }
+  });
+
+  router.get('/account/get-user-picture/:user_id', (req, res) => {
+    const { user_id } = req.params;
+    console.log('get user picture')
+    Data('users_images').where({ user_id })
+      .then(record => {
+        console.log(record)
+        Data('images').where({ id: record.id })
+          .then(image => {
+            console.log(image)
+            res.status(200).json(image);
+          })
+          .catch(error => res.status(500).json({ error: "Internal server error" }));
+      })
+      .catch(error => res.status(500).json({ error: "Internal server error" }));
+  });
+
+  // Data('images').insert()
+  // .then()
+  // .catch(error => res.status(500).json({ error: "Internal server error" }));
 });
 
 // Get items based on user ID
