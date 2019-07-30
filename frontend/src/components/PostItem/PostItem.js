@@ -113,7 +113,7 @@ class PostItem extends React.Component {
               <div className="post-item-details">
                 <div className="left-column">
                   <div className="">
-                    <input 
+                    <input
                       id="brand"
                       value={brand}
                       onChange={this.handleChange}
@@ -250,8 +250,7 @@ class PostItem extends React.Component {
                   {/* <img src={tempIMG} alt="white t shirt" /> */}
                 </div>
                 <div className="post-item-item-upload-form">
-                  <label>Upload Your Image</label>
-                  <input enctype="multipart/form-data" type="file" name="item-images" onChange={this.imageHandler}/>
+                  <input className="image-input" enctype="multipart/form-data" type="file" name="item-images" onChange={this.imageHandler}/>
                 </div>
               </div>
             </div>
@@ -259,42 +258,42 @@ class PostItem extends React.Component {
             <div className="post-conditional-signal" >
               {
                 (price === '')
-                  ? <div className="post-signal"><span>!</span> Missing Price Field</div>
+                  ? <div className="post-signal">Missing Price Field</div>
                   : null 
               }
               {
                 (shipping_price) === ''
-                  ? <div className="post-signal"><span>!</span> Missing Shipping Price Field</div>
+                  ? <div className="post-signal">Missing Shipping Price Field</div>
                   : null
               }
               {
                 (brand) === ''
-                  ? <div className="post-signal"><span>!</span> Missing Shipping Brand Field</div>
+                  ? <div className="post-signal">Missing Shipping Brand Field</div>
                   : null
               }
               {
                 (title) === ''
-                  ? <div className="post-signal"><span>!</span> Missing Title Field</div>
+                  ? <div className="post-signal">Missing Title Field</div>
                   : null
               }
               {
                 (description) === ''
-                  ? <div className="post-signal"><span>!</span> Missing Description Field</div>
+                  ? <div className="post-signal">Missing Description Field</div>
                   : null
               }
               {
                 (category) === ''
-                  ? <div className="post-signal"><span>!</span> Missing Category Field</div>
+                  ? <div className="post-signal">Missing Category Field</div>
                   : null
               }
               {
                 (size) === ''
-                  ? <div className="post-signal"><span>!</span> Missing Size Field</div>
+                  ? <div className="post-signal">Missing Size Field</div>
                   : null
               }
               {
                 (color) === ''
-                  ? <div className="post-signal"><span>!</span> Missing Color Field</div>
+                  ? <div className="post-signal">Missing Color Field</div>
                   : null
               }
 
