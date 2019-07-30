@@ -125,11 +125,11 @@ router.put('/account/settings/update/user-password', (req, res) => {
     cloudinary.uploader.upload(path, (result) => {
       const imgUrl = result.secure_url;
 
-      Data('images').insert({ url: imgUrl }, 'id')
+      Data('images').insert({ url: imgUrl }, ['id', 'url'])
         .then(ids => ids[0])
-        .then(image_id => {
-          Data('users').where({ id: user_id }).update({ image_id })
-            .then(res.status(200).json({ message: "Picture Uploaded" }))
+        .then(obj => {
+          Data('users').where({ id: user_id }).update({ image_id: obj.id })
+            .then(res.status(200).json(obj.url))
             .catch(error => res.status(500).json({ error: "Internal server error" }))
         });
     });
