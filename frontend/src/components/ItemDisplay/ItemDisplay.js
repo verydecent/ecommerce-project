@@ -4,17 +4,15 @@ import { Link } from 'react-router-dom';
 import formatDate from '../../Helpers/formatDate';
 import './ItemDisplay.css';
 
-const testIMG ="https://www.sunspel.com/media/catalog/product/cache/3/image/9df78eab33525d08d6e5fb8d27136e95/m/t/mtsh0001-whaa-1new.jpg";
-
 function ItemDisplay(props) {
-  const { id, brand, price, title, size, created_at } = props.item;
+  const { id, brand, price, title, size, created_at, url } = props.item;
   const { handleLike, liked } = props;
 
   return (
       <div className="item-display-container">
         <Link to={`/item/${id}`}>
           <div className="item-cover-photo">
-            <img src={testIMG} alt=""/>
+            <img src={url} alt=""/>
           </div>
         </Link>
         <h3 className="post-date">

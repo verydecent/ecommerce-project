@@ -6,8 +6,6 @@ import formatDate from '../../Helpers/formatDate';
 import { getItems, getUser, purchaseItem } from '../../Helpers/devEndpoints';
 import './Item.css';
 
-const testIMG ="https://www.sunspel.com/media/catalog/product/cache/3/image/9df78eab33525d08d6e5fb8d27136e95/m/t/mtsh0001-whaa-1new.jpg";
-
 class Item extends React.Component {
   constructor(props) {
     super(props);
@@ -80,7 +78,7 @@ class Item extends React.Component {
 
   render() {
     const { user_id, liked, handleLike } = this.props;
-    const { is_available, category, created_at, color, description, id, price, posted_by_user_id, shipping_price, size, title, brand  } = this.state.item;
+    const { is_available, category, created_at, color, description, id, price, posted_by_user_id, shipping_price, size, title, brand, url  } = this.state.item;
     const { username, location } = this.state.merchant;
     const merchant_user_id = this.state.merchant.id;
     const { showMessageModal } = this.state;
@@ -97,7 +95,7 @@ class Item extends React.Component {
         <div className="item-panel">
           <div className="item-panel-left">
             <div className="item-image">
-              <img src={testIMG} alt="test" />
+              <img src={url} alt="test" />
             </div>
 
             <div className="picture-options">
