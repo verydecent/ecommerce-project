@@ -20,6 +20,8 @@ class PostItem extends React.Component {
       color: '',
       location: '',
 
+      selectedImages: null,
+
       error: '',
       successResponse: '',
     };
@@ -68,6 +70,19 @@ class PostItem extends React.Component {
     this.setState({ [id]: value });
     event.preventDefault();
   }
+
+  onClickHandler = () => {
+    const data = new FormData();
+    data.append('file', this.state.selectedImages);
+
+    axios.post()
+  }
+
+  onChangeHandler= (event) =>{
+    this.setState({ selectedImages: event.target.files[0], loaded: 0 });
+    console.log(event.target.files[0])
+
+}
 
   render() {
     const { price, shipping_price, brand, title, description, category, size, color, error, successResponse } = this.state;
@@ -228,8 +243,11 @@ class PostItem extends React.Component {
                 <div className="post-header-image">
                   <img src={tempIMG} alt="white t shirt" />
                 </div>
-
-                <button>Upload Photos</button>
+                <div className="post-item-item-upload-form">
+                  <label>Upload Your Image</label>
+                  <input type="file" name="file" onChange={this.onChangeHandler}/>
+                  <button type="button" class="btn btn-success btn-block" onClick={this.onClickHandler}>Upload</button> 
+                </div>
               </div>
             </div>
 

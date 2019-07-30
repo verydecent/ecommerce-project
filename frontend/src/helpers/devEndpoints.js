@@ -21,6 +21,8 @@ module.exports = {
   getAccountStore,
   updateUserInfo,
   updateUserPassword,
+  uploadUserPicture,
+  getUserPicture,
 }
 
 function authorizeUser() {
@@ -117,4 +119,12 @@ function updateUserInfo() {
 
 function updateUserPassword() {
   return `http://localhost:5000/api/account/settings/update/user-password`;
+}
+
+function uploadUserPicture(user_id) {
+  return `http://localhost:5000/api/account/upload-user-picture/${user_id}`;
+}
+
+function getUserPicture(user_id) {
+  return `http://localhost:5000/api/account/get-user-picture/${user_id}`;
 }

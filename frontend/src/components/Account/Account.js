@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom';
 
 import './Account.css';
 import requiresAuth from '../../Helpers/requiresAuth';
+import { uploadUserPicture, getUserPicture } from '../../Helpers/devEndpoints';
 
 import SubNav from '../SubNavigation/SubNavigation';
 import Settings from '../Setting/Settings'
@@ -12,38 +13,40 @@ import Favorites from '../Favorites/Favorites';
 import Feedback from '../Feedback/Feedback';
 import Transactions from '../Transactions/Transactions';
 import PostItem from '../PostItem/PostItem';
+import axios from 'axios';
 
 class Account extends  React.Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     authUser: {}
-  //   };
-  // }
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedImage: null,
+      image: null,
+    };
+  }
 
-  // componentDidMount() {
-  //   console.log("Account.s componentDidMount");
-  //   const endpoint = 'http://localhost:5000/api/'
-  //   // Be sure to include a space in addition to 'Bearer'
-  //   const token = 'Bearer' + ' ' + localStorage.getItem('jwt');
-  //   const config = {
-  //     headers: { authorization: token }
-  //   };
+  handleChange = (event) => {
+    this.setState({ selectedImage: event.target.files[0]});
+  }
 
-  //   axios.get(endpoint, config)
-  //     .then(res => {
-  //       console.log("Account.js setting state");
-  //       const { user } = res.data;
-  //       this.setState({ user });
-  //     })
-  //     .catch(error => {
-  //       console.error(error);
-  //     });
-  // }
+  handleSubmit = (event) => {
+    console.log(this.state.selectedImage)
+    const { id } = this.props.authUser;
+    const { selectedImage } = this.state;
+    const data = new FormData();
+    data.append('user-image', selectedImage);
+
+    axios.put(uploadUserPicture(id), data)
+      .then(response => {
+        console.log('upload profile picture response', response);
+        console.log('res.statusText', response.statusText);
+      })
+      .catch(error => console.error(error));
+  }
 
   render() {
     const { authUser, liked, handleLike } = this.props;
-
+    const { image } = this.state;
+    console.log('image', image);
     // Running into a memory leak while updating the state inside of store
     // My guess is that one of these guys below VVV rendered instead  account-container rendering meaning store didnt exist, but how is it possible that the other sub account settings didnt run into that error?
     // Found out that My store is the first class component running componentdidmount... So.... that must mean this happened...
@@ -55,9 +58,12 @@ class Account extends  React.Component {
           <div className="account-header">
             <div className="user-image">
               <img
-              src="https://vimcare.com/assets/empty_user-e28be29d09f6ea715f3916ebebb525103ea068eea8842da42b414206c2523d01.png"
-              alt=""
+              src={authUser.user_profile}
+              alt="user-profile-image"
               />
+              <label>Upload Your Image</label>
+              <input type="file" name="user-image" onChange={this.handleChange} />
+              <button onClick={this.handleSubmit}>Upload Profile Picture</button>
             </div>
             <div className="details">
               <h1>{authUser.username}</h1>
@@ -133,4 +139,5 @@ class Account extends  React.Component {
   }
 }
 
-export default requiresAuth(Account);
+// export default requiresAuth(Account);
+export default Account;
