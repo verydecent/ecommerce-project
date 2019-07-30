@@ -28,9 +28,13 @@ class PostItem extends React.Component {
   }
 
   handleSubmit = (event) => {
-    const { price, shipping_price, brand, title, description, category, size, color } = this.state;
+    const { price, shipping_price, brand, title, description, category, size, color, selectedImages } = this.state;
+    
+    console.log('selectedImages', selectedImages);
+    const data = new FormData();
+    data.append('item-images', selectedImages);
 
-    const body = {
+    const headers = {
       posted_by_user_id: this.props.user_id,
       price,
       shipping_price,
@@ -39,10 +43,10 @@ class PostItem extends React.Component {
       description,
       category,
       size,
-      color
+      color,
     };
-    
-    axios.post(postItem(this.props.user_id), body)
+
+    axios.post(postItem(this.props.user_id), data, { headers: headers })
       .then(res => {
         this.setState({
           posted_by_user_id: '',
@@ -71,17 +75,8 @@ class PostItem extends React.Component {
     event.preventDefault();
   }
 
-  onClickHandler = () => {
-    const data = new FormData();
-    data.append('file', this.state.selectedImages);
-
-    axios.post()
-  }
-
-  onChangeHandler= (event) =>{
-    this.setState({ selectedImages: event.target.files[0], loaded: 0 });
-    console.log(event.target.files[0])
-
+  imageHandler= (event) =>{
+    this.setState({ selectedImages: event.target.files[0] });
 }
 
   render() {
@@ -241,11 +236,11 @@ class PostItem extends React.Component {
               <h3>Photos</h3>
               <div className="post-item-images">
                 <div className="post-header-image">
-                  <img src={tempIMG} alt="white t shirt" />
+                  {/* <img src={tempIMG} alt="white t shirt" /> */}
                 </div>
                 <div className="post-item-item-upload-form">
                   <label>Upload Your Image</label>
-                  <input type="file" name="file" onChange={this.onChangeHandler}/>
+                  <input enctype="multipart/form-data" type="file" name="item-images" onChange={this.imageHandler}/>
                   <button type="button" class="btn btn-success btn-block" onClick={this.onClickHandler}>Upload</button> 
                 </div>
               </div>
@@ -309,7 +304,8 @@ class PostItem extends React.Component {
             </div>
 
             <div className="post-item-form-button">
-              <button value="submit" disabled={isInvalid}>Post Item</button>
+              {/* <button value="submit" disabled={isInvalid}>Post Item</button> */}
+              <button value="submit" >Post Item</button>
             </div>
           </form>
         </div>

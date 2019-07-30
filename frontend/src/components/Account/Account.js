@@ -62,7 +62,7 @@ class Account extends  React.Component {
               alt="user-profile-image"
               />
               <label>Upload Your Image</label>
-              <input type="file" name="user-image" onChange={this.handleChange} />
+              <input enctype="multipart/form-data" type="file" name="user-image" onChange={this.handleChange} />
               <button onClick={this.handleSubmit}>Upload Profile Picture</button>
             </div>
             <div className="details">
