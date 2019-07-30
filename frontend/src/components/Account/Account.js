@@ -20,7 +20,7 @@ class Account extends  React.Component {
     super(props);
     this.state = {
       selectedImage: null,
-      image: null,
+      image: this.props.authUser.user_profile,
     };
   }
 
@@ -37,8 +37,7 @@ class Account extends  React.Component {
 
     axios.put(uploadUserPicture(id), data)
       .then(response => {
-        console.log('upload profile picture response', response);
-        console.log('res.statusText', response.statusText);
+        this.setState({ image: response.data })
       })
       .catch(error => console.error(error));
   }
@@ -46,39 +45,37 @@ class Account extends  React.Component {
   render() {
     const { authUser, liked, handleLike } = this.props;
     const { image } = this.state;
-    console.log('image', image);
+
     // Running into a memory leak while updating the state inside of store
     // My guess is that one of these guys below VVV rendered instead  account-container rendering meaning store didnt exist, but how is it possible that the other sub account settings didnt run into that error?
     // Found out that My store is the first class component running componentdidmount... So.... that must mean this happened...
     // account rendered, then rendered Store, then we refresh the page...
     // Then account gets rendered and runs into the isLoading page first, because thats how Account was set, to be loading first.... (Why did we have to do this conditional rendering again? because I was trying to call render in one of the child components while before Account could even render, they were trying to render before they were in the virtual dom)
     // ANYWAYS... So then we tried to componentDidMount inside of Store while the Account didnt exist. I think that is my best guess, as for these messy notes if anyone ever comes here please know that this is my first project and I am just thinking to myself lols
+
       return (
         <div className="account-container">
           <div className="account-header">
-            <div className="user-image">
-              <img
-              src={authUser.user_profile}
-              alt="user-profile-image"
-              />
-              <label>Upload Your Image</label>
-              <input enctype="multipart/form-data" type="file" name="user-image" onChange={this.handleChange} />
-              <button onClick={this.handleSubmit}>Upload Profile Picture</button>
-            </div>
             <div className="details">
               <h1>{authUser.username}</h1>
-              <div className="static-info">
-                <span>33 Transactions</span>
-                <span>12 Items for sale</span>
-                <span>{authUser.location}</span>
-              </div>
+              <span>{authUser.location}</span>
+            </div>
+            <div className="user-image">
+              <label for="file-input">
+                <img
+                src={image}
+                alt=""
+                />
+              </label>
+              <input id="file-input" enctype="multipart/form-data" type="file" name="user-image" onChange={this.handleChange} />
+              <button className="user-image-button" onClick={this.handleSubmit}>Upload</button>
             </div>
           </div>
   
           <div className="account-header-spacer"></div>
   
           <div className="account-main">
-            <SubNav />
+            {/* <SubNav /> */}
   
             <div className="account-main-content">
 
@@ -133,6 +130,7 @@ class Account extends  React.Component {
               />
               
             </div>
+            <SubNav />
           </div>
         </div>
       );

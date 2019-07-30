@@ -20,4 +20,5 @@
 
 .cat__nav__link:hover {
   text-decoration: underline;
+  color: #838383;
 }

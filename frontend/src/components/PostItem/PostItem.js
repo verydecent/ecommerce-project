@@ -252,7 +252,6 @@ class PostItem extends React.Component {
                 <div className="post-item-item-upload-form">
                   <label>Upload Your Image</label>
                   <input enctype="multipart/form-data" type="file" name="item-images" onChange={this.imageHandler}/>
-                  <button type="button" class="btn btn-success btn-block" onClick={this.onClickHandler}>Upload</button> 
                 </div>
               </div>
             </div>
