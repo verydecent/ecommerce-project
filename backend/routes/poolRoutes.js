@@ -4,6 +4,7 @@ const multer = require('multer');
 const bcrypt = require('bcryptjs');
 const cloudinary = require('cloudinary');
 const checkJwt = require('../middleware/checkJwt');
+const env = require('dotenv');
 
 // This is the pool routes, we will modularize all routes into proper router files when we stabalize a bit more
 // auth route the root of it all
@@ -12,9 +13,9 @@ const upload = multer({ dest: __dirname + '/uploads/images' });
 
 // CLOUDINARY CONFIG 
 cloudinary.config({
-  cloud_name: 'dvoplizdv',
-  api_key: '539523486936861',
-  api_secret: 'na8Qh2bU_LwJpR3wU-kfyRtIE-Q',
+  cloud_name: process.env.CLOUD_API_SECRET,
+  api_key: process.env.CLOUD_API_SECRET,
+  api_secret: process.env.CLOUD_API_SECRET,
 });
 
 router.get('/authorize-user', checkJwt, (req, res) => {
@@ -23,16 +24,6 @@ router.get('/authorize-user', checkJwt, (req, res) => {
   res.status(200).json(authUser);
 });
 
-router.get('/users/:id', (req, res) => {
-  const { id } = req.params;
-  Data('users').where({ id }).first()
-    .then(user => {
-      res.status(200).json(user);
-    })
-    .catch(error => {
-      res.status(500).json({ error: "Internal server error" });
-    });
-});
 
 router.get('/items', (req, res) => {
   Data('items as i').select('i.id', 'i.brand', 'i.price', 'i.title', 'i.size', 'i.created_at', 'images.url')
@@ -124,7 +115,7 @@ router.put('/account/settings/update/user-password', (req, res) => {
 
     cloudinary.uploader.upload(path, (result) => {
       const imgUrl = result.secure_url;
-
+      console.log('imgUrl', imgUrl)
       Data('images').insert({ url: imgUrl }, ['id', 'url'])
         .then(ids => ids[0])
         .then(obj => {
@@ -258,19 +249,19 @@ router.delete('/account/liked-items/:id', (req, res) => {
 // Items based on user and returns user as well
 router.get('/users/:id', (req, res) => {
   const { id } = req.params;
-  Data('users').where({ id }).first()
+  Data('users as u').select('u.username', 'u.location', 'u.image_id').where({ id }).first()
+    // .then(arr => arr[0])
     .then(user => {
-      user = {
-        location: user.location,
-        username: user.username,
-        // profile-picture: user.profile,
-      }
-      res.status(200).json({ user });
+      console.log(user)
+      Data('images as i').select('i.url').where({ id: user.image_id }).first()
+        // .then(arr => arr[0])
+        .then(image => {
+          user.image = image.url;
+          res.status(200).json(user);
+        })
+        .catch(error => res.status(500).json({ error: "Could not find user Image" }));
     })
-    .catch(error => {
-      res.status(500).json({ error: "Internal server error" });
-    });
-  // res.status(200).json({ user: user, items: items });
+    .catch(error => res.status(500).json({ error: "Internal server error" }));
 });
 
 // Purchase item
