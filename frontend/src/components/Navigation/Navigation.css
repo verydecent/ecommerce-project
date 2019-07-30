@@ -9,10 +9,10 @@
   border-bottom: 1px solid #cbcbcb;
 
   position: fixed;
+  z-index: 500;
   width: 100%;
   background-color: white;
   font-family: -apple-system, BlinkMacSystemFont, Helvetica, Arial, "Segoe UI", Roboto, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-
 }
 
 .spacer {

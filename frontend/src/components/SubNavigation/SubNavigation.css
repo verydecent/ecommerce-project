@@ -19,7 +19,7 @@
 }
 
 .account-sub-nav-header h4 {
-  font-size: 11px;
+  font-size: 11.5px;
   text-transform: uppercase;
   color: #838383;
 }
@@ -37,11 +37,11 @@
 /* Links */
 
 .account-sub-nav .nav-link {
-  font-size: 11px;
+  font-size: 12px;
   color: #000000;
   text-decoration: none;
   text-transform: uppercase;
-  line-height: 30px;
+  line-height: 35px;
   letter-spacing: 1px;
   padding-left: 6px;
 }
