@@ -3,8 +3,6 @@ import axios from 'axios';
 import { postItem } from '../../Helpers/devEndpoints';
 import './PostItem.css';
 
-const tempIMG ="https://www.sunspel.com/media/catalog/product/cache/3/image/9df78eab33525d08d6e5fb8d27136e95/m/t/mtsh0001-whaa-1new.jpg";
-
 class PostItem extends React.Component {
   constructor() {
     super();
@@ -19,6 +17,7 @@ class PostItem extends React.Component {
       size: '',
       color: '',
       location: '',
+      image_id: '',
 
       selectedImages: null,
 
@@ -28,13 +27,9 @@ class PostItem extends React.Component {
   }
 
   handleSubmit = (event) => {
-    const { price, shipping_price, brand, title, description, category, size, color, selectedImages } = this.state;
-    
-    console.log('selectedImages', selectedImages);
-    const data = new FormData();
-    data.append('item-images', selectedImages);
+    const { price, shipping_price, brand, title, description, category, size, color, image_id } = this.state;
 
-    const headers = {
+    const body = {
       posted_by_user_id: this.props.user_id,
       price,
       shipping_price,
@@ -44,9 +39,10 @@ class PostItem extends React.Component {
       category,
       size,
       color,
+      image_id,
     };
 
-    axios.post(postItem(this.props.user_id), data, { headers: headers })
+    axios.post(postItem(this.props.user_id), body)
       .then(res => {
         this.setState({
           posted_by_user_id: '',
@@ -72,16 +68,31 @@ class PostItem extends React.Component {
   handleChange = (event) => {
     const { id, value } = event.target;
     this.setState({ [id]: value });
+    console.log('handleChange state', this.state);
     event.preventDefault();
   }
-
+  
   imageHandler= (event) =>{
-    this.setState({ selectedImages: event.target.files[0] });
-}
+    this.setState({ selectedImages: event.target.files[0] }, this.submitOnHandle);
+  }
+  
+  submitOnHandle = () => {
+    console.log('submitOnHandle()');
+
+    const data = new FormData();
+    data.append('item-images', this.state.selectedImages);
+    axios.post(`http://localhost:5000/api/account/post-item/image/`, data)
+      .then(response => {
+        console.log(response);
+        this.setState({ image_id: response.data });
+      })
+      .catch(error => console.error(error));
+  }
 
   render() {
-    const { price, shipping_price, brand, title, description, category, size, color, error, successResponse } = this.state;
-
+    const { price, shipping_price, brand, title, description, category, size, color, image_id, error, successResponse } = this.state;
+    
+    console.log('image_id', image_id);
     const isInvalid =
       price === '' ||
       shipping_price === '' ||
