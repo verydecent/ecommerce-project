@@ -11,7 +11,7 @@ function Transactions(props) {
 
   return (
     <div className="transactions-container">
-      <h1>Transactions Page</h1>
+      <h1>Transactions</h1>
 
       <div className="transactions-panel">
 

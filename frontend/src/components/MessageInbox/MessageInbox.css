@@ -5,6 +5,17 @@
   width: 720px;
 }
 
+.message-inbox-container h1 {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  line-height: 25px;
+  font-family: Georgia, Times, Serif;
+  padding-bottom: 35px;
+}
+
 .message-inbox-panel {
   display: flex;
   flex-direction: column;

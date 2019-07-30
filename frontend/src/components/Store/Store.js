@@ -39,7 +39,7 @@ class Store extends React.Component {
 
     return (
       <div className="store-container">
-        <h1> Store</h1>
+        <h1> Your Items</h1>
         <div className="items-panel">
           {itemsArr}
         </div>

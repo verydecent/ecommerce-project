@@ -194,9 +194,9 @@
 
 .post-item-form-button button {
   text-transform: uppercase;
-  font-size: 14px;
-  letter-spacing: 1px;
-  padding: 12px;
+  font-size: 12px;
+  letter-spacing: 0.4px;
+  padding: 16px;
   width: 100%;
   background: #000;
   color: #fff;

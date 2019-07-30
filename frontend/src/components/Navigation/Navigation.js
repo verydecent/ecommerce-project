@@ -27,7 +27,7 @@ class Navigation extends React.Component {
 
             <nav>
               <ul className="nav__links">
-                <li><NavLink className="nav__link" to="/">Home</NavLink></li>
+                <li><NavLink className="nav__link__home" to="/">Home</NavLink></li>
                 <li><NavLink className="nav__link__sell" to="/account/post-item">Sell</NavLink></li>
               </ul>
             </nav>
@@ -77,7 +77,7 @@ class Navigation extends React.Component {
 
           <nav>
             <ul className="nav__links">
-              <li><NavLink className="nav__link" to="/">Home</NavLink></li>
+              <li><NavLink className="nav__link__home" to="/">Home</NavLink></li>
               <li onClick={toggleLoginModal}><NavLink className="nav__link__sell">Sell</NavLink></li>
             </ul>
           </nav>

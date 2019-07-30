@@ -41,6 +41,15 @@
 }
 
 .nav__link {
+  font-size: 12px;
+  font-family: -apple-system, BlinkMacSystemFont, Helvetica, Arial, "Segoe UI", Roboto, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-weight: 600;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #000;
+}
+
+.nav__link__home {
   font-size: 14px;
   font-family: -apple-system, BlinkMacSystemFont, Helvetica, Arial, "Segoe UI", Roboto, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-weight: 600;
@@ -79,10 +88,14 @@
   z-index: 1;
   
   background-color: #ececec;
-  font-size: 12px;
   font-weight: 600;
   line-height: 30px;
   text-transform: uppercase;
+}
+
+.dropdown-item {
+  font-size: 12px;
+
 }
 
 .dropdown:hover .dropdown-content {
@@ -91,7 +104,7 @@
 
 #logout-button {
   font-size: 12px;
-  font-weight: 500;
+  font-weight: 600;
   text-decoration: none;
   text-transform: uppercase;
   color: #000;

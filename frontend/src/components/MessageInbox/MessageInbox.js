@@ -16,6 +16,7 @@ class MessageInbox extends React.Component {
     const { user_id } = this.props;
     return (
       <div className="message-inbox-container">
+        <h1>Messages</h1>
         <div className="message-inbox-panel">
   
           <div className="message-inbox-tabs">
