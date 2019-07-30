@@ -1,46 +1,48 @@
 .settings-container {
-  
   font-family: -apple-system, BlinkMacSystemFont, Helvetica, Arial, "Segoe UI", Roboto, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  background-color: #f0f0f0;
+  /* background-color: #f0f0f0; */
 }
 
 .settings-container h1 {
-  font-family: -apple-system, BlinkMacSystemFont, Helvetica, Arial, "Segoe UI", Roboto, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  font-size: 20px;
-  font-weight: 600;
-  text-transform: uppercase;
   text-align: center;
-  line-height: 30px;
-  
-  padding: 20px;
+  text-transform: uppercase;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  line-height: 25px;
+  font-family: Georgia, Times, Serif;
 }
 
 .user-info-panel {
   display: flex;
-  justify-content: space-between;
-  align-items: stretch;
+  /* justify-content: space-between;
+  align-items: stretch; */
 
 }
 
 .user-info-panel label {
-  font-family: -apple-system, BlinkMacSystemFont, Helvetica, Arial, "Segoe UI", Roboto, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-
   font-size: 11px;
-  line-height: 30px;
+  letter-spacing: 1px;
+  line-height: 40px;
   text-transform: uppercase;
-  color: #737373;
+  font-weight: 500;
+  color: #000;
 }
 
 .user-info-panel input {
-  padding: 8px 10px;
+  padding: 10px 12px;
   width: 220px;
   
-  font-family: -apple-system, BlinkMacSystemFont, Helvetica, Arial, "Segoe UI", Roboto, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
 .user-info-panel button {
   padding: 10px;
-  width: 200px;
+  margin-top: 30px;
+  width: 220px;
+  background: #000;
+  color: #fff;
+  border: none;
+  border-radius: 2px;
 }
 
 
@@ -48,20 +50,22 @@
   flex: 1;
   flex-direction: column;
   
-  padding: 15px;
+  /* padding: 15px; */
+  margin: 30px;
 }
 
 .right {
   flex: 1;
   flex-direction: column;
 
-  padding: 15px;
+  /* padding: 15px; */
+  margin: 30px;
 }
 
 .left .inner {
-  padding: 0 0 15px 0;
+  padding: 0 0 3px 0;
 }
 
 .right .inner {
-  padding: 0 0 15px 0;
+  padding: 0 0 3px 0;
 }
