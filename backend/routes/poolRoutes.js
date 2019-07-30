@@ -35,8 +35,11 @@ router.get('/users/:id', (req, res) => {
 });
 
 router.get('/items', (req, res) => {
-  Data('items')
+  Data('items as i').select('i.id', 'i.brand', 'i.price', 'i.title', 'i.size', 'i.created_at', 'images.url')
+    .join('items_images', 'i.id', 'items_images.item_id')
+    .join('images', 'items_images.image_id', 'images.id')
     .then(items => {
+      console.log('items after join', items);
       res.status(200).json(items);
     })
     .catch(err => {
@@ -46,7 +49,10 @@ router.get('/items', (req, res) => {
 
 router.get('/items/:id', (req, res) => {
   const { id } = req.params;
-  Data('items').where({ id }).first()
+  Data('items as i')
+  .join('items_images', 'i.id', 'items_images.item_id')
+  .join('images', 'items_images.image_id', 'images.id')
+  .where('items_images.item_id', id ).first()
     .then(item => {
       res.status(200).json(item)
     })
