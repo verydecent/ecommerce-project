@@ -8,7 +8,7 @@ const checkJwt = require('../middleware/checkJwt');
 // This is the pool routes, we will modularize all routes into proper router files when we stabalize a bit more
 // auth route the root of it all
 
-const upload = multer({ dest: __dirname + '/files/' });
+const upload = multer({ dest: __dirname + '/uploads/images' });
 
 // CLOUDINARY CONFIG 
 cloudinary.config({
@@ -54,29 +54,6 @@ router.get('/items/:id', (req, res) => {
       res.status(500).json({ error: "Internal server error" });
     });
 })
-
-// Post to item to Items table
-// Authenticate to check if a user is logged in
-// Can only use this API route if the user recieves clearance through a middleware checking the JWT
-
-router.post('/account/sell', (req, res) => {
-  const itemData = req.body;
-
-  const { posted_by_user_id, price, shipping_price, title, description, category, size, color } = itemData;
-
-  if ( !posted_by_user_id || !price || !shipping_price || !title || !description || !category || !size || !color) {
-    res.status(422).json({ message: "You are missing one or more required field(s)" });
-  }
-  else {
-    Data('items').returning('posted_by_user_id').insert(itemData)
-      .then(ids => {
-        res.status(201).json({ message: `Item ${ids[0]} successfully posted` });
-      })
-      .catch(err => {
-        res.status(500).json({ error: "Internal server error" });
-      })
-  }
-});
 
 router.get('/account/items', checkJwt, (req, res) => {
   const items = req.decoded;
@@ -137,6 +114,8 @@ router.put('/account/settings/update/user-password', (req, res) => {
     const { user_id } = req.params;
     const path = req.file.path;
 
+    console.log(req.file)
+
     cloudinary.uploader.upload(path, (result) => {
       const imgUrl = result.secure_url;
 
@@ -179,36 +158,51 @@ router.get('/account/store/:id', (req, res) => {
     });
 });
 
+
+router.post('/account/post-item/image/', upload.single('item-images'), (req, res) => {
+  console.log('req.file', req.file);
+  const path = req.file.path;
+
+  cloudinary.uploader.upload(path, (result) => {
+    const imgUrl = result.secure_url;
+
+    Data('images').insert({ url: imgUrl }, 'id')
+      .then(ids => ids[0])
+      .then(id => res.status(200).json(id))
+      .catch(error => res.status(500).json({ error: "Internal server error" }));
+  });
+});
+
+
 // Post item by user
 router.post('/account/post-item/:id', (req, res) => {
-  let { posted_by_user_id, price, shipping_price, brand, title, description, category, size, color } = req.body;
+  const { posted_by_user_id, price, shipping_price, brand, title, description, category, size, color, image_id } = req.body;
+  
+  if ( !posted_by_user_id || !price || !shipping_price || !brand || !title || !description || !category || !size || !color || !image_id ) {
+    res.status(422).json({ message: "You are missing one or more required field(s)" });
+  }
+  else {
+    const item = {
+      posted_by_user_id,
+      price,
+      shipping_price,
+      brand,
+      title,
+      description,
+      category,
+      size,
+      color,
+    };
 
-  // Request failing, maybe we need to change the string into integer
-
-  // Second parameter is Radix, Radix being the Base system we are using, in this case we want all number combinations in cluding 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 so the returning number will be in the form of Base 10 Radix
-  // Reassigning after chaning the string into integer
-  // price = parseInt(price, 10);
-  // shipping_price = parseInt(shipping_price, 10);
-  // console.log('req.body post-item', req.body);
-  const item = {
-    posted_by_user_id,
-    price,
-    shipping_price,
-    brand,
-    title,
-    description,
-    category,
-    size,
-    color
-  };
-
-  Data('items').insert(item, 'id')
-    .then(id => {
-      res.status(200).json({ message: `Item ${id} successfully posted! `});
-    })
-    .catch(error => {
-      res.status(500).json({ error: "Internal Server Error" });
-    });
+    Data('items').insert(item, 'id')
+      .then(ids => ids[0])
+      .then(item_id => {
+        Data('items_images').insert({ item_id, image_id })
+          .then(res.status(200).json({ message: `Item ${item_id} successfully posted` }))
+          .catch(error => res.status(500).json({ error: "Internal server error" }));
+      })
+      .catch(error => res.status(500).json({ error: "Internal server error" }));
+  }
 });
 
 // Post into items-user table
