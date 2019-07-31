@@ -11,10 +11,9 @@ const env = require('dotenv');
 
 const upload = multer({ dest: __dirname + '/uploads/images' });
 
-// CLOUDINARY CONFIG 
 cloudinary.config({
-  cloud_name: process.env.CLOUD_API_SECRET,
-  api_key: process.env.CLOUD_API_SECRET,
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.CLOUD_API_KEY,
   api_secret: process.env.CLOUD_API_SECRET,
 });
 
@@ -23,7 +22,6 @@ router.get('/authorize-user', checkJwt, (req, res) => {
   console.log(authUser)
   res.status(200).json(authUser);
 });
-
 
 router.get('/items', (req, res) => {
   Data('items as i').select('i.id', 'i.brand', 'i.price', 'i.title', 'i.size', 'i.created_at', 'images.url')
@@ -137,6 +135,7 @@ router.put('/account/settings/update/user-password', (req, res) => {
       .then(user => {
         Data('images').where({ id: user.image_id }).first()
           .then(image => {
+            console.log(image)
             res.status(200).json(image);
           })
           .catch(error => res.status(500).json({ error: "Internal server error" }));
@@ -161,6 +160,7 @@ router.get('/account/store/:id', (req, res) => {
     });
 });
 
+// POST ITEM PICTURE
 
 router.post('/account/post-item/image/', upload.single('item-images'), (req, res) => {
   console.log('req.file', req.file);
@@ -172,6 +172,24 @@ router.post('/account/post-item/image/', upload.single('item-images'), (req, res
     Data('images').insert({ url: imgUrl }, 'id')
       .then(ids => ids[0])
       .then(id => res.status(200).json(id))
+      .catch(error => res.status(500).json({ error: "Internal server error" }));
+  });
+});
+
+// UPDATE ITEM PICTURE
+router.put('/account/update-item/image/:image_id', upload.single('item-images'), (req, res) => {
+  const { image_id } = req.params;
+  console.log('req.file', req.file);
+  const path = req.file.path;
+
+  cloudinary.uploader.upload(path, (result) => {
+    const imgUrl = result.secure_url;
+    console.log('imgUrl', imgUrl);
+    Data('images').where({ id: image_id }).update({ url: imgUrl })
+      .then(id => {
+        console.log(id)
+        res.status(200).json({ message: `Image ${id} successfully uploaded` });
+      })
       .catch(error => res.status(500).json({ error: "Internal server error" }));
   });
 });
@@ -206,6 +224,21 @@ router.post('/account/post-item/:id', (req, res) => {
       })
       .catch(error => res.status(500).json({ error: "Internal server error" }));
   }
+});
+
+// Update Item information
+router.put('/account/update-item/:item_id', (req, res) => {
+  const { item_id } = req.params;
+  console.log(item_id)
+  const { body } = req;
+  console.log(body)
+
+  Data('items').where({ id: item_id }).update(body, 'id')
+    .then(id => {
+      console.log(id)
+      res.status(200).json({ message: `Item ${id} Successfully Updated` })
+    })
+    .catch(error => res.status(500).json({ error: "Internal server error" }));
 });
 
 // Post into items-user table
@@ -258,7 +291,6 @@ router.get('/users/:id', (req, res) => {
   const { id } = req.params;
   Data('users as u').select('u.username', 'u.location', 'u.image_id').where({ id }).first()
     .then(user => {
-      console.log(user)
       Data('images as i').select('i.url').where({ id: user.image_id }).first()
         .then(image => {
           user.image = image.url;
