@@ -1,0 +1,8 @@
+.store-feed {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid #cbcbcb;
+}

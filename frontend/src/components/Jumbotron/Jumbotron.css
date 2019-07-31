@@ -1,0 +1,10 @@
+.jumbotron-container {
+  /* max-height: 400px;
+  height: 100%; */
+
+  margin: 10px 0 20px 0;
+}
+
+.jumbotron {
+  max-width: 100%;
+}

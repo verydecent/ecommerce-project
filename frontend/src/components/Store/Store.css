@@ -1,0 +1,22 @@
+.store-container {
+  font-family: -apple-system, BlinkMacSystemFont, Helvetica, Arial, "Segoe UI", Roboto, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+
+  width: 720px;
+  /* width: 100%; */
+}
+
+.store-container h1 {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  line-height: 25px;
+  font-family: Georgia, Times, Serif;
+}
+
+.items-panel {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}

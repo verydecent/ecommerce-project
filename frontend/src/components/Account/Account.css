@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:500&display=swap');
+
+/* Container */
+
+.account-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.account-header {
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  flex-direction: column;
+  
+  height: 100%;
+
+  padding: 25px;
+
+}
+
+.user-image img {
+  width: 160px;
+  height: 160px;
+  border-radius: 5px;
+
+  object-fit: cover;
+  display: block;
+    
+  -webkit-transition: all 0.2s linear;
+     -moz-transition: all 0.2s linear;
+      -ms-transition: all 0.2s linear;
+       -o-transition: all 0.2s linear;
+          transition: all 0.2s linear;
+}
+
+.user-image img:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.user-image>input {
+  display: none;
+}
+
+.user-image-button {
+  width: 160px;
+  padding: 4px 12px;
+  margin-top: 10px;
+  font-size: 8px;
+  text-transform: uppercase;
+  font-weight: 600;
+  border-radius: 3px;
+  border: 1px solid #000;
+  background: #fff;
+  color: #000;;
+}
+
+.user-image-button:hover {
+  cursor: pointer;
+}
+
+/* Header */
+
+.details {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  padding: 6px 0 6px 0;
+}
+
+.details h1 {
+  font-size: 10px;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding-bottom: 6px;
+  /* font-family: "Monserrat", sans-serif; */
+  font-family: -apple-system, BlinkMacSystemFont, Helvetica, Arial, "Segoe UI", Roboto, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+
+  padding-bottom: 10px;
+
+}
+
+.details span {
+  text-align: center;
+  text-transform: uppercase;
+  
+  font-size: 17px;
+  padding-bottom: 12px;
+}
+
+/* Main */
+
+.account-main {
+  border-top: 1px solid #838383;
+  /* border-top: 4px solid #000; */
+  padding-top: 25px;
+  display: flex;
+  flex-direction: row;
+}
+
+/* Main Content */
+
+.account-main-content {
+  /* display: flex; */
+  /* justify-content: center;
+  align-items: center; */
+  /* border: 3px solid brown; */
+  margin: 0 auto;
+  /* width: 100%; */
+  /* Maybe keep width come back to it */
+}

@@ -1,0 +1,76 @@
+/* Styling for accounts user */
+
+.message-container-user {
+  width: 100%;
+  border-top: 1px solid #cbcbcb;
+  padding: 20px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+
+}
+
+.message-user-info-user {
+  margin-right: 14px;
+}
+
+.message-panel-user {
+  margin-right: 12px;
+}
+
+.message-message-user {
+  padding: 16px 24px;
+  min-width: 100px;
+  max-width: 300px;
+  font-size: 12px;
+  line-height: 18px;
+  background: #609180;
+  color: #fff;
+  border-radius:12px 12px 0 12px;
+}
+
+.message-date-user {
+  font-size: 8px;
+  font-weight: 600;
+  line-height: 12px;
+  padding: 0 6px 6px 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Styling for other user */
+
+.message-container {
+  width: 100%;
+  border-top: 1px solid #cbcbcb;
+  padding: 20px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+}
+
+.message-user-info {
+  margin-left: 14px;
+}
+
+.message-panel {
+  margin-left: 12px;
+}
+
+.message-message {
+  padding: 16px 24px;
+  min-width: 100px;
+  max-width: 300px;
+  font-size: 12px;
+  line-height: 18px;
+  color: #000;
+  background: #f0f0f0;
+  border-radius:12px 12px 12px  0;
+}
+
+.message-date {
+  font-size: 8px;
+  font-weight: 600;
+  line-height: 12px;
+  padding: 0 0 6px 6px;
+}

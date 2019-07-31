@@ -1,0 +1,24 @@
+.item-feed-container {
+  /* margin: 0 0 60px 0; */
+}
+
+.item-feed-panel {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  /* padding: 20px 0 40px 0; */
+  /* margin: 20px 0 0 0; */
+  border-top: 1px solid #cbcbcb;
+  padding: 35px 0 35px 0;
+}
+
+.feed-header {
+  text-align: center;
+  padding: 25px 0 25px 0;
+  text-transform: uppercase;
+  font-size: 16px;
+  font-weight: 550;
+  letter-spacing: 3px;
+  line-height: 25px;
+}

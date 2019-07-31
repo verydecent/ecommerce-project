@@ -1,0 +1,205 @@
+/* Container */
+
+.post-item-container {
+  font-family: -apple-system, BlinkMacSystemFont, Helvetica, Arial, "Segoe UI", Roboto, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  width: 720px;
+}
+
+.post-item-container h1 {
+  /* font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-align: center; */
+
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  line-height: 25px;
+  font-family: Georgia, Times, Serif;
+}
+
+.post-item-container h3 {
+  text-transform: uppercase;
+  font-size: 14px;
+  letter-spacing: 1px;
+  font-weight: 600;
+  margin-bottom: 30px;
+}
+
+/* Item Panel */
+
+.post-item-panel {
+  display: flex;
+  flex-direction: column;
+
+  padding: 10px;
+  margin: 10px;
+}
+
+/* Detail Panel */
+
+.post-item-detail-panel {
+  width: 100%;
+  min-height: 120px;
+
+  padding: 10px 0 10px 0;
+
+}
+
+.post-item-details {
+  display: flex;
+}
+
+.post-item-details .left-column {
+  width: 50%;
+  /* padding: 10px; */
+  /* margin: 10px; */
+}
+
+.post-item-details .right-column {
+  width: 50%;
+  /* padding: 10px; */
+  /* margin: 10px; */
+}
+
+.post-item-details input {
+  margin-bottom: 10px;
+  padding: 8px 10px;
+  width: 300px;
+  font-size: 12px;
+}
+
+.post-item-details select {
+  margin-bottom: 10px;
+  padding: 8px 10px;
+  width: 300px;
+  font-size: 12px;
+  color: #757575;
+
+  border: 1px solid #cccccc;
+  border-radius: 0;
+  appearance: none;
+  background: #fff;
+
+}
+
+/* Description Panel */
+
+.post-item-description-panel {
+  width: 100%;
+  padding: 10px 0 10px 0;
+
+}
+
+.post-item-description-panel textarea {
+  border: 1px solid #cccccc;
+  border-radius: 1.5px;
+  padding: 12px;
+  max-width: 640px;
+  width: 100%;
+  min-height: 160px;
+}
+
+/* Payment Panel */
+
+.post-item-payment-panel {
+  width: 100%;
+  padding: 10px 0 10px 0;
+}
+
+.payment-details {
+  display: flex;
+  align-items: center;
+}
+
+.payment-details .left-column {
+  width: 50%;
+}
+
+.payment-details .right-column {
+  width: 50%;
+}
+
+.payment-details input {
+  margin-bottom: 10px;
+  padding: 8px 10px;
+  width: 300px;
+  font-size: 12px;
+}
+
+/* Image Panel */
+
+.post-item-image-panel {
+  padding: 10px 0 10px 0
+}
+
+.image-input {
+  padding: 12px 0 12px 0;
+}
+
+.post-item-images button {
+  padding: 10px;
+  width: 100%;
+}
+
+.post-header-image {
+  margin: 18px;
+}
+
+.post-header-image img {
+  width: 100%;
+  height: auto;
+}
+
+/* Condition Signals */
+
+.post-conditional-signal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.post-signal {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 20px;
+  color: rgb(230, 108, 108);
+  text-transform: uppercase;
+  text-align: left;
+  padding-top: 5px;
+}
+
+.post-error-signal {
+  font-size: 12px;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: rgb(230, 108, 108);
+}
+.post-success-signal {
+  font-size: 12px;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: #609180;
+}
+
+/* Form Button */
+
+.post-item-form-button {
+  padding-top: 10px;
+  margin-top: 10px;
+}
+
+.post-item-form-button button {
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 0.4px;
+  padding: 16px;
+  width: 100%;
+  background: #000;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+}
