@@ -1,7 +1,6 @@
 .item-display-container {
   max-width: 209px;
-  margin: 0 25px 25px 0;
-  padding: 10px;
+  margin: 20px;
 
   /* border: 1px black solid; */
 }
@@ -11,12 +10,15 @@
   align-items: center;
   width: 209px;
   height: 279px;
+  /* background-size: cover; */
+
 }
 
 .item-cover-photo img {
   max-width: 209px;
   max-height: 279px;
   min-height: 279px;
+  object-fit: cover;
 }
 
 .post-date {

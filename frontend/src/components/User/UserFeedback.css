@@ -2,6 +2,8 @@
   width: 100%;
 }
 
-.user-feedback-panel {
-  
+.feedback-feed {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }

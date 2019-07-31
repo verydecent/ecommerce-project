@@ -1,5 +1,6 @@
 .feedback-card-container {
   display: flex;
+  justify-content: center;
   padding: 10px;
   margin: 16px;
 
@@ -7,26 +8,26 @@
 }
 
 .feedback-panel-left {
-  flex: 2;
   max-width: 400px;
 
-  margin-left: 10px;
+  padding: 10px;
 }
 
 .feedback-item-date {
   width: 100%;
   font-family: -apple-system, BlinkMacSystemFont, Helvetica, Arial, "Segoe UI", Roboto, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-weight: 400;
-  font-size: 14px;
+  font-size: 10px;
   font-weight: 600;
   padding: 10px;
   margin-top: 15px;
+  text-align: right;
 }
 
 .feedback-item-info {
-  margin-top: 20px;
+  margin-top: 45px;
 
-  padding: 10px;
+  padding-left: 50px;
 
   width: 100%;
 }
@@ -54,9 +55,9 @@
 }
 
 .feedback-panel-right {
-  flex: 1;
+  padding: 10px;
 }
 
-.feedback-panel-right img {
+.feedback-panel-left img {
   max-width: 120px;
 }

@@ -156,18 +156,11 @@ toggleRegisterModal = () => {
             }
           />
           <Route
-            exact
             path="/users/:username"
             render={(props) =>
                 <UserStore {...props} liked={liked} />
 
             } 
-          />
-          <Route
-            path="/users/:username/feedback"
-            render={(props) =>
-              <UserFeedback {...props} liked={liked} />
-            }
           />
           <Route
             exact

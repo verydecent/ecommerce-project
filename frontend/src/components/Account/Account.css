@@ -20,8 +20,8 @@
 }
 
 .user-image img {
-  width: 100px;
-  height: 100px;
+  width: 160px;
+  height: 160px;
   border-radius: 5px;
 
   object-fit: cover;
@@ -32,7 +32,6 @@
       -ms-transition: all 0.2s linear;
        -o-transition: all 0.2s linear;
           transition: all 0.2s linear;
-
 }
 
 .user-image img:hover {
@@ -45,7 +44,7 @@
 }
 
 .user-image-button {
-  width: 100px;
+  width: 160px;
   padding: 4px 12px;
   margin-top: 10px;
   font-size: 8px;

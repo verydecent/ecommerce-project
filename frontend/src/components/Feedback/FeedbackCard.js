@@ -17,21 +17,29 @@ class FeedbackCard extends React.Component {
 
   componentDidMount() {
     const { item_id } = this.props.feedback;
+    console.log(item_id)
     axios.get(getItems(item_id))
-      .then(response => this.setState({ item: response.data }))
+      .then(response => {
+        this.setState({ item: response.data })
+      })
       .catch(error => console.error(error));
   }
   render() {
-    const { description, item_id } = this.props.feedback;
-    // Eventually will also be calling item image
-    const { title, updated_at } = this.state.item;
+    const { description, item_id, created_at } = this.props.feedback;
+    const { title } = this.state.item;
+
     return (
       <div className="feedback-card-container">
         <div className="feedback-panel-left">
+          <Link to={`/item/${item_id}`}>
+            <img src={testIMG} alt="9999" />
+          </Link>
+        </div>
+        <div className="feedback-panel-right">
           <div className="feedback-item-date">
             {
-              updated_at
-                ? formatTransactionDate(updated_at)
+              created_at
+                ? formatTransactionDate(created_at)
                 : null
             }
           </div>
@@ -44,11 +52,6 @@ class FeedbackCard extends React.Component {
           </div>
         </div>
   
-        <div className="feedback-panel-right">
-          <Link to={`/item/${item_id}`}>
-            <img src={testIMG} alt="9999" />
-          </Link>
-        </div>
       </div>
     );
   }

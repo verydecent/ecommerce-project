@@ -8,8 +8,7 @@ class UserFeedback extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      user_info: {},
-      user_feedback: [],
+      feedback: [],
     };
   }
 
@@ -17,35 +16,21 @@ class UserFeedback extends React.Component {
     const { username } = this.props.match.params;
     axios.get(getFeedbackByUsername(username))
       .then(response => {
-        const { user_info, user_feedback } = response.data;
-        console.log(response.data);
-        this.setState({ user_info, user_feedback });
+        this.setState({ feedback: response.data });
       })
       .catch(error => console.error(error));
   }
 
   render() {
-    const { user_info, user_feedback } = this.state;
-    console.log('----', user_feedback)
-    const feedback = user_feedback.map((feedback, index) => (<FeedbackCard key={index} feedback={feedback} />));
-    console.log(feedback);
+    const { feedback } = this.state;
+    const mappedFeedback = feedback.map((feedback, index) => (<FeedbackCard key={index} feedback={feedback} />));
+
     return (
       <div className="user-feedback-container">
-        <div className="user-feedback-panel">
-          <div className="user-header-card">
-            <div className="header-card-img">
-              <img src="" alt="" />
-            </div>
-            <div className="header-card-details">
-              <p>{user_info.username}</p>
-              <p>{user_info.location}</p>
-            </div>
-          </div>
           <div className="feedback-feed">
-            {feedback}
+            {mappedFeedback}
           </div>
         </div>
-      </div>
     );
   }
 }

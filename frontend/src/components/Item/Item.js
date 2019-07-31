@@ -23,6 +23,7 @@ class Item extends React.Component {
       .then((response1) => {
         axios.get(getUser(response1.data.posted_by_user_id))
           .then((response2) => {
+            console.log(response1.data)
             this.setState({ item: response1.data, merchant: response2.data });
           })
           .catch(error => {
@@ -78,31 +79,23 @@ class Item extends React.Component {
 
   render() {
     const { user_id, liked, handleLike } = this.props;
-    const { is_available, category, created_at, color, description, id, price, posted_by_user_id, shipping_price, size, title, brand, url  } = this.state.item;
-    const { username, location } = this.state.merchant;
+    const { is_available, category, created_at, color, description, item_id, price, posted_by_user_id, shipping_price, size, title, brand, url  } = this.state.item;
+    const { username, location, image } = this.state.merchant;
     const merchant_user_id = this.state.merchant.id;
     const { showMessageModal } = this.state;
+
 
    return (
       <div className="item-container">
         {
           showMessageModal
-            ? <MessageModal showMessageModal={showMessageModal} item_id={id} author_id={user_id} inquiring_user_id={user_id} merchant_user_id={merchant_user_id} toggleMessageModal={this.toggleMessageModal} />
+            ? <MessageModal showMessageModal={showMessageModal} item_id={item_id} author_id={user_id} inquiring_user_id={user_id} merchant_user_id={merchant_user_id} toggleMessageModal={this.toggleMessageModal} />
             : null
         }
-        <h4>Item</h4>
 
         <div className="item-panel">
-          <div className="item-panel-left">
-            <div className="item-image">
-              <img src={url} alt="test" />
-            </div>
 
-            <div className="picture-options">
-              Pic options
-            </div>
-          </div>
-          <div className="item-panel-right">
+          <div className="item-panel-left">
             <div className="item-detail-box">
               <div className="item-meta-data">
                 <h1>{brand}</h1>
@@ -115,16 +108,14 @@ class Item extends React.Component {
                     }
                   </span>
                 </div>
-                <div className="date-posted">
-                  <span>Category: {category}</span>
-                </div>
-                <h2>{title}</h2>
+                <h2>Category: {category}</h2>
+                <h2>Title: {title}</h2>
                 <h2>Size: {size}</h2>
                 <h2>Color: {color}</h2>
               </div>
-              <div className="item-heart" onClick={() => handleLike(id)}>
+              <div className="item-heart" onClick={() => handleLike(item_id)}>
               {
-                liked.includes(id)
+                liked.includes(item_id)
                   ? <img src="https://img.icons8.com/material-rounded/18/000000/like.png" alt="" />
                   : <img src="https://img.icons8.com/material-outlined/18/000000/like.png" alt="" />
               }
@@ -137,6 +128,31 @@ class Item extends React.Component {
                 <span>+ ${shipping_price}</span>
                 <span>Location : {location}</span>
               </div>
+            </div>
+
+            <div className="item-description">
+              <h1>Description</h1>
+              <p>{description}</p>
+            </div>
+
+            <div className="user-card">
+              <div className="card-details">
+                <Link className="user__nav__link" to={`/users/${username}/store`}><h1>Visit {username}'s Store</h1></Link>
+              </div>
+              <Link className="user__nav__link" to={`/users/${username}/store`}>
+                <div className="card-image">
+                  <img
+                  src={image}
+                  alt=""
+                  />
+                </div>
+              </Link>
+            </div>
+            
+          </div>
+          <div className="item-panel-right">
+            <div className="item-image">
+              <img src={url} alt="test" />
             </div>
             {
               is_available
@@ -165,23 +181,6 @@ class Item extends React.Component {
                   )
                 : (<div className="sold">SOLD</div>)
             }
-            <div className="user-card">
-              <div className="card-image">
-                <img
-                src="https://vimcare.com/assets/empty_user-e28be29d09f6ea715f3916ebebb525103ea068eea8842da42b414206c2523d01.png"
-                alt=""
-                />
-              </div>
-              <div className="card-details">
-                <Link className="user__nav__link" to={`/users/${username}`}><h1>{username}</h1></Link>
-                <h1>Visit Store</h1>
-              </div>
-            </div>
-
-            <div className="item-description">
-              <h1>Description</h1>
-              <p>{description}</p>
-            </div>
           </div>
         </div>
       </div>

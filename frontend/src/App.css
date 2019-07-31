@@ -13,7 +13,8 @@
   flex-direction: column;
 }
 
-header {
+.item-heart:hover {
+  cursor: pointer;
 }
 
 main  {

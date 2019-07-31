@@ -29,7 +29,9 @@ class Account extends  React.Component {
   }
 
   handleSubmit = (event) => {
-    console.log(this.state.selectedImage)
+    if (!this.state.selectedImage) {
+      return alert("Please Choose a Photo to Upload by clicking on the Profile Image");
+    }
     const { id } = this.props.authUser;
     const { selectedImage } = this.state;
     const data = new FormData();
