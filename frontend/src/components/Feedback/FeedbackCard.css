@@ -1,10 +1,10 @@
 .feedback-card-container {
   display: flex;
   justify-content: center;
-  padding: 10px;
+  padding: 16px;
   margin: 16px;
 
-  border-bottom: 1px solid #e1e1e1;
+  border-top: 1px solid #e1e1e1;
 }
 
 .feedback-panel-left {
@@ -27,7 +27,7 @@
 .feedback-item-info {
   margin-top: 45px;
 
-  padding-left: 50px;
+  padding-left: 40px;
 
   width: 100%;
 }
@@ -54,10 +54,13 @@
   margin-top: 3px;
 }
 
-.feedback-panel-right {
+.feedback-panel-left {
   padding: 10px;
 }
 
 .feedback-panel-left img {
   max-width: 120px;
+  max-height: 140px;
+  min-height: 140px;
+  object-fit: cover;
 }

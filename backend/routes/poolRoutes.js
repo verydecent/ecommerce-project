@@ -41,10 +41,12 @@ router.get('/items', (req, res) => {
 router.get('/items/:id', (req, res) => {
   const { id } = req.params;
   Data('items as i')
+  .select()
   .join('items_images', 'i.id', 'items_images.item_id')
   .join('images', 'items_images.image_id', 'images.id')
   .where('items_images.item_id', id ).first()
     .then(item => {
+      console.log(item);
       res.status(200).json(item)
     })
     .catch(error => {
@@ -206,6 +208,7 @@ router.post('/account/post-item/:id', (req, res) => {
 router.post('/account/liked-items/', (req, res) => {
   const { item_id, id } = req.body;
 
+  console.log(req.body);
   Data('items_users_liked').insert({ user_id: id, item_id: item_id }, ['user_id', 'item_id'])
     .then(ids => {
       res.status(200).json({ message: `${ids[0]} liked item ${ids[1]}` });
@@ -250,11 +253,9 @@ router.delete('/account/liked-items/:id', (req, res) => {
 router.get('/users/:id', (req, res) => {
   const { id } = req.params;
   Data('users as u').select('u.username', 'u.location', 'u.image_id').where({ id }).first()
-    // .then(arr => arr[0])
     .then(user => {
       console.log(user)
       Data('images as i').select('i.url').where({ id: user.image_id }).first()
-        // .then(arr => arr[0])
         .then(image => {
           user.image = image.url;
           res.status(200).json(user);
@@ -348,7 +349,12 @@ router.get('/store/:username', (req, res) => {
     .then(user => {
       Data('items').where({ posted_by_user_id: user.id })
         .then(items => {
-          res.status(200).json({ user_info: user, user_items: items });
+          Data('images').select('images.url').where({ id: user.image_id }).first()
+            .then(image => {
+              console.log(image)
+              res.status(200).json({ user_info: user, user_items: items, image_url: image.url });
+            })
+            .catch(error => res.status(500).json({ error: "Internal server error" }));
         })
         .catch(error => res.status(500).json({ error: "Internal server error" }));
     })
@@ -361,10 +367,11 @@ router.get('/store/feedback/:username', (req, res) => {
   Data('users').where({ username }).first()
     .then(user => {
       Data('users_feedback')
+        // .select('images.url', 'feedback.created_at', 'feedback.description', 'feedback.rating', 'feedback.author_user_id', 'feedback.item_id' )
         .join('feedback', 'users_feedback.feedback_id', 'feedback.id')
         .where('users_feedback.recipient_user_id', user.id)
           .then(feedback => {
-            res.status(200).json({ user_info: user, user_feedback: feedback });
+            res.status(200).json(feedback);
           })
           .catch(error => res.status(500).json({ error: "Internal server error" }))
     })

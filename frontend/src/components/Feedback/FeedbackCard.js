@@ -17,7 +17,6 @@ class FeedbackCard extends React.Component {
 
   componentDidMount() {
     const { item_id } = this.props.feedback;
-    console.log(item_id)
     axios.get(getItems(item_id))
       .then(response => {
         this.setState({ item: response.data })
@@ -27,12 +26,13 @@ class FeedbackCard extends React.Component {
   render() {
     const { description, item_id, created_at } = this.props.feedback;
     const { title } = this.state.item;
-
+    const { item } = this.state;
+    console.log(item)
     return (
       <div className="feedback-card-container">
         <div className="feedback-panel-left">
           <Link to={`/item/${item_id}`}>
-            <img src={testIMG} alt="9999" />
+            <img src={item.url} alt="9999" />
           </Link>
         </div>
         <div className="feedback-panel-right">
