@@ -158,5 +158,4 @@ class Account extends  React.Component {
   }
 }
 
-// export default requiresAuth(Account);
-export default Account;
+export default requiresAuth(Account);
