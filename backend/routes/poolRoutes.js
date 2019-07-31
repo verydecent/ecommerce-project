@@ -41,12 +41,11 @@ router.get('/items', (req, res) => {
 router.get('/items/:id', (req, res) => {
   const { id } = req.params;
   Data('items as i')
-  .select()
   .join('items_images', 'i.id', 'items_images.item_id')
   .join('images', 'items_images.image_id', 'images.id')
   .where('items_images.item_id', id ).first()
     .then(item => {
-      console.log(item);
+      console.log(item)
       res.status(200).json(item)
     })
     .catch(error => {
@@ -148,8 +147,13 @@ router.put('/account/settings/update/user-password', (req, res) => {
 // Get items based on user ID
 router.get('/account/store/:id', (req, res) => {
   const { id } = req.params;
-  Data('items').where({ posted_by_user_id: id })
+  Data('items')
+    .select('items.id', 'items.brand', 'items.price', 'items.title', 'items.size', 'items.created_at', 'images.url')
+    .join('items_images', 'items.id', 'items_images.item_id')
+    .join('images', 'items_images.image_id', 'images.id')
+    .where({ posted_by_user_id: id })
     .then(items => {
+      console.log(items);
       res.status(200).json(items);
     })
     .catch(error => {

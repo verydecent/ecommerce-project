@@ -21,19 +21,15 @@ class Item extends React.Component {
     const { id } = this.props.match.params;
     axios.get(getItems(id))
       .then((response1) => {
+        console.log(response1.data)
         axios.get(getUser(response1.data.posted_by_user_id))
           .then((response2) => {
-            console.log(response1.data)
             this.setState({ item: response1.data, merchant: response2.data });
           })
-          .catch(error => {
-            console.error(error);
-          });
+          .catch(error => console.error(error));
       })
       .then()
-      .catch(error => {
-        console.error(error);
-      });
+      .catch(error => console.error(error));
   }
 
   handlePurchase = (event) => {
