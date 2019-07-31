@@ -1,13 +1,12 @@
 import React from 'react';
 import axios from 'axios';
-import { postItem } from '../../Helpers/devEndpoints';
-import './PostItem.css';
+import { getItems, updateItem, updateItemImage } from '../../Helpers/devEndpoints';
+import './EditItem.css';
 
-class PostItem extends React.Component {
+class EditItem extends React.Component {
   constructor() {
     super();
     this.state = {
-      posted_by_user_id: '',
       price: '',
       shipping_price: '',
       brand: '',
@@ -26,11 +25,33 @@ class PostItem extends React.Component {
     };
   }
 
-  handleSubmit = (event) => {
-    const { price, shipping_price, brand, title, description, category, size, color, image_id } = this.state;
+  componentDidMount() {
+    const { id } = this.props.match.params;
 
+    axios.get(getItems(id))
+      .then(response => {
+        console.log(response.data);
+        const { price, shipping_price, brand, title, description, category, size, color, location, image_id } = response.data;
+        this.setState({ 
+          price,
+          shipping_price,
+          brand,
+          title,
+          description,
+          category,
+          size,
+          color,
+          location,
+          image_id,
+        });
+      })
+  }
+
+  handleSubmit = (event) => {
+    const { id } = this.props.match.params;
+
+    const { price, shipping_price, brand, title, description, category, size, color } = this.state;
     const body = {
-      posted_by_user_id: this.props.user_id,
       price,
       shipping_price,
       brand,
@@ -39,14 +60,12 @@ class PostItem extends React.Component {
       category,
       size,
       color,
-      image_id,
     };
-
-    axios.post(postItem(this.props.user_id), body)
-      .then(res => {
-        console.log('---res---', res)
-        this.setState({
-          posted_by_user_id: '',
+    
+    axios.put(updateItem(id), body)
+    .then(res => {
+      this.submitNewPicture()
+      this.setState({
           price: '',
           shipping_price: '',
           brand: '',
@@ -62,56 +81,43 @@ class PostItem extends React.Component {
         console.error(error)
         this.setState({ error });
       });
-
     event.preventDefault();
   }
 
   handleChange = (event) => {
     const { id, value } = event.target;
     this.setState({ [id]: value });
-    console.log('handleChange state', this.state);
     event.preventDefault();
   }
   
   imageHandler= (event) =>{
-    this.setState({ selectedImages: event.target.files[0] }, this.submitOnHandle);
+    this.setState({ selectedImages: event.target.files[0] });
   }
   
-  submitOnHandle = () => {
-    console.log('submitOnHandle()');
+  submitNewPicture = () => {
+    console.log('submitNewPicture()');
+    const { image_id } = this.state;
 
     const data = new FormData();
     data.append('item-images', this.state.selectedImages);
-    axios.post(`http://localhost:5000/api/account/post-item/image/`, data)
+    axios.put(updateItemImage(image_id), data)
       .then(response => {
         console.log(response);
-        this.setState({ image_id: response.data });
       })
       .catch(error => console.error(error));
   }
 
   render() {
-    const { price, shipping_price, brand, title, description, category, size, color, image_id, error, successResponse } = this.state;
-    
-    console.log('image_id', image_id);
-    const isInvalid =
-      price === '' ||
-      shipping_price === '' ||
-      brand ==='' ||
-      title === '' ||
-      description === '' ||
-      category === '' ||
-      size === '' ||
-      color === '';
+    const { price, shipping_price, brand, title, description, category, size, color, error, successResponse } = this.state;
 
     return (
-      <div className="post-item-container">
-        <h1>Post Item</h1>
-        <div className="post-item-panel">
+      <div className="edit-item-container">
+        <h1>edit Item</h1>
+        <div className="edit-item-panel">
           <form onSubmit={this.handleSubmit} autoComplete="off">
-            <div className="post-item-detail-panel">
+            <div className="edit-item-detail-panel">
               <h3>Details</h3>
-              <div className="post-item-details">
+              <div className="edit-item-details">
                 <div className="left-column">
                   <div className="">
                     <input
@@ -136,7 +142,7 @@ class PostItem extends React.Component {
                     id='color'
                     onChange={this.handleChange}
                     >
-                      <option value={color} defaultValue> Color </option>
+                      <option value={color} defaultValue> {color} </option>
                       <option value="black"> Black </option>
                       <option value="blue"> Blue </option>
                       <option value="brown"> Brown </option>
@@ -161,7 +167,7 @@ class PostItem extends React.Component {
                     id='category'
                     onChange={this.handleChange}
                     >
-                      <option value={category} defaultValue>Category</option>
+                      <option value={category} defaultValue>{category}</option>
                       <option value={'tops'}> Tops </option>
                       <option value={'knitwear'}> Knitwear </option>
                       <option value={'jackets'}> Jackets </option>
@@ -177,7 +183,7 @@ class PostItem extends React.Component {
                     id='size'
                     onChange={this.handleChange}
                     >
-                      <option value={size} defaultValue>Size</option>
+                      <option value={size} defaultValue>{size}</option>
                       <option value={'28'}> 28 </option>
                       <option value={'30'}> 30 </option>
                       <option value={'32'}> 32 </option>
@@ -210,7 +216,7 @@ class PostItem extends React.Component {
               </div>
             </div>
 
-            <div className="post-item-description-panel">
+            <div className="edit-item-description-panel">
               <h3>Description</h3>
               <textarea
                 id="description"
@@ -220,7 +226,7 @@ class PostItem extends React.Component {
                 placeholder="Retail Price, Condition, Measurements, Shipping Policy, Link to Retail Page, etc"
               />
             </div>
-            <div className="post-item-payment-panel">
+            <div className="edit-item-payment-panel">
               <h3>Payment</h3>
               <div className="payment-details">
                 <div className="left-column">
@@ -244,78 +250,35 @@ class PostItem extends React.Component {
               </div>
             </div>
 
-            <div className="post-item-image-panel">
+            <div className="edit-item-image-panel">
               <h3>Photos</h3>
-              <div className="post-item-images">
-                <div className="post-header-image">
+              <div className="edit-item-images">
+                <div className="edit-header-image">
                   {/* <img src={tempIMG} alt="white t shirt" /> */}
                 </div>
-                <div className="post-item-item-upload-form">
+                <div className="edit-item-item-upload-form">
                   <input className="image-input" encType="multipart/form-data" type="file" name="item-images" onChange={this.imageHandler}/>
                 </div>
               </div>
             </div>
 
-            <div className="post-conditional-signal" >
-              {
-                (price === '')
-                  ? <div className="post-signal">Missing Price Field</div>
-                  : null 
-              }
-              {
-                (shipping_price) === ''
-                  ? <div className="post-signal">Missing Shipping Price Field</div>
-                  : null
-              }
-              {
-                (brand) === ''
-                  ? <div className="post-signal">Missing Shipping Brand Field</div>
-                  : null
-              }
-              {
-                (title) === ''
-                  ? <div className="post-signal">Missing Title Field</div>
-                  : null
-              }
-              {
-                (description) === ''
-                  ? <div className="post-signal">Missing Description Field</div>
-                  : null
-              }
-              {
-                (category) === ''
-                  ? <div className="post-signal">Missing Category Field</div>
-                  : null
-              }
-              {
-                (size) === ''
-                  ? <div className="post-signal">Missing Size Field</div>
-                  : null
-              }
-              {
-                (color) === ''
-                  ? <div className="post-signal">Missing Color Field</div>
-                  : null
-              }
 
               {/* Render upon request failure */}
               {
                 (error && error.message) 
-                  ? <div className="post-error-signal">{error.message}</div>
+                  ? <div className="edit-error-signal">{error.message}</div>
                   : null
               }
 
               {/* Render upon successful response */}
               {
                 (successResponse && successResponse.data.message)
-                 ? <div className="post-success-signal">{successResponse.data.message}</div>
+                 ? <div className="edit-success-signal">{successResponse.data.message}</div>
                  : null
               }
-            </div>
 
-            <div className="post-item-form-button">
-              {/* <button value="submit" disabled={isInvalid}>Post Item</button> */}
-              <button value="submit" >Post Item</button>
+            <div className="edit-item-form-button">
+              <button value="submit" >Update Item</button>
             </div>
           </form>
         </div>
@@ -324,4 +287,4 @@ class PostItem extends React.Component {
   }
 }
 
-export default PostItem;
+export default EditItem;

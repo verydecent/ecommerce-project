@@ -23,6 +23,8 @@ module.exports = {
   updateUserPassword,
   uploadUserPicture,
   getUserPicture,
+  updateItem,
+  updateItemImage,
 }
 
 function authorizeUser() {
@@ -85,6 +87,10 @@ function postItem(id) {
   return `http://localhost:5000/api/account/post-item/${id}`
 }
 
+function updateItem(id) {
+  return `http://localhost:5000/api/account/update-item/${id}`;
+}
+
 function registerUser() {
   return 'http://localhost:5000/api/auth/register';
 }
@@ -127,4 +133,8 @@ function uploadUserPicture(user_id) {
 
 function getUserPicture(user_id) {
   return `http://localhost:5000/api/account/get-user-picture/${user_id}`;
+}
+
+function updateItemImage(id) {
+  return `http://localhost:5000/api/account/update-item/image/${id}`
 }

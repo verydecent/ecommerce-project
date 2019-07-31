@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import { withRouter } from 'react-router-dom';
 import { loginUser } from '../../Helpers/devEndpoints';
 
 import './LoginModal.css';
@@ -23,6 +24,7 @@ class LoginModal extends React.Component {
         this.setState({ email: '', password: '' });
         verifyUser();
         toggleLoginModal();
+        setTimeout(() => this.props.history.push('/'), 800);
       })
       .catch(error => {
         console.error('ERROR', error);
@@ -88,4 +90,4 @@ class LoginModal extends React.Component {
   }
 }
 
-export default LoginModal;
+export default withRouter(LoginModal);

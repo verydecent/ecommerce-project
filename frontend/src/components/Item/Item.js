@@ -65,10 +65,6 @@ class Item extends React.Component {
     }
   }
 
-  handleEdit = () => {
-    alert("edit page");
-  }
-
   handleDelete = () => {
     alert("Item Deleted");
   }
@@ -157,7 +153,9 @@ class Item extends React.Component {
                       ? (
                         <div className="item-buttons">
                           <div className="purchase">
-                            <button onClick={this.handleEdit}>Edit</button>
+                            <Link to={`/account/edit-item/${item_id}`}>
+                              <button onClick={this.handleEdit}>Edit</button>
+                            </Link>
                           </div>
                           <div className="message">
                             <button onClick={this.handleDelete}>Delete</button>

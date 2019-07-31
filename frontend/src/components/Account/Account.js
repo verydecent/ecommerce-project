@@ -6,6 +6,7 @@ import requiresAuth from '../../Helpers/requiresAuth';
 import { uploadUserPicture, getUserPicture } from '../../Helpers/devEndpoints';
 
 import SubNav from '../SubNavigation/SubNavigation';
+import EditItem from '../EditItem/EditItem';
 import Settings from '../Setting/Settings'
 import Store from '../Store/Store';
 import MessageInbox from '../MessageInbox/MessageInbox';
@@ -20,8 +21,16 @@ class Account extends  React.Component {
     super(props);
     this.state = {
       selectedImage: null,
-      image: this.props.authUser.user_profile,
+      profile: '',
     };
+  }
+
+  componentDidMount() {
+    axios.get(getUserPicture(this.props.authUser.id))
+      .then(response => {
+        this.setState({ profile: response.data.url })
+      })
+      .catch(error => console.error(error));
   }
 
   handleChange = (event) => {
@@ -39,14 +48,17 @@ class Account extends  React.Component {
 
     axios.put(uploadUserPicture(id), data)
       .then(response => {
-        this.setState({ image: response.data })
+        console.log('pop off?')
+        this.setState({ profile: response.data })
       })
       .catch(error => console.error(error));
   }
 
   render() {
     const { authUser, liked, handleLike } = this.props;
-    const { image } = this.state;
+    const { profile } = this.state;
+
+    console.log('state profile ', profile)
 
     // Running into a memory leak while updating the state inside of store
     // My guess is that one of these guys below VVV rendered instead  account-container rendering meaning store didnt exist, but how is it possible that the other sub account settings didnt run into that error?
@@ -63,13 +75,13 @@ class Account extends  React.Component {
               <span>{authUser.location}</span>
             </div>
             <div className="user-image">
-              <label for="file-input">
+              <label htmlFor="file-input">
                 <img
-                src={image}
+                src={profile}
                 alt=""
                 />
               </label>
-              <input id="file-input" enctype="multipart/form-data" type="file" name="user-image" onChange={this.handleChange} />
+              <input id="file-input" encType="multipart/form-data" type="file" name="user-image" onChange={this.handleChange} />
               <button className="user-image-button" onClick={this.handleSubmit}>Upload</button>
             </div>
           </div>
@@ -81,6 +93,13 @@ class Account extends  React.Component {
   
             <div className="account-main-content">
 
+              <Route
+                path="/account/edit-item/:id"
+                render={(props) =>
+                  <EditItem {...props} authUser={authUser} />
+                }
+              />
+  
               <Route
                 path="/account/settings"
                 render={(props) =>

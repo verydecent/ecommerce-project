@@ -146,6 +146,13 @@
   background: #fff;
 }
 
+.purchase button:hover {
+  cursor: pointer;
+}
+.message button:hover {
+  cursor: pointer;
+}
+
 /* User Card */
 
 .user__nav__link {
@@ -189,7 +196,7 @@
 }
 
 .item-description p {
-  font-size: 14px;
+  font-size: 11px;
   margin: 10px 0 10px 0;
 }
 
