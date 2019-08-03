@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { updateUserInfo, updateUserPassword } from '../../Helpers/devEndpoints';
+import { updateUserInfo, updateUserPassword } from '../../Helpers/prodEndpoints';
 
 import './Settings.css';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { getBoughtItems } from '../../Helpers/devEndpoints';
+import { getBoughtItems } from '../../Helpers/prodEndpoints';
 import './Transactions.css';
 
 import TransactionCard from './TransactionCard';

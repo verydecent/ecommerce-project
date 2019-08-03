@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { getFeedback } from '../../Helpers/devEndpoints';
+import { getFeedback } from '../../Helpers/prodEndpoints';
 
 import './Feedback.css';
 import FeedbackCard from './FeedbackCard';

@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { getItems } from '../Helpers/devEndpoints';
+import { getItems } from '../Helpers/prodEndpoints';
 
 export default function (Component) {
   return class Categorized extends React.Component {
