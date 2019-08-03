@@ -1,7 +1,7 @@
 import React from 'react';
 import {  Link } from 'react-router-dom';
 import { formatTransactionDate } from '../../Helpers/transactionDate';
-import { checkFeedback } from '../../Helpers/devEndpoints';
+import { checkFeedback } from '../../Helpers/prodEndpoints';
 import TransactionModal from './TransactionModal';
 import axios from 'axios';
 

@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { NavLink } from 'react-router-dom';
 import formatDateOnly from '../../Helpers/formatDateOnly';
-import { getChatMessages, purchaseItem } from '../../Helpers/devEndpoints';
+import { getChatMessages, purchaseItem } from '../../Helpers/prodEndpoints';
 import MessageModal from './MessageModal';
 import Message from './Message.js';
 import './ChatMessages.css';

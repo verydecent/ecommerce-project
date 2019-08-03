@@ -1,7 +1,7 @@
 import React from 'react';
 import './TransactionModal.css';
 import axios from 'axios';
-import { postFeedback } from '../../Helpers/devEndpoints';
+import { postFeedback } from '../../Helpers/prodEndpoints';
 
 class TransactionModal extends React.Component {
   constructor() {

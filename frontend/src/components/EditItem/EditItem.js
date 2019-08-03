@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { getItems, updateItem, updateItemImage } from '../../Helpers/devEndpoints';
+import { getItems, updateItem, updateItemImage } from '../../Helpers/prodEndpoints';
 import './EditItem.css';
 
 class EditItem extends React.Component {

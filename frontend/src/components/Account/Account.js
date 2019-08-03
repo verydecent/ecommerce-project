@@ -3,7 +3,7 @@ import { Route } from 'react-router-dom';
 
 import './Account.css';
 import requiresAuth from '../../Helpers/requiresAuth';
-import { uploadUserPicture, getUserPicture } from '../../Helpers/devEndpoints';
+import { uploadUserPicture, getUserPicture } from '../../Helpers/prodEndpoints';
 
 import SubNav from '../SubNavigation/SubNavigation';
 import EditItem from '../EditItem/EditItem';

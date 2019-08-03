@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { registerUser } from '../../Helpers/devEndpoints';
+import { registerUser } from '../../Helpers/prodEndpoints';
 import { withRouter } from 'react-router-dom';
 import './RegisterModal.css';
 
