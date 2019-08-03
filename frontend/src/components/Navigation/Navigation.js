@@ -3,13 +3,20 @@ import { NavLink } from 'react-router-dom';
 import logo from '../../Images/logo.png';
 import './Navigation.css';
 import CategoriesNav from '../CategoriesNav/CategoriesNav';
+import Burger from './Burger';
+import BurgerLoggedIn from './BurgerLoggedIn';
 
 class Navigation extends React.Component {
   constructor() {
     super();
     this.state = {
-      
+      visibile: false,
     };
+  }
+
+  toggleBurgerMenu = () => {
+    console.log('clicked');
+    this.setState((prevState) => ({visibile: !prevState.visibile }));
   }
 
   render() {
@@ -24,7 +31,7 @@ class Navigation extends React.Component {
                 <img className="logo" src={logo} alt="" />
               </NavLink>
             </div>
-
+  
             <nav>
               <ul className="nav__links">
                 <li><NavLink className="nav__link__home" to="/">Home</NavLink></li>
@@ -58,7 +65,12 @@ class Navigation extends React.Component {
                 <div className="dropdown-item" id="logout-button" onClick={handleLogout}>Logout</div>
               </div>
             </div>
-
+            <div className="burger" onClick={this.toggleBurgerMenu}>
+              <div className="line1"></div>
+              <div className="line2"></div>
+              <div className="line3"></div>
+            </div>
+            <BurgerLoggedIn menuVisibility={this.state.visibile} toggleBurgerMenu={this.toggleBurgerMenu} toggleLoginModal={toggleLoginModal} toggleRegisterModal={toggleRegisterModal} />
           </div>
           <div className="spacer"></div>
           <CategoriesNav />
@@ -74,7 +86,7 @@ class Navigation extends React.Component {
               <img className="logo" src={logo} alt="" />
             </NavLink>
           </div>
-
+  
           <nav>
             <ul className="nav__links">
               <li><NavLink className="nav__link__home" to="/">Home</NavLink></li>
@@ -88,7 +100,14 @@ class Navigation extends React.Component {
               <div className="dropdown-item" onClick={toggleRegisterModal}>Register</div>
             </div>
           </div>
+          <div className="burger" onClick={this.toggleBurgerMenu}>
+            <div className="line1"></div>
+            <div className="line2"></div>
+            <div className="line3"></div>
+          </div>
         </div>
+        <Burger menuVisibility={this.state.visibile} toggleBurgerMenu={this.toggleBurgerMenu} toggleLoginModal={toggleLoginModal} toggleRegisterModal={toggleRegisterModal} />
+
         <div className="spacer"></div>
         <CategoriesNav />
       </div>
