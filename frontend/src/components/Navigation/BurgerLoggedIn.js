@@ -12,6 +12,9 @@ function BurgerLoggedIn (props) {
   return (
     <div id="flyoutMenu" className={visibility} onClick={props.toggleBurgerMenu}>
       <h2>
+        <NavLink to="/" className="burger__nav__link">Home</NavLink>
+      </h2>
+      <h2>
         <NavLink to="/account/post-item" className="burger__nav__link">Post Item</NavLink>
       </h2>
       <h2>
