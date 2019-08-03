@@ -1,1 +1,1 @@
-api: node backend/api/index.js
+api: node backend/index.js
