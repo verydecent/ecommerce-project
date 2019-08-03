@@ -18,7 +18,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin: 20% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  margin: 10% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
   width: 80%; /* Could be more or less, depending on screen size */
   
   /* height: auto; */
