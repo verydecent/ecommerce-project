@@ -25,6 +25,7 @@ module.exports = {
   getUserPicture,
   updateItem,
   updateItemImage,
+  postItemImage,
 }
 
 function authorizeUser() {
@@ -137,4 +138,9 @@ function getUserPicture(user_id) {
 
 function updateItemImage(id) {
   return `https://limitless-island-76296.herokuapp.com/api/account/update-item/image/${id}`
+}
+
+function postItemImage() {
+  return `https://limitless-island-76296.herokuapp.com/api/account/post-item/image/`
+
 }

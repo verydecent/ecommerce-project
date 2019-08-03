@@ -25,6 +25,7 @@ router.post('/register', (req, res) => {
     delete body.passwordConfirm;
     usersDB.addUser(body)
       .then(user => {
+        console.log(user);
         const payload = { user };
         console.log('payload', payload);
         const token = generateToken(payload);
@@ -33,7 +34,7 @@ router.post('/register', (req, res) => {
           message: `Welcome ${user}`, token });
       })
       .catch(error => {
-        res.status(500).json({ error });
+        res.status(500).json({ error: "Internal server error" });
       });
   }
 });

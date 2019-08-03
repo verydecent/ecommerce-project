@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { postItem } from '../../Helpers/prodEndpoints';
+import { postItem, postItemImage } from '../../Helpers/prodEndpoints';
 import './PostItem.css';
 
 class PostItem extends React.Component {
@@ -82,7 +82,7 @@ class PostItem extends React.Component {
 
     const data = new FormData();
     data.append('item-images', this.state.selectedImages);
-    axios.post(`http://localhost:5000/api/account/post-item/image/`, data)
+    axios.post(postItemImage(), data)
       .then(response => {
         console.log(response);
         this.setState({ image_id: response.data });
