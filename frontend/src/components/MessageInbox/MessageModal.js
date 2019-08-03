@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { messageUser } from '../../Helpers/devEndpoints';
+import { messageUser } from '../../Helpers/prodEndpoints';
 import './MessageModal.css';
 
 class MessageModal extends React.Component {

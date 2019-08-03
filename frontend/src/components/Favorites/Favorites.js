@@ -3,7 +3,7 @@ import ItemDisplay from '../ItemDisplay/ItemDisplay';
 
 import axios from 'axios';
 import './Favorites.css';
-import { getLikedItems } from '../../Helpers/devEndpoints'
+import { getLikedItems } from '../../Helpers/prodEndpoints'
 
 class Favorites extends React.Component {
   constructor(props) {

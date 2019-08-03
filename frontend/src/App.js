@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, withRouter } from 'react-router-dom';
 import axios from 'axios';
-import { authorizeUser, getLikedItems } from './Helpers/devEndpoints';
+import { authorizeUser, getLikedItems } from './Helpers/prodEndpoints';
 import './App.css';
 
 import Navigation from './components/Navigation/Navigation';

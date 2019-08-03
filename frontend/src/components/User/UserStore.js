@@ -4,7 +4,7 @@ import axios from 'axios';
 import ItemDisplay from '../ItemDisplay/ItemDisplay';
 import StoreItems from './StoreItems';
 import UserFeedback from './UserFeedback';
-import { getStoreByUsername } from '../../Helpers/devEndpoints';
+import { getStoreByUsername } from '../../Helpers/prodEndpoints';
 import './UserStore.css';
 
 class UserStore extends React.Component {

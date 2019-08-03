@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import FeedbackCard from '../Feedback/FeedbackCard';
-import { getFeedbackByUsername } from '../../Helpers/devEndpoints';
+import { getFeedbackByUsername } from '../../Helpers/prodEndpoints';
 import './UserFeedback.css';
 
 class UserFeedback extends React.Component {

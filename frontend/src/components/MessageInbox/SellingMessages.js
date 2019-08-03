@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { getSellingChat } from '../../Helpers/devEndpoints';
+import { getSellingChat } from '../../Helpers/prodEndpoints';
 import Chat from './Chat';
 import './SellingMessages.css';
 
