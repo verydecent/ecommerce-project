@@ -4,6 +4,16 @@ First Solo project emulating the features of the C2C Buying and Selling Platform
 
 Grailed Clone is a Full Stack Single Page Application Worked on By Wonjae Hwang
 
+## Features
+
+- Upload Item along with details and picture to User's personal store
+- Favorite Other Users's Items to User's favorites list
+- Leave Feedback based on transaction experiences
+- Messaging System between users
+- View Users'other user's store and Feedback history
+- Edit User's Items and details
+- Browse by category
+
 # Technologies
 
 ### React
