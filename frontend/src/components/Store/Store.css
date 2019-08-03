@@ -1,12 +1,11 @@
 .store-container {
   font-family: -apple-system, BlinkMacSystemFont, Helvetica, Arial, "Segoe UI", Roboto, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-
-  width: 720px;
-  /* width: 100%; */
+  width: 100%;
 }
 
 .store-container h1 {
-  text-align: center;
+  display: flex;
+  justify-content: center;
   text-transform: uppercase;
   font-size: 18px;
   font-weight: 500;

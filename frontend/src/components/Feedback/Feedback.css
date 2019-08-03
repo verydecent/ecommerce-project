@@ -2,11 +2,12 @@
   font-family: -apple-system, BlinkMacSystemFont, Helvetica, Arial, "Segoe UI", Roboto, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   /* background-color: #f0f0f0; */
 
-  width: 720px;
+  width: 100%;
 }
 
 .feedback-container h1 {
-  text-align: center;
+  display: flex;
+  justify-content: center;
   text-transform: uppercase;
   font-size: 18px;
   font-weight: 500;

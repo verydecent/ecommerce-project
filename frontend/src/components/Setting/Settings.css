@@ -4,7 +4,8 @@
 }
 
 .settings-container h1 {
-  text-align: center;
+  display: flex;
+  justify-content: center;
   text-transform: uppercase;
   font-size: 18px;
   font-weight: 500;
@@ -29,10 +30,10 @@
   color: #000;
 }
 
-.user-info-panel input {
+.user-info-panel inpugit t {
   padding: 10px 12px;
   width: 220px;
-  
+  border: 1px solid #cccccc;  
 }
 
 .user-info-panel button {
@@ -71,4 +72,29 @@
 
 .right .inner {
   padding: 0 0 3px 0;
+}
+
+@media screen and (max-width: 768px) {
+  .user-info-panel {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .user-info-panel input{
+    width: 100%;
+  }
+
+  .user-info-panel button {
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.4px;
+    padding: 16px;
+    width: 100%;
+    background: #000;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+  }
+
+  
 }

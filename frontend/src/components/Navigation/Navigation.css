@@ -130,3 +130,44 @@
 
   text-transform: uppercase;
 }
+
+.burger div {
+  width: 25px;
+  height: 3px;
+  background-color: #000;
+  margin: 5px;
+}
+
+.burger {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  body {
+    /* display: none; */
+  }
+
+  .logo-container {
+    /* display: none; */
+  }
+
+  nav {
+    display: none;
+  }
+
+  .dropdown {
+    display: none;
+  }
+
+  .burger {
+    display: block;
+  }
+
+  .burger:hover {
+    cursor: pointer;
+  }
+
+  .categories-nav {
+    display: none;
+  }
+}

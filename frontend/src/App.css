@@ -54,3 +54,9 @@ footer {
 .footer-column ul li {
   padding: 6px;
 }
+
+/* @media screen and (max-width: 768px) {
+  body {
+    max-width: 100%;
+  }
+} */

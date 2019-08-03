@@ -1,10 +1,11 @@
 .favorites-container {
   font-family: -apple-system, BlinkMacSystemFont, Helvetica, Arial, "Segoe UI", Roboto, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-
-  width: 720px;
+  width: 100%;
 }
 
 .favorites-container h1 {
+  display: flex;
+  justify-content: center;
   text-align: center;
   text-transform: uppercase;
   font-size: 18px;

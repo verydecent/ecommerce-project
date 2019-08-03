@@ -1,6 +1,6 @@
 .register-modal-container {
   position: fixed;
-  z-index: 1;
+  z-index: 700;
 
   left: 0;
   top: 0;
@@ -18,7 +18,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin: 3% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  margin: 20% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
   width: 80%; /* Could be more or less, depending on screen size */
   
   /* height: auto; */
