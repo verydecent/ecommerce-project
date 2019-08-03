@@ -71,6 +71,8 @@
   padding: 8px 10px;
   width: 300px;
   font-size: 12px;
+  border: 1px solid #cccccc;
+
 }
 
 .post-item-details select {
