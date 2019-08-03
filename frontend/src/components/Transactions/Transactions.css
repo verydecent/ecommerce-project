@@ -2,11 +2,12 @@
   font-family: -apple-system, BlinkMacSystemFont, Helvetica, Arial, "Segoe UI", Roboto, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   /* background-color: #f0f0f0; */
 
-  width: 720px;
+  width: 100%;
 }
 
 .transactions-container h1 {
-  text-align: center;
+  display: flex;
+  justify-content: center;
   text-transform: uppercase;
   font-size: 18px;
   font-weight: 500;
@@ -47,10 +48,6 @@
   letter-spacing: 1px;
 }
 
-.bought-div:hover {
-  background:darkcyan;   
-}
-
 .sold-div {
   border: 1px solid black;
   font-size: 12px;
@@ -68,10 +65,6 @@
   letter-spacing: 1px;
 
   /* background: white; */
-}
-
-.sold-div:hover {
-  background:darkcyan;   
 }
 
 .transactions-list {
@@ -170,4 +163,14 @@
   width: 100%;
 
   font-family: -apple-system, BlinkMacSystemFont, Helvetica, Arial, "Segoe UI", Roboto, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+@media screen and (max-width: 768px) {
+  .bought-div {
+    min-width: 50%;
+  }
+
+  .sold-div {
+    min-width: 50%;
+  }
 }
