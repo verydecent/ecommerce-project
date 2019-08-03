@@ -166,4 +166,8 @@
   .burger:hover {
     cursor: pointer;
   }
+
+  .categories-nav {
+    display: none;
+  }
 }

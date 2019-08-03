@@ -70,7 +70,7 @@ class Navigation extends React.Component {
               <div className="line2"></div>
               <div className="line3"></div>
             </div>
-            <BurgerLoggedIn menuVisibility={this.state.visibile} toggleBurgerMenu={this.toggleBurgerMenu} toggleLoginModal={toggleLoginModal} toggleRegisterModal={toggleRegisterModal} />
+            <BurgerLoggedIn menuVisibility={this.state.visibile} toggleBurgerMenu={this.toggleBurgerMenu} handleLogout={handleLogout} />
           </div>
           <div className="spacer"></div>
           <CategoriesNav />

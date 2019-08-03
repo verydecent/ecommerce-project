@@ -9,7 +9,7 @@
   transition: transform .3s
               cubic-bezier(0, .52, 0, 1);
   overflow: scroll;
-  z-index: 3000;
+  z-index: 2000;
 }
  
 #flyoutMenu.hide {

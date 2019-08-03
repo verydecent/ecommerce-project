@@ -71,4 +71,9 @@
     margin-top: 10px;
     justify-content: center;
   }
+
+  .tag-line {
+    text-decoration: underline;
+    font-size: 18px;
+  }
 }
