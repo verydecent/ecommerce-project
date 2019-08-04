@@ -3,7 +3,8 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import MessageModal from '../MessageInbox/MessageModal';
 import formatDate from '../../Helpers/formatDate';
-import { getItems, getUser, purchaseItem } from '../../Helpers/prodEndpoints';
+// import { getItems, getUser, purchaseItem } from '../../Helpers/prodEndpoints';
+import { getItems, getUser, purchaseItem } from '../../Helpers/devEndpoints';
 import './Item.css';
 
 class Item extends React.Component {
@@ -86,8 +87,12 @@ class Item extends React.Component {
         }
 
         <div className="item-panel">
-
           <div className="item-panel-left">
+            <div className="item-image">
+              <img src={url} alt="test" />
+            </div>
+          </div>
+          <div className="item-panel-right">
             <div className="item-detail-box">
               <div className="item-meta-data">
                 <h1>{brand}</h1>
@@ -126,26 +131,6 @@ class Item extends React.Component {
               <h1>Description</h1>
               <p>{description}</p>
             </div>
-
-            <div className="user-card">
-              <div className="card-details">
-                <Link className="user__nav__link" to={`/users/${username}/store`}><h1>Visit {username}'s Store</h1></Link>
-              </div>
-              <Link className="user__nav__link" to={`/users/${username}/store`}>
-                <div className="card-image">
-                  <img
-                  src={image}
-                  alt=""
-                  />
-                </div>
-              </Link>
-            </div>
-            
-          </div>
-          <div className="item-panel-right">
-            <div className="item-image">
-              <img src={url} alt="test" />
-            </div>
             {
               is_available
                 ? (
@@ -175,6 +160,20 @@ class Item extends React.Component {
                   )
                 : (<div className="sold">SOLD</div>)
             }
+            <div className="user-card">
+              <div className="card-details">
+                <Link className="user__nav__link" to={`/users/${username}/store`}><h1>Visit {username}'s Store</h1></Link>
+              </div>
+              <Link className="user__nav__link" to={`/users/${username}/store`}>
+                <div className="card-image">
+                  <img
+                  src={image}
+                  alt=""
+                  />
+                </div>
+              </Link>
+            </div>
+            
           </div>
         </div>
       </div>

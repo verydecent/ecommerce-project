@@ -12,7 +12,8 @@
   text-transform: uppercase;
   text-align: center; */
 
-  text-align: center;
+  display: flex;
+  justify-content: center;
   text-transform: uppercase;
   font-size: 18px;
   font-weight: 500;
@@ -70,6 +71,8 @@
   padding: 8px 10px;
   width: 300px;
   font-size: 12px;
+  border: 1px solid #cccccc;
+
 }
 
 .edit-item-details select {
@@ -96,6 +99,7 @@
 
 .edit-item-description-panel textarea {
   border: 1px solid #cccccc;
+  font-size: 12px;
   border-radius: 1.5px;
   padding: 12px;
   max-width: 640px;
@@ -177,15 +181,12 @@
   font-weight: 400;
   text-transform: uppercase;
   color: rgb(230, 108, 108);
-  text-align: center;
 }
-
 .edit-success-signal {
   font-size: 12px;
   font-weight: 400;
   text-transform: uppercase;
   color: #609180;
-  text-align: center;
 }
 
 /* Form Button */
@@ -209,4 +210,54 @@
 
 .edit-item-form-button button:hover {
   cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+
+  .edit-item-container {
+    width: 100%;
+  }
+
+  .edit-item-container h1 {
+    text-align: right;
+  }
+  .edit-item-details {
+    flex-direction: column;
+  }
+
+  .edit-item-details .right-column {
+    width: 100%;
+  }
+
+  .edit-item-details .left-column {
+    width: 100%;
+  }
+
+  .edit-item-details input {
+    width: 100%;
+  }
+
+  .edit-item-details select {
+    width: 100%;
+  }
+
+  text-area {
+    max-width: 100%;
+  }
+
+  .payment-details {
+    flex-direction: column;
+  }
+
+  .payment-details .right-column {
+    width: 100%;
+  }
+
+  .payment-details .left-column {
+    width: 100%;
+  }
+
+  .payment-details input {
+    width: 100%;
+  }
 }

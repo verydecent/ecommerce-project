@@ -12,15 +12,13 @@
   display: flex;
   width: 100%;
   margin: 0 auto;
-  margin-bottom: 100px;
+  margin-bottom: 20px;
 }
 
 /* Left Panel */
 .item-panel-left {
   width: 50%;
-  /* margin: 0 auto; */
-  margin-left: 5%;
-  margin-right: 5%;
+  padding: 10px;
 }
 /* Item Image */
 
@@ -59,9 +57,7 @@
 
 .item-panel-right {
   width: 50%;
-  height: auto;
-  margin-left: 5%;
-  margin-right: 5%;
+  padding: 10px;
 }
 
 /* Detail Box */
@@ -218,4 +214,28 @@
   font-weight: 1000;
   font-size: 28px;
   text-decoration: underline;
+}
+
+@media screen and (max-width: 768px) {
+  .item-panel {
+    flex-direction: column;
+  }
+
+  .item-panel-left {
+    width: 100%;
+    padding: 30px;
+  }
+
+  .item-image img {
+    width: 100%;
+    object-fit: cover;
+  
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  .item-panel-right {
+    width: 100%;
+    padding: 30px;
+  }
 }

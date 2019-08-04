@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
-import { postItem, postItemImage } from '../../Helpers/prodEndpoints';
+// import { postItem, postItemImage } from '../../Helpers/prodEndpoints';
+import { postItem, postItemImage } from '../../Helpers/devEndpoints';
 import './PostItem.css';
 
 class PostItem extends React.Component {
@@ -311,8 +312,7 @@ class PostItem extends React.Component {
             </div>
 
             <div className="post-item-form-button">
-              {/* <button value="submit" disabled={isInvalid}>Post Item</button> */}
-              <button value="submit" >Post Item</button>
+              <button value="submit" disabled={isInvalid}>Post Item</button>
             </div>
           </form>
         </div>

@@ -5,8 +5,6 @@ import './FeedbackCard.css';
 import { formatTransactionDate } from '../../Helpers/transactionDate';
 import { getItems } from '../../Helpers/prodEndpoints';
 
-const testIMG ="https://www.sunspel.com/media/catalog/product/cache/3/image/9df78eab33525d08d6e5fb8d27136e95/m/t/mtsh0001-whaa-1new.jpg";
-
 class FeedbackCard extends React.Component {
   constructor(props) {
     super(props);

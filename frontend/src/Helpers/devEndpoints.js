@@ -25,6 +25,7 @@ module.exports = {
   getUserPicture,
   updateItem,
   updateItemImage,
+  postItemImage,
 }
 
 function authorizeUser() {
@@ -137,4 +138,8 @@ function getUserPicture(user_id) {
 
 function updateItemImage(id) {
   return `http://localhost:5000/api/account/update-item/image/${id}`
+}
+
+function postItemImage() {
+  return `http://localhost:5000/api/account/post-item/image/`
 }

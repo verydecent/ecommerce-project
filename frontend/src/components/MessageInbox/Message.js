@@ -1,7 +1,6 @@
 import React from 'react';
 import formatSimpleDate from '../../Helpers/formatSimpleDate';
 import './Message.css';
-import { create } from 'domain';
 
 function Message(props) {
   const { message, username, author_id, created_at } = props.message;

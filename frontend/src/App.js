@@ -1,7 +1,8 @@
 import React from 'react';
 import { Route, withRouter } from 'react-router-dom';
 import axios from 'axios';
-import { authorizeUser, getLikedItems } from './Helpers/prodEndpoints';
+// import { authorizeUser, getLikedItems } from './Helpers/prodEndpoints';
+import { authorizeUser, getLikedItems } from './Helpers/devEndpoints';
 import './App.css';
 
 import Navigation from './components/Navigation/Navigation';
@@ -12,7 +13,6 @@ import Jumbotron from './components/Jumbotron/Jumbotron';
 import Item from './components/Item/Item';
 import ItemFeed from './components/ItemFeed/ItemFeed';
 import UserStore from './components/User/UserStore';
-import UserFeedback from './components/User/UserFeedback';
 import Account from './components/Account/Account';
 
 
@@ -25,9 +25,6 @@ class App extends React.Component {
       showLoginModal: false,
       showRegisterModal: false,
     };
-  }
-
-  componentDidMount() {
   }
 
   verifyUser = () => {
@@ -127,11 +124,6 @@ toggleRegisterModal = () => {
               ? <RegisterModal toggleRegisterModal={this.toggleRegisterModal} verifyUser={this.verifyUser} />
               : null
           }
-          {/* <Route
-            exact
-            path="/"
-            component={CategoriesNav}
-          /> */}
           <Route
             exact
             path="/"

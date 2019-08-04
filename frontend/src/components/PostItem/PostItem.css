@@ -99,6 +99,7 @@
 
 .post-item-description-panel textarea {
   border: 1px solid #cccccc;
+  font-size: 12px;
   border-radius: 1.5px;
   padding: 12px;
   max-width: 640px;
@@ -207,6 +208,10 @@
   border-radius: 3px;
 }
 
+.post-item-form-button button:hover {
+  cursor: pointer;
+}
+
 @media screen and (max-width: 768px) {
 
   .post-item-container {
@@ -254,5 +259,6 @@
 
   .payment-details input {
     width: 100%;
+    border: 1px solid #cccccc;
   }
 }
