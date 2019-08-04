@@ -4,7 +4,7 @@ import axios from 'axios';
 import ItemDisplay from '../ItemDisplay/ItemDisplay';
 import StoreItems from './StoreItems';
 import UserFeedback from './UserFeedback';
-import { getStoreByUsername } from '../../Helpers/prodEndpoints';
+import { getStoreByUsername, getAccountStore } from '../../Helpers/prodEndpoints';
 import './UserStore.css';
 
 class UserStore extends React.Component {
@@ -21,7 +21,14 @@ class UserStore extends React.Component {
     const { username } = this.props.match.params;
     axios.get(getStoreByUsername(username))
       .then(response => {
+        console.log(response);
         const { user_info, user_items, image_url } = response.data;
+        axios.get(getAccountStore(user_info.id))
+        .then(response2 => {
+          console.log(response2)
+          this.setState({ user_items: response2.data, user_info, image_url })
+        })
+        .catch(error => console.error(error))
         this.setState({ user_info, user_items, image_url });
       })
       .catch(error => console.error(error));
@@ -30,8 +37,10 @@ class UserStore extends React.Component {
   render() {
     const { user_info, user_items, image_url } = this.state;
     const { liked, handleLike } = this.props;
-    console.log(user_info)
+    console.log(typeof user_items)
     const items = user_items.map((item, index) => (<ItemDisplay key={index} item={item} liked={liked} handleLike={handleLike} />));
+
+     
 
     return (
       <div className="user-store-container">
