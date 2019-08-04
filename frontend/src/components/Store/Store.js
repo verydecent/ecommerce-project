@@ -1,7 +1,6 @@
 import React from 'react';
 import ItemDisplay from '../ItemDisplay/ItemDisplay';
-// import { getAccountStore } from '../../Helpers/prodEndpoints';
-import { getAccountStore } from '../../Helpers/devEndpoints';
+import { getAccountStore } from '../../Helpers/prodEndpoints';
 import axios from 'axios';
 import './Store.css';
 

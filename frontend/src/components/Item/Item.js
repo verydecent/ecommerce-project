@@ -3,8 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import MessageModal from '../MessageInbox/MessageModal';
 import formatDate from '../../Helpers/formatDate';
-// import { getItems, getUser, purchaseItem } from '../../Helpers/prodEndpoints';
-import { getItems, getUser, purchaseItem } from '../../Helpers/devEndpoints';
+import { getItems, getUser, purchaseItem } from '../../Helpers/prodEndpoints';
 import './Item.css';
 
 class Item extends React.Component {

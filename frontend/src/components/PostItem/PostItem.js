@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-// import { postItem, postItemImage } from '../../Helpers/prodEndpoints';
-import { postItem, postItemImage } from '../../Helpers/devEndpoints';
+import { postItem, postItemImage } from '../../Helpers/prodEndpoints';
 import './PostItem.css';
 
 class PostItem extends React.Component {

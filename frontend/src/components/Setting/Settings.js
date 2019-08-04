@@ -89,14 +89,11 @@ class Settings extends React.Component {
 
   render() {
     const { newUsername, newEmail, newLocation, currentPassword, newPassword, confirmNewPassword, error, userUpdateResponse, passwordUpdateResponse } = this.state;
-    console.log(this.state)
     const { authUser } = this.props;
     const passwordIsInvalid = !((currentPassword !== '' && newPassword !== '' &&confirmNewPassword !== '') && (newPassword === confirmNewPassword));
 
     const infoIsInvalid = ((newUsername === '' && newEmail === '' && newLocation === '') ||
         (authUser.username === newUsername || authUser.email === newEmail || authUser.location === newLocation));
-
-    console.log("authUser from Settings.js", authUser)
 
     if (authUser) return (
       
