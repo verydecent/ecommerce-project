@@ -69,3 +69,12 @@ Industry standard RFC 7519 method for representing claims securely between two p
 
 ### Bcryptjs
 String Hashing module from NPM. | [View Dependency](https://www.npmjs.com/package/bcryptjs)
+
+
+## Helpful Resrouces
+
+[Deploying to Heroky] (https://frontend.turing.io/lessons/module-4/deploy-to-heroku.html)
+
+[Browing Database with Heroku] (https://stackoverflow.com/questions/20410873/how-can-i-browse-my-heroku-database)
+
+[Pushing the Heroku Master when Files are in subtree] (https://medium.com/@shalandy/deploy-git-subdirectory-to-heroku-ea05e95fce1f)
