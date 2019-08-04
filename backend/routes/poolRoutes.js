@@ -383,7 +383,7 @@ router.get('/store/:username', (req, res) => {
 
   Data('users').where({ username }).first()
     .then(user => {
-      Data('items').join('images', 'items.image_id', 'images.id').where({ posted_by_user_id: user.id })
+      Data('items')
         .then(items => {
           Data('images').select('images.url').where({ id: user.image_id }).first()
             .then(image => {
