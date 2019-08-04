@@ -163,9 +163,9 @@ class PostItem extends React.Component {
                     >
                       <option value={category} defaultValue>Category</option>
                       <option value={'tops'}> Tops </option>
-                      <option value={'knitwear'}> Bottoms </option>
-                      <option value={'jackets'}> Footwear </option>
-                      <option value={'jeans'}> Outerwear </option>
+                      <option value={'bottoms'}> Bottoms </option>
+                      <option value={'footwear'}> Footwear </option>
+                      <option value={'outerwear'}> Outerwear </option>
                       <option value={'accessories'}> Accessories </option>
                     </select>
                   </div>

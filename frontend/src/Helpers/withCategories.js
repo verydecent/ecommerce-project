@@ -26,7 +26,7 @@ export default function (Component) {
       const { id } = this.props.match.params;
 
       if (id == "accessories") {        
-        const filtered = items.filter((item) => item.category == 'accessory');
+        const filtered = items.filter((item) => item.category == 'accessories');
 
         return <Component {...this.props} items={filtered} title={"Accessories"}/>
       }
