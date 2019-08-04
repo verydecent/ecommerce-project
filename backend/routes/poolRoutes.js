@@ -24,7 +24,7 @@ router.get('/authorize-user', checkJwt, (req, res) => {
 });
 
 router.get('/items', (req, res) => {
-  Data('items as i').select('i.id', 'i.brand', 'i.price', 'i.title', 'i.size', 'i.created_at', 'images.url')
+  Data('items as i').select('i.id', 'i.brand', 'i.price', 'i.title', 'i.size', 'i.created_at', 'images.url', 'i.category')
     .join('items_images', 'i.id', 'items_images.item_id')
     .join('images', 'items_images.image_id', 'images.id')
     .then(items => {
