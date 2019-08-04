@@ -30,6 +30,7 @@ class UserStore extends React.Component {
   render() {
     const { user_info, user_items, image_url } = this.state;
     const { liked, handleLike } = this.props;
+    console.log(user_items)
     const items = user_items.map((item, index) => (<ItemDisplay key={index} item={item} liked={liked} handleLike={handleLike} />));
 
     return (

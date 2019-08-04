@@ -6,7 +6,7 @@ import './ItemDisplay.css';
 function ItemDisplay(props) {
   const { id, brand, price, title, size, created_at, url } = props.item;
   const { handleLike, liked } = props;
-
+  console.log('url', url);
   return (
       <div className="item-display-container">
         <Link to={`/item/${id}`}>

@@ -27,6 +27,7 @@ class Store extends React.Component {
   render() {
     const { items } = this.state;
     const { liked, handleLike } = this.props;
+    console.log('items?', items)
 
     let itemsArr = items.map((item, index) => 
       <ItemDisplay
