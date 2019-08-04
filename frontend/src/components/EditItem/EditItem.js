@@ -169,13 +169,10 @@ class EditItem extends React.Component {
                     >
                       <option value={category} defaultValue>{category}</option>
                       <option value={'tops'}> Tops </option>
-                      <option value={'knitwear'}> Knitwear </option>
-                      <option value={'jackets'}> Jackets </option>
-                      <option value={'jeans'}> Jeans </option>
-                      <option value={'trousers'}> Trousers </option>
-                      <option value={'shorts'}> Shorts </option>
+                      <option value={'bottoms'}> Bottoms </option>
+                      <option value={'footwear'}> Footwear </option>
+                      <option value={'outerwear'}> Outerwear </option>
                       <option value={'accessories'}> Accessories </option>
-                      <option value={'shoes'}> Shoes </option>
                     </select>
                   </div>
                   <div className="">
