@@ -5,8 +5,6 @@ import { checkFeedback } from '../../Helpers/prodEndpoints';
 import TransactionModal from './TransactionModal';
 import axios from 'axios';
 
-const testIMG ="https://www.sunspel.com/media/catalog/product/cache/3/image/9df78eab33525d08d6e5fb8d27136e95/m/t/mtsh0001-whaa-1new.jpg";
-
 class TransactionCard extends React.Component {
   constructor(props) {
     super(props);
@@ -38,6 +36,7 @@ class TransactionCard extends React.Component {
   render() {
     const { showTransactionModal, feedbackExists } = this.state;
     const { item } = this.props;
+    console.log(item)
     const { id, title, price, updated_at } = item;
 
     return (
@@ -69,7 +68,7 @@ class TransactionCard extends React.Component {
         <div className="transaction-card-right">
           <Link to={`/item/${id}`}>
             <div className="transaction-card-img">
-              <img src={testIMG} alt=""/>
+              {/* <img src={} alt=""/> */}
             </div>
           </Link>
         </div>

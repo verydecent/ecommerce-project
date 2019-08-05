@@ -317,7 +317,10 @@ router.put('/purchase-item/:id', (req, res) => {
 // Bought transactions
 router.get('/user/:id/bought-items/', (req, res) => {
   const { id } = req.params;
-  Data('items').where({ purchased_by_user_id: id })
+  Data('items')
+  .join('items_images', 'items.id', 'items_images.item_id')
+  .join('images', 'items_images.image_id', 'images.id')
+  .where({ purchased_by_user_id: id })
     .then(items => {
       res.status(200).json(items)
     })
@@ -328,7 +331,10 @@ router.get('/user/:id/bought-items/', (req, res) => {
 router.get('/user/:id/sold-items/', (req, res) => {
   const { id } = req.params;
 
-  Data('items').where({ posted_by_user_id: id, is_available: 0 })
+  Data('items')
+  .join('items_images', 'items.id', 'items_images.item_id')
+  .join('images', 'items_images.image_id', 'images.id')
+  .where({ posted_by_user_id: id, is_available: 0 })
     .then(items => {
       res.status(200).json(items);
     })
