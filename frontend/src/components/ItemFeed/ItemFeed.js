@@ -10,6 +10,7 @@ class ItemFeed extends React.Component {
     const available = items.map((item, index) => (
       <ItemDisplay key={index} item={item} liked={liked} handleLike={handleLike} />
     ));
+    available.reverse();
     return (
       <div className="item-feed-container">
         <div className="feed-header">

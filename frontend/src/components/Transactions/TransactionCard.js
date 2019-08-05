@@ -37,7 +37,7 @@ class TransactionCard extends React.Component {
     const { showTransactionModal, feedbackExists } = this.state;
     const { item } = this.props;
     console.log(item)
-    const { id, title, price, updated_at } = item;
+    const { item_id, title, price, updated_at, url } = item;
 
     return (
       <div className="transaction-card-container">
@@ -48,7 +48,7 @@ class TransactionCard extends React.Component {
         }
         <div className="transaction-card-left">
           <div className="transaction-item-info">
-            <Link to={`/item/${id}`} style={{ textDecoration: 'none' }}>
+            <Link to={`/item/${item_id}`} style={{ textDecoration: 'none' }}>
               <div className="transaction-item-title">{title}</div>
               <div className="transaction-item-price">${price}</div>
               <div className="transaction-item-date">{formatTransactionDate(updated_at)}</div>
@@ -66,9 +66,9 @@ class TransactionCard extends React.Component {
         </div>
 
         <div className="transaction-card-right">
-          <Link to={`/item/${id}`}>
+          <Link to={`/item/${item_id}`}>
             <div className="transaction-card-img">
-              {/* <img src={} alt=""/> */}
+              <img src={url} alt=""/>
             </div>
           </Link>
         </div>
