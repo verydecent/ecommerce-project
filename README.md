@@ -14,7 +14,13 @@ Grailed Clone is a Full Stack Single Page Application Worked on By Wonjae Hwang
 - Edit User's Items and details
 - Browse by category
 
-![alt text](https://imgur.com/o1lNxos)
+![alt text](https://i.imgur.com/o1lNxos.png)
+![alt text](https://i.imgur.com/JQS4zD5.png)
+![alt text](https://i.imgur.com/ERNt77P.png)
+![alt text](https://i.imgur.com/q46z8X7.png)
+![alt text](https://i.imgur.com/fQ2ZxwP.png)
+![alt text](https://i.imgur.com/W2QEuOa.png)
+![alt text](https://i.imgur.com/dVaZmGV.png)
 
 
 # Technologies
