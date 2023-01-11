@@ -29,7 +29,7 @@
     "express": "^4.17.1",
     "helmet": "^3.18.0",
     "jsonwebtoken": "^8.5.1",
-    "knex": "^0.18.2",
+    "knex": "^2.4.0",
     "lodash": "^4.17.15",
     "lodash.template": "^4.5.0",
     "morgan": "^1.9.1",
